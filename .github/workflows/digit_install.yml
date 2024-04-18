@@ -1,4 +1,4 @@
-name: DIGIT-Install workflow
+name: DIGIT-Install workflow 
 # Workflow branch creating cluster against the input.yaml file  
 on:
   push:
