@@ -14,7 +14,7 @@ values:
 releases:
 - name: cert-manager
   chart: ./cert-manager
-  namespace: egov
+  namespace: backbone-dev
   installed: true
   version: v1.13.3
   disableValidation: true
