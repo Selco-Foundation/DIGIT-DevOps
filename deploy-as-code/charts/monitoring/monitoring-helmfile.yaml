@@ -34,7 +34,7 @@ releases:
 
 - name: jaeger-tracing
   installed: true
-  namespace: backbone
+  namespace: backbone-dev
   chart: jaegertracing/jaeger
   version: 1.0.0 
   values:
