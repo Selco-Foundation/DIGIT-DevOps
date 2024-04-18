@@ -128,7 +128,7 @@ resource "kubernetes_annotations" "example" {
   annotations = {
     "eks.amazonaws.com/role-arn" = "${aws_iam_role.eks_iam.arn}"
   }
-}
+} 
 
 resource "aws_iam_role_policy_attachment" "cluster_AmazonEBSCSIDriverPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
