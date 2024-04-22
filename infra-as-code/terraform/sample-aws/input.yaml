@@ -18,7 +18,7 @@ db_name: "selcodevdb"
 db_username: "selcodev" 
 
 # Replace with Domain name you want for your web applications
-domain_name: "selco-dev.selco.org"
+domain_name: "e4h-dev.selcofoundation.org"
 
 # Replace with the name you want to give to your S3 bucket which is used to store the terraform state
 terraform_state_bucket_name: "selco-dev-githubactions-bucket"
