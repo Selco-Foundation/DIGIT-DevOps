@@ -8,7 +8,7 @@ templates:
     missingFileHandler: Warn
 
 values:
-  - ../environments/env-secrets.yaml
+  - ../environments/selco-uat-secrets.yaml
   - ../environments/env.yaml
 
 releases:

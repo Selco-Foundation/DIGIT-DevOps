@@ -339,7 +339,7 @@ jobs:
   #       run: sudo apt-get install -y jq
   #     - name: Convert YAML to JSON
   #       run: |
-  #         cat deploy-as-code/charts/environments/env-secrets.yaml | yq e -j - > secrets.json
+  #         cat deploy-as-code/charts/environments/selco-uat-secrets.yaml | yq e -j - > secrets.json
   #     - name: Extract flywayPassword
   #       id: extract
   #       run: |

@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    bucket = <terraform_state_bucket_name>
+    bucket = "selco-prod-githubaction-bucket"
     key    = "digit-bootcamp-setup/terraform.tfstate"
     region = "ap-south-1"
     # The below line is optional depending on whether you are using DynamoDB for state locking and consistency
-    dynamodb_table = <terraform_state_bucket_name>
+    dynamodb_table = "selco-prod-githubaction-bucket"
     # The below line is optional if your S3 bucket is encrypted
     encrypt = true
   }
@@ -23,8 +23,8 @@ module "db" {
   subnet_ids                    = "${module.network.private_subnets}"
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
-  instance_class                = "db.t3.medium"  ## postgres db instance type
-  engine_version                = "14.10"   ## postgres version
+  instance_class                = "db.m5.large" #db.t3.medium  ## postgres db instance type
+  engine_version                = "11.22"  #1410   ## postgres version
   storage_type                  = "gp2"
   storage_gb                    = "10"     ## postgres disk size
   backup_retention_days         = "7"
@@ -67,16 +67,16 @@ module "eks" {
 
   worker_groups = [
     {
-      name                          = "spot"
-      ami_id                        = "ami-04b500d2e83fc74fe"   
+      name                          = "on-demand"
+      ami_id                        = "ami-04b500d2e83fc74fe"
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
       override_instance_types       = "${var.override_instance_types}"
-      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=normal"
       asg_max_size                  = "${var.number_of_worker_nodes}"
       asg_desired_capacity          = "${var.number_of_worker_nodes}"
-      spot_allocation_strategy      = "capacity-optimized"
-      spot_instance_pools           = null
+      #spot_allocation_strategy      = "capacity-optimized"
+      #spot_instance_pools           = null
     }
   ]
   tags = "${
@@ -115,7 +115,7 @@ resource "kubernetes_service_account" "ebs_csi_controller_sa" {
     name      = "ebs-csi-controller-sa"
     namespace = "kube-system"
   }
-}  
+}
 
 resource "kubernetes_annotations" "example" {
   depends_on = [kubernetes_service_account.ebs_csi_controller_sa]
@@ -128,7 +128,7 @@ resource "kubernetes_annotations" "example" {
   annotations = {
     "eks.amazonaws.com/role-arn" = "${aws_iam_role.eks_iam.arn}"
   }
-} 
+}
 
 resource "aws_iam_role_policy_attachment" "cluster_AmazonEBSCSIDriverPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
@@ -149,7 +149,7 @@ resource "aws_iam_openid_connect_provider" "eks_oidc_provider" {
 }
 
 resource "aws_security_group_rule" "rds_db_ingress_workers" {
-  description              = "Allow worker nodes to communicate with RDS database" 
+  description              = "Allow worker nodes to communicate with RDS database"
   from_port                = 5432
   to_port                  = 5432
   protocol                 = "tcp"
@@ -184,7 +184,7 @@ module "es-master" {
   availability_zones = "${var.availability_zones}"
   storage_sku = "gp2"
   disk_size_gb = "2"
-  
+
 }
 module "es-data-v1" {
 
@@ -195,5 +195,5 @@ module "es-data-v1" {
   availability_zones = "${var.availability_zones}"
   storage_sku = "gp2"
   disk_size_gb = "25"
-  
+
 }

@@ -8,7 +8,7 @@ templates:
     # Use "Debug" to make missing files errors invisible at the default log level(--log-level=INFO)
     missingFileHandler: Warn
     values:
-      - ../environments/env-secrets.yaml
+      - ../environments/selco-uat-secrets.yaml
       - ../environments/env.yaml
 
 releases:
