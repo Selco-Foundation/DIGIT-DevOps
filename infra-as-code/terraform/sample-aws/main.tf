@@ -1,12 +1,5 @@
 terraform {
   backend "s3" {
-    bucket = "selco-prod-githubaction-bucket"
-    key    = "digit-bootcamp-setup/terraform.tfstate"
-    region = "ap-south-1"
-    # The below line is optional depending on whether you are using DynamoDB for state locking and consistency
-    dynamodb_table = "selco-prod-githubaction-bucket"
-    # The below line is optional if your S3 bucket is encrypted
-    encrypt = true
   }
 }
 
@@ -23,8 +16,8 @@ module "db" {
   subnet_ids                    = "${module.network.private_subnets}"
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
-  instance_class                = "db.m5.large" #db.t3.medium  ## postgres db instance type
-  engine_version                = "11.22"  #1410   ## postgres version
+  instance_class                = "${var.db_instance_class}" #db.t3.medium  ## postgres db instance type
+  engine_version                = "${var.engine_version}"  #1410   ## postgres version
   storage_type                  = "gp2"
   storage_gb                    = "10"     ## postgres disk size
   backup_retention_days         = "7"
@@ -62,19 +55,21 @@ module "eks" {
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
   subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  kubeconfig_name = "${var.cluster_name}"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
   worker_groups = [
     {
-      name                          = "on-demand"
+      name                          = "spot"
       ami_id                        = "ami-04b500d2e83fc74fe"
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
       override_instance_types       = "${var.override_instance_types}"
       kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=normal"
-      asg_max_size                  = "${var.number_of_worker_nodes}"
+      asg_max_size                  = "${var.max_number_of_worker_nodes}"
       asg_desired_capacity          = "${var.number_of_worker_nodes}"
+      asg_min_size                  = "${var.min_number_of_worker_nodes}"
       #spot_allocation_strategy      = "capacity-optimized"
       #spot_instance_pools           = null
     }
@@ -175,25 +170,25 @@ resource "aws_eks_addon" "aws_ebs_csi_driver" {
   resolve_conflicts = "OVERWRITE"
 }
 
-module "es-master" {
-
-  source = "../modules/storage/aws"
-  storage_count = 3
-  environment = "${var.cluster_name}"
-  disk_prefix = "es-master"
-  availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
-  disk_size_gb = "2"
-
-}
-module "es-data-v1" {
-
-  source = "../modules/storage/aws"
-  storage_count = 3
-  environment = "${var.cluster_name}"
-  disk_prefix = "es-data-v1"
-  availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
-  disk_size_gb = "25"
-
-}
+# module "es-master" {
+#
+#   source = "../modules/storage/aws"
+#   storage_count = 3
+#   environment = "${var.cluster_name}"
+#   disk_prefix = "es-master"
+#   availability_zones = "${var.availability_zones}"
+#   storage_sku = "gp2"
+#   disk_size_gb = "2"
+#
+# }
+# module "es-data-v1" {
+#
+#   source = "../modules/storage/aws"
+#   storage_count = 3
+#   environment = "${var.cluster_name}"
+#   disk_prefix = "es-data-v1"
+#   availability_zones = "${var.availability_zones}"
+#   storage_sku = "gp2"
+#   disk_size_gb = "25"
+#
+# }

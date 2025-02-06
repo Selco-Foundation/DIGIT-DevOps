@@ -5,12 +5,10 @@
 
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster"
-  default = "selco-prod" #REPLACE
 }
 
 variable "vpc_cidr_block" {
   description = "CIDR block"
-  default = "192.168.0.0/16"
 }
 
 
@@ -26,23 +24,28 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.28"
 }
 
 variable "instance_type" {
   description = "eGov recommended below instance type as a default"
-  default = "r5.xlarge"
 }
 
 variable "override_instance_types" {
   description = "Arry of instance types for SPOT instances"
-  default = ["r5a.large", "r5ad.large", "r5d.large", "m4.xlarge"]
+  default = ["r5a.large", "r5d.large", "m4.xlarge"]
 
 }
 
 variable "number_of_worker_nodes" {
   description = "eGov recommended below worker node counts as default"
-  default = "3" #REPLACE IF NEEDED
+}
+
+variable "max_number_of_worker_nodes" {
+  description = "Max limit"
+}
+
+variable "min_number_of_worker_nodes" {
+  description = "Min limit"
 }
 
 variable "ssh_key_name" {
@@ -53,12 +56,18 @@ variable "ssh_key_name" {
 
 variable "db_name" {
   description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
-  default = "selcoproddb" #REPLACE
 }
 
 variable "db_username" {
   description = "RDS database user name"
-  default = "selcoprod" #REPLACE
+}
+
+variable "engine_version" {
+  description = "Db-engine-version"
+}
+
+variable "db_instance_class" {
+  description = "DB_Instance Class"
 }
 
 #DO NOT fill in here. This will be asked at runtime
