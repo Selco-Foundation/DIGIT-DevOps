@@ -26,6 +26,18 @@ variable "kubernetes_version" {
   description = "kubernetes version"
 }
 
+variable "ami_id" {
+  description = "launch configuration ami id"
+}
+
+variable "coredns-version" {
+}
+
+variable "kube-proxy-version" {
+}
+
+variable "aws_ebs_csi_driver" {}
+
 variable "instance_type" {
   description = "eGov recommended below instance type as a default"
 }
