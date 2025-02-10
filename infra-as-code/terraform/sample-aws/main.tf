@@ -55,7 +55,7 @@ module "eks" {
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
   subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
-  kubeconfig_name = "${var.cluster_name}"
+  kubeconfig_name = "selco-uat"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
