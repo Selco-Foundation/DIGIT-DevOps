@@ -55,13 +55,13 @@ module "eks" {
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
   subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
-  kubeconfig_name = "selco-uat"
+  kubeconfig_name = "selco-prod"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
   worker_groups = [
     {
-      name                          = "spot"
+      name                          = "on-demand"
       ami_id                        = "${var.ami_id}"
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
@@ -172,25 +172,25 @@ resource "aws_eks_addon" "aws_ebs_csi_driver" {
   resolve_conflicts = "OVERWRITE"
 }
 
-# module "es-master" {
-#
-#   source = "../modules/storage/aws"
-#   storage_count = 3
-#   environment = "${var.cluster_name}"
-#   disk_prefix = "es-master"
-#   availability_zones = "${var.availability_zones}"
-#   storage_sku = "gp2"
-#   disk_size_gb = "2"
-#
-# }
-# module "es-data-v1" {
-#
-#   source = "../modules/storage/aws"
-#   storage_count = 3
-#   environment = "${var.cluster_name}"
-#   disk_prefix = "es-data-v1"
-#   availability_zones = "${var.availability_zones}"
-#   storage_sku = "gp2"
-#   disk_size_gb = "25"
-#
-# }
+module "es-master" {
+
+  source = "../modules/storage/aws"
+  storage_count = 3
+  environment = "${var.cluster_name}"
+  disk_prefix = "es-master"
+  availability_zones = "${var.availability_zones}"
+  storage_sku = "gp2"
+  disk_size_gb = "2"
+
+}
+module "es-data-v1" {
+
+  source = "../modules/storage/aws"
+  storage_count = 3
+  environment = "${var.cluster_name}"
+  disk_prefix = "es-data-v1"
+  availability_zones = "${var.availability_zones}"
+  storage_sku = "gp2"
+  disk_size_gb = "25"
+
+}
