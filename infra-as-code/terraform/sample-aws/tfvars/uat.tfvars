@@ -16,6 +16,8 @@ engine_version = "14.12"
 db_instance_class = "db.t3.medium"
 #EKS
 cluster_name = "selco-uat-cluster"
+kubeconfig_name= "selco-uat"
+node_name = "spot"
 kubernetes_version = "1.32"
 ami_id = "ami-0f4a7f3d1231aaf54"
 instance_type= "r5ad.large"
