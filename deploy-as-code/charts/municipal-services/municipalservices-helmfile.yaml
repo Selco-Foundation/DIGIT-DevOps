@@ -9,7 +9,7 @@ templates:
     missingFileHandler: Warn
     values:
       - ../environments/selco-uat-secrets.yaml
-      - ../environments/env.yaml
+      - ../environments/selco-uat.yaml
 
 releases:
   - name: im-services # Replace with your desired namespace

@@ -8,7 +8,7 @@ repositories:
 
 values:
   - namespace: monitoring
-  - ../environments/env.yaml
+  - ../environments/selco-uat.yaml
   - ../environments/selco-uat-secrets.yaml
 
 

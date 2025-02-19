@@ -8,38 +8,38 @@ templates:
     missingFileHandler: Warn
 
 values:
-  - ../environments/selco-uat-secrets.yaml
-  - ../environments/env.yaml
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}-secrets.yaml
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 releases:
 - name: cert-manager
   chart: ./cert-manager
   namespace: backbone-dev
   installed: true
-  version: v1.13.3
+  version: v1.16.2
   disableValidation: true
   values:
     - ./cert-manager/values.yaml
 
-- name: minio
-  installed: true
-  chart: ./minio
-  version: 13.3.1
-  <<: *default
-  values:
-    - ./minio/values.yaml
+#- name: minio
+#  installed: true
+#  chart: ./minio
+#  version: 13.3.1
+#  <<: *default
+#  values:
+#    - ./minio/values.yaml
 
-- name: postgresql
-  installed: false
-  chart: ./postgresql
-  version: 11.9.13
-  <<: *default
-  values:
-    - ./postgresql/values.yaml
-    - global:
-        postgresql:
-          auth:
-            postgresPassword: {{ .Values.secrets.db.password | quote }}
+#- name: postgresql
+#  installed: false
+#  chart: ./postgresql
+#  version: 11.9.13
+#  <<: *default
+#  values:
+#    - ./postgresql/values.yaml
+#    - global:
+#        postgresql:
+#          auth:
+#            postgresPassword: {{ .Values.secrets.db.password | quote }}
 - name: redis
   installed: true
   chart: ./redis
