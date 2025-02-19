@@ -98,4 +98,7 @@ variable "public_key" {
   description = "ssh key"
 }
 
+variable "create_rds" {
+  type = bool
+}
 ## change ssh key_name eg. digit-quickstart_your-name

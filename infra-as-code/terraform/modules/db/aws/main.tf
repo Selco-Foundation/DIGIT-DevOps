@@ -1,4 +1,5 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
+  count = "${var.create_rds}" ? 1: "${var.environment}" == "selco-dev" ? 1 : 0
   name       = "db-subnet-group-${var.environment}"
   subnet_ids = "${var.subnet_ids}"
 
@@ -11,6 +12,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 resource "aws_db_instance" "rds_postgres" {
+  count = "${var.create_rds}" ? 1: 0
   allocated_storage       = "${var.storage_gb}"
   storage_type            = "${var.storage_type}"
   engine                  = "postgres"
@@ -23,7 +25,7 @@ resource "aws_db_instance" "rds_postgres" {
   password                = "${var.administrator_login_password}"
   vpc_security_group_ids  = "${var.vpc_security_group_ids}"
   backup_retention_period = "${var.backup_retention_days}"
-  db_subnet_group_name    = "${aws_db_subnet_group.db_subnet_group.name}"
+  db_subnet_group_name    = "${aws_db_subnet_group.db_subnet_group[0].name}"
   copy_tags_to_snapshot   = "true"
   skip_final_snapshot     = "true"
 

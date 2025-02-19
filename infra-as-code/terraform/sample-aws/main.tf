@@ -26,6 +26,7 @@ module "db" {
   identifier                    = "${var.cluster_name}-db"
   db_name                       = "${var.db_name}"
   environment                   = "${var.cluster_name}"
+  create_rds                    = "${var.create_rds}"
 }
 
 data "aws_eks_cluster" "cluster" {

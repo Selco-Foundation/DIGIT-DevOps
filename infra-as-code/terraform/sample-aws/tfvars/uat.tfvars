@@ -10,6 +10,7 @@ encrypt = true
 vpc_cidr_block = "192.168.0.0/16"
 
 #DB
+create_rds = true
 db_name = "selcouatdb"
 db_username = "selcouatadmin"
 engine_version = "14.12"

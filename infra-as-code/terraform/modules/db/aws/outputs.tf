@@ -1,24 +1,24 @@
 output "rds_postgres_address" {
-  value = "${aws_db_instance.rds_postgres.address}"
+  value = length(aws_db_instance.rds_postgres) > 0 ? "${aws_db_instance.rds_postgres[0].address}" : null
 }
 
 output "db_instance_endpoint" {
-  value = "${aws_db_instance.rds_postgres.endpoint}"
+  value = length(aws_db_instance.rds_postgres) > 0 ? "${aws_db_instance.rds_postgres[0].endpoint}" : null
 }
 
 
 output "db_instance_name" {
   description = "The database name"
-  value       = "${aws_db_instance.rds_postgres.db_name}"
+  value       = length(aws_db_instance.rds_postgres) > 0 ? "${aws_db_instance.rds_postgres[0].db_name}" : null
 }
 
 output "db_instance_username" {
   description = "The master username for the database"
-  value       = "${aws_db_instance.rds_postgres.username}"
+  value       = length(aws_db_instance.rds_postgres) > 0 ? "${aws_db_instance.rds_postgres[0].username}" : null
   sensitive   = true
 }
 
 output "db_instance_port" {
   description = "The database port"
-  value       = "${aws_db_instance.rds_postgres.port}"
+  value       = length(aws_db_instance.rds_postgres) > 0 ? "${aws_db_instance.rds_postgres[0].port}" : null
 }
