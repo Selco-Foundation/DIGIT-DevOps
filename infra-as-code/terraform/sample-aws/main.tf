@@ -26,6 +26,7 @@ module "db" {
   identifier                    = "${var.cluster_name}-db"
   db_name                       = "${var.db_name}"
   environment                   = "${var.cluster_name}"
+  create_rds                    = "${var.create_rds}"
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -55,13 +56,13 @@ module "eks" {
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
   subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
-  kubeconfig_name = "${var.cluster_name}"
+  kubeconfig_name = "${var.kubeconfig_name}"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
   worker_groups = [
     {
-      name                          = "spot"
+      name                          = "${var.node_name}"
       ami_id                        = "${var.ami_id}"
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
@@ -192,5 +193,5 @@ resource "aws_eks_addon" "aws_ebs_csi_driver" {
 #   availability_zones = "${var.availability_zones}"
 #   storage_sku = "gp2"
 #   disk_size_gb = "25"
-#
+
 # }

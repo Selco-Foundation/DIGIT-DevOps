@@ -11,3 +11,4 @@ variable "administrator_login_password" {}
 variable "db_name" {}
 variable "identifier" {}
 variable "environment" {}
+variable "create_rds" {}

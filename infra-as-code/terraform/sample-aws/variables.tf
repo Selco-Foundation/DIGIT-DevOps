@@ -60,6 +60,14 @@ variable "min_number_of_worker_nodes" {
   description = "Min limit"
 }
 
+variable "kubeconfig_name" {
+  description = "Config user name"
+}
+
+variable "node_name" {
+  description = "Worker Node Name"
+}
+
 variable "ssh_key_name" {
   description = "ssh key name, not required if your using spot instance types"
   default = "selco-prod-ssh-key" #REPLACE
@@ -90,4 +98,7 @@ variable "public_key" {
   description = "ssh key"
 }
 
+variable "create_rds" {
+  type = bool
+}
 ## change ssh key_name eg. digit-quickstart_your-name
