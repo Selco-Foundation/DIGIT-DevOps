@@ -18,6 +18,11 @@ initContainers:
       repository: "audit-service-db"
       tag: core-2.9-lts-mvn-check-c33cfe45ab-9
 
+  gitSync:
+    enabled: true
+    repo: "git@github.com:Selco-Foundation/configs"
+    branch: "main"
+
 # Container Configs
 image:
   repository: "audit-service"

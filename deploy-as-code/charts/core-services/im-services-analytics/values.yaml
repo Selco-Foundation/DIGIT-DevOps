@@ -13,7 +13,8 @@ ingress:
 
 # Container Configs
 image:
-  repository: "im-services-analytics"
+  repository: "egovio/im-services-analytics"
+  tag: "im-services-analytics-27624fe645-11"
 replicas: "1"
 healthChecks:
   enabled: true

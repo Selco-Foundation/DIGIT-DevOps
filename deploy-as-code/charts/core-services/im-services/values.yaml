@@ -10,10 +10,13 @@ ingress:
   enabled: true
   zuul: true
   context: "im-services"
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
 
 # Container Configs
 image:
   repository: "selcohub/im-services"
+  tag: "develop-227bb63f7f7f419ce8629192ce1f1e3792618d9d"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -26,39 +29,80 @@ memory_limits: 712Mi
 
 # Additional Container Envs
 env: |
-#  - name: EGOV_INFRA_INDEXER_HOST
-#    valueFrom:
-#      configMapKeyRef:
-#        name: egov-config
-#        key: es-indexer-host
-#  {{- if index .Values "global" "serializers-timezone-in-ist" }}
-#  - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
-#    value: org.egov.tracer.kafka.serializer.ISTTimeZoneJsonSerializer
-#  {{- end }}
-#  - name: JAVA_OPTS
-#    value: {{ index .Values "heap" | quote }}
-#  - name: SERVER_PORT
-#    value: "8080"
-#  - name: SECURITY_BASIC_ENABLED
-#    value: "false"
-#  - name: MANAGEMENT_SECURITY_ENABLED
-#    value: "false"
-#  - name: EGOV_STATELEVEL_TENANTID
-#    valueFrom:
-#      configMapKeyRef:
-#        name: egov-config
-#        key: egov-state-level-tenant-id
-#  - name: EGOV_INDEXER_ES_USERNAME
-#    valueFrom:
-#      secretKeyRef:
-#        name: elasticsearch-credentials
-#        key: username
-#  - name: EGOV_INDEXER_ES_PASSWORD
-#    valueFrom:
-#      secretKeyRef:
-#        name: elasticsearch-credentials
-#        key: password
-#  - name: KAFKA_TOPICS_CONSUMER
-#    value: "save-hrms-employee"
-#  - name: EGOV_UPDATE_INDEX_PATH
-#    value: "phc-master-list-today/_update/"
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-mdms-service
+        name: egov-service-host
+  - name: SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE
+    value: 100MB
+  - name: EGOV_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-user
+        name: egov-service-host
+  - name: EGOV_LOCATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-location
+        name: egov-service-host
+  - name: EGOV_FILESTORE_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-filestore
+        name: egov-service-host
+  - name: EGOV_FILESTORE_UPLOAD_ENDPOINT
+    value: /filestore/v1/files
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-localization
+        name: egov-service-host
+  - name: EGOV_WORKFLOW_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-workflow-v2
+        name: egov-service-host
+  - name: EGOV_URL_SHORTNER_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-url-shortening
+        name: egov-service-host
+  - name: EGOV_URL_SHORTNER_ENDPOINT
+    value: /egov-url-shortening/shortener
+  - name: EGOV_IDGEN_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-idgen
+        name: egov-service-host
+  - name: EGOV_IDGEN_PATH
+    value: egov-idgen/id/_generate
+  - name: WORKFLOW_CONTEXT_PATH
+    value: egov-workflow-v2/egov-wf/businessservice/_search
+  - name: MSEVA_MOBILE_APP_DOWNLOAD_LINK
+    value: https://bit.ly/4e8qGJ3
+  - name: EGOV_HRMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-hrms
+        name: egov-service-host
+  - name: SPRING_KAFKA_CONSUMER_GROUP_ID
+    value: egov-im-services
+  - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
+    value: org.apache.kafka.common.serialization.StringSerializer
+  - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
+    value: org.springframework.kafka.support.serializer.JsonSerializer
+  - name: JAVA_OPTS
+    value: -Xmx512m -Xms512m
+  - name: JAVA_ARGS
+    value: -Dspring.profiles.active=monitoring
+  - name: SERVER_PORT
+    value: "8080"
+  - name: SECURITY_BASIC_ENABLED
+    value: "false"
+  - name: MANAGEMENT_SECURITY_ENABLED
+    value: "false"
+  - name: TRACER_OPENTRACING_ENABLED
+    value: "true"
+  - name: TRACER_OPENTRACING_ENABLED
+    value: "true"
