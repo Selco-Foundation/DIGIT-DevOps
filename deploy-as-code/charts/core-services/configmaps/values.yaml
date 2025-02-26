@@ -34,6 +34,8 @@ configmaps:
     namespace: core-dev
     data:
       billing-service: http://billing-service.core-dev:8080/
+      egov-url-shortening: http://eus:8080/
+      egov-searcher: http://egov-searcher.core-dev:8080/
       birth-death-services: http://birth-death-services.core-dev8080/
       bpa-calculator: http://bpa-calculator.core-dev:8080/
       bpa-services: http://bpa-services.core-dev:8080/

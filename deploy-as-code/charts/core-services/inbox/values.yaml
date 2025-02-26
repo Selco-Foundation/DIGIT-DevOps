@@ -12,7 +12,7 @@ ingress:
 # Container Configs
 image:
   repository: "selcohub/inbox"
-  tag: "master-24012025-1"
+  tag: "inbox-driver-update-ff42f1d69d3895c0c94b6cf69739dc0c68d5e312"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -28,12 +28,6 @@ memory_limits: 512Mi
 env: |
   - name: EGOV_SERVICES_ESINDEXER_HOST_SEARCH
     value: /_search
-  - name: JAVA_OPTS
-    value: {{ index .Values "heap" | quote }}
-  - name: SERVER_PORT
-    value: "8080"
-  - name: JAVA_ARGS
-    value: {{ index .Values "java-args" | quote }}
   - name: WORKFLOW_HOST
     valueFrom:
       configMapKeyRef:

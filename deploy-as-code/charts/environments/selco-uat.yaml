@@ -1,5 +1,5 @@
 global:
-  domain:  saura-emitra-uat.selcofoundation.org
+  domain:  saura-emitra-test.selcofoundation.org
 root-ingress:
   cert-issuer: "letsencrypt-prod"
 configmaps:
@@ -11,9 +11,9 @@ configmaps:
       es-host: "elasticsearch-data.backbone-dev"
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
-      egov-services-fqdn-name: https://saura-emitra-uat.selcofoundation.org/
+      egov-services-fqdn-name: https://saura-emitra-test.selcofoundation.org/
 egov-user:
-  replicas: 2
+  replicas: 1
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
   otp-validation: "true"
@@ -31,10 +31,10 @@ egov-user:
   decryption-abac-enabled: "true"
 
 egov-accesscontrol:
-  replicas: 2
+  replicas: 1
 
 digit-ui:
-  replicas: 2
+  replicas: 1
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
@@ -42,7 +42,7 @@ digit-ui:
       ';"
 
 egov-filestore:
-  replicas: 2
+  replicas: 1
   memory_limits: "712Mi"
   heap: "-Xmx512m -Xms512m"
   volume: /opt/eGov/filestore
@@ -73,10 +73,10 @@ egov-localization:
   memory_limits: 512Mi
 
 egov-workflow-v2:
-  replicas: 2
+  replicas: 1
 
 egov-hrms:
-  replicas: 2
+  replicas: 1
 
 egov-notification-sms:
   sms-provider-url: "sms provider url" ## Add sms provider url
@@ -96,7 +96,7 @@ egov-notification-sms:
   sms-error-codes: "401,403,404,405,406,407,408,409,410,411,412,413,414"
 egov-mdms-service:
   memory_limits: "1812Mi"
-  replicas: 2
+  replicas: 1
   images:
     - egovio/egov-mdms-service:core-2.9-lts-mvn-check-c33cfe45ab-12
   mdms-path: "/work-dir/egov-mdms-data/data"
@@ -109,7 +109,7 @@ egov-mdms-service:
   java-args: -Dspring.profiles.active=monitoring
 
 egov-indexer:
-  replicas: 2
+  replicas: 1
   heap: "-Xmx512m -Xms512m"
   memory_limits: "768Mi"
   initContainers:
@@ -131,7 +131,7 @@ egov-persister:
       branch: "main"
 
 audit-service:
-  replicas: 2
+  replicas: 1
   persist-yml-path: "https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/attendance-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/muster-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/estimate-service.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/contract-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/bankaccounts-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/expense-bill-payment-persister.yaml"
   initContainers:
     gitSync:
