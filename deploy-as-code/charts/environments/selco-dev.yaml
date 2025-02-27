@@ -1,17 +1,17 @@
 global:
-  domain:  selco-uat.selcofoundation.org
+  domain:  e4h-dev.selcofoundation.org
 root-ingress:
   cert-issuer: "letsencrypt-prod"
 configmaps:
   egov-config:
     data:
-      db-host: "selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
-      db-name: "selcouatdb" ## Add db-name
-      db-url: "jdbc:postgresql://selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcouatdb"
+      db-host: "selco-dev-db-1.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
+      db-name: "selcodevdb" ## Add db-name
+      db-url: "jdbc:postgresql://selco-dev-db-1.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcodevdb"
       es-host: "elasticsearch-data.backbone-dev"
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
-      egov-services-fqdn-name: https://<domain_name>/
+      egov-services-fqdn-name: https://e4h-dev.selcofoundation.org/
 egov-user:
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
