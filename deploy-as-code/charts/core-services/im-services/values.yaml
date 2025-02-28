@@ -1,7 +1,7 @@
 # Common Labels
 labels:
   app: "im-services"
-  group: "core"
+  group: "rainmaker"
 
 namespace: core-dev
 
@@ -13,10 +13,20 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 500m
 
+
+# Init Containers Configs
+initContainers:
+  dbMigration:
+    enabled: true
+    schemaTable: "im_service_schema"
+    image:
+      repository: "selcohub/im-services-db"
+      tag: "develop-638478430570f8b508c35c767cf881cbc77314f5"
+
 # Container Configs
 image:
   repository: "selcohub/im-services"
-  tag: "develop-227bb63f7f7f419ce8629192ce1f1e3792618d9d"
+  tag: "develop-638478430570f8b508c35c767cf881cbc77314f5"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -27,6 +37,14 @@ tracing-enabled: true
 heap: "-Xmx512m -Xms512m"
 memory_limits: 712Mi
 
+lifecycle:
+  postStart:
+    exec:
+      command:
+        - sh
+        - -c
+        - apt-get update &&  apt-get install ffmpeg -y
+        -
 # Additional Container Envs
 env: |
   - name: EGOV_MDMS_HOST
