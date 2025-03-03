@@ -8,8 +8,8 @@ templates:
     # Use "Debug" to make missing files errors invisible at the default log level(--log-level=INFO)
     missingFileHandler: Warn
     values:
-      - ../environments/selco-uat-secrets.yaml
-      - ../environments/selco-uat.yaml
+      - ../environments/selco-dev-secrets.yaml
+      - ../environments/selco-dev.yaml
 
 releases:
   - name: egov-accesscontrol # Replace with your desired namespace

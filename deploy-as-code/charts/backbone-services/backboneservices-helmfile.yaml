@@ -8,8 +8,8 @@ templates:
     missingFileHandler: Warn
 
 values:
-  - ../environments/selco-uat-secrets.yaml
-  - ../environments/selco-uat.yaml
+  - ../environments/selco-dev-secrets.yaml
+  - ../environments/selco-dev.yaml
 
 releases:
 - name: cert-manager

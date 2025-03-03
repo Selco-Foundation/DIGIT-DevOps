@@ -15,7 +15,7 @@ initContainers:
     enabled: true
     schemaTable: "egov_hrms_schema"
     image:
-      repository: "selcohub-db/hrms"
+      repository: "selcohub/hrms-db"
       tag: develop-6dc9b08d17b33874f915b3532921479c62bce46d
 
 # Container Configs
