@@ -14,7 +14,7 @@ initContainers: {}
 # Container Configs
 image:
   repository: "selcohub/micro-ui"
-  tag: develop-a8d6f0fbcc4ecde7bce09745ce94bcfe56a6c787
+  tag: develop-68b314469fbd4096a3898f2d4ec38a1bcd5faf78
 replicas: "1"
 httpPort: 80
 healthChecks:

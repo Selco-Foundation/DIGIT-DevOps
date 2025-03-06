@@ -21,12 +21,12 @@ initContainers:
     schemaTable: "im_service_schema"
     image:
       repository: "selcohub/im-services-db"
-      tag: "develop-8a8ab9f77fb4d37bb846888a7b4ab9c54ae940b3"
+      tag: "develop-d4cefba1600f0b5642460e9c59e8b761daff36ad"
 
 # Container Configs
 image:
   repository: "selcohub/im-services"
-  tag: "develop-8a8ab9f77fb4d37bb846888a7b4ab9c54ae940b3"
+  tag: "develop-d4cefba1600f0b5642460e9c59e8b761daff36ad"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -35,7 +35,7 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx512m -Xms512m"
-memory_limits: 712Mi
+memory_limits: 1560Mi
 
 lifecycle:
   postStart:

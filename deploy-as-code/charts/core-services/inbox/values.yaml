@@ -12,7 +12,7 @@ ingress:
 # Container Configs
 image:
   repository: "selcohub/inbox"
-  tag: "develop-4851e633ed1de1f37550a24a8daf0fcd3478f19e"
+  tag: "develop-ee3184d75246e27556b2740dd9c5da29e036e1bb"
 replicas: "1"
 healthChecks:
   enabled: true

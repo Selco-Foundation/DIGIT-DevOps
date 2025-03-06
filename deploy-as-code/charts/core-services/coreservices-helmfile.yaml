@@ -93,9 +93,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: test-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: meghalaya-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
   - name: mdms-v2 # Replace with your desired namespace
     installed: true
