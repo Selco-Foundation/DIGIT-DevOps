@@ -23,10 +23,6 @@ image:
   repository: "egov-enc-service"
   tag: core-2.9-lts-mvn-check-c607f2d4de-20
 replicas: "1"
-# healthChecks:
-#   enabled: true
-#   livenessProbePath: "/egov-enc-service/health"
-#   readinessProbePath: "/egov-enc-service/health"
 appType: "java-spring"
 tracing-enabled: true
 healthChecks:

@@ -5,9 +5,9 @@ root-ingress:
 configmaps:
   egov-config:
     data:
-      db-host: "selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com:5432" ## Add db-host name eg: egov-demo.database.azure.com
+      db-host: "selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
       db-name: selcoproddb ## Add db-name
-      db-url: "jdbc:postgresql://selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com:5432/selcoproddb"
+      db-url: "jdbc:postgresql://selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcoproddb"
       es-host: "elasticsearch-data.backbone-dev"
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"

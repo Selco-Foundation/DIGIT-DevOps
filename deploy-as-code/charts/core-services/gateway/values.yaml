@@ -29,8 +29,8 @@ extraVolumeMounts: |
 
 # Container Configs
 image:
-  repository: "gateway"
-  tag: core-2.9-lts-mvn-check-3b9d5c6ad1-20
+  repository: "egovio/gateway"
+  tag: gateway-2.9.3-56a8630218-44
 replicas: "1"
 healthChecks:
   enabled: true
