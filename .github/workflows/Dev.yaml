@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate kubeconfig
         run: |
-          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ env.CLUSTER_NAME_DEV }}
+          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ vars.CLUSTER_NAME_DEV }}
           cat ~/.kube/config > kubeconfig
 
       - name: Creating namespace
