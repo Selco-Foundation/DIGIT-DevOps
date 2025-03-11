@@ -13,8 +13,8 @@ initContainers: {}
 
 # Container Configs
 image:
-  repository: "selcohub/test-ui"
-  tag: multi-tenant-image-test-9bc22167ff18f0666750167a866323bb08ba81d0
+  repository: "selcohub/meghalaya-ui"
+  tag: multi-tenant-image-test-c7f830890139f7b4f682a54eab97a774e4e53406
 replicas: "1"
 httpPort: 80
 healthChecks:

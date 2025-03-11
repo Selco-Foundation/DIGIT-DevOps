@@ -1,5 +1,5 @@
 global:
-  domain:  saura-emitra-test.selcofoundation.org
+  domain:  saura-emitra-uat.selcofoundation.org
 root-ingress:
   cert-issuer: "letsencrypt-prod"
 configmaps:
@@ -11,7 +11,7 @@ configmaps:
       es-host: "elasticsearch-data.backbone-dev"
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
-      egov-services-fqdn-name: https://saura-emitra-test.selcofoundation.org/
+      egov-services-fqdn-name: https://saura-emitra-uat.selcofoundation.org/
 egov-user:
   replicas: 1
   heap: "-Xmx256m -Xms256m"
@@ -51,7 +51,7 @@ egov-filestore:
   aws.s3.url : "https://s3.amazonaws.com"
   is-s3-enabled: "true"
   minio-enabled: false
-  allowed-file-formats-map: "{jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf; format=ascii','image/vnd.dxf; format=binary','image/vnd.dxb'},csv:{'text/plain'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/zip'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'},avi:{'video/x-msvideo'}, mov:{'video/quicktime'}, wmv:{'video/x-ms-wmv'}}"
+  allowed-file-formats-map: '{json:{''application/json'',''text/plain'',''application/geo+json''},jpg:{''image/jpg'',''image/jpeg''},jpeg:{''image/jpeg'',''image/jpg''},png:{''image/png''},pdf:{''application/pdf''},odt:{''application/vnd.oasis.opendocument.text''},ods:{''application/vnd.oasis.opendocument.spreadsheet''},docx:{''application/x-tika-msoffice'',''application/x-tika-ooxml'',''application/vnd.oasis.opendocument.text'',''application/msword'',''application/vnd.openxmlformats-officedocument.wordprocessingml.document''},doc:{''application/x-tika-msoffice'',''application/x-tika-ooxml'',''application/vnd.oasis.opendocument.text'',''application/msword''},dxf:{''text/plain'',''application/dxf'',''application/octet-stream'',''image/vnd.dxf'',''image/vnd.dxf;format=ascii'',''image/vnd.dxf;format=binary'',''image/vnd.dxb''},csv:{''text/plain'',''text/csv'',''application/zip''},txt:{''text/plain''},xlsx:{''application/x-tika-ooxml'',''application/x-tika-msoffice'',''application/vnd.ms-excel'',''application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'',''application/zip''},xls:{''application/x-tika-ooxml'',''application/x-tika-msoffice'',''application/vnd.ms-excel''},mp4:{"video/mp4", "video/quicktime"},mp3:{"audio/mpeg"},avi:{"video/x-msvideo"},mov:{"video/quicktime"}, wmv:{"video/x-ms-wmv"},m3u8:{"application/vnd.apple.mpegurl","application/x-mpegURL"},ts:{"video/MP2T","video/mp2t", "application/octet-stream"}}'
   allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx"
   filestore-url-validity: 3600
   fixed-bucketname: selco-uat  ## Add filestore bucket name
