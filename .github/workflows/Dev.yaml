@@ -70,6 +70,7 @@ jobs:
 
       - name: sops decryption
         run: |
+          aws sts get-caller-identity
           sudo sops --decrypt --kms ${{ vars.PUBLIC_KMS_KEY_DEV }} $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-dev-secrets.yaml > env-secrets1.yaml
           cp env-secrets1.yaml $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-dev-secrets.yaml
       # working-directory: deploy-as-code/charts/environments
