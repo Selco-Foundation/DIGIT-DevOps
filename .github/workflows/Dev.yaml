@@ -111,8 +111,9 @@ jobs:
           echo "workflow_v2_commit=$workflow-v2_commit" >> $GITHUB_ENV 
 
       - name: digit deployment
-        run: helmfile -f digit-helmfile.yaml apply --include-needs=true\
-          --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
+        run: |
+          helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-dev"
