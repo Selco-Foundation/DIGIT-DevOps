@@ -103,12 +103,12 @@ jobs:
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
           hrms_commit=$(git log -1 --pretty=format:%H -- backend/business-services/egov-hrms)
           echo "hrms_commit=hrms_commit" >> $GITHUB_ENV
-          im-Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
-          echo "im-Services_commit=$im-Services_commit" >> $GITHUB_ENV
+          im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
+          echo "im_Services_commit=$im-Services_commit" >> $GITHUB_ENV
           inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
           echo "inbox_commit=inbox_commit" >> $GITHUB_ENV
-          workflow-v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
-          echo "workflow-v2_commit=$workflow-v2_commit" >> $GITHUB_ENV 
+          workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
+          echo "workflow_v2_commit=$workflow-v2_commit" >> $GITHUB_ENV 
 
 #      - name: digit deployment
 #        run: helmfile -f digit-helmfile.yaml apply --include-needs=true\
