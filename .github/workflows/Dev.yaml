@@ -110,20 +110,12 @@ jobs:
           workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
           echo "workflow_v2_commit=$workflow-v2_commit" >> $GITHUB_ENV 
 
-#      - name: digit deployment
-#        run: helmfile -f digit-helmfile.yaml apply --include-needs=true\
-#          --set scheduler.initContainers.dbMigration.image.tag=develop-${{ env.scheduler_commit }} \
-#          --set payment-calculator.image.tag=develop-${{ env.payment_calculator_commit }} \
-#          --set payment-calculator.initContainers.dbMigration.image.tag=develop-${{ env.payment_calculator_commit }} \
-#          --set im-services.image.tag=develop-${{ env.im-Services_commit }} \
-#          --set scheduler.initContainers.dbMigration.image.tag=develop-${{ env.scheduler_commit }} \
-#          --set payment-calculator.image.tag=develop-${{ env.payment_calculator_commit }} \
-#          --set payment-calculator.initContainers.dbMigration.image.tag=develop-${{ env.payment_calculator_commit }} \
-#          --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
-#          --set dristi-case-pdf.image.tag=develop-${{ env.dristi_case_pdf_commit }} \
-#        working-directory: deploy-as-code
-#        env:
-#          HELMFILE_ENV: "solutions-dev"
+      - name: digit deployment
+        run: helmfile -f digit-helmfile.yaml apply --include-needs=true\
+          --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
+        working-directory: deploy-as-code
+        env:
+          HELMFILE_ENV: "selco-dev"
 
 
 

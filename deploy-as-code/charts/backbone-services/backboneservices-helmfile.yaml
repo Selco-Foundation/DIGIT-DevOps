@@ -8,8 +8,8 @@ templates:
     missingFileHandler: Warn
 
 values:
-  - ../environments/selco-dev-secrets.yaml
-  - ../environments/selco-dev.yaml
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 releases:
 - name: cert-manager
