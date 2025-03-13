@@ -98,17 +98,17 @@ jobs:
           cd E4H_Digital_Platform
           git checkout develop
           digit_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "digit_ui_commit=$digit-ui_commit" >> $GITHUB_ENV
+          echo "digit_ui_commit=$digit_ui_commit" >> $GITHUB_ENV
           filestore_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-filestore)
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
           hrms_commit=$(git log -1 --pretty=format:%H -- backend/business-services/egov-hrms)
           echo "hrms_commit=hrms_commit" >> $GITHUB_ENV
           im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
-          echo "im_Services_commit=$im-Services_commit" >> $GITHUB_ENV
+          echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
           inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
           echo "inbox_commit=inbox_commit" >> $GITHUB_ENV
           workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
-          echo "workflow_v2_commit=$workflow-v2_commit" >> $GITHUB_ENV 
+          echo "workflow_v2_commit=$workflow_v2_commit" >> $GITHUB_ENV 
 
       - name: digit deployment
         run: |
