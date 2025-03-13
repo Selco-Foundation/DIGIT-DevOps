@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
   repository_dispatch:
 
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   check-changed-files:
     runs-on: ubuntu-latest
