@@ -1,9 +1,9 @@
 name: DIGIT-Install workflow for UAT
 on:
-  push:
-    branches:
-      - Deploy
-      - Deploy-UAT
+#  push:
+#    branches:
+#      - Deploy
+#      - Deploy-UAT
   workflow_dispatch:
   repository_dispatch:
 
