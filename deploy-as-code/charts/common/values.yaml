@@ -115,11 +115,15 @@ resources: |
   {{- if eq .Values.appType "java-spring" -}}
   requests:
     memory: {{ .Values.memory_limits | quote }}
+    {{- if eq .Values.labels.app "im-services" -}}
     cpu: {{ .Values.cpu_limits | quote }}
+    {{- end -}}
   limits:
     memory: {{ .Values.memory_limits | quote }}
+    {{- if eq .Values.labels.app "im-services" -}}
     cpu: {{ .Values.cpu_limits | quote }}
-  {{- end -}}
+    {{- end -}}
+
 ## Allows specification of additional environment variables
 extraEnv:
   java: |
