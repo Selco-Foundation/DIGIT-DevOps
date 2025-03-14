@@ -8,7 +8,7 @@ templates:
     missingFileHandler: Warn
 
 values:
-  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}-secrets.yaml
   - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 releases:
