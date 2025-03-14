@@ -43,8 +43,13 @@ lifecycle:
       command:
         - sh
         - -c
-        - apt-get update &&  apt-get install ffmpeg -y
-        -
+        - |
+          set -e
+          apt update && apt install -y software-properties-common wget
+          wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+          tar -xf ffmpeg-release-amd64-static.tar.xz
+          cd ffmpeg-*-amd64-static
+          mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
   - name: EGOV_MDMS_HOST
