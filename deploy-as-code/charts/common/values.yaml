@@ -123,6 +123,7 @@ resources: |
     {{- if eq .Values.labels.app "im-services" -}}
     cpu: {{ .Values.cpu_limits | quote }}
     {{- end -}}
+  {{- end -}}
 
 ## Allows specification of additional environment variables
 extraEnv:
