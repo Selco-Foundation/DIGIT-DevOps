@@ -11,23 +11,23 @@ module "network" {
 }
 
 # PostGres DB
-module "db" {
-  source                        = "../modules/db/aws"
-  subnet_ids                    = "${module.network.private_subnets}"
-  vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
-  availability_zone             = "${element(var.availability_zones, 0)}"
-  instance_class                = "${var.db_instance_class}" #db.t3.medium  ## postgres db instance type
-  engine_version                = "${var.engine_version}"  #1410   ## postgres version
-  storage_type                  = "gp2"
-  storage_gb                    = "10"     ## postgres disk size
-  backup_retention_days         = "7"
-  administrator_login           = "${var.db_username}"
-  administrator_login_password  = "${var.db_password}"
-  identifier                    = "${var.cluster_name}-db"
-  db_name                       = "${var.db_name}"
-  environment                   = "${var.cluster_name}"
-  create_rds                    = "${var.create_rds}"
-}
+# module "db" {
+#   source                        = "../modules/db/aws"
+#   subnet_ids                    = "${module.network.private_subnets}"
+#   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
+#   availability_zone             = "${element(var.availability_zones, 0)}"
+#   instance_class                = "${var.db_instance_class}" #db.t3.medium  ## postgres db instance type
+#   engine_version                = "${var.engine_version}"  #1410   ## postgres version
+#   storage_type                  = "gp2"
+#   storage_gb                    = "10"     ## postgres disk size
+#   backup_retention_days         = "7"
+#   administrator_login           = "${var.db_username}"
+#   administrator_login_password  = "${var.db_password}"
+#   identifier                    = "${var.cluster_name}-db"
+#   db_name                       = "${var.db_name}"
+#   environment                   = "${var.cluster_name}"
+#   create_rds                    = "${var.create_rds}"
+# }
 
 data "aws_eks_cluster" "cluster" {
   name = "${module.eks.cluster_id}"

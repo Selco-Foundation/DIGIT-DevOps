@@ -1,31 +1,36 @@
 # Common Labels
 labels:
-  app: "digit-ui"
+  app: "meghalaya-ui"
   group: "web"
 
 # Ingress Configs
 ingress:
   enabled: true
-  context: "digit-ui"
+  context: "meghalaya-ui"
 
 # Init Containers Configs
 initContainers: {}
 
 # Container Configs
 image:
-  repository: "selcohub/micro-ui"
-  tag: develop-68b314469fbd4096a3898f2d4ec38a1bcd5faf78
+  repository: "selcohub/meghalaya-ui"
+  tag: multi-tenant-image-test-c7f830890139f7b4f682a54eab97a774e4e53406
 replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/digit-ui/"
-  readinessProbePath: "/digit-ui/"
+  livenessProbePath: "/meghalaya-ui/"
+  readinessProbePath: "/meghalaya-ui/"
+
+env: |
+  - name: PUBLIC_PATH
+    value: /meghalaya-ui
+
     
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: digit-ui
+      name: meghalaya-ui
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf

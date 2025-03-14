@@ -74,24 +74,24 @@ variable "ssh_key_name" {
 }
 
 
-variable "db_name" {
-  description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
-}
+# variable "db_name" {
+#   description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
+# }
+#
+# variable "db_username" {
+#   description = "RDS database user name"
+# }
+#
+# variable "engine_version" {
+#   description = "Db-engine-version"
+# }
+#
+# variable "db_instance_class" {
+#   description = "DB_Instance Class"
+# }
 
-variable "db_username" {
-  description = "RDS database user name"
-}
-
-variable "engine_version" {
-  description = "Db-engine-version"
-}
-
-variable "db_instance_class" {
-  description = "DB_Instance Class"
-}
-
-#DO NOT fill in here. This will be asked at runtime
-variable "db_password" {}
+# #DO NOT fill in here. This will be asked at runtime
+# variable "db_password" {}
 
 variable "public_key" {
   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrluFaPQAaBhtK2WGi2KrHaenSljN1SkKNlXiHefUbFZFiR+GqMwL8TN7n7+APFxLh666+ioALA/xHj8bE/0UMs9xXabd2JOO224RZ9WF0nJF1XeTu8vSa0EEhDAl0kQYr2wtGd2c3u59lIVxIx7u779sWsO1npkKF9dO5UIC0T6r47tIHsPnQSn+D64luA03IaokPEKHi1h8QUQvsDFIpJrQvlEgy5wxY7sV4Ws+n0XJR3RbtOdZifj3T93sxE3zHJSBQ9Hcf+qGizRPjTZ2y3EqskU4P9Atgd0U3KGqviEQOxidwIKdTH9UpD0TzPyPZtdi8Z34bRHHDH47j2OAf"
