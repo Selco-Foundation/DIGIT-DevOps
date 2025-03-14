@@ -109,10 +109,10 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: im-services # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
+  - name: im-services # Replace with your desired namespace
+    installed: true
+    <<: *default
+
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
 #    <<: *default
