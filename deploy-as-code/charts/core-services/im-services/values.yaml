@@ -53,6 +53,16 @@ lifecycle:
           mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
+  - name: SPRING_SERVLET_MULTIPART_ENABLED
+    value: "true"
+  - name: SPRING_SERVLET_MULTIPART_LOCATION
+    value: "/opt/egov/input"
+  - name: SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE
+    value: "100MB"
+  - name: SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE
+    value: "500MB"
+  - name: FFPROBE_PATH
+    value: "/usr/local/bin/ffprobe"
   - name: EGOV_MDMS_HOST
     valueFrom:
       configMapKeyRef:
