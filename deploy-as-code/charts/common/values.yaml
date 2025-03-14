@@ -111,11 +111,19 @@ lifecycle:
 
 memory_limits: "512Mi"
 resources: |
-  {{- if eq .Values.appType "java-spring" -}}
   requests:
+  {{- if eq .Values.appType "java-spring" -}}
     memory: {{ .Values.memory_limits | quote }}
+  {{- end -}}
+  {{- if eq .Values.labels.app "im-services" -}}
+    cpu: {{ .Values.cpu_limits | quote }}
+  {{- end -}}
   limits:
+  {{- if eq .Values.appType "java-spring" -}}
     memory: {{ .Values.memory_limits | quote }}
+  {{- end -}}
+  {{- if eq .Values.labels.app "im-services" -}}
+    cpu: {{ .Values.cpu_limits | quote }}
   {{- end -}}
 ## Allows specification of additional environment variables
 extraEnv:

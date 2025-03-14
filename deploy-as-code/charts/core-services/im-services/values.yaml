@@ -36,6 +36,7 @@ appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx512m -Xms512m"
 memory_limits: 1960Mi
+cpu_limits: 1000m
 
 lifecycle:
   postStart:
