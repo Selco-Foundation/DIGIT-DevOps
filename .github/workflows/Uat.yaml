@@ -1,9 +1,9 @@
-name: DIGIT-Install workflow for Dev
+name: DIGIT-Install workflow for UAT
 on:
   push:
     branches:
       - Deploy
-#      - Deploy-UAT
+      - Deploy-UAT
   workflow_dispatch:
   repository_dispatch:
 
@@ -30,10 +30,10 @@ jobs:
 
   DIGIT-deployment:
     runs-on: ubuntu-latest
-#    env:
-#      AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-#      AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#      AWS_REGION:  ${{ secrets.AWS_REGION }}
+    #    env:
+    #      AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #      AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #      AWS_REGION:  ${{ secrets.AWS_REGION }}
 
     steps:
       - name: Checkout code
@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate kubeconfig
         run: |
-          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ vars.CLUSTER_NAME_DEV }}
+          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ vars.CLUSTER_NAME_UAT }}
           cat ~/.kube/config > kubeconfig
 
       - name: Creating namespace
@@ -75,8 +75,8 @@ jobs:
       - name: sops decryption
         run: |
           aws sts get-caller-identity
-          sops --decrypt --kms ${{ secrets.PUBLIC_KMS_KEY_DEV }} $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-dev-secrets.yaml > env-secrets1.yaml
-          cp env-secrets1.yaml $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-dev-secrets.yaml
+          sops --decrypt --kms ${{ secrets.PUBLIC_KMS_KEY_UAT }} $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-uat-secrets.yaml > env-secrets1.yaml
+          cp env-secrets1.yaml $HOME/work/DIGIT-DevOps/DIGIT-DevOps/deploy-as-code/charts/environments/selco-uat-secrets.yaml
       # working-directory: deploy-as-code/charts/environments
 
 
@@ -96,26 +96,38 @@ jobs:
         run: |
           git clone https://github.com/Selco-Foundation/E4H_Digital_Platform.git
           cd E4H_Digital_Platform
-          git checkout develop
+          git checkout main
           digit_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "digit_ui_commit=$digit_ui_commit" >> $GITHUB_ENV
           filestore_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-filestore)
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
+          hrms_commit=$(git log -1 --pretty=format:%H -- backend/business-services/egov-hrms)
+          echo "hrms_commit=$hrms_commit" >> $GITHUB_ENV
           im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
           echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
+          inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
+          echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
+          workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
+          echo "workflow_v2_commit=$workflow_v2_commit" >> $GITHUB_ENV 
 
-      - name: digit deployment
-        run: |
-          helmfile -f digit-helmfile.yaml apply --include-needs=true\
-            --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
-            --set im-services.image.tag=develop-${{ env.im_Services_commit }} \
-            --set im-services.initContainers.dbMigration.image.tag=develop-${{ env.im_Services_commit }} \
-            --set egov-filestore.image.tag=develop-${{ env.filestore_commit }} \
-            --set egov-filestore.initContainers.dbMigration.image.tag=develop-${{ env.filestore_commit }} \
-
-        working-directory: deploy-as-code
-        env:
-          HELMFILE_ENV: "selco-dev"
+#      - name: digit deployment
+#        run: |
+#          helmfile -f digit-helmfile.yaml apply --include-needs=true\
+#            --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
+#            --set im-services.image.tag=main-${{ env.im_Services_commit }} \
+#            --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
+#            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \
+#            --set egov-hrms.initContainers.dbMigration.image.tag=main-${{ env.hrms_commit }} \
+#            --set egov-filestore.image.tag=main-${{ env.filestore_commit }} \
+#            --set egov-filestore.initContainers.dbMigration.image.tag=main-${{ env.filestore_commit }} \
+#            --set inbox.image.tag=main-${{ env.inbox_commit }} \
+#            --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
+#            --set egov-workflow-v2.image.tag=main-${{ env.workflow_v2_commit }} \
+#            --set egov-workflow-v2.initContainers.dbMigration.image.tag=main-${{ env.workflow_v2_commit }} \
+#
+#        working-directory: deploy-as-code
+#        env:
+#          HELMFILE_ENV: "selco-uat"
 
 
 
