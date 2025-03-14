@@ -103,6 +103,8 @@ jobs:
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
           im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
           echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
+          inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
+          echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
