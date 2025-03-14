@@ -111,7 +111,7 @@ lifecycle:
 
 memory_limits: "512Mi"
 cpu_limits: "500m"
-resources: |
+resources:
   requests:
   {{- if eq .Values.appType "java-spring" -}}
     memory: {{ .Values.memory_limits | quote }}
