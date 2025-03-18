@@ -26,9 +26,9 @@ releases:
 #    - egov-mdms-service
 #    <<: *default
 #
-#  - name: egov-filestore # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-filestore # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
@@ -42,9 +42,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: egov-mdms-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-mdms-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: egov-hrms # Replace with your desired namespace
 #    installed: true
@@ -95,9 +95,9 @@ releases:
 
 ##Only in DEV
 
-#  - name: meghalaya-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: meghalaya-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
@@ -105,9 +105,9 @@ releases:
 
 ##
 
-#  - name: gateway # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: gateway # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
   - name: im-services # Replace with your desired namespace
     installed: true
@@ -117,6 +117,6 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: inbox # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: inbox # Replace with your desired namespace
+    installed: true
+    <<: *default

@@ -110,24 +110,24 @@ jobs:
           workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
           echo "workflow_v2_commit=$workflow_v2_commit" >> $GITHUB_ENV 
 
-#      - name: digit deployment
-#        run: |
-#          helmfile -f digit-helmfile.yaml apply --include-needs=true\
-#            --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
-#            --set im-services.image.tag=main-${{ env.im_Services_commit }} \
-#            --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
-#            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \
-#            --set egov-hrms.initContainers.dbMigration.image.tag=main-${{ env.hrms_commit }} \
-#            --set egov-filestore.image.tag=main-${{ env.filestore_commit }} \
-#            --set egov-filestore.initContainers.dbMigration.image.tag=main-${{ env.filestore_commit }} \
-#            --set inbox.image.tag=main-${{ env.inbox_commit }} \
-#            --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
-#            --set egov-workflow-v2.image.tag=main-${{ env.workflow_v2_commit }} \
-#            --set egov-workflow-v2.initContainers.dbMigration.image.tag=main-${{ env.workflow_v2_commit }} \
-#
-#        working-directory: deploy-as-code
-#        env:
-#          HELMFILE_ENV: "selco-uat"
+      - name: digit deployment
+        run: |
+          helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
+            --set im-services.image.tag=main-${{ env.im_Services_commit }} \
+            --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
+            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \
+            --set egov-hrms.initContainers.dbMigration.image.tag=main-${{ env.hrms_commit }} \
+            --set egov-filestore.image.tag=main-${{ env.filestore_commit }} \
+            --set egov-filestore.initContainers.dbMigration.image.tag=main-${{ env.filestore_commit }} \
+            --set inbox.image.tag=main-${{ env.inbox_commit }} \
+            --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
+            --set egov-workflow-v2.image.tag=main-${{ env.workflow_v2_commit }} \
+            --set egov-workflow-v2.initContainers.dbMigration.image.tag=main-${{ env.workflow_v2_commit }} \
+
+        working-directory: deploy-as-code
+        env:
+          HELMFILE_ENV: "selco-uat"
 
 
 
