@@ -100,8 +100,10 @@ jobs:
           echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
           inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
           echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
-#          meghalaya_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-#          echo "meghalaya_ui_commit=$meghalaya_ui_commit" >> $GITHUB_ENV
+          meghalaya_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "meghalaya_ui_commit=$meghalaya_ui_commit" >> $GITHUB_ENV
+          nagaland_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "nagaland_ui_commit=$nagaland_ui_commit" >> $GITHUB_ENV
 
 
       - name: digit deployment
@@ -114,6 +116,8 @@ jobs:
             --set egov-filestore.initContainers.dbMigration.image.tag=develop-${{ env.filestore_commit }} \
             --set inbox.image.tag=develop-${{ env.inbox_commit }} \
             --set inbox.initContainers.dbMigration.image.tag=develop-${{ env.inbox_commit }} \
+            --set nagaland-ui.image.tag=develop-${{ env.meghalaya_ui_commit }} \
+            --set meghalaya-ui.image.tag=develop-${{ env.nagaland_ui_commit }} \
 
         working-directory: deploy-as-code
         env:
