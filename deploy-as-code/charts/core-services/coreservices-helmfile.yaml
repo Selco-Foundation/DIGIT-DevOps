@@ -109,9 +109,9 @@ releases:
 
 ##
 
-  - name: gateway # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: gateway # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
   - name: im-services # Replace with your desired namespace
     installed: true
@@ -121,6 +121,6 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: inbox # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: inbox # Replace with your desired namespace
+#    installed: true
+#    <<: *default
