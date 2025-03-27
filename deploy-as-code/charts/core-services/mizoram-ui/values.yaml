@@ -1,0 +1,38 @@
+# Common Labels
+labels:
+  app: "mizoram-ui"
+  group: "web"
+
+# Ingress Configs
+ingress:
+  enabled: true
+  context: "mizoram-ui"
+
+# Init Containers Configs
+initContainers: {}
+
+# Container Configs
+image:
+  repository: "selcohub/mizoram-ui"
+  tag: multi-tenant-image-test-208afca1b9bfcd76e6be3891abfb0a522d43e34a
+replicas: "1"
+httpPort: 80
+healthChecks:
+  enabled: true
+  livenessProbePath: "/mizoram-ui/"
+  readinessProbePath: "/mizoram-ui/"
+
+env: |
+  - name: PUBLIC_PATH
+    value: /mizoram-ui
+
+    
+extraVolumes: |
+  - name: js-injection
+    configMap:
+      name: mizoram-ui
+
+extraVolumeMounts: |
+  - mountPath: /etc/nginx/conf.d/sub_filter.conf
+    name: js-injection
+    subPath: sub_filter.conf
