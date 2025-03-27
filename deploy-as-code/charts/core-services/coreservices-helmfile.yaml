@@ -103,6 +103,26 @@ releases:
     installed: true
     <<: *default
 
+  - name: assam-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+    
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
