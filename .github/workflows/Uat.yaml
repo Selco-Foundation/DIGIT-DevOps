@@ -129,11 +129,11 @@ jobs:
             --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
             --set im-services.image.tag=main-${{ env.im_Services_commit }} \
             --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
-            --set assam-ui.image.tag=develop-${{ env.assam_ui_commit }} \
-            --set sikkim-ui.image.tag=develop-${{ env.sikkim_ui_commit }} \
-            --set manipur-ui.image.tag=develop-${{ env.manipur_ui_commit }} \
-            --set mizoram-ui.image.tag=develop-${{ env.mizoram_ui_commit }} \
-            --set odisha-ui.image.tag=develop-${{ env.odisha_ui_commit }} \
+            --set assam-ui.image.tag=main-${{ env.assam_ui_commit }} \
+            --set sikkim-ui.image.tag=main-${{ env.sikkim_ui_commit }} \
+            --set manipur-ui.image.tag=main-${{ env.manipur_ui_commit }} \
+            --set mizoram-ui.image.tag=main-${{ env.mizoram_ui_commit }} \
+            --set odisha-ui.image.tag=main-${{ env.odisha_ui_commit }} \
 #            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \
 #            --set egov-hrms.initContainers.dbMigration.image.tag=main-${{ env.hrms_commit }} \
 #            --set egov-filestore.image.tag=main-${{ env.filestore_commit }} \
