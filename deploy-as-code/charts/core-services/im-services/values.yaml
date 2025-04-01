@@ -21,12 +21,12 @@ initContainers:
     schemaTable: "im_service_schema"
     image:
       repository: "selcohub/im-services-db"
-      tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
+      tag: "main-87dbaeea5af057c243a85e625dc8f5ee3f434681"
 
 # Container Configs
 image:
   repository: "selcohub/im-services"
-  tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
+  tag: "main-87dbaeea5af057c243a85e625dc8f5ee3f434681"
 replicas: "1"
 healthChecks:
   enabled: true

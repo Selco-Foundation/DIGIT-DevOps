@@ -16,12 +16,12 @@ initContainers:
     schemaTable: "egov_workflow_v2_schema"
     image:
       repository: "selcohub/egov-workflow-v2-db"
-      tag: develop-1540b674ee26d1e834eabbbadedaca0b3385c59a
+      tag: main-9577b7cb41f4de9f0a720ca168339c7c514c6a61
 
 # Container Configs
 image:
   repository: "selcohub/egov-workflow-v2"
-  tag: develop-1540b674ee26d1e834eabbbadedaca0b3385c59a
+  tag: main-9577b7cb41f4de9f0a720ca168339c7c514c6a61
 replicas: "1"
 healthChecks:
   enabled: true
