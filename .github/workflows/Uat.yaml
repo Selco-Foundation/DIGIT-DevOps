@@ -138,8 +138,8 @@ jobs:
 #            --set egov-hrms.initContainers.dbMigration.image.tag=main-${{ env.hrms_commit }} \
 #            --set egov-filestore.image.tag=main-${{ env.filestore_commit }} \
 #            --set egov-filestore.initContainers.dbMigration.image.tag=main-${{ env.filestore_commit }} \
-#            --set inbox.image.tag=main-${{ env.inbox_commit }} \
-#            --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
+            --set inbox.image.tag=main-${{ env.inbox_commit }} \
+            --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
 #            --set egov-workflow-v2.image.tag=main-${{ env.workflow_v2_commit }} \
 #            --set egov-workflow-v2.initContainers.dbMigration.image.tag=main-${{ env.workflow_v2_commit }} \
         working-directory: deploy-as-code
