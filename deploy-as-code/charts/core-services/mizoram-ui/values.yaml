@@ -1,12 +1,12 @@
 # Common Labels
 labels:
-  app: "mizoram-ui"
+  app: "mizoram"
   group: "web"
 
 # Ingress Configs
 ingress:
   enabled: true
-  context: "mizoram-ui"
+  context: "mizoram"
 
 # Init Containers Configs
 initContainers: {}
@@ -19,18 +19,18 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/mizoram-ui/"
-  readinessProbePath: "/mizoram-ui/"
+  livenessProbePath: "/mizoram/"
+  readinessProbePath: "/mizoram/"
 
 env: |
   - name: PUBLIC_PATH
-    value: /mizoram-ui
+    value: /mizoram
 
     
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: mizoram-ui
+      name: mizoram
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf

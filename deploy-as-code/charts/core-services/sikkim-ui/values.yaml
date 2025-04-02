@@ -1,12 +1,12 @@
 # Common Labels
 labels:
-  app: "sikkim-ui"
+  app: "sikkim"
   group: "web"
 
 # Ingress Configs
 ingress:
   enabled: true
-  context: "sikkim-ui"
+  context: "sikkim"
 
 # Init Containers Configs
 initContainers: {}
@@ -19,18 +19,18 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/sikkim-ui/"
-  readinessProbePath: "/sikkim-ui/"
+  livenessProbePath: "/sikkim/"
+  readinessProbePath: "/sikkim/"
 
 env: |
   - name: PUBLIC_PATH
-    value: /sikkim-ui
+    value: /sikkim
 
     
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: sikkim-ui
+      name: sikkim
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf

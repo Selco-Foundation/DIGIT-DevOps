@@ -1,12 +1,12 @@
 # Common Labels
 labels:
-  app: "meghalaya-ui"
+  app: "meghalaya"
   group: "web"
 
 # Ingress Configs
 ingress:
   enabled: true
-  context: "meghalaya-ui"
+  context: "meghalaya"
 
 # Init Containers Configs
 initContainers: {}
@@ -19,18 +19,18 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/meghalaya-ui/"
-  readinessProbePath: "/meghalaya-ui/"
+  livenessProbePath: "/meghalaya/"
+  readinessProbePath: "/meghalaya/"
 
 env: |
   - name: PUBLIC_PATH
-    value: /meghalaya-ui
+    value: /meghalaya
 
     
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: meghalaya-ui
+      name: meghalaya
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf

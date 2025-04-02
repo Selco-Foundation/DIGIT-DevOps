@@ -1,12 +1,12 @@
 # Common Labels
 labels:
-  app: "nagaland-ui"
+  app: "nagaland"
   group: "web"
 
 # Ingress Configs
 ingress:
   enabled: true
-  context: "nagaland-ui"
+  context: "nagaland"
 
 # Init Containers Configs
 initContainers: {}
@@ -19,18 +19,18 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/nagaland-ui/"
-  readinessProbePath: "/nagaland-ui/"
+  livenessProbePath: "/nagaland/"
+  readinessProbePath: "/nagaland/"
 
 env: |
   - name: PUBLIC_PATH
-    value: /nagaland-ui
+    value: /nagaland
 
     
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: nagaland-ui
+      name: nagaland
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf
