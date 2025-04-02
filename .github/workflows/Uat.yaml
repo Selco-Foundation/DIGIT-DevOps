@@ -125,15 +125,15 @@ jobs:
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
-            --set nagaland.image.tag=main-${{ env.nagaland_ui_commit }} \
+            --set nagaland.image.tag=main-${{ env.nagaland_commit }} \
             --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
             --set im-services.image.tag=main-${{ env.im_Services_commit }} \
             --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
-            --set assam.image.tag=main-${{ env.assam_ui_commit }} \
-            --set sikkim.image.tag=main-${{ env.sikkim_ui_commit }} \
-            --set manipur.image.tag=main-${{ env.manipur_ui_commit }} \
-            --set mizoram.image.tag=main-${{ env.mizoram_ui_commit }} \
-            --set odisha.image.tag=main-${{ env.odisha_ui_commit }} \
+            --set assam.image.tag=main-${{ env.assam_commit }} \
+            --set sikkim.image.tag=main-${{ env.sikkim_commit }} \
+            --set manipur.image.tag=main-${{ env.manipur_commit }} \
+            --set mizoram.image.tag=main-${{ env.mizoram_commit }} \
+            --set odisha.image.tag=main-${{ env.odisha_commit }} \
             --set inbox.image.tag=main-${{ env.inbox_commit }} \
             --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
 #            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \
