@@ -89,9 +89,9 @@ releases:
 #    <<: *default
 #
 #
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 ##Only in DEV
 
@@ -99,29 +99,29 @@ releases:
   #   installed: true
   #   <<: *default
 
-#  - name: nagaland-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: nagaland-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: assam-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
   ##Only in DEV
 #  - name: mdms-v2 # Replace with your desired namespace
@@ -142,6 +142,6 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: inbox # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: inbox # Replace with your desired namespace
+#    installed: true
+#    <<: *default
