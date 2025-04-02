@@ -128,13 +128,14 @@ egov-hrms:
   replicas: 1
 
 egov-notification-sms:
-  sms-provider-url: "sms provider url" ## Add sms provider url
-  sms.provider.class: "Console"
-  sms.provider.contentType:  "application/x-www-form-urlencoded"
-  sms-config-map: "{'User':'$username', 'passwd': '$password', 'sid':'$senderid', 'mobilenumber':'$mobileno', 'message':'$message', 'mtype':'N', 'DR':'N', 'smsservicetype':'singlemsg'}"
+  sms-provider-url: "https://restapi.smscountry.com/v0.1/Accounts/A2mCONOT0pIjJ12fuKC8/SMSes/" ## Add sms provider url
+  sms.provider.class: "Generic"
+  sms.provider.contentType:  "application/json"
+  sms-config-map: "{'Text':'$message', 'Number': '$mobileno', 'SenderId':'$senderid', 'DRNotifyUrl':'https://www.domainname.com/notifyurl', 'DRNotifyHttpMethod':'POST', 'Tool':'API'}"
   sms-gateway-to-use: "sms provider name" ## Add sms provider name
   sms-sender: "sms sender" ## Add sms sender
-  sms-sender-requesttype: "GET"
+  sms-sender-requesttype: "POST"
+  sms.verify.responseContains: "Success"
   sms-custom-config: "true"
   sms-extra-req-params: "mtype=N&DR=Y"
   sms-sender-req-param-name: "sid"

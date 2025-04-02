@@ -32,6 +32,8 @@ java-args: ""
 
 # Additional Container Envs
 env: |
+  - name: SMS_SENDERID
+    value: SELCOF
   - name: KAFKA_TOPICS_NOTIFICATION_SMS_NAME
     value: egov.core.notification.sms
   - name: KAFKA_TOPICS_NOTIFICATION_SMS_ID
