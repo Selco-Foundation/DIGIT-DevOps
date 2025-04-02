@@ -109,31 +109,31 @@ jobs:
           echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
           workflow_v2_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
           echo "workflow_v2_commit=$workflow_v2_commit" >> $GITHUB_ENV 
-          nagaland_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "nagaland_ui_commit=$nagaland_ui_commit" >> $GITHUB_ENV
-          assam_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "assam_ui_commit=$assam_ui_commit" >> $GITHUB_ENV
-          manipur_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "manipur_ui_commit=$manipur_ui_commit" >> $GITHUB_ENV
-          mizoram_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "mizoram_ui_commit=$mizoram_ui_commit" >> $GITHUB_ENV
-          odisha_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "odisha_ui_commit=$odisha_ui_commit" >> $GITHUB_ENV
-          sikkim_ui_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "sikkim_ui_commit=$sikkim_ui_commit" >> $GITHUB_ENV
+          nagaland_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "nagaland_commit=$nagaland_commit" >> $GITHUB_ENV
+          assam_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "assam_commit=$assam_commit" >> $GITHUB_ENV
+          manipur_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "manipur_commit=$manipur_commit" >> $GITHUB_ENV
+          mizoram_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "mizoram_commit=$mizoram_commit" >> $GITHUB_ENV
+          odisha_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "odisha_commit=$odisha_commit" >> $GITHUB_ENV
+          sikkim_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
-            --set nagaland-ui.image.tag=main-${{ env.nagaland_ui_commit }} \
+            --set nagaland.image.tag=main-${{ env.nagaland_ui_commit }} \
             --set digit-ui.image.tag=main-${{ env.digit_ui_commit }} \
             --set im-services.image.tag=main-${{ env.im_Services_commit }} \
             --set im-services.initContainers.dbMigration.image.tag=main-${{ env.im_Services_commit }} \
-            --set assam-ui.image.tag=main-${{ env.assam_ui_commit }} \
-            --set sikkim-ui.image.tag=main-${{ env.sikkim_ui_commit }} \
-            --set manipur-ui.image.tag=main-${{ env.manipur_ui_commit }} \
-            --set mizoram-ui.image.tag=main-${{ env.mizoram_ui_commit }} \
-            --set odisha-ui.image.tag=main-${{ env.odisha_ui_commit }} \
+            --set assam.image.tag=main-${{ env.assam_ui_commit }} \
+            --set sikkim.image.tag=main-${{ env.sikkim_ui_commit }} \
+            --set manipur.image.tag=main-${{ env.manipur_ui_commit }} \
+            --set mizoram.image.tag=main-${{ env.mizoram_ui_commit }} \
+            --set odisha.image.tag=main-${{ env.odisha_ui_commit }} \
             --set inbox.image.tag=main-${{ env.inbox_commit }} \
             --set inbox.initContainers.dbMigration.image.tag=main-${{ env.inbox_commit }} \
 #            --set egov-hrms.image.tag=main-${{ env.hrms_commit }} \

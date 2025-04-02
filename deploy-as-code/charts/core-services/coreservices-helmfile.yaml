@@ -99,27 +99,27 @@ releases:
   #   installed: true
   #   <<: *default
 
-  - name: nagaland-ui # Replace with your desired namespace
+  - name: nagaland # Replace with your desired namespace
     installed: true
     <<: *default
 
-  - name: assam-ui # Replace with your desired namespace
+  - name: assam # Replace with your desired namespace
     installed: true
     <<: *default
 
-  - name: mizoram-ui # Replace with your desired namespace
+  - name: mizoram # Replace with your desired namespace
     installed: true
     <<: *default
 
-  - name: manipur-ui # Replace with your desired namespace
+  - name: manipur # Replace with your desired namespace
     installed: true
     <<: *default
 
-  - name: sikkim-ui # Replace with your desired namespace
+  - name: sikkim # Replace with your desired namespace
     installed: true
     <<: *default
 
-  - name: odisha-ui # Replace with your desired namespace
+  - name: odisha # Replace with your desired namespace
     installed: true
     <<: *default
 
