@@ -113,7 +113,7 @@ jobs:
           odisha_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "odisha_commit=$odisha_commit" >> $GITHUB_ENV
           sikkim_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "sikkim_commit=$sikkim_committ" >> $GITHUB_ENV
+          echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
 
 
       - name: digit deployment
