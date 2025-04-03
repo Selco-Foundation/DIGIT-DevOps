@@ -36,7 +36,7 @@ appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx64m -Xms64m"
 java-args: "-Dspring.profiles.active=monitoring"
-
+persist-yml-path: ""
 # Additional Container Envs
 env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
@@ -64,4 +64,5 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-enc-service
-
+  - name: EGOV_PERSIST_YML_REPO_PATH
+    value: {{ index .Values "persist-yml-path" | quote }}

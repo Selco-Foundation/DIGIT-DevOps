@@ -154,7 +154,7 @@ egov-mdms-service:
     gitSync:
       repo: "git@github.com:Selco-Foundation/egov-mdms-data"
       branch: "main"
-  mdms-folder: "egov-mdms-data"
+  mdms-folder: "selco-mdms-data"
   masters-config-url: "file:///work-dir/egov-mdms-data/master-config.json"
   java-args: -Dspring.profiles.active=monitoring
 

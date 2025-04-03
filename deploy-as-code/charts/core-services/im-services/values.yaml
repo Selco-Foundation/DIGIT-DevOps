@@ -52,6 +52,10 @@ lifecycle:
           mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
+  - name: SERVER_CONTEXT_PATH
+    value: /im-services
+  - name: FFMPEG_CPULIMITPERCENTAGE
+    value: "100"
   - name: SPRING_SERVLET_MULTIPART_ENABLED
     value: "true"
   - name: SPRING_SERVLET_MULTIPART_LOCATION
@@ -113,7 +117,7 @@ env: |
   - name: WORKFLOW_CONTEXT_PATH
     value: egov-workflow-v2/egov-wf/businessservice/_search
   - name: MSEVA_MOBILE_APP_DOWNLOAD_LINK
-    value: https://bit.ly/4e8qGJ3
+    value: https://bit.ly/466SBpv
   - name: EGOV_HRMS_HOST
     valueFrom:
       configMapKeyRef:
