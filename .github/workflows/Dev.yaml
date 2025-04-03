@@ -30,11 +30,6 @@ jobs:
 
   DIGIT-deployment:
     runs-on: ubuntu-latest
-#    env:
-#      AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-#      AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#      AWS_REGION:  ${{ secrets.AWS_REGION }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -103,6 +98,23 @@ jobs:
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
           im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
           echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
+          inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
+          echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
+          meghalaya_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "meghalaya_commit=$meghalaya_commit" >> $GITHUB_ENV
+          nagaland_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "nagaland_commit=$nagaland_commit" >> $GITHUB_ENV
+          assam_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "assam_commit=$assam_commit" >> $GITHUB_ENV
+          manipur_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "manipur_commit=$manipur_commit" >> $GITHUB_ENV
+          mizoram_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "mizoram_commit=$mizoram_commit" >> $GITHUB_ENV
+          odisha_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "odisha_commit=$odisha_commit" >> $GITHUB_ENV
+          sikkim_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "sikkim_commit=$sikkim_committ" >> $GITHUB_ENV
+
 
       - name: digit deployment
         run: |
@@ -112,7 +124,15 @@ jobs:
             --set im-services.initContainers.dbMigration.image.tag=develop-${{ env.im_Services_commit }} \
             --set egov-filestore.image.tag=develop-${{ env.filestore_commit }} \
             --set egov-filestore.initContainers.dbMigration.image.tag=develop-${{ env.filestore_commit }} \
-
+            --set inbox.image.tag=develop-${{ env.inbox_commit }} \
+            --set inbox.initContainers.dbMigration.image.tag=develop-${{ env.inbox_commit }} \
+            --set nagaland.image.tag=develop-${{ env.meghalaya_commit }} \
+            --set meghalaya.image.tag=develop-${{ env.nagaland_commit }} \
+            --set assam.image.tag=develop-${{ env.assam_commit }} \
+            --set sikkim.image.tag=develop-${{ env.sikkim_commit }} \
+            --set manipur.image.tag=develop-${{ env.manipur_commit }} \
+            --set mizoram.image.tag=develop-${{ env.mizoram_commit }} \
+            --set odisha.image.tag=develop-${{ env.odisha_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-dev"
