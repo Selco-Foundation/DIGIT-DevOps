@@ -101,6 +101,7 @@ jobs:
 
       - name: digit deployment
         run: |
+          echo ${{ env.egov-mdms-service }}
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
            --set nagaland.image.tag=${{ env.nagaland }} \
            --set mizoram.image.tag=${{ env.mizoram }} \

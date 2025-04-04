@@ -15,14 +15,6 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
-#      nagaland:
-#      mizoram:
-#      egov-hrms: court-room-hrm-changes-691901a842-14
-#      egov-filestore: core-2.9-lts-mvn-check-17b905d01d-13
-#      egov-workflow-v2: core-2.9-lts-mvn-check-07ed8e9a49-12
-#      im-services: gateway-filestore-fix-ebbd0c4cd8-24
-#      digit-ui: v1.0.0-713a7b9848eaffa417160d38151c0efa51ce314b
-#      inbox: v1.0.0-d31bfc0d253ea5056c319cd71cecaef125bc3aea
       egov-mdms-service: core-2.9-lts-mvn-check-c33cfe45ab-12
       egov-notification-sms: egov-notification-sms:master-03072024-1
       audit-service: core-2.9-lts-mvn-check-c33cfe45ab-9
@@ -38,3 +30,11 @@ modules:
       gateway: gateway-2.9.3-56a8630218-44
       im-services-analytics: im-services-analytics-27624fe645-11
       user-otp: core-2.9-lts-mvn-check-15fe7099b6-7
+#      nagaland:
+#      mizoram:
+#      egov-hrms: court-room-hrm-changes-691901a842-14
+#      egov-filestore: core-2.9-lts-mvn-check-17b905d01d-13
+#      egov-workflow-v2: core-2.9-lts-mvn-check-07ed8e9a49-12
+#      im-services: gateway-filestore-fix-ebbd0c4cd8-24
+#      digit-ui: v1.0.0-713a7b9848eaffa417160d38151c0efa51ce314b
+#      inbox: v1.0.0-d31bfc0d253ea5056c319cd71cecaef125bc3aea
