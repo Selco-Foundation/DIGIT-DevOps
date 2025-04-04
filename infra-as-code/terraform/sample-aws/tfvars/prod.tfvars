@@ -13,7 +13,7 @@ vpc_cidr_block = "192.168.0.0/16"
 create_rds = true
 db_name = "selcoproddb"
 db_username = "selcoprod"
-engine_version = "14.12"
+engine_version = "14.13"
 db_instance_class = "db.m5.large"
 
 #EKS
@@ -22,7 +22,7 @@ kubeconfig_name= "selco-prod"
 node_name = "on-demand"
 kubernetes_version = "1.32"
 ami_id = "ami-0f4a7f3d1231aaf54"
-instance_type= "r5.large"
+instance_type= "r5a.xlarge"
 max_number_of_worker_nodes = "4"
 number_of_worker_nodes = "3"
 min_number_of_worker_nodes = "2"

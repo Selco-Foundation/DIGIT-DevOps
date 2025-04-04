@@ -20,8 +20,8 @@ initContainers:
 
 # Container Configs
 image:
-  repository: "egov-idgen"
-  tag: core-2.9-lts-mvn-check-c33cfe45ab-7 
+  repository: "selcohub"
+  tag: egov-idgen:main-03072024-1
 replicas: "1"
 healthChecks:
   enabled: true
