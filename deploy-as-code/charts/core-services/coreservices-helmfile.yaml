@@ -95,33 +95,37 @@ releases:
 
 ##Only in DEV
 
-#  - name: meghalaya # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: nagaland # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: meghalaya # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: nagaland # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: assam # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: gujarat # Replace with your desired namespace
+    installed: true
+    <<: *default
     
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
