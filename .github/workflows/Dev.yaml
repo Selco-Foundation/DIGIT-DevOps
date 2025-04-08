@@ -110,7 +110,8 @@ jobs:
           echo "odisha_commit=$odisha_commit" >> $GITHUB_ENV
           sikkim_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
-
+          gujarat_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "gujarat_commit=$gujarat_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
@@ -129,6 +130,7 @@ jobs:
             --set manipur.image.tag=develop-${{ env.manipur_commit }} \
             --set mizoram.image.tag=develop-${{ env.mizoram_commit }} \
             --set odisha.image.tag=develop-${{ env.odisha_commit }} \
+            --set gujarat.image.tag=develop-${{ env.gujarat_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-dev"
