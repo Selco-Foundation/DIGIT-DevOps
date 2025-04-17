@@ -48,8 +48,8 @@ releases:
 
   - name: egov-hrms # Replace with your desired namespace
     installed: true
-    needs:
-    - egov-user
+#    needs:
+#    - egov-user
     <<: *default
 
   - name: egov-indexer # Replace with your desired namespace
@@ -76,8 +76,8 @@ releases:
 
   - name: egov-workflow-v2 # Replace with your desired namespace
     installed: true
-    needs:
-    - egov-mdms-service
+#    needs:
+#    - egov-mdms-service
     <<: *default
 
 #  - name: user-otp # Replace with your desired namespace
