@@ -156,3 +156,7 @@ releases:
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+
+  - name: vendor-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
