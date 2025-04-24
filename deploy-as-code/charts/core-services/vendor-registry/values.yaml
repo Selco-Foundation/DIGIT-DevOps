@@ -1,31 +1,31 @@
 # Common Labels
 labels:
-  app: "boundary-service"
+  app: "vendor-registry"
   group: "core"
 
 # Init Containers Configs
 initContainers:
   dbMigration:
     enabled: true
-    schemaTable: "boundary_service_schema"
+    schemaTable: "vendor_registry_schema"
     image:
-      repository: "selcohub/egov-boundary-service-db"
-      tag: develop-ec70953fc755ceda5cad6877217520c22c5ec50e
+      repository: "selcohub/vendor-registry-db"
+      tag: develop-8443c49a9826f0ced5fa79e065735bfeab1ae71b
 
 # Ingress Configs
 ingress:
   zuul: true
-  context: "boundary-service"
+  context: "vendor-registry"
 
 # Container Configs
 image:
-  repository: "selcohub/egov-boundary-service"
-  tag: develop-ec70953fc755ceda5cad6877217520c22c5ec50e
+  repository: "selcohub/vendor-registry"
+  tag: develop-8443c49a9826f0ced5fa79e065735bfeab1ae71b
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/boundary-service/health"
-  readinessProbePath: "/boundary-service/health"
+  livenessProbePath: "/vendor/health"
+  readinessProbePath: "/vendor/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
@@ -38,11 +38,16 @@ env: |
   - name: SERVER_PORT
     value: "8080"
   - name: SERVER_SERVLET_CONTEXT_PATH
-    value: /boundary-service
+    value: /vendor
   - name: SERVER_CONTEXT_PATH
-    value: /boundary-service
+    value: /vendor
   - name: JAVA_OPTS
     value: {{ index .Values "heap" | quote }}
+  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: kafka-brokers
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
@@ -50,6 +55,7 @@ env: |
         key: egov-localization
   - name: EGOV_LOCALIZATION_SEARCH_ENDPOINT
     value: /localization/messages/v1/_search
+  
   - name: EGOV_IDGEN_HOST
     valueFrom:
       configMapKeyRef:
@@ -75,5 +81,15 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-workflow-v2
+  - name: EGOV_LOCATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-location
+        name: egov-service-host
+  - name: EGOV_ENC_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-enc-service
 
 
