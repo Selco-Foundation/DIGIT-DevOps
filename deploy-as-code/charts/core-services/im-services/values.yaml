@@ -139,8 +139,4 @@ env: |
     value: "false"
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
-  - name: TRACER_OPENTRACING_ENABLED
-    value: "true"
-  - name: TRACER_OPENTRACING_ENABLED
-    value: "true"
 
