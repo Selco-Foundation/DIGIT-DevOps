@@ -25,10 +25,10 @@ releases:
 #    needs:
 #    - egov-mdms-service
 #    <<: *default
-
-  - name: egov-filestore # Replace with your desired namespace
-    installed: true
-    <<: *default
+#
+#  - name: egov-filestore # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
@@ -42,19 +42,19 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-mdms-service # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-mdms-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
-  - name: egov-hrms # Replace with your desired namespace
-    installed: true
+#  - name: egov-hrms # Replace with your desired namespace
+#    installed: true
 #    needs:
 #    - egov-user
-    <<: *default
+#    <<: *default
 
-  - name: egov-indexer # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-indexer # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
@@ -70,15 +70,15 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-persister # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-persister # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
-  - name: egov-workflow-v2 # Replace with your desired namespace
-    installed: true
+#  - name: egov-workflow-v2 # Replace with your desired namespace
+#    installed: true
 #    needs:
 #    - egov-mdms-service
-    <<: *default
+#    <<: *default
 
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
@@ -111,9 +111,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: manipur # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: sikkim # Replace with your desired namespace
 #    installed: true
@@ -130,18 +130,18 @@ releases:
 
 
 
-  - name: gateway # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: im-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: gateway # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: im-services # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
-  - name: inbox # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: inbox # Replace with your desired namespace
+#    installed: true
+#    <<: *default
