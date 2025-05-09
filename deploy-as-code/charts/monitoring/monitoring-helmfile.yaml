@@ -36,7 +36,7 @@ releases:
   installed: true
   namespace: backbone-dev
   chart: jaegertracing/jaeger
-  version: 3.4.1
+  version: 1.0.0
   values:
   - ./values/jaeger.yaml
   - storage:
