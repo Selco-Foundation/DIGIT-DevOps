@@ -66,7 +66,7 @@ env: |
         name: egov-service-host
         key: egov-mdms-service
   - name: EGOV_MDMS_PORT
-    value: 8080
+    value: "8080"
   - name: EGOV_HRMS_HOST
     valueFrom:
       configMapKeyRef:
@@ -85,7 +85,7 @@ env: |
   - name: OTEL_SERVICE_NAME
     value: facility-registry
   - name: OTEL_EXPORTER_ENDPOINT 
-    value: http://jaeger-tracing-collector.backbone-dev:4318 
+    value: "http://jaeger-tracing-collector.backbone-dev:4318" 
   - name: OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS
     value: "/facility-registry/health,/facility-registry/prometheus"
 
