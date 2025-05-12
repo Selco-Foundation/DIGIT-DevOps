@@ -48,9 +48,10 @@ releases:
 #
   - name: egov-hrms # Replace with your desired namespace
     installed: true
+    <<: *default
 #    needs:
 #    - egov-user
-    <<: *default
+
 #
 #  - name: egov-indexer # Replace with your desired namespace
 #    installed: true
