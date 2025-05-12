@@ -86,6 +86,6 @@ env: |
   - name: OTEL_EXPORTER_ENDPOINT 
     value: http://jaeger-tracing-collector.backbone-dev:4318 
   - name: OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS
-    value: /facility-registry/health,/facility-registry/prometheus
+    value: "/facility-registry/health,/facility-registry/prometheus"
 
 
