@@ -40,7 +40,8 @@ env: |
   - name: SERVER_SERVLET_CONTEXT_PATH
     value: /facility-service
   - name: SERVER_CONTEXT_PATH
-    value: /facility-service  - name: JAVA_OPTS
+    value: /facility-service  
+  - name: JAVA_OPTS
     value: {{ index .Values "heap" | quote }}
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
@@ -81,11 +82,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: boundary-service
-#  - name: OTEL_SERVICE_NAME
-#    value: facility-registry
-#  - name: OTEL_EXPORTER_ENDPOINT
-#    value: http://jaeger-tracing-collector.backbone-dev:4318
-#  - name: OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS
-#    value: "/facility-registry/health,/facility-registry/prometheus"
+  - name: OTEL_SERVICE_NAME
+    value: facility-registry
+  - name: OTEL_EXPORTER_ENDPOINT 
+    value: http://jaeger-tracing-collector.backbone-dev:4318 
+  - name: OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS
+    value: "/facility-registry/health,/facility-registry/prometheus"
 
 
