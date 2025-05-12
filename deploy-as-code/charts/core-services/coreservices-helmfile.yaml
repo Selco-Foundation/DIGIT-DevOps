@@ -46,11 +46,11 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: egov-hrms # Replace with your desired namespace
-#    installed: true
+  - name: egov-hrms # Replace with your desired namespace
+    installed: true
 #    needs:
 #    - egov-user
-#    <<: *default
+    <<: *default
 #
 #  - name: egov-indexer # Replace with your desired namespace
 #    installed: true
@@ -145,9 +145,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: inbox # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: inbox # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
   - name: boundary-service # Replace with your desired namespace
     installed: true
@@ -164,3 +164,7 @@ releases:
 #  - name: project # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+
+  - name: facility-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
