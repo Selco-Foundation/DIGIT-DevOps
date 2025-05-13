@@ -1,0 +1,74 @@
+# Common Labels
+labels:
+  app: "asset-registry"
+  group: "rainmaker"
+
+# Init Containers Configs
+initContainers:
+  dbMigration:
+    enabled: false
+    schemaTable: "asset-registry_schema"
+    image:
+      repository: "egovio/project-db"
+      tag: v1.1.6-1f79b92f65-33
+
+# Ingress Configs
+ingress:
+  zuul: true
+  context: "asset-registry"
+
+# Container Configs
+image:
+  repository: "selcohub/asset-registry"
+  tag: develop-9e49c3921b4b5a3b11dab4bb3b932d947971ef0a
+replicas: "1"
+healthChecks:
+  enabled: true
+  livenessProbePath: "/asset-registry/health"
+  readinessProbePath: "/asset-registry/health"
+appType: "java-spring"
+tracing-enabled: true
+heap: "-Xmx192m -Xms192m"
+
+# Additional Container Envs
+env: |
+  - name: SERVER_PORT
+    value: "8080"
+  - name: SERVER_CONTEXTPATH
+    value: /asset-registry
+  - name: OTEL_EXPORTER_OTLP_ENDPOINT
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        value: jaeger
+  - name: EGOV_IDGEN_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-idgen
+  - name: EGOV_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-user
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-mdms-service
+  - name: EGOV_HRMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-hrms
+  - name: WORKFLOW_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-workflow-v2
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
+
