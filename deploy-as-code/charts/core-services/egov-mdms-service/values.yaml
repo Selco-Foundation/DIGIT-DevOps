@@ -14,13 +14,13 @@ initContainers:
     enabled: true
     schemaTable: "mdms_v2_schema"
     image:
-      repository: "selcohub/egov-mdms-service-v2-db"
-      tag: develop-694168d134be70e639cdccfc39ee329b445c474d
+      repository: "egovio/mdms-v2-db"
+      tag: v1.3.2-ffc7a36fbf-81
 
 # Container Configs
 image:
-  repository: "selcohub/egov-mdms-service-v2"
-  tag: develop-694168d134be70e639cdccfc39ee329b445c474d
+  repository: "egovio/mdms-v2"
+  tag: v1.3.2-ffc7a36fbf-81
 replicas: "1"
 healthChecks:
   enabled: true
