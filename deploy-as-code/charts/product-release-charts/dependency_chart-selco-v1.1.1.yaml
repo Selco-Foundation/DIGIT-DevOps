@@ -15,14 +15,15 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
-      manipur: v1.1.1-da9f195a1b119f14b7fea21f4dc88c48b3ea0cfd
-      nagaland: v1.1.1-da9f195a1b119f14b7fea21f4dc88c48b3ea0cfd
+      mizoram: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
+      manipur: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
+      nagaland: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
       egov-hrms: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
       egov-filestore: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
       egov-workflow-v2: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
-      im-services: v1.1.1-da9f195a1b119f14b7fea21f4dc88c48b3ea0cfd
-      digit-ui: v1.1.1-da9f195a1b119f14b7fea21f4dc88c48b3ea0cfd
-      inbox: v1.1.1-da9f195a1b119f14b7fea21f4dc88c48b3ea0cfd
+      im-services: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
+      digit-ui: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
+      inbox: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
       egov-mdms-service: core-2.9-lts-mvn-check-c33cfe45ab-12
       egov-notification-sms: egov-notification-sms:master-03072024-1
       audit-service: core-2.9-lts-mvn-check-c33cfe45ab-9
