@@ -3,15 +3,6 @@ labels:
   app: "asset-registry"
   group: "rainmaker"
 
-# Init Containers Configs
-initContainers:
-  dbMigration:
-    enabled: false
-    schemaTable: "asset-registry_schema"
-    image:
-      repository: "egovio/project-db"
-      tag: v1.1.6-1f79b92f65-33
-
 # Ingress Configs
 ingress:
   zuul: true
@@ -40,7 +31,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        value: jaeger
+        key: jaeger
   - name: EGOV_IDGEN_HOST
     valueFrom:
       configMapKeyRef:
