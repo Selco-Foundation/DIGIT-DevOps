@@ -46,9 +46,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: egov-hrms # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-hrms # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #    needs:
 #    - egov-user
 
@@ -85,9 +85,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: configmaps # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: configmaps # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #
 #  - name: digit-ui # Replace with your desired namespace
