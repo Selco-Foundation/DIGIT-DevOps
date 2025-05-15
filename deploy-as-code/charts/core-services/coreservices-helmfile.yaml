@@ -75,9 +75,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: egov-workflow-v2 # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-workflow-v2 # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #    needs:
 #    - egov-mdms-service
 #
@@ -90,39 +90,39 @@ releases:
 #    <<: *default
 #
 #
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 ##Only in DEV
 
-#  - name: meghalaya # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: nagaland # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: meghalaya # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: nagaland # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: assam # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: gujarat # Replace with your desired namespace
 #    installed: true
