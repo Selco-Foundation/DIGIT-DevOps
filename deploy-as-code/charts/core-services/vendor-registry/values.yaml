@@ -55,7 +55,6 @@ env: |
         key: egov-localization
   - name: EGOV_LOCALIZATION_SEARCH_ENDPOINT
     value: /localization/messages/v1/_search
-  
   - name: EGOV_IDGEN_HOST
     valueFrom:
       configMapKeyRef:
