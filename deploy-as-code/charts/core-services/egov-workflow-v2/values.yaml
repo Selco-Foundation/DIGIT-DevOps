@@ -15,13 +15,13 @@ initContainers:
     enabled: true
     schemaTable: "egov_workflow_v2_schema"
     image:
-      repository: "selcohub/egov-workflow-v2-db"
-      tag: develop-1540b674ee26d1e834eabbbadedaca0b3385c59a
+      repository: "egovio/egov-workflow-v2-db"
+      tag: sandbox-tracer-2.9.1-9c74f01794-19
 
 # Container Configs
 image:
-  repository: "selcohub/egov-workflow-v2"
-  tag: develop-1540b674ee26d1e834eabbbadedaca0b3385c59a
+  repository: "egovio/egov-workflow-v2"
+  tag: sandbox-tracer-2.9.1-9c74f01794-19
 replicas: "1"
 healthChecks:
   enabled: true

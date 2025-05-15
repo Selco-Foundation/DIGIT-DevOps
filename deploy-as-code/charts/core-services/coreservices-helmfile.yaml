@@ -75,11 +75,11 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: egov-workflow-v2 # Replace with your desired namespace
-#    installed: true
+  - name: egov-workflow-v2 # Replace with your desired namespace
+    installed: true
+    <<: *default
 #    needs:
 #    - egov-mdms-service
-#    <<: *default
 #
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
