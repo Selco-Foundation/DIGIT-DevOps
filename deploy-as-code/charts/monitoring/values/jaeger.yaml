@@ -415,9 +415,8 @@ collector:
         # port: 4317
       # nodePort:
       http:
-        {}
-        # name: otlp-http
-        # port: 4318
+         name: otlp-http
+         port: 4318
       # nodePort:
   ingress:
     enabled: false
