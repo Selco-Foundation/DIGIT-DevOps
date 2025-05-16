@@ -62,10 +62,15 @@ hub:
     type: Recreate
   db:
     type: postgres
-    persistence:
-      enabled: true
-      storageClass: gp2
-      size: 2Gi
+    upgrade:
+    pvc:
+      annotations: {}
+      selector: {}
+      accessModes:
+        - ReadWriteOnce
+      storage: 2Gi
+      subPath:
+      storageClassName: gp2
   labels: {}
   annotations: {}
   command: []
@@ -235,10 +240,10 @@ proxy:
     networkPolicy:
       enabled: true
       ingress:
-        enabled: true
-        ingressClassName: nginx
-        labels:
-          app: proxy
+         - enabled: true
+           ingressClassName: nginx
+           labels:
+             app: proxy
       egress: []
       egressAllowRules:
         cloudMetadataServer: true
