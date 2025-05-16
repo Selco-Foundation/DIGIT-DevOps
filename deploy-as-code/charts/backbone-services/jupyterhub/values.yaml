@@ -181,7 +181,7 @@ proxy:
     rollingUpdate:
   # service relates to the proxy-public service
   service:
-    type: clusterIP
+    type: ClusterIP
     labels:
       app: proxy
     annotations: {}
