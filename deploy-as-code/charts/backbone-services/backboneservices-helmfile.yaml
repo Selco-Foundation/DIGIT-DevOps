@@ -1,6 +1,8 @@
 repositories:
 - name: bitnami
   url: https://charts.bitnami.com/bitnami
+- name: jupyterhub
+  url: https://hub.jupyter.org/helm-chart/
 
 templates: 
   default: &default
