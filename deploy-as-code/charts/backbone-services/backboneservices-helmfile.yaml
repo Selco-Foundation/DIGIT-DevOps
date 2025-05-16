@@ -110,3 +110,11 @@ releases:
   <<: *default
   values:
     - ./playground/values.yaml
+
+- name: jupyterhub
+  installed: true
+  chart: ./jupyterhub
+  version: 4.0.0
+  <<: *default
+  values:
+    - ./jupyterhub/values.yaml
