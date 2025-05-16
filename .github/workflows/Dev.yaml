@@ -120,10 +120,13 @@ jobs:
           echo "vendor_registry_commit=$vendor_registry_commit" >> $GITHUB_ENV
           facility_registry_commit=$(git log -1 --pretty=format:%H -- backend/core-services/health-facility-registry)
           echo "facility_registry_commit=$facility_registry_commit" >> $GITHUB_ENV
+          asset_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/asset-registry)
+          echo "asset_registry_commit=$asset_registry_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
             --set boundary-service.image.tag=develop-${{ env.boundary_service_commit }} \
             --set boundary-service.initContainers.dbMigration.image.tag=develop-${{ env.boundary_service_commit }} \
