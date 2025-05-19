@@ -35,7 +35,8 @@ hub:
   config:
     JupyterHub:
       admin_access: true
-      authenticator_class: dummy
+      JupyterHub.authenticator_class: "shared-password"
+      SharedPasswordAuthenticator.user_password: "my-workshop-2042"
   service:
     type: ClusterIP
     annotations: {}
