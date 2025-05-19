@@ -33,6 +33,9 @@ imagePullSecrets: []
 hub:
   revisionHistoryLimit:
   config:
+    Authenticator:
+      allowed_users:
+        - beehyv
     JupyterHub:
       admin_access: true
       authenticator_class: "shared-password"
