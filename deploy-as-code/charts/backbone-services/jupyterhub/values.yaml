@@ -185,6 +185,11 @@ proxy:
     ##     Error: UPGRADE FAILED: Deployment.apps "proxy" is invalid: spec.strategy.rollingUpdate: Forbidden: may not be specified when strategy `type` is 'Recreate'
     rollingUpdate:
   # service relates to the proxy-public service
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    labels:
+      app: proxy-public
   service:
     type: ClusterIP
     labels:
@@ -239,11 +244,7 @@ proxy:
     tolerations: []
     networkPolicy:
       enabled: true
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        labels:
-          app: proxy-public
+      ingress: []
       egress: []
       egressAllowRules:
         cloudMetadataServer: true
