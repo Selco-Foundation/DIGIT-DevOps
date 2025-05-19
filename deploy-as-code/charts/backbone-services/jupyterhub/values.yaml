@@ -707,8 +707,6 @@ ingress:
   enabled: true
   annotations: {}
   ingressClassName: nginx
-  labels:
-    app: proxy-public
   hosts: []
   pathSuffix:
   pathType: Prefix
