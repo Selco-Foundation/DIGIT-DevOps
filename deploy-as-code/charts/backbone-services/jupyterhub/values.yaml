@@ -188,7 +188,7 @@ proxy:
   service:
     type: ClusterIP
     labels:
-      app: proxy
+      app: proxy-public
     annotations: {}
     nodePorts:
       http:
@@ -240,10 +240,10 @@ proxy:
     networkPolicy:
       enabled: true
       ingress:
-         - enabled: true
-           ingressClassName: nginx
-           labels:
-             app: proxy
+        enabled: true
+        ingressClassName: nginx
+        labels:
+          app: proxy-public
       egress: []
       egressAllowRules:
         cloudMetadataServer: true
