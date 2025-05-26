@@ -127,6 +127,7 @@ jobs:
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
             --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
+            --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset-registry_commit }} \
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
             --set boundary-service.image.tag=develop-${{ env.boundary_service_commit }} \
             --set boundary-service.initContainers.dbMigration.image.tag=develop-${{ env.boundary_service_commit }} \
