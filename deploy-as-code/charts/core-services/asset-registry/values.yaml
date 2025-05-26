@@ -8,6 +8,16 @@ ingress:
   zuul: true
   context: "asset-registry"
 
+# Init Containers Configs
+initContainers:
+  dbMigration:
+    enabled: true
+    schemaTable: "asset_registry_schema"
+    image:
+      repository: "selcohub/asset-registry-db"
+      tag: core-2.9-lts-mvn-check-c33cfe45ab-9
+
+
 # Container Configs
 image:
   repository: "selcohub/asset-registry"
