@@ -12,8 +12,8 @@ initContainers:
 
 # Container Configs
 image:
-  repository: "egov-persister"
-  tag: core-2.9-lts-mvn-check-c33cfe45ab-7
+  repository: "egovio/egov-persister"
+  tag: master-1e8d2bb
 replicas: "1"
 healthChecks:
   enabled: true

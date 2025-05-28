@@ -15,8 +15,8 @@ initContainers:
     enabled: true
     schemaTable: "audit_service_schema"
     image:
-      repository: "audit-service-db"
-      tag: core-2.9-lts-mvn-check-c33cfe45ab-9
+      repository: "egovio/audit-service-db"
+      tag: master-1e8d2bb
 
   gitSync:
     enabled: true
@@ -25,8 +25,8 @@ initContainers:
 
 # Container Configs
 image:
-  repository: "audit-service"
-  tag: core-2.9-lts-mvn-check-c33cfe45ab-9
+  repository: "egovio/audit-service"
+  tag: master-1e8d2bb
 replicas: "1"
 healthChecks:
   enabled: true
