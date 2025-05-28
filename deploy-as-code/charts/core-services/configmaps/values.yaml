@@ -75,7 +75,7 @@ configmaps:
       user-otp: http://user-otp.core-dev8080/
       zuul: http://zuul:8080/
       boundary-service: http://boundary-service.core-dev:8080/
-      facility-service: http://facility-service.core-dev:8080/
+      facility-service: http://facility-registry.core-dev:8080/
 
 root-ingress:
   name: root-ingress
