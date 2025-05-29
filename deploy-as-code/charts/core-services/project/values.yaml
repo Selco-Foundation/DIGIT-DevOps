@@ -14,7 +14,7 @@ initContainers:
 
 # Ingress Configs
 ingress:
-  zuul: true
+  enabled: true
   context: "project"
 
 # Container Configs
