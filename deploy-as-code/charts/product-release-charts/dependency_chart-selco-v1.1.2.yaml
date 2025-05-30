@@ -15,6 +15,7 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
+      odisha: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
       sikkim: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
       mizoram: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
       manipur: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
