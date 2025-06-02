@@ -124,7 +124,7 @@ releases:
         hosts:
           - host: {{ .Values.global.domain }}
             paths:
-              - path: /kibana
+              - path: /hub
         tls:
           - secretName: {{ .Values.global.domain }}-tls-certs
             hosts:
