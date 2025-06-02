@@ -122,7 +122,7 @@ releases:
     - ./jupyterhub/values.yaml
     - ingress:
         hosts:
-          - host: {{ .Values.global.domain }}
+          - {{ .Values.global.domain }}
 #        paths:
 #          - path: /hub
         tls:
