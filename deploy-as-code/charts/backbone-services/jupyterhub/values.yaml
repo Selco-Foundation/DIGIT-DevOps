@@ -715,7 +715,7 @@ ingress:
   annotations: {}
   ingressClassName: nginx
   hosts: []
-  pathSuffix:
+  pathSuffix: /hub
   pathType: Prefix
   tls: []
   extraPaths: []
