@@ -123,8 +123,6 @@ releases:
     - ingress:
         hosts:
           - {{ .Values.global.domain }}
-#        paths:
-#          - path: /hub
         tls:
           - secretName: {{ .Values.global.domain }}-tls-certs
             hosts:
