@@ -120,3 +120,12 @@ releases:
   <<: *default
   values:
     - ./jupyterhub/values.yaml
+    - ingress:
+        hosts:
+          - host: {{ .Values.global.domain }}
+            paths:
+              - path: /kibana
+        tls:
+          - secretName: {{ .Values.global.domain }}-tls-certs
+            hosts:
+              - {{ .Values.global.domain }}
