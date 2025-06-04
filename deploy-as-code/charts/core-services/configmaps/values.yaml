@@ -6,6 +6,7 @@ configmaps:
       db-host: selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com
       db-name: selcouatdb
       db-url: jdbc:postgresql://selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcouatdb
+      db-otel-url: "jdbc:otel:postgresql://selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcodevdb"
       domain: saura-emitra-uat.selcofoundation.org
       egov-bnd-freedownload-tenants: pg.testing
       egov-bnd-live-citizen-tenants: pg.testing

@@ -16,7 +16,7 @@ initContainers:
     schemaTable: "audit_service_schema"
     image:
       repository: "egovio/audit-service-db"
-      tag: master-1e8d2bb
+      tag: v2.9.2-4a60f20
 
   gitSync:
     enabled: true
@@ -26,8 +26,9 @@ initContainers:
 # Container Configs
 image:
   repository: "egovio/audit-service"
-  tag: master-1e8d2bb
+  tag: v2.9.2-4a60f20
 replicas: "1"
+otel: true
 healthChecks:
   enabled: true
   livenessProbePath: "/audit-service/health"

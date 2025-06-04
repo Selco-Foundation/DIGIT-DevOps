@@ -25,11 +25,11 @@ releases:
 #    needs:
 #    - egov-mdms-service
 #    <<: *default
-
+#
 #  - name: egov-filestore # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -41,7 +41,7 @@ releases:
 #  - name: egov-location # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+##
 #  - name: egov-mdms-service # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -56,7 +56,7 @@ releases:
 #  - name: egov-indexer # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -70,26 +70,26 @@ releases:
 #  - name: egov-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: egov-persister # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: egov-workflow-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 #    needs:
 #    - egov-mdms-service
 
-#  - name: user-otp # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: user-otp # Replace with your desired namespace
+    installed: true
+    <<: *default
 
   - name: configmaps # Replace with your desired namespace
     installed: true
     <<: *default
 
-#
+
 #  - name: digit-ui # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -123,7 +123,7 @@ releases:
 #  - name: odisha # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: gujarat # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -137,11 +137,11 @@ releases:
 #  - name: gateway # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+##
 #  - name: im-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
 #    <<: *default

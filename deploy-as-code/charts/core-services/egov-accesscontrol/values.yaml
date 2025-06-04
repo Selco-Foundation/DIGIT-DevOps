@@ -15,7 +15,7 @@ initContainers: {}
 # Container Configs
 image:
   repository: "egovio/egov-accesscontrol"
-  tag: master-1e8d2bb
+  tag: v2.9.2-4a60f20
 replicas: "1"
 healthChecks:
   enabled: true
@@ -24,6 +24,7 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
+otel: true
 java-args: ""
 
 # Additional Container Envs

@@ -121,10 +121,17 @@ resources: |
 extraEnv:
   java: |
       - name: SPRING_DATASOURCE_URL
+      {{- if .Values.otel }}
+        valueFrom:
+        configMapKeyRef:
+          name: egov-config
+          key: db-otel-url
+      {{- else }}
         valueFrom:
           configMapKeyRef:
             name: egov-config
             key: db-url
+      {{- end }}  
       - name: FLYWAY_ENABLED
         value: "false"      
       - name: SPRING_FLYWAY_ENABLED
@@ -219,10 +226,7 @@ extraEnv:
       {{- else }}
         value: "enc-user-audit-data"
       {{- end }}           
-        
-            
-            
-            
+
   jaeger: |             
       - name: OTEL_SERVICE_NAME
         value: {{ template "common.name" . }}

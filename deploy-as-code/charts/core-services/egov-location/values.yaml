@@ -16,12 +16,12 @@ initContainers:
     schemaTable: "egov_location_schema"
     image:
       repository: "egovio/egov-location-db"
-      tag: master-1e8d2bb
+      tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
   repository: "egovio/egov-location"
-  tag: master-1e8d2bb
+  tag: v2.9.2-4a60f20
 replicas: "1"
 healthChecks:
   enabled: true
@@ -29,6 +29,7 @@ healthChecks:
   readinessProbePath: "/egov-location/health"
 appType: "java-spring"
 tracing-enabled: true
+otel: true
 heap: "-Xmx192m -Xms192m"
 java-args: "-Dspring.profiles.active=monitoring"
 gmaps: true

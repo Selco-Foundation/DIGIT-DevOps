@@ -16,15 +16,16 @@ initContainers:
     schemaTable: "egov_localization_schema"
     image:
       repository: "egovio/egov-localization-db"
-      tag: master-1e8d2bb
+      tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
   repository: "egovio/egov-localization"
-  tag: master-1e8d2bb
+  tag: v2.9.2-4a60f20
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
+otel: true
 heap: "-Xmx256m -Xms256m"
 memory_limits: 512Mi
 healthChecks:
