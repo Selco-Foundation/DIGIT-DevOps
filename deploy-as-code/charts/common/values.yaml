@@ -123,9 +123,9 @@ extraEnv:
       - name: SPRING_DATASOURCE_URL
       {{- if eq .Values.otel "true" }}
         valueFrom:
-        configMapKeyRef:
-          name: egov-config
-          key: db-otel-url
+          configMapKeyRef:
+            name: egov-config
+            key: db-otel-url
       {{- else }}
         valueFrom:
           configMapKeyRef:
