@@ -29,7 +29,7 @@ healthChecks:
   readinessProbePath: "/egov-location/health"
 appType: "java-spring"
 tracing-enabled: true
-otel: true
+otel: "true"
 heap: "-Xmx192m -Xms192m"
 java-args: "-Dspring.profiles.active=monitoring"
 gmaps: true

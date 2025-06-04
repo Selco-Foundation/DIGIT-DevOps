@@ -121,7 +121,7 @@ resources: |
 extraEnv:
   java: |
       - name: SPRING_DATASOURCE_URL
-      {{- if .Values.otel }}
+      {{- if eq .Values.otel "true" }}
         valueFrom:
         configMapKeyRef:
           name: egov-config

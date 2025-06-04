@@ -23,7 +23,7 @@ image:
   repository: "egovio/egov-otp"
   tag: v2.9.2-4a60f20
 replicas: "1"
-otel: true
+otel: "true"
 healthChecks:
   enabled: true
   livenessProbePath: "/otp/health"

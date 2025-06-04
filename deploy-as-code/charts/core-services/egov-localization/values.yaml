@@ -25,7 +25,7 @@ image:
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
-otel: true
+otel: "true"
 heap: "-Xmx256m -Xms256m"
 memory_limits: 512Mi
 healthChecks:

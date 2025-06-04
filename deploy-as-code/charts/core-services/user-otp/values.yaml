@@ -23,7 +23,7 @@ healthChecks:
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
-otel: true
+otel: "true"
 heap: "-Xmx192m -Xms192m"
 java-args: ""
 
