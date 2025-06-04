@@ -140,6 +140,7 @@ releases:
           - host: {{ .Values.global.domain }}
             paths:
               - path: /pgadmin4
+                pathType: Prefix
         tls:
           - secretName: {{ .Values.global.domain }}-tls-certs
             hosts:
