@@ -115,3 +115,6 @@ secrets:
   egov-pg-service:
     name: egov-pg-service
     namespace: core-dev
+  pgadmin:
+    name: pgadmin
+    namespace: backbone-dev
