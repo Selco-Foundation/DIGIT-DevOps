@@ -26,7 +26,7 @@ tracing-enabled: true
 otel: "true"
 heap: "-Xmx192m -Xms192m"
 java-args: ""
-memory_limits: "512Mi"
+memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |

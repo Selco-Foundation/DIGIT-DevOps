@@ -45,6 +45,7 @@ citizen-otp-fixed: "123456"
 citizen-otp-fixed-enabled: "true"
 heap: "-Xmx384m -Xms256m"
 java-args: ""
+memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
