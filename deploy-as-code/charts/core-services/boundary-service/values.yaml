@@ -10,17 +10,18 @@ initContainers:
     schemaTable: "boundary_service_schema"
     image:
       repository: "selcohub/egov-boundary-service-db"
-      tag: develop-ec70953fc755ceda5cad6877217520c22c5ec50e
+      tag: develop-fc0950fa22fd077978baf6adddca0bf0eafd7914
 
 # Ingress Configs
 ingress:
+  enabled: true
   zuul: true
   context: "boundary-service"
 
 # Container Configs
 image:
   repository: "selcohub/egov-boundary-service"
-  tag: develop-ec70953fc755ceda5cad6877217520c22c5ec50e
+  tag: develop-fc0950fa22fd077978baf6adddca0bf0eafd7914
 replicas: "1"
 healthChecks:
   enabled: true

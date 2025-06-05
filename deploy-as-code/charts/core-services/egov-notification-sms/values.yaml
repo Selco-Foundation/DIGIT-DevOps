@@ -8,8 +8,8 @@ initContainers: {}
 
 # Container Configs
 image:
-  repository: "selcohub"
-  tag: egov-notification-sms:master-03072024-1
+  repository: "selcohub/egov-notification-sms"
+  tag: master-03072024-1
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true

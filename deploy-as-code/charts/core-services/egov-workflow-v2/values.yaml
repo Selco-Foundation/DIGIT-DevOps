@@ -15,13 +15,14 @@ initContainers:
     enabled: true
     schemaTable: "egov_workflow_v2_schema"
     image:
-      repository: "selcohub/egov-workflow-v2-db"
-      tag: main-9577b7cb41f4de9f0a720ca168339c7c514c6a61
+      repository: "egovio/egov-workflow-v2-db"
+      tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
-  repository: "selcohub/egov-workflow-v2"
-  tag: main-9577b7cb41f4de9f0a720ca168339c7c514c6a61
+  repository: "egovio/egov-workflow-v2"
+  tag: v2.9.2-4a60f20
+
 replicas: "1"
 healthChecks:
   enabled: true
@@ -29,6 +30,7 @@ healthChecks:
   readinessProbePath: "/egov-workflow-v2/health"
 appType: "java-spring"
 tracing-enabled: true
+otel: "true"
 heap: "-Xmx64m -Xms64m"
 java-args: "-Dspring.profiles.active=monitoring"
 workflow-statelevel: "true"

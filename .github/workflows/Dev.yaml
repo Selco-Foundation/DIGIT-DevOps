@@ -92,11 +92,11 @@ jobs:
           echo "digit_ui_commit=$digit_ui_commit" >> $GITHUB_ENV
           filestore_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-filestore)
           echo "filestore_commit=$filestore_commit" >> $GITHUB_ENV
-          im_Services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/im-services)
+          im_Services_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/im-services)
           echo "im_Services_commit=$im_Services_commit" >> $GITHUB_ENV
-          processor_services_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/processor-services)
+          processor_services_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/processor-services)
           echo "processor_services_commit=$processor_services_commit" >> $GITHUB_ENV
-          inbox_commit=$(git log -1 --pretty=format:%H -- backend/municipal-services/inbox)
+          inbox_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/inbox)
           echo "inbox_commit=$inbox_commit" >> $GITHUB_ENV
           meghalaya_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "meghalaya_commit=$meghalaya_commit" >> $GITHUB_ENV
@@ -114,11 +114,27 @@ jobs:
           echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
           gujarat_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "gujarat_commit=$gujarat_commit" >> $GITHUB_ENV
+          boundary_service_commit=$(git log -1 --pretty=format:%H -- backend/core-services/boundary-service)
+          echo "boundary_service_commit=$boundary_service_commit" >> $GITHUB_ENV
+          vendor_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/vendor-registry)
+          echo "vendor_registry_commit=$vendor_registry_commit" >> $GITHUB_ENV
+          facility_registry_commit=$(git log -1 --pretty=format:%H -- backend/core-services/health-facility-registry)
+          echo "facility_registry_commit=$facility_registry_commit" >> $GITHUB_ENV
+          asset_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/asset-registry)
+          echo "asset_registry_commit=$asset_registry_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
+            --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset_registry_commit}} \
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
+            --set boundary-service.image.tag=develop-${{ env.boundary_service_commit }} \
+            --set boundary-service.initContainers.dbMigration.image.tag=develop-${{ env.boundary_service_commit }} \
+            --set facility-registry.image.tag=develop-${{ env.facility_registry_commit }} \
+            --set facility-registry.initContainers.dbMigration.image.tag=develop-${{ env.facility_registry_commit }} \
+            --set vendor-registry.image.tag=develop-${{ env.vendor_registry_commit }} \
+            --set vendor-registry.initContainers.dbMigration.image.tag=develop-${{ env.vendor_registry_commit }} \
             --set processor-services.image.tag=develop-${{ env.processor_services_commit }} \
             --set im-services.image.tag=develop-${{ env.im_Services_commit }} \
             --set im-services.initContainers.dbMigration.image.tag=develop-${{ env.im_Services_commit }} \

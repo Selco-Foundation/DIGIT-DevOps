@@ -15,19 +15,20 @@ initContainers:
     schemaTable: "mdms_v2_schema"
     image:
       repository: "egovio/mdms-v2-db"
-      tag: v1.3.2-ffc7a36fbf-81
+      tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
   repository: "egovio/mdms-v2"
-  tag: v1.3.2-ffc7a36fbf-81
+  tag: v2.9.2-4a60f20
 replicas: "1"
 healthChecks:
   enabled: true
   livenessProbePath: "/egov-mdms-service/health"
   readinessProbePath: "/egov-mdms-service/health"
 appType: "java-spring"
-tracing-enabled: false
+tracing-enabled: true
+otel: "true"
 heap: "-Xmx512m -Xms512m"
 java-args: "-Dspring.profiles.active=monitoring"
 egov-mdms-schema-definition-save-topic: "save-mdms-schema-definition"

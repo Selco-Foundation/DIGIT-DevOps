@@ -15,13 +15,13 @@ initContainers:
     enabled: true
     schemaTable: "egov_idgen_schema"
     image:
-      repository: "egov-idgen-db"
-      tag: core-2.9-lts-mvn-check-c33cfe45ab-7 
+      repository: "egovio/egov-idgen-db"
+      tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
-  repository: "selcohub"
-  tag: egov-idgen:main-03072024-1
+  repository: "selcohub/egov-idgen"
+  tag: main-03072024-1
 replicas: "1"
 healthChecks:
   enabled: true
@@ -30,6 +30,7 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
+otel: "true"
 java-args: "-Dspring.profiles.active=monitoring"
 idformat-from-mdms: "false"
 autocreate-new-seq: "false"

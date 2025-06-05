@@ -6,6 +6,7 @@ configmaps:
       db-host: selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com
       db-name: selcouatdb
       db-url: jdbc:postgresql://selco-uat-cluster-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcouatdb
+      db-otel-url: "jdbc:otel:postgresql://selco-prod-db.c1yks4g2c2zp.ap-south-1.rds.amazonaws.com/selcodevdb"
       domain: saura-emitra-uat.selcofoundation.org
       egov-bnd-freedownload-tenants: pg.testing
       egov-bnd-live-citizen-tenants: pg.testing
@@ -33,6 +34,7 @@ configmaps:
     name: egov-service-host
     namespace: core-dev
     data:
+      jaeger: http://jaeger-tracing-collector.backbone-dev:4318
       billing-service: http://billing-service.core-dev:8080/
       egov-url-shortening: http://eus:8080/
       egov-searcher: http://egov-searcher.core-dev:8080/
@@ -73,6 +75,8 @@ configmaps:
       turn-io-adapter: http://turn-io-adapter.core-dev8080/
       user-otp: http://user-otp.core-dev8080/
       zuul: http://zuul:8080/
+      boundary-service: http://boundary-service.core-dev:8080/
+      facility-service: http://facility-registry.core-dev:8080/
 
 root-ingress:
   name: root-ingress
@@ -112,3 +116,6 @@ secrets:
   egov-pg-service:
     name: egov-pg-service
     namespace: core-dev
+  pgadmin:
+    name: pgadmin
+    namespace: backbone-dev
