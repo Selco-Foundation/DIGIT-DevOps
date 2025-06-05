@@ -109,11 +109,12 @@ lifecycle:
             - -c
             - "sleep 10"
 
+memory_requests: "512Mi"
 memory_limits: "512Mi"
 resources: |
   {{- if eq .Values.appType "java-spring" -}}
   requests:
-    memory: {{ .Values.memory_limits | quote }}
+    memory: {{ .Values.memory_requests | quote }}
   limits:
     memory: {{ .Values.memory_limits | quote }}
   {{- end -}}
