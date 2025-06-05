@@ -22,6 +22,7 @@ initContainers:
 image:
   repository: "egovio/egov-workflow-v2"
   tag: v2.9.2-4a60f20
+
 replicas: "1"
 healthChecks:
   enabled: true

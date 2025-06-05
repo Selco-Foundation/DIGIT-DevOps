@@ -12,7 +12,7 @@ ingress:
 # Container Configs
 image:
   repository: "selcohub/inbox"
-  tag: "develop-ee3184d75246e27556b2740dd9c5da29e036e1bb"
+  tag: "main-9577b7cb41f4de9f0a720ca168339c7c514c6a61"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -105,10 +105,6 @@ env: |
     value: "false"  
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
-  {{- if index .Values "tracing-enabled" }}
-  - name: TRACER_OPENTRACING_ENABLED
-    value: "true" 
-  {{- end }}
   - name: JAVA_ENABLE_DEBUG
     value: "true"
 

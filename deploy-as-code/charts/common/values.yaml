@@ -284,3 +284,6 @@ cron:
 vpa:
   enabled: false  
   updateMode: "Off"
+
+hparam:
+  enabled: true
