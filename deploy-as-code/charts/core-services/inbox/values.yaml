@@ -19,7 +19,7 @@ healthChecks:
   livenessProbePath: "/inbox/health"
   readinessProbePath: "/inbox/health"
 appType: "java-spring"
-tracing-enabled: true
+tracing-enabled: false
 heap: "-Xmx256m -Xms256m"
 java-args: "-Dspring.profiles.active=monitoring"
 memory_limits: 512Mi
