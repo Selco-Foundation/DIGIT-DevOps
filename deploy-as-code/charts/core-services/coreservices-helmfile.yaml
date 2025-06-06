@@ -12,13 +12,13 @@ templates:
       - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 releases:
-#  - name: egov-accesscontrol # Replace with your desired namespace
-#    installed: true # Replace with the version of your chart, if needed
-#    <<: *default
-#
-#  - name: audit-service # Replace with your desired namespace
-#    installed: true # Replace with the version of your chart, if needed
-#    <<: *default
+  - name: egov-accesscontrol # Replace with your desired namespace
+    installed: true # Replace with the version of your chart, if needed
+    <<: *default
+
+  - name: audit-service # Replace with your desired namespace
+    installed: true # Replace with the version of your chart, if needed
+    <<: *default
 
   - name: egov-enc-service # Replace with your desired namespace
     installed: true
@@ -28,21 +28,21 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-idgen # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: egov-localization # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: egov-location # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: egov-mdms-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-idgen # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: egov-localization # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: egov-location # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: egov-mdms-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-hrms # Replace with your desired namespace
 #    installed: true
@@ -51,13 +51,13 @@ releases:
 #    - egov-user
 
 
-#  - name: egov-indexer # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: egov-notification-sms # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-indexer # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: egov-notification-sms # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-user # Replace with your desired namespace
 #    installed: true
@@ -65,13 +65,13 @@ releases:
 #    - egov-enc-service
 #    <<: *default
 
-#  - name: egov-otp # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: egov-persister # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-otp # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: egov-persister # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-workflow-v2 # Replace with your desired namespace
 #    installed: true
@@ -79,13 +79,13 @@ releases:
 #    needs:
 #    - egov-mdms-service
 #
-#  - name: user-otp # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: configmaps # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: user-otp # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: configmaps # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #
 #  - name: digit-ui # Replace with your desired namespace
@@ -132,9 +132,9 @@ releases:
 
 
 
-#  - name: gateway # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: gateway # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: im-services # Replace with your desired namespace
 #    installed: true
