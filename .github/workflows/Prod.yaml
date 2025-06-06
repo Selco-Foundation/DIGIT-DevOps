@@ -102,6 +102,7 @@ jobs:
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+           --set meghalaya.image.tag=${{ env.meghalaya }} \
            --set gujarat.image.tag=${{ env.gujarat }} \
            --set assam.image.tag=${{ env.assam }} \
            --set odisha.image.tag=${{ env.odisha }} \

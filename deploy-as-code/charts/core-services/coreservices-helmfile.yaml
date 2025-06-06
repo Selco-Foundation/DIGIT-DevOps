@@ -95,9 +95,9 @@ releases:
 
 ##Only in DEV
 
-  # - name: meghalaya-ui # Replace with your desired namespace
-  #   installed: true
-  #   <<: *default
+   - name: meghalaya # Replace with your desired namespace
+     installed: true
+     <<: *default
 
 #  - name: nagaland # Replace with your desired namespace
 #    installed: true
@@ -107,9 +107,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: gujarat # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: gujarat # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: mizoram # Replace with your desired namespace
 #    installed: true
