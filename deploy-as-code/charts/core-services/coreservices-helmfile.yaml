@@ -103,7 +103,11 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: assam # Replace with your desired namespace
+#  - name: assam # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+  - name: gujarat # Replace with your desired namespace
     installed: true
     <<: *default
 #
