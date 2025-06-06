@@ -145,10 +145,10 @@ releases:
   - name: im-services-analytics # Replace with your desired namespace
     installed: true
     <<: *default
-#
-#  - name: inbox # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+
+  - name: inbox # Replace with your desired namespace
+    installed: true
+    <<: *default
 
   - name: boundary-service # Replace with your desired namespace
     installed: true

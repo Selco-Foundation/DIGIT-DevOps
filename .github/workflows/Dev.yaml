@@ -124,10 +124,13 @@ jobs:
           echo "asset_registry_commit=$asset_registry_commit" >> $GITHUB_ENV
           project_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/project)
           echo "project_commit=$project_commit" >> $GITHUB_ENV
+          im_services_analaytics_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/im-services-analytics)
+          echo "ima_commit=$im_services_analaytics_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set im-services-analytics.image.tag=develop-${{ env.ima_commit }} \
             --set project.image.tag=develop-${{ env.project_commit }} \
             --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
             --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset_registry_commit}} \
