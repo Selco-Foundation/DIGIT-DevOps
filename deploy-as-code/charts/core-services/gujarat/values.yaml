@@ -17,7 +17,6 @@ image:
   tag: multi-tenant-image-test-208afca1b9bfcd76e6be3891abfb0a522d43e34a
 replicas: "1"
 httpPort: 80
-memory_requests: "1024Mi"
 healthChecks:
   enabled: true
   livenessProbePath: "/gujarat/"
