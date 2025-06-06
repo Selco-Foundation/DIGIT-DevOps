@@ -13,7 +13,7 @@ ingress:
 
 # Container Configs
 image:
-  repository: "egovio/im-services-analytics"
+  repository: "selcohub/im-services-analytics"
   tag: "im-services-analytics-27624fe645-11"
 replicas: "1"
 healthChecks:
@@ -63,3 +63,10 @@ env: |
     value: "save-hrms-employee"
   - name: EGOV_UPDATE_INDEX_PATH
     value: "phc-master-list/_update/"
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-mdms-service
+  - name: EGOV_MDMS_SEARCH_ENDPOINT
+    value: /egov-mdms-service/v1/_search
