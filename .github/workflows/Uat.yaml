@@ -140,6 +140,7 @@ jobs:
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
             --set project.image.tag=staging-${{ env.project_commit }} \
+            --set project.initContainers.dbMigration.image.tag=staging-${{ env.project_commit }} \
             --set im-services-analytics.image.tag=staging-${{ env.ima_commit }} \
             --set asset-registry.image.tag=staging-${{ env.asset_registry_commit }} \
             --set asset-registry.initContainers.dbMigration.image.tag=staging-${{ env.asset_registry_commit}} \
