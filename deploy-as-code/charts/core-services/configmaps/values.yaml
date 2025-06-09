@@ -34,7 +34,7 @@ configmaps:
     name: egov-service-host
     namespace: core-dev
     data:
-      jaeger: http://jaeger-tracing-collector.backbone-dev:4318
+      jaeger: http://jaeger-tracing-collector.backbone-dev:4318/
       billing-service: http://billing-service.core-dev:8080/
       egov-url-shortening: http://eus:8080/
       egov-searcher: http://egov-searcher.core-dev:8080/

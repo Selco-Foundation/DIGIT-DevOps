@@ -27,6 +27,7 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx512m -Xms512m"
+memory_limits: "768Mi"
 
 lifecycle:
   postStart:
