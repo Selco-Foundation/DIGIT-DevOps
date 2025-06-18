@@ -132,6 +132,7 @@ jobs:
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
             --set im-services-analytics.image.tag=develop-${{ env.ima_commit }} \
             --set project.image.tag=develop-${{ env.project_commit }} \
+            --set project.initContainers.dbMigration.image.tag=develop-${{ env.project_commit }} \
             --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
             --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset_registry_commit}} \
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
