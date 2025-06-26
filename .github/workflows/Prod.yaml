@@ -118,8 +118,29 @@ jobs:
            --set egov-workflow-v2.initContainers.dbMigration.image.tag=${{ env.egov-workflow-v2 }} \
            --set im-services.image.tag=${{ env.im-services }} \
            --set im-services.initContainers.dbMigration.image.tag=${{ env.im-services }} \
+           --set im-services-analytics.image.tag=${{ env.im-services-analytics }} \
+           --set processor-services.image.tag=${{ env.processor-services }} \
            --set digit-ui.image.tag=${{ env.digit-ui }} \
            --set inbox.image.tag=${{ env.inbox }} \
+           --set gateway.image.tag=${{ env.gateway }} \
+           --set user-otp.image.tag=${{ env.user-otp }} \
+           --set audit-service.image.tag=${{ env.audit-service }} \
+           --set audit-service.initContainers.dbMigration.image.tag=${{ env.audit-service }} \
+           --set egov-accesscontrol.image.tag=${{ env.egov-accesscontrol }} \
+           --set egov-enc-service.image.tag=${{ env.egov-enc-service }} \
+           --set egov-enc-service.initContainers.dbMigration.image.tag=${{ env.egov-enc-service }} \
+           --set egov-indexer.image.tag=${{ env.egov-indexer }} \
+           --set egov-indexer.initContainers.dbMigration.image.tag=${{ env.egov-indexer }} \
+           --set egov-localization.image.tag=${{ env.egov-localization }} \
+           --set egov-localization.initContainers.dbMigration.image.tag=${{ env.egov-localization }} \
+           --set egov-location.image.tag=${{ env.egov-location }} \
+           --set egov-location.initContainers.dbMigration.image.tag=${{ env.egov-location }} \
+           --set egov-notification-sms.image.tag=${{ env.egov-notification-sms }} \
+           --set egov-otp.image.tag=${{ env.egov-otp }} \
+           --set egov-otp.initContainers.dbMigration.image.tag=${{ env.egov-otp }} \
+           --set egov-persister.image.tag=${{ env.egov-persister }} \
+           --set egov-user.image.tag=${{ env.egov-user }} \
+           --set egov-user.initContainers.dbMigration.image.tag=${{ env.egov-user }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-prod"
