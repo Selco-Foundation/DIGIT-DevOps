@@ -109,11 +109,12 @@ lifecycle:
             - -c
             - "sleep 10"
 
+memory_requests: "512Mi"
 memory_limits: "512Mi"
 resources: |
   {{- if eq .Values.appType "java-spring" -}}
   requests:
-    memory: {{ .Values.memory_limits | quote }}
+    memory: {{ .Values.memory_requests | quote }}
   limits:
     memory: {{ .Values.memory_limits | quote }}
   {{- end -}}
@@ -121,10 +122,17 @@ resources: |
 extraEnv:
   java: |
       - name: SPRING_DATASOURCE_URL
+      {{- if eq .Values.otel "true" }}
+        valueFrom:
+          configMapKeyRef:
+            name: egov-config
+            key: db-otel-url
+      {{- else }}
         valueFrom:
           configMapKeyRef:
             name: egov-config
             key: db-url
+      {{- end }}  
       - name: FLYWAY_ENABLED
         value: "false"      
       - name: SPRING_FLYWAY_ENABLED
@@ -219,25 +227,16 @@ extraEnv:
       {{- else }}
         value: "enc-user-audit-data"
       {{- end }}           
-        
-            
-            
-            
+
   jaeger: |             
-      - name: JAEGER_SERVICE_NAME
+      - name: OTEL_SERVICE_NAME
         value: {{ template "common.name" . }}
-      - name: JAEGER_SAMPLER_TYPE
-        value: remote
-      - name: JAEGER_AGENT_HOST
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
         valueFrom:
-          fieldRef:
-            fieldPath: status.hostIP
-      - name: JAEGER_AGENT_PORT
-        value: "6831"
-      - name: JAEGER_SAMPLER_MANAGER_HOST_PORT
-        value: "$(JAEGER_AGENT_HOST):5778"
-      - name: TRACER_OPENTRACING_ENABLED
-        value: "true"         
+          configMapKeyRef:
+            key: jaeger
+            name: egov-service-host
+
 ## Additional init containers
 extraInitContainers: |
 
@@ -288,3 +287,4 @@ vpa:
 
 hparam:
   enabled: true
+minReplicas: 1

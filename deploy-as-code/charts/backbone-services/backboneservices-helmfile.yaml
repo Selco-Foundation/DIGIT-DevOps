@@ -1,6 +1,8 @@
 repositories:
 - name: bitnami
   url: https://charts.bitnami.com/bitnami
+- name: jupyterhub
+  url: https://hub.jupyter.org/helm-chart/
 
 templates: 
   default: &default
@@ -48,14 +50,15 @@ releases:
 #  values:
 #    - ./redis/values.yaml
 
-- name: elasticsearch
-  chart: ./elasticsearch
-  version: 8.11.3
-  <<: *default
-  values:
-    - ./elasticsearch/values.yaml
-    - secret:
-        password: {{ .Values.secrets.elasticsearch.password }}
+#
+#- name: elasticsearch
+#  chart: ./elasticsearch
+#  version: 8.11.3
+#  <<: *default
+#  values:
+#    - ./elasticsearch/values.yaml
+#    - secret:
+#        password: {{ .Values.secrets.elasticsearch.password }}
 
 #- name: elasticsearch-data
 #  chart: ./elasticsearch-data
@@ -93,7 +96,7 @@ releases:
 #  set:
 #    - name: kraft.clusterId
 #      value: {{ .Values.secrets.kafka.clusterID }}
-#
+
 #- name: ingress-nginx
 #  installed: true
 #  chart: ./ingress-nginx
@@ -102,7 +105,7 @@ releases:
 #  values:
 #    - ./ingress-nginx/values.yaml
 #    - domain: {{ .Values.global.domain }}
-#
+
 #- name: playground
 #  installed: true
 #  chart: ./playground
@@ -110,3 +113,36 @@ releases:
 #  <<: *default
 #  values:
 #    - ./playground/values.yaml
+
+#- name: jupyterhub
+#  installed: true
+#  chart: ./jupyterhub
+#  version: 4.0.0
+#  <<: *default
+#  values:
+#    - ./jupyterhub/values.yaml
+#    - ingress:
+#        hosts:
+#          - {{ .Values.global.domain }}
+#        tls:
+#          - secretName: {{ .Values.global.domain }}-tls-certs
+#            hosts:
+#              - "{{ .Values.global.domain }}"
+
+- name: pgadmin4
+  installed: true
+  chart: ./pgadmin4
+  version: 4.0.0
+  <<: *default
+  values:
+    - ./pgadmin4/values.yaml
+    - ingress:
+        hosts:
+          - host: {{ .Values.global.domain }}
+            paths:
+              - path: /pgadmin4
+                pathType: Prefix
+        tls:
+          - secretName: {{ .Values.global.domain }}-tls-certs
+            hosts:
+              - {{ .Values.global.domain }}

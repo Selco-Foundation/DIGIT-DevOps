@@ -1,0 +1,57 @@
+# Common Labels
+labels:
+  app: "processor-services"
+  group: "rainmaker"
+
+namespace: core-dev
+
+# Ingress Configs
+ingress:
+  enabled: true
+  zuul: true
+  context: "processor-services"
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+
+minReplicas: 2
+
+# Container Configs
+image:
+  repository: "selcohub/processor-services"
+  tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
+replicas: "1"
+healthChecks:
+  enabled: true
+  livenessProbePath: "/processor-services/health"
+  readinessProbePath: "/processor-services/health"
+appType: "java-spring"
+tracing-enabled: true
+heap: "-Xmx512m -Xms512m"
+memory_limits: "768Mi"
+
+
+# Additional Container Envs
+env: |
+  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: kafka-brokers
+  - name: SERVER_PORT
+    value: "8080"
+  - name: EGOV_FILESTORE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-filestore
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_HEARTBEATINTERVAL
+    value: "10000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAX_POLL_INTERVAL_MS
+    value: "1800000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_SESSION_TIMEOUT_MS
+    value: "90000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAXPOLLRECORDS
+    value: "1"
+  - name: SPRING_KAFKA_CONSUMER_GROUPID
+    value: egov-processor-services
+

@@ -11,8 +11,12 @@ metadata:
     nginx.ingress.kubernetes.io/lua-resty-waf-process-multipart-body: "false"
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: 200m
+    nginx.ingress.kubernetes.io/proxy-body-size: 250m
     nginx.ingress.kubernetes.io/client-body-buffer-size: 10m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
 spec:
   rules:
     - host: {{ .Values.global.domain }}
@@ -20,7 +24,7 @@ spec:
         paths:
           - backend:
               service:
-                name: gateway
+                name: im-services
                 port:
                   number: 8080
             path: /{{ .Values.ingress.context }}
