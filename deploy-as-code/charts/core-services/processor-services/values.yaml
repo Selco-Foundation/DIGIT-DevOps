@@ -13,7 +13,7 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 500m
 
-
+minReplicas: 2
 
 # Container Configs
 image:
@@ -29,19 +29,6 @@ tracing-enabled: true
 heap: "-Xmx512m -Xms512m"
 memory_limits: "768Mi"
 
-lifecycle:
-  postStart:
-    exec:
-      command:
-        - sh
-        - -c
-        - |
-          set -e
-          apt update && apt install -y software-properties-common wget cpulimit
-          wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-          tar -xf ffmpeg-release-amd64-static.tar.xz
-          cd ffmpeg-*-amd64-static
-          mv ffmpeg ffprobe /usr/bin/
 
 # Additional Container Envs
 env: |
@@ -57,4 +44,14 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-filestore
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_HEARTBEATINTERVAL
+    value: "10000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAX_POLL_INTERVAL_MS
+    value: "1800000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_SESSION_TIMEOUT_MS
+    value: "90000"
+  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAXPOLLRECORDS
+    value: "1"
+  - name: SPRING_KAFKA_CONSUMER_GROUPID
+    value: egov-processor-services
 

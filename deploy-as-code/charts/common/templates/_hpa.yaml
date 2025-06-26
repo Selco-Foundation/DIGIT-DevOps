@@ -11,7 +11,7 @@ spec:
     apiVersion: "apps/v1"
     kind: Deployment
     name: {{ template "common.name" . }}
-  minReplicas: 1
+  minReplicas: {{ .Values.minReplicas }}
   maxReplicas: 5
   metrics:
     - type: Resource
@@ -19,16 +19,16 @@ spec:
         name: memory
         target:
           type: Utilization
-          averageUtilization: 80
+          averageUtilization: 70
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 120  # 2 minutes for sustained high usage
+      stabilizationWindowSeconds: 40  # 40sec for sustained high usage
       policies:
         - type: Percent
           value: 100
           periodSeconds: 60  # Allow up to 100% increase in replicas per minute
     scaleDown:
-      stabilizationWindowSeconds: 60  # 1 minute for sustained low usage
+      stabilizationWindowSeconds: 180  # 3 minute for sustained low usage
       policies:
         - type: Percent
           value: 50

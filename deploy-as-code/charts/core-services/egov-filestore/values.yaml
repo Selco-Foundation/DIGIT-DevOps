@@ -30,11 +30,13 @@ appType: "java-spring"
 tracing-enabled: true
 is-bucket-fixed: "true"
 fixed-bucketname: "selco"
-heap: "-Xmx512m -Xms512m"
+heap: "-Xmx1560m -Xms1560m"
 file-storage-mount-path: "/filestore"
 is-nfs-enabled: false
 is-s3-enabled: true
-memory_requests: "768Mi"
+memory_requests: "1560Mi"
+memory_limits: "2560Mi"
+minReplicas: 2
 
 
 persistence:

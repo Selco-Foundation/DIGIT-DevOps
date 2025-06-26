@@ -11,7 +11,7 @@ ingress:
   zuul: true
   context: "im-services"
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    nginx.ingress.kubernetes.io/proxy-body-size: 250m
 
 
 # Init Containers Configs
@@ -34,23 +34,11 @@ healthChecks:
   readinessProbePath: "/im-services/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx512m -Xms512m"
-memory_requests: "2560Mi"
-memory_limits: "3960Mi"
+heap: "-Xmx2900m -Xms2900m"
+memory_requests: "2Gi"
+memory_limits: "4Gi"
+minReplicas: 2
 
-lifecycle:
-  postStart:
-    exec:
-      command:
-        - sh
-        - -c
-        - |
-          set -e
-          apt update && apt install -y software-properties-common wget cpulimit
-          wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-          tar -xf ffmpeg-release-amd64-static.tar.xz
-          cd ffmpeg-*-amd64-static
-          mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
   - name: SERVER_CONTEXT_PATH
