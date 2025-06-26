@@ -39,7 +39,7 @@ releases:
 #  - name: egov-location # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: egov-mdms-service # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -48,11 +48,10 @@ releases:
 #    installed: true
 #    <<: *default
 
-
 #  - name: egov-indexer # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -66,7 +65,7 @@ releases:
 #  - name: egov-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: egov-persister # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -74,7 +73,7 @@ releases:
 #  - name: egov-workflow-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -82,41 +81,44 @@ releases:
 #  - name: configmaps # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+
+#  - name: digit-ui # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+##Only in DEV
+
+   - name: meghalaya # Replace with your desired namespace
+     installed: true
+     <<: *default
+
+#  - name: nagaland # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
+#  - name: assam # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+#  - name: gujarat # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
-  - name: digit-ui # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: mizoram # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
-#Only in DEV
-
-  - name: meghalaya # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: nagaland # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: assam # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: mizoram # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: manipur # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: sikkim # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: odisha # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: manipur # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: sikkim # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: odisha # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
   - name: gujarat # Replace with your desired namespace
     installed: true
@@ -135,7 +137,7 @@ releases:
 #  - name: im-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
 #    <<: *default
