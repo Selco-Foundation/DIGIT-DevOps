@@ -14,7 +14,6 @@ configmaps:
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
       egov-services-fqdn-name: https://saura-emitra.selcofoundation.org/
 egov-user:
-  heap: "-Xmx256m -Xms256m"
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
