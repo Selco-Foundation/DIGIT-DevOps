@@ -128,4 +128,9 @@ env: |
     value: "false"
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
+  - name: EGOV_FILESTORE_DOWNLOAD_ENDPOINT
+    valueFrom:
+      configMapKeyRef: 
+        key: filestore-download-enpoint
+        name: egov-config
 
