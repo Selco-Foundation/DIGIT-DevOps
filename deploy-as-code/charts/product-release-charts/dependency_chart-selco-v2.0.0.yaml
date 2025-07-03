@@ -16,22 +16,22 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
-      meghalaya: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      gujarat: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      assam: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      odisha: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      sikkim: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      mizoram: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      manipur: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      nagaland: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      egov-hrms: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
-      egov-filestore: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
-      egov-workflow-v2: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
-      im-services-analytics:
-      processor-services:
-      im-services: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      digit-ui: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
-      inbox: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
+      meghalaya: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      gujarat: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      assam: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      odisha: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      sikkim: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      mizoram: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      manipur: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      nagaland: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      egov-hrms: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      egov-filestore: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      egov-workflow-v2: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      im-services-analytics: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
+      im-services: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      digit-ui: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      inbox: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
       audit-service: v2.9.2-4a60f20
