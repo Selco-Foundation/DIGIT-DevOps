@@ -40,9 +40,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-mdms-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-mdms-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-hrms # Replace with your desired namespace
 #    installed: true
@@ -88,9 +88,9 @@ releases:
 
 ##Only in DEV
 
-   - name: meghalaya # Replace with your desired namespace
-     installed: true
-     <<: *default
+#   - name: meghalaya # Replace with your desired namespace
+#     installed: true
+#     <<: *default
 
 #  - name: nagaland # Replace with your desired namespace
 #    installed: true
@@ -120,10 +120,10 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: gujarat # Replace with your desired namespace
-    installed: true
-    <<: *default
-    
+#  - name: gujarat # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default

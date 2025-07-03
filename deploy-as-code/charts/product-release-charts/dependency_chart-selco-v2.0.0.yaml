@@ -32,17 +32,17 @@ modules:
       im-services: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
       digit-ui: v1.1.2-5e655bda4a76aa4d890669bab16201ee8835e491
       inbox: v1.1.1-5265b46562f413bcd28a0dcdd6129b145eb74acf
-      egov-mdms-service:
+      egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
-      audit-service:
-      egov-accesscontrol:
-      egov-enc-service:
+      audit-service: v2.9.2-4a60f20
+      egov-accesscontrol: v2.9.2-4a60f20
+      egov-enc-service: v2.9.2-4a60f20
       egov-idgen: main-03072024-1
-      egov-indexer:
-      egov-localization:
-      egov-location:
-      egov-otp:
-      egov-persister:
+      egov-indexer: v2.9.2-4a60f20
+      egov-localization: v2.9.2-4a60f20
+      egov-location: v2.9.2-4a60f20
+      egov-otp: v2.9.2-4a60f20
+      egov-persister: v2.9.2-4a60f20
       egov-user: core-2.9-lts-egov-user-deployement-c33cfe45ab-13
-      gateway:
-      user-otp:
+      gateway: v2.9.2-4a60f20
+      user-otp: v2.9.2-4a60f20
