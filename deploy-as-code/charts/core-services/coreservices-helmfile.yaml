@@ -120,9 +120,6 @@ releases:
     installed: true
     <<: *default
 
-  - name: gujarat # Replace with your desired namespace
-    installed: true
-    <<: *default
 #
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
