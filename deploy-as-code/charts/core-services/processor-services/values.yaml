@@ -26,8 +26,8 @@ healthChecks:
   readinessProbePath: "/processor-services/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx512m -Xms512m"
-memory_limits: "768Mi"
+memory_limits: "2560Mi"
+memory_requests: "2Gi"
 lifecycle:
   postStart:
     exec:
@@ -40,7 +40,7 @@ lifecycle:
           wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
           tar -xf ffmpeg-release-amd64-static.tar.xz
           cd ffmpeg-*-amd64-static
-          mv ffmpeg ffprobe /usr/local/bin/
+          mv ffmpeg ffprobe /usr/bin/
 
 
 # Additional Container Envs
