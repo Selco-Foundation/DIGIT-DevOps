@@ -41,6 +41,8 @@ lifecycle:
           tar -xf ffmpeg-release-amd64-static.tar.xz
           cd ffmpeg-*-amd64-static
           mv ffmpeg ffprobe /usr/bin/
+          ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe   ##Symbolic link at different directory
+          ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
 
 
 # Additional Container Envs
