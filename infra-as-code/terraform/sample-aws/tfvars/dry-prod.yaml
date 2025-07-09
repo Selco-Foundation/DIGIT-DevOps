@@ -1,0 +1,27 @@
+#Backend-config
+bucket = "selco-prod-dry"
+key    = "prod-dry/terraform.tfstate"
+region = "ap-south-1"
+dynamodb_table = "selco-prod-dry"
+encrypt = true
+  
+  
+  #Network
+vpc_cidr_block = "172.16.0.0/16"
+  
+  #DB
+create_rds = false
+  
+  #EKS
+cluster_name = "selco-prod-dry"
+kubeconfig_name= "selco-prod-dry"
+node_name = "on-demand"
+kubernetes_version = "1.32"
+ami_id = "ami-0f4a7f3d1231aaf54"
+instance_type= "r5a.xlarge"
+max_number_of_worker_nodes = "3"
+number_of_worker_nodes = "2"
+min_number_of_worker_nodes = "2"
+coredns-version = "v1.11.4-eksbuild.2"
+kube-proxy-version = "v1.32.0-eksbuild.2"
+aws_ebs_csi_driver = "v1.39.0-eksbuild.1"
