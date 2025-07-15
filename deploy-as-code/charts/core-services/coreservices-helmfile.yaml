@@ -127,7 +127,11 @@ releases:
   - name: gujarat # Replace with your desired namespace
     installed: true
     <<: *default
-    
+
+  - name: maharastra # Replace with your desired namespace
+    installed: true
+    <<: *default
+
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
