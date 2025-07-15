@@ -114,6 +114,8 @@ jobs:
           echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
           gujarat_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "gujarat_commit=$gujarat_commit" >> $GITHUB_ENV
+          maharastra_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "maharastra_commit=$maharastra_commit" >> $GITHUB_ENV
           boundary_service_commit=$(git log -1 --pretty=format:%H -- backend/core-services/boundary-service)
           echo "boundary_service_commit=$boundary_service_commit" >> $GITHUB_ENV
           vendor_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/vendor-registry)
@@ -150,6 +152,7 @@ jobs:
             --set mizoram.image.tag=develop-${{ env.mizoram_commit }} \
             --set odisha.image.tag=develop-${{ env.odisha_commit }} \
             --set gujarat.image.tag=develop-${{ env.gujarat_commit }} \
+            --set maharastra.image.tag=develop-${{ env.maharastra_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-dev"
