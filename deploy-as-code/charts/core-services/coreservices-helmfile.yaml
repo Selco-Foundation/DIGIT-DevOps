@@ -121,7 +121,7 @@ releases:
     installed: true
     <<: *default
 
-  - name: maharastra # Replace with your desired namespace
+  - name: maharashtra # Replace with your desired namespace
     installed: true
     <<: *default
 
