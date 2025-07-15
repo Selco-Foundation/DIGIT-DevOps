@@ -123,8 +123,8 @@ jobs:
           echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
           gujarat_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "gujarat_commit=$gujarat_commit" >> $GITHUB_ENV
-          maharastra_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
-          echo "maharastra_commit=$maharastra_commit" >> $GITHUB_ENV
+          maharashtra_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "maharashtra_commit=$maharashtra_commit" >> $GITHUB_ENV
           boundary_service_commit=$(git log -1 --pretty=format:%H -- backend/core-services/boundary-service)
           echo "boundary_service_commit=$boundary_service_commit" >> $GITHUB_ENV
           vendor_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/vendor-registry)
@@ -172,7 +172,7 @@ jobs:
             --set egov-hrms.initContainers.dbMigration.image.tag=staging-${{ env.hrms_commit }} \
             --set egov-workflow-v2.image.tag=staging-${{ env.workflow_v2_commit }} \
             --set egov-workflow-v2.initContainers.dbMigration.image.tag=staging-${{ env.workflow_v2_commit }} \
-            --set maharastra.image.tag=staging-${{ env.maharastra_commit }} \
+            --set maharashtra.image.tag=staging-${{ env.maharashtra_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-uat"
