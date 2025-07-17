@@ -32,29 +32,31 @@ releases:
 #  values:
 #  - ./values/prometheus.yaml
 
-- name: jaeger-tracing
-  installed: true
-  namespace: backbone-dev
-  chart: jaegertracing/jaeger
-  version: 1.0.0
-  values:
-  - ./values/jaeger.yaml
-  - storage:
-      elasticsearch:
-        password: {{ .Values.secrets.elasticsearch.password }}
-  set:
-    - name: query.ingress.hosts[0]
-      value: "{{ .Values.global.domain }}"
-
-#- name: grafana
+#- name: jaeger-tracing
 #  installed: true
-#  namespace: {{ .Values.namespace | default "default-namespace" }}
-#  chart: grafana/grafana
-#  version: 7.3.0
+#  namespace: backbone-dev
+#  chart: jaegertracing/jaeger
+#  version: 1.0.0
 #  values:
-#  - ./values/grafana.yaml
+#  - ./values/jaeger.yaml
+#  - storage:
+#      elasticsearch:
+#        password: {{ .Values.secrets.elasticsearch.password }}
 #  set:
-#    - name: ingress.hosts[0]
+#    - name: query.ingress.hosts[0]
 #      value: "{{ .Values.global.domain }}"
-#    - name: ingress.tls[0].hosts[0]
-#      value: {{ .Values.global.domain | quote }}
+
+- name: grafana
+  installed: true
+  namespace: {{ .Values.namespace | default "default-namespace" }}
+  chart: grafana/grafana
+  version: 7.3.0
+  values:
+  - ./values/grafana.yaml
+  set:
+    - name: ingress.hosts[0]
+      value: "{{ .Values.global.domain }}"
+    - name: ingress.tls[0].hosts[0]
+      value: {{ .Values.global.domain | quote }}
+    - name: smtp.from_address
+      value: pasamprasad71@gmail.com
