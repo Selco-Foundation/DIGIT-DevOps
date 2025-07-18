@@ -120,5 +120,5 @@ secrets:
     name: pgadmin
     namespace: backbone-dev
   grafana-smtp:
-    user: pgadmin
-    password: backbone-dev
+    name: grafana-smtp
+    namespace: monitoring
