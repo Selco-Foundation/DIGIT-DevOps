@@ -44,7 +44,7 @@ hub:
       appProtocol:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /
+  baseUrl: /hub
   cookieSecret:
   initContainers: []
   nodeSelector: {}
