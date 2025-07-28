@@ -44,7 +44,7 @@ hub:
       appProtocol:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /jupyterhub
+  baseUrl: /
   cookieSecret:
   initContainers: []
   nodeSelector: {}
@@ -708,7 +708,7 @@ ingress:
   annotations: {}
   ingressClassName: nginx
   hosts: []
-  pathSuffix: hub
+  pathSuffix: jupyterhub
   pathType: Prefix
   tls: []
   extraPaths: []
