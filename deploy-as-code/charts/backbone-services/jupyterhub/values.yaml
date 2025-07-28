@@ -34,6 +34,7 @@ hub:
   revisionHistoryLimit:
   config:
     JupyterHub:
+      base_url: /hub
       admin_access: true
       authenticator_class: dummy
   service:
@@ -44,7 +45,7 @@ hub:
       appProtocol:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /hub
+  baseUrl: /
   cookieSecret:
   initContainers: []
   nodeSelector: {}
