@@ -34,7 +34,7 @@ hub:
   revisionHistoryLimit:
   config:
     JupyterHub:
-      base_url: /hub
+      base_url: /
       admin_access: true
       authenticator_class: dummy
   service:
