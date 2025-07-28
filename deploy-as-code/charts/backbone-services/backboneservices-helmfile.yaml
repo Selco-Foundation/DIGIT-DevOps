@@ -113,35 +113,35 @@ releases:
 #  values:
 #    - ./playground/values.yaml
 
-#- name: jupyterhub
-#  installed: true
-#  chart: ./jupyterhub
-#  version: 4.0.0
-#  <<: *default
-#  values:
-#    - ./jupyterhub/values.yaml
-#    - ingress:
-#        hosts:
-#          - {{ .Values.global.domain }}
-#        tls:
-#          - secretName: {{ .Values.global.domain }}-tls-certs
-#            hosts:
-#              - "{{ .Values.global.domain }}"
-
-- name: pgadmin4
+- name: jupyterhub
   installed: true
-  chart: ./pgadmin4
+  chart: ./jupyterhub
   version: 4.0.0
   <<: *default
   values:
-    - ./pgadmin4/values.yaml
+    - ./jupyterhub/values.yaml
     - ingress:
         hosts:
-          - host: {{ .Values.global.domain }}
-            paths:
-              - path: /pgadmin4
-                pathType: Prefix
+          - {{ .Values.global.domain }}
         tls:
           - secretName: {{ .Values.global.domain }}-tls-certs
             hosts:
-              - {{ .Values.global.domain }}
+              - "{{ .Values.global.domain }}"
+
+#- name: pgadmin4
+#  installed: true
+#  chart: ./pgadmin4
+#  version: 4.0.0
+#  <<: *default
+#  values:
+#    - ./pgadmin4/values.yaml
+#    - ingress:
+#        hosts:
+#          - host: {{ .Values.global.domain }}
+#            paths:
+#              - path: /pgadmin4
+#                pathType: Prefix
+#        tls:
+#          - secretName: {{ .Values.global.domain }}-tls-certs
+#            hosts:
+#              - {{ .Values.global.domain }}
