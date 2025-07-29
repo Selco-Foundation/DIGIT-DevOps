@@ -43,7 +43,7 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /
+  baseUrl: /jupyter
   cookieSecret:
   initContainers: []
   nodeSelector: {}
@@ -353,19 +353,19 @@ singleuser:
   cloudMetadata:
     # block set to true will append a privileged initContainer using the
     # iptables to block the sensitive metadata server at the provided ip.
-    blockWithIptables: true
+    blockWithIptables: false
     ip: 169.254.169.254
   networkPolicy:
-    enabled: true
+    enabled: false
     ingress: []
     egress: []
     egressAllowRules:
-      cloudMetadataServer: false
+      cloudMetadataServer: true
       dnsPortsCloudMetadataServer: true
       dnsPortsKubeSystemNamespace: true
       dnsPortsPrivateIPs: true
       nonPrivateIPs: true
-      privateIPs: false
+      privateIPs: true
     interNamespaceAccessLabels: ignore
     allowedIngressPorts: []
   events: true
@@ -397,8 +397,8 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "3.3.6"
+    name: docker.io/egovio/jhub-singleuser
+    tag: "20240403-debug"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -602,7 +602,7 @@ prePuller:
   extraTolerations: []
   # hook relates to the hook-image-awaiter Job and hook-image-puller DaemonSet
   hook:
-    enabled: true
+    enabled: false
     pullOnlyOnChanges: true
     # image and the configuration below relates to the hook-image-awaiter Job
     image:
@@ -643,13 +643,12 @@ prePuller:
       pullSecrets: []
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
   ingressClassName: nginx
   pathSuffix: hub
   userPathSuffix: user(/|$)(.*)
   pathType: Prefix
-  tls: []
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting
 # inactive singleuser pods.
