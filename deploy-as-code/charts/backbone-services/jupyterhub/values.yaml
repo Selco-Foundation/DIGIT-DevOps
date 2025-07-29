@@ -34,14 +34,16 @@ hub:
   revisionHistoryLimit:
   config:
     Authenticator:
-      allowed_users:
-        - pasam6
+      admin_users:
+        - Beehyv-admin
+    NativeAuthenticator:
+      minimum_password_length: 8
+      check_common_password: false
+      allowed_failed_logins: 5
+      seconds_before_next_try: 300
     JupyterHub:
-      authenticator_class: "auth0"
-    OAuthenticator:
-      oauth_callback_url: "https://e4h-dev.selcofoundation.org/hub/oauth_callback"
-      client_id: "Ov23li4qnXIaqRKbRXy8"
-      client_secret: "8963f3d25d272b88f9bc6a7034707f27a276b011"
+      authenticator_class: "nativeauthenticator.NativeAuthenticator"
+      admin_access: true
   service:
     type: ClusterIP
     annotations: {}
