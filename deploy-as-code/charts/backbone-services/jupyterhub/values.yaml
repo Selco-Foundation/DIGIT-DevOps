@@ -646,7 +646,7 @@ ingress:
   enabled: true
   annotations: {}
   ingressClassName: nginx
-  pathSuffix: hub
+  pathSuffix: /
 #  userPathSuffix: user(/|$)(.*)
   pathType: Prefix
 
