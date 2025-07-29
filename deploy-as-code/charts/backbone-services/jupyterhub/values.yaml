@@ -33,9 +33,17 @@ imagePullSecrets: []
 hub:
   revisionHistoryLimit:
   config:
+    Authenticator:
+      admin_users:
+        - Selco-Uat
+    NativeAuthenticator:
+      minimum_password_length: 8
+      check_common_password: false
+      allowed_failed_logins: 5
+      seconds_before_next_try: 300
     JupyterHub:
+      authenticator_class: "nativeauthenticator.NativeAuthenticator"
       admin_access: true
-      authenticator_class: dummy
   service:
     type: ClusterIP
     annotations: {}
@@ -44,7 +52,7 @@ hub:
       appProtocol:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /
+  baseUrl: /jupyter
   cookieSecret:
   initContainers: []
   nodeSelector: {}
@@ -68,7 +76,7 @@ hub:
       selector: {}
       accessModes:
         - ReadWriteOnce
-      storage: 1Gi
+      storage: 2Gi
       subPath:
       storageClassName: gp2
   labels: {}
@@ -441,7 +449,7 @@ scheduling:
   userScheduler:
     enabled: true
     revisionHistoryLimit:
-    replicas: 2
+    replicas: 1
     logLevel: 4
     # plugins are configured on the user-scheduler to make us score how we
     # schedule user pods in a way to help us schedule on the most busy node. By
@@ -708,7 +716,7 @@ ingress:
   annotations: {}
   ingressClassName: nginx
   hosts: []
-  pathSuffix: hub
+  pathSuffix: ''
   pathType: Prefix
   tls: []
   extraPaths: []
