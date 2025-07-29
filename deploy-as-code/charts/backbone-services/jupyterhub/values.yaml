@@ -643,11 +643,11 @@ prePuller:
       pullSecrets: []
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
   ingressClassName: nginx
   pathSuffix: hub
-  userPathSuffix: user(/|$)(.*)
+#  userPathSuffix: user(/|$)(.*)
   pathType: Prefix
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting
