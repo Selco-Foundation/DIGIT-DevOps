@@ -43,7 +43,7 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /hub
+  baseUrl: /
   cookieSecret:
   initContainers: []
   nodeSelector: {}
@@ -646,7 +646,7 @@ ingress:
   enabled: true
   annotations: {}
   ingressClassName: nginx
-  pathSuffix: ''
+  pathSuffix: hub
 #  userPathSuffix: user(/|$)(.*)
   pathType: Prefix
 
