@@ -43,7 +43,7 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /
+  baseUrl: /hub
   cookieSecret:
   initContainers: []
   nodeSelector: {}
@@ -644,10 +644,11 @@ prePuller:
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
   ingressClassName: nginx
-  pathSuffix: hub
-#  userPathSuffix: user(/|$)(.*)
+  pathSuffix: "hub(/|$)(.*)"
   pathType: Prefix
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting
