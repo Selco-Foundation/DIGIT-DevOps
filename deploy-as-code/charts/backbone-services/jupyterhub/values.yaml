@@ -67,9 +67,9 @@ hub:
       selector: {}
       accessModes:
         - ReadWriteOnce
-      storage: 1Gi
+      storage: 2Gi
       subPath:
-      storageClassName:
+      storageClassName: gp2
     url:
     password:
   labels: {}
@@ -182,8 +182,9 @@ proxy:
     rollingUpdate:
   # service relates to the proxy-public service
   service:
-    type: LoadBalancer
-    labels: {}
+    type: ClusterIP
+    labels:
+      app: proxy-public
     annotations: {}
     nodePorts:
       http:
@@ -420,7 +421,7 @@ scheduling:
   userScheduler:
     enabled: true
     revisionHistoryLimit:
-    replicas: 2
+    replicas: 1
     logLevel: 4
     # plugins are configured on the user-scheduler to make us score how we
     # schedule user pods in a way to help us schedule on the most busy node. By
@@ -642,11 +643,11 @@ prePuller:
       pullSecrets: []
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-  ingressClassName:
-  hosts: []
-  pathSuffix:
+  ingressClassName: nginx
+  pathSuffix: hub
+  userPathSuffix: user(/|$)(.*)
   pathType: Prefix
   tls: []
 
