@@ -43,7 +43,7 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /hub
+  baseUrl: /
   cookieSecret:
   initContainers: []
   nodeSelector: {}
