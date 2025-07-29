@@ -397,7 +397,7 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 10Gi
+    capacity: 4Gi
     homeMountPath: /home/jovyan
     dynamic:
       storageClass: gp2
