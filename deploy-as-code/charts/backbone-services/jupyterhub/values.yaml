@@ -43,7 +43,7 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
-  baseUrl: /jupyter
+  baseUrl: /hub
   cookieSecret:
   initContainers: []
   nodeSelector: {}
