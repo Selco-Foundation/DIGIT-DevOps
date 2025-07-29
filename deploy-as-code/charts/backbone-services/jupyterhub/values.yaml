@@ -49,7 +49,6 @@ hub:
     annotations: {}
     ports:
       nodePort:
-      appProtocol:
     extraPorts: []
     loadBalancerIP:
   baseUrl: /jupyter
@@ -79,6 +78,8 @@ hub:
       storage: 2Gi
       subPath:
       storageClassName: gp2
+    url:
+    password:
   labels: {}
   annotations: {}
   command: []
@@ -91,21 +92,16 @@ hub:
   extraVolumeMounts: []
   image:
     name: quay.io/jupyterhub/k8s-hub
-    tag: "4.2.0"
+    tag: "3.3.6"
     pullPolicy:
     pullSecrets: []
   resources: {}
   podSecurityContext:
-    runAsNonRoot: true
     fsGroup: 1000
-    seccompProfile:
-      type: "RuntimeDefault"
   containerSecurityContext:
     runAsUser: 1000
     runAsGroup: 1000
     allowPrivilegeEscalation: false
-    capabilities:
-      drop: ["ALL"]
   lifecycle: {}
   loadRoles: {}
   services: {}
@@ -164,7 +160,7 @@ rbac:
 # proxy relates to the proxy pod, the proxy-public service, and the autohttps
 # pod and proxy-http service.
 proxy:
-  secretToken: 'b096383633043847fb4c750e8668835239c76fc092f6c98fa2503e38b2518180'
+  secretToken:
   annotations: {}
   deploymentStrategy:
     ## type: Recreate
@@ -210,20 +206,15 @@ proxy:
   chp:
     revisionHistoryLimit:
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     image:
       name: quay.io/jupyterhub/configurable-http-proxy
       # tag is automatically bumped to new patch versions by the
       # watch-dependencies.yaml workflow.
       #
-      tag: "4.6.3" # https://github.com/jupyterhub/configurable-http-proxy/tags
+      tag: "4.6.1" # https://github.com/jupyterhub/configurable-http-proxy/tags
       pullPolicy:
       pullSecrets: []
     extraCommandLineFlags: []
@@ -268,20 +259,15 @@ proxy:
   traefik:
     revisionHistoryLimit:
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     image:
       name: traefik
       # tag is automatically bumped to new patch versions by the
       # watch-dependencies.yaml workflow.
       #
-      tag: "v3.3.5" # ref: https://hub.docker.com/_/traefik?tab=tags
+      tag: "v2.11.0" # ref: https://hub.docker.com/_/traefik?tab=tags
       pullPolicy:
       pullSecrets: []
     hsts:
@@ -323,17 +309,12 @@ proxy:
     extraPodSpec: {}
   secretSync:
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     image:
       name: quay.io/jupyterhub/k8s-secret-sync
-      tag: "4.2.0"
+      tag: "3.3.6"
       pullPolicy:
       pullSecrets: []
     resources: {}
@@ -373,26 +354,26 @@ singleuser:
   networkTools:
     image:
       name: quay.io/jupyterhub/k8s-network-tools
-      tag: "4.2.0"
+      tag: "3.3.6"
       pullPolicy:
       pullSecrets: []
     resources: {}
   cloudMetadata:
     # block set to true will append a privileged initContainer using the
     # iptables to block the sensitive metadata server at the provided ip.
-    blockWithIptables: true
+    blockWithIptables: false
     ip: 169.254.169.254
   networkPolicy:
-    enabled: true
+    enabled: false
     ingress: []
     egress: []
     egressAllowRules:
-      cloudMetadataServer: false
+      cloudMetadataServer: true
       dnsPortsCloudMetadataServer: true
       dnsPortsKubeSystemNamespace: true
       dnsPortsPrivateIPs: true
       nonPrivateIPs: true
-      privateIPs: false
+      privateIPs: true
     interNamespaceAccessLabels: ignore
     allowedIngressPorts: []
   events: true
@@ -416,17 +397,16 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 2Gi
+    capacity: 10Gi
     homeMountPath: /home/jovyan
     dynamic:
-      storageClass: gp2
-      pvcNameTemplate:
-      volumeNameTemplate: volume-{user_server}
+      storageClass:
+      pvcNameTemplate: claim-{username}{servername}
+      volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
-      subPath:
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "4.2.0"
+    name: docker.io/egovio/jhub-singleuser
+    tag: "20240403-debug"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -461,24 +441,19 @@ scheduling:
     #
     plugins:
       score:
-        # We make use of the default scoring plugins, but we re-enable some with
-        # a new priority, leave some enabled with their lower default priority,
-        # and disable some.
+        # These scoring plugins are enabled by default according to
+        # https://kubernetes.io/docs/reference/scheduling/config/#scheduling-plugins
+        # 2022-02-22.
         #
-        # Below are the default scoring plugins as of 2024-09-23 according to
-        # https://kubernetes.io/docs/reference/scheduling/config/#scheduling-plugins.
-        #
-        # Re-enabled with high priority:
+        # Enabled with high priority:
         # - NodeAffinity
         # - InterPodAffinity
         # - NodeResourcesFit
         # - ImageLocality
-        #
         # Remains enabled with low default priority:
         # - TaintToleration
         # - PodTopologySpread
         # - VolumeBinding
-        #
         # Disabled for scoring:
         # - NodeResourcesBalancedAllocation
         #
@@ -507,25 +482,20 @@ scheduling:
       - name: NodeResourcesFit
         args:
           scoringStrategy:
-            type: MostAllocated
             resources:
               - name: cpu
                 weight: 1
               - name: memory
                 weight: 1
+            type: MostAllocated
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     image:
       # IMPORTANT: Bumping the minor version of this binary should go hand in
-      #            hand with an inspection of the user-scheduelr's RBAC
-      #            resources that we have forked in
+      #            hand with an inspection of the user-scheduelrs RBAC resources
+      #            that we have forked in
       #            templates/scheduling/user-scheduler/rbac.yaml.
       #
       #            Debugging advice:
@@ -558,7 +528,7 @@ scheduling:
       # here. We aim to stay around 1 minor version behind the latest k8s
       # version.
       #
-      tag: "v1.30.11" # ref: https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG
+      tag: "v1.26.15" # ref: https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG
       pullPolicy:
       pullSecrets: []
     nodeSelector: {}
@@ -590,7 +560,7 @@ scheduling:
       #
       # If you update this, also update prePuller.pause.image.tag
       #
-      tag: "3.10"
+      tag: "3.9"
       pullPolicy:
       pullSecrets: []
     revisionHistoryLimit:
@@ -598,16 +568,10 @@ scheduling:
     labels: {}
     annotations: {}
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     resources: {}
-    extraPodSpec: {}
   corePods:
     tolerations:
       - key: hub.jupyter.org/dedicated
@@ -640,66 +604,41 @@ prePuller:
   annotations: {}
   resources: {}
   containerSecurityContext:
-    runAsNonRoot: true
     runAsUser: 65534 # nobody user
     runAsGroup: 65534 # nobody group
     allowPrivilegeEscalation: false
-    capabilities:
-      drop: ["ALL"]
-    seccompProfile:
-      type: "RuntimeDefault"
   extraTolerations: []
   # hook relates to the hook-image-awaiter Job and hook-image-puller DaemonSet
   hook:
-    enabled: true
+    enabled: false
     pullOnlyOnChanges: true
     # image and the configuration below relates to the hook-image-awaiter Job
     image:
       name: quay.io/jupyterhub/k8s-image-awaiter
-      tag: "4.2.0"
+      tag: "3.3.6"
       pullPolicy:
       pullSecrets: []
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     podSchedulingWaitDuration: 10
     nodeSelector: {}
     tolerations: []
     resources: {}
-    # Service Account for the hook-image-awaiter Job
     serviceAccount:
-      create: true
-      name:
-      annotations: {}
-    # Service Account for the hook-image-puller DaemonSet
-    serviceAccountImagePuller:
       create: true
       name:
       annotations: {}
   continuous:
     enabled: true
-    serviceAccount:
-      create: true
-      name:
-      annotations: {}
   pullProfileListImages: true
   extraImages: {}
   pause:
     containerSecurityContext:
-      runAsNonRoot: true
       runAsUser: 65534 # nobody user
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: "RuntimeDefault"
     image:
       name: registry.k8s.io/pause
       # tag is automatically bumped to new patch versions by the
@@ -707,19 +646,15 @@ prePuller:
       #
       # If you update this, also update scheduling.userPlaceholder.image.tag
       #
-      tag: "3.10"
+      tag: "3.9"
       pullPolicy:
       pullSecrets: []
 
 ingress:
   enabled: true
-  annotations: {}
   ingressClassName: nginx
-  hosts: []
   pathSuffix: ''
   pathType: Prefix
-  tls: []
-  extraPaths: []
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting
 # inactive singleuser pods.
