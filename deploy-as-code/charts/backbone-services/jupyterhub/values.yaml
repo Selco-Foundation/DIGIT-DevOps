@@ -33,9 +33,15 @@ imagePullSecrets: []
 hub:
   revisionHistoryLimit:
   config:
+    Authenticator:
+      allowed_users:
+        - pasam6
     JupyterHub:
-      admin_access: true
-      authenticator_class: dummy
+      authenticator_class: "auth0"
+    OAuthenticator:
+      oauth_callback_url: "https://e4h-dev.selcofoundation.org/hub/oauth_callback"
+      client_id: "Ov23li4qnXIaqRKbRXy8"
+      client_secret: "8963f3d25d272b88f9bc6a7034707f27a276b011"
   service:
     type: ClusterIP
     annotations: {}
