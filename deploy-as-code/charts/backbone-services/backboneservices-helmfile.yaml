@@ -155,7 +155,7 @@ releases:
     - ./kafka-ui/values.yaml
     - ingress:
         host:
-          - {{ .Values.global.domain }}
+          - "{{ .Values.global.domain }}"
         tls:
           - secretName: {{ .Values.global.domain }}-tls-certs
             hosts:
