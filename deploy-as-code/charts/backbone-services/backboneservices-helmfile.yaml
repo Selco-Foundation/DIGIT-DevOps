@@ -153,3 +153,13 @@ releases:
   <<: *default
   values:
     - ./kafka-ui/values.yaml
+    - ingress:
+        hosts:
+          - host: { { .Values.global.domain } }
+        tls:
+          - secretName: { { .Values.global.domain } }-tls-certs
+            hosts:
+              - {{ .Values.global.domain }}
+
+
+
