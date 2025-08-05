@@ -113,20 +113,20 @@ releases:
 #  values:
 #    - ./playground/values.yaml
 
-- name: jupyterhub
-  installed: true
-  chart: ./jupyterhub
-  version: 4.0.0
-  <<: *default
-  values:
-    - ./jupyterhub/values.yaml
-    - ingress:
-        hosts:
-          - {{ .Values.global.domain }}
-        tls:
-          - secretName: {{ .Values.global.domain }}-tls-certs
-            hosts:
-              - "{{ .Values.global.domain }}"
+#- name: jupyterhub
+#  installed: true
+#  chart: ./jupyterhub
+#  version: 4.0.0
+#  <<: *default
+#  values:
+#    - ./jupyterhub/values.yaml
+#    - ingress:
+#        hosts:
+#          - {{ .Values.global.domain }}
+#        tls:
+#          - secretName: {{ .Values.global.domain }}-tls-certs
+#            hosts:
+#              - "{{ .Values.global.domain }}"
 
 #- name: pgadmin4
 #  installed: true
@@ -145,3 +145,11 @@ releases:
 #          - secretName: {{ .Values.global.domain }}-tls-certs
 #            hosts:
 #              - {{ .Values.global.domain }}
+
+- name: kafka-ui
+  installed: true
+  chart: ./kafka-ui
+  version: 0.7.6
+  <<: *default
+  values:
+    - ./kafka-ui/values.yaml
