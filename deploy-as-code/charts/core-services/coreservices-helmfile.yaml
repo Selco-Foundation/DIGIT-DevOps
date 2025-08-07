@@ -178,6 +178,10 @@ releases:
     installed: true
     <<: *default
 
-  - name: project # Replace with your desired namespace
+#  - name: project # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+  - name: installation-qc # Replace with your desired namespace
     installed: true
     <<: *default

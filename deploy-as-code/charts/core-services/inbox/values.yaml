@@ -88,6 +88,11 @@ env: |
       secretKeyRef:
         name: elasticsearch-credentials
         key: username
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
   - name: STATE_LEVEL_TENANT_ID
     valueFrom:
       configMapKeyRef:
