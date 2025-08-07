@@ -26,7 +26,7 @@ healthChecks:
 extraVolumes: |
   - name: js-injection
     configMap:
-      name: in
+      name: installation-qc
 
 extraVolumeMounts: |
   - mountPath: /etc/nginx/conf.d/sub_filter.conf
