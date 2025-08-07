@@ -19,8 +19,8 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/in/"
-  readinessProbePath: "/in/"
+  livenessProbePath: "/installation-qc/"
+  readinessProbePath: "/installation-qc/"
 
     
 extraVolumes: |
