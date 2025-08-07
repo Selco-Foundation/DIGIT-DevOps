@@ -6,7 +6,7 @@ labels:
 # Ingress Configs
 ingress:
   enabled: true
-  context: "in"
+  context: "installation-qc"
 
 # Init Containers Configs
 initContainers: {}
