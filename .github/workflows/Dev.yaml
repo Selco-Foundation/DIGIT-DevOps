@@ -130,16 +130,20 @@ jobs:
           echo "ima_commit=$im_services_analaytics_commit" >> $GITHUB_ENV
           ingestion_service_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/ingestion-service)
           echo "ingestion_service_commit=$ingestion_service_commit" >> $GITHUB_ENV
+          workflow_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
+          echo "workflow_commit=$workflow_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set egov-workflow-v2.image.tag=develop-${{ env.workflow_commit }} \
+            --set egov-workflow-v2.initContainers.dbMigration.image.tag=develop-${{ env.workflow_commit }} \
             --set ingestion-service.image.tag=develop-${{ env.ingestion_service_commit }} \
             --set im-services-analytics.image.tag=develop-${{ env.ima_commit }} \
             --set project.image.tag=develop-${{ env.project_commit }} \
             --set project.initContainers.dbMigration.image.tag=develop-${{ env.project_commit }} \
             --set asset-registry.image.tag=develop-${{ env.asset_registry_commit }} \
-            --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset_registry_commit}} \
+            --set asset-registry.initContainers.dbMigration.image.tag=develop-${{ env.asset_registry_commit }} \
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
             --set boundary-service.image.tag=develop-${{ env.boundary_service_commit }} \
             --set boundary-service.initContainers.dbMigration.image.tag=develop-${{ env.boundary_service_commit }} \
