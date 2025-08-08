@@ -89,9 +89,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: configmaps # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: configmaps # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 
   - name: digit-ui # Replace with your desired namespace
@@ -156,9 +156,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: inbox # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: inbox # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
   - name: boundary-service # Replace with your desired namespace
     installed: true
@@ -184,6 +184,10 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: installation-qc # Replace with your desired namespace
+#  - name: installation-qc # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+  - name: ingestion-service # Replace with your desired namespace
     installed: true
     <<: *default

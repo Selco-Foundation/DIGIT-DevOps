@@ -78,6 +78,8 @@ configmaps:
       zuul: http://zuul:8080/
       boundary-service: http://boundary-service.core-dev:8080/
       facility-service: http://facility-registry.core-dev:8080/
+      vendor-registry: http://vendor-registry.core-dev:8080/
+      project: http://project.core-dev:8080/
 
 root-ingress:
   name: root-ingress
