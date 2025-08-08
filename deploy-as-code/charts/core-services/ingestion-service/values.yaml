@@ -31,7 +31,7 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: boundary-service
- - name: PROJECT_SERVICE_URL
+  - name: PROJECT_SERVICE_URL
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
