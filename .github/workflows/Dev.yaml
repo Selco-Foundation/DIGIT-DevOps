@@ -134,10 +134,13 @@ jobs:
           echo "workflow_commit=$workflow_commit" >> $GITHUB_ENV
           installation_commit=$(git log -1 --pretty=format:%H -- frontend/installation-ui)
           echo "installation_commit=$installation_commit" >> $GITHUB_ENV
+          workbench_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui/web/workbench)
+          echo "workbench_commit=$workbench_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set workbench_commit.image.tag=develop-${{ env.workbench_commit }} \
             --set installation-qc.image.tag=develop-${{ env.installation_commit }} \
             --set egov-workflow-v2.image.tag=develop-${{ env.workflow_commit }} \
             --set egov-workflow-v2.initContainers.dbMigration.image.tag=develop-${{ env.workflow_commit }} \
