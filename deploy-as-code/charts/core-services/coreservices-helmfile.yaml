@@ -132,9 +132,9 @@ releases:
     installed: true
     <<: *default
 #
-#  - name: workbench-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: workbench-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
