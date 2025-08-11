@@ -132,10 +132,13 @@ jobs:
           echo "ingestion_service_commit=$ingestion_service_commit" >> $GITHUB_ENV
           workflow_commit=$(git log -1 --pretty=format:%H -- backend/core-services/egov-workflow-v2)
           echo "workflow_commit=$workflow_commit" >> $GITHUB_ENV
+          installation_commit=$(git log -1 --pretty=format:%H -- frontend/installation-ui)
+          echo "installation_commit=$installation_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set installation-qc.image.tag=develop-${{ env.installation_commit }} \
             --set egov-workflow-v2.image.tag=develop-${{ env.workflow_commit }} \
             --set egov-workflow-v2.initContainers.dbMigration.image.tag=develop-${{ env.workflow_commit }} \
             --set ingestion-service.image.tag=develop-${{ env.ingestion_service_commit }} \

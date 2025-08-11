@@ -182,9 +182,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: installation-qc # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: installation-qc # Replace with your desired namespace
+    installed: true
+    <<: *default
 
   - name: ingestion-service # Replace with your desired namespace
     installed: true
