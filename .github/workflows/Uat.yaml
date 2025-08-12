@@ -137,10 +137,19 @@ jobs:
           echo "ima_commit=$im_services_analaytics_commit" >> $GITHUB_ENV
           project_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/project)
           echo "project_commit=$project_commit" >> $GITHUB_ENV
+          workbench_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui/web/workbench)
+          echo "workbench_commit=$workbench_commit" >> $GITHUB_ENV
+          installation_commit=$(git log -1 --pretty=format:%H -- frontend/installation-ui)
+          echo "installation_commit=$installation_commit" >> $GITHUB_ENV
+          ingestion_service_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/ingestion-service)
+          echo "ingestion_service_commit=$ingestion_service_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set ingestion-service.image.tag=staging-${{ env.ingestion_service_commit }} \
+            --set installation-qc.image.tag=staging-${{ env.installation_commit }} \
+            --set workbench-ui.image.tag=staging-${{ env.workbench_commit }} \
             --set project.image.tag=staging-${{ env.project_commit }} \
             --set project.initContainers.dbMigration.image.tag=staging-${{ env.project_commit }} \
             --set im-services-analytics.image.tag=staging-${{ env.ima_commit }} \
