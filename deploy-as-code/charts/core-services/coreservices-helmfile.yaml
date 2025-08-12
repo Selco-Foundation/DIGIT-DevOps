@@ -71,9 +71,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-workflow-v2 # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-workflow-v2 # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
