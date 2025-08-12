@@ -61,7 +61,7 @@ releases:
 
 - name: promtail
   installed: true
-  namespace: backbone-dev
+  namespace: monitoring
   chart: ./promtail
   version: 3.5.1
   values:
