@@ -30,11 +30,13 @@ configmaps:
       spring-jpa-show-sql: "true"
       timezone: Asia/Kolkata
       tracer-errors-provideexceptionindetails: "true"
-      filestore-download-enpoint: "https://saura-emitra.selcofoundation.org/filestore/v1/files/file"
+      filestore-download-enpoint: "https://saura-emitra-uat.selcofoundation.org/filestore/v1/files/file"
   egov-service-host:
     name: egov-service-host
     namespace: core-dev
     data:
+      vendor-registry: http://vendor-registry.core-dev:8080/
+      project: http://project.core-dev:8080/
       jaeger: http://jaeger-tracing-collector.backbone-dev:4318/
       billing-service: http://billing-service.core-dev:8080/
       egov-url-shortening: http://eus:8080/

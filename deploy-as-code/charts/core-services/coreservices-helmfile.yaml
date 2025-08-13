@@ -24,9 +24,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-filestore # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-filestore # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
@@ -39,7 +39,7 @@ releases:
 #  - name: egov-location # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
+#
 #  - name: egov-mdms-service # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -48,6 +48,7 @@ releases:
 #    installed: true
 #    <<: *default
 
+
 #  - name: egov-indexer # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -55,13 +56,13 @@ releases:
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: egov-user # Replace with your desired namespace
 #    installed: true
 #    needs:
 #    - egov-enc-service
 #    <<: *default
-#
+
 #  - name: egov-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -70,60 +71,64 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-workflow-v2 # Replace with your desired namespace
-    installed: true
-    <<: *default
-
+#  - name: egov-workflow-v2 # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
 #  - name: configmaps # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+#
+#
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
 
-##Only in DEV
+  - name: meghalaya # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: meghalaya # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: nagaland # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: gujarat # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: nagaland # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: maharashtra # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
+  - name: assam # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: gujarat # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: maharashtra # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: workbench-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -137,18 +142,18 @@ releases:
   - name: im-services # Replace with your desired namespace
     installed: true
     <<: *default
-#
-#  - name: im-services-analytics # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-  - name: inbox # Replace with your desired namespace
+
+  - name: im-services-analytics # Replace with your desired namespace
     installed: true
     <<: *default
-
-#  - name: boundary-service # Replace with your desired namespace
+#
+#  - name: inbox # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+
+  - name: boundary-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
@@ -158,15 +163,22 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: vendor-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: asset-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: project # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: vendor-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 
+  - name: asset-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: project # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: installation-qc # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: ingestion-service # Replace with your desired namespace
+    installed: true
+    <<: *default

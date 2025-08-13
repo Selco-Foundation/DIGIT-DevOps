@@ -40,7 +40,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "jupyterhub.matchLabelsLegacyAndModern" . | nindent 8 }}
+        {{- include "jupyterhub.matchLabels" . | nindent 8 }}
       {{- with .Values.prePuller.annotations }}
       annotations:
         {{- . | toYaml | nindent 8 }}
@@ -70,15 +70,6 @@ spec:
               {{- include "jupyterhub.userNodeAffinityRequired" . | nindent 14 }}
       {{- end }}
       terminationGracePeriodSeconds: 0
-      {{- if .hook }}
-      {{- with include "jupyterhub.hook-image-puller-serviceaccount.fullname" . }}
-      serviceAccountName: {{ . }}
-      {{- end }}
-      {{- else }}
-      {{- with include "jupyterhub.continuous-image-puller-serviceaccount.fullname" . }}
-      serviceAccountName: {{ . }}
-      {{- end }}
-      {{- end }}
       automountServiceAccountToken: false
       {{- with include "jupyterhub.imagePullSecrets" (dict "root" . "image" .Values.singleuser.image) }}
       imagePullSecrets: {{ . }}
@@ -196,9 +187,6 @@ spec:
         {{- range $k, $v := .Values.prePuller.extraImages }}
         - name: image-pull-{{ $k }}
           image: {{ $v.name }}:{{ $v.tag }}
-          {{- with $v.pullPolicy }}
-          imagePullPolicy: {{ . }}
-          {{- end }}
           command:
             - /bin/sh
             - -c

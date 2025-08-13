@@ -123,6 +123,8 @@ jobs:
           echo "sikkim_commit=$sikkim_commit" >> $GITHUB_ENV
           gujarat_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
           echo "gujarat_commit=$gujarat_commit" >> $GITHUB_ENV
+          maharashtra_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui)
+          echo "maharashtra_commit=$maharashtra_commit" >> $GITHUB_ENV
           boundary_service_commit=$(git log -1 --pretty=format:%H -- backend/core-services/boundary-service)
           echo "boundary_service_commit=$boundary_service_commit" >> $GITHUB_ENV
           vendor_registry_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/vendor-registry)
@@ -135,10 +137,19 @@ jobs:
           echo "ima_commit=$im_services_analaytics_commit" >> $GITHUB_ENV
           project_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/project)
           echo "project_commit=$project_commit" >> $GITHUB_ENV
+          workbench_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui/web/workbench)
+          echo "workbench_commit=$workbench_commit" >> $GITHUB_ENV
+          installation_commit=$(git log -1 --pretty=format:%H -- frontend/installation-ui)
+          echo "installation_commit=$installation_commit" >> $GITHUB_ENV
+          ingestion_service_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/ingestion-service)
+          echo "ingestion_service_commit=$ingestion_service_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set ingestion-service.image.tag=staging-${{ env.ingestion_service_commit }} \
+            --set installation-qc.image.tag=staging-${{ env.installation_commit }} \
+            --set workbench-ui.image.tag=staging-${{ env.workbench_commit }} \
             --set project.image.tag=staging-${{ env.project_commit }} \
             --set project.initContainers.dbMigration.image.tag=staging-${{ env.project_commit }} \
             --set im-services-analytics.image.tag=staging-${{ env.ima_commit }} \
@@ -170,6 +181,7 @@ jobs:
             --set egov-hrms.initContainers.dbMigration.image.tag=staging-${{ env.hrms_commit }} \
             --set egov-workflow-v2.image.tag=staging-${{ env.workflow_v2_commit }} \
             --set egov-workflow-v2.initContainers.dbMigration.image.tag=staging-${{ env.workflow_v2_commit }} \
+            --set maharashtra.image.tag=staging-${{ env.maharashtra_commit }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-uat"
