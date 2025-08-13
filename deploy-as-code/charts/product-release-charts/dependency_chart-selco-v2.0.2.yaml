@@ -1,4 +1,4 @@
-version: v2.0.0
+version: v2.0.2
 modules:
   - name: backbone-dev
     services:
@@ -16,6 +16,7 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
+      maharashtra: v2.0.1-bfd00187d071de79eb81a5cbaf3ed1eaec412355
       meghalaya: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       gujarat: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       assam: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
@@ -26,12 +27,12 @@ modules:
       nagaland: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       egov-hrms: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
       egov-filestore: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      egov-workflow-v2: main-d708b15d05f38e54fa99a1b2d4d13e5975b030b3
+      egov-workflow-v2: v2.0.2-852d2b10a219685cb3971ec49b5578d6e6b44005
       im-services-analytics: main-03d911f07dd3aaf4babdafb6a797c4114e750acf
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
-      im-services: main-c23cad57007fa72e87d00bb3725cd6bb0fa5fa9b
+      im-services: v2.0.2-852d2b10a219685cb3971ec49b5578d6e6b44005
       digit-ui: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      inbox: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      inbox: v2.0.2-852d2b10a219685cb3971ec49b5578d6e6b44005
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
       audit-service: v2.9.2-4a60f20

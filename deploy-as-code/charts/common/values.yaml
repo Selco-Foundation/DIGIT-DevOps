@@ -63,8 +63,8 @@ initContainers:
   gitSync:
     enabled: false
     image:
-      repository: k8s.gcr.io/git-sync
-      tag: v3.1.1
+      repository: asia.gcr.io/k8s-artifacts-prod/git-sync/git-sync
+      tag: v3.6.5
       pullPolicy: IfNotPresent   
     env: |
         - name: "GIT_SYNC_REPO"
@@ -72,7 +72,7 @@ initContainers:
         - name: "GIT_SYNC_BRANCH"
           value: "{{ .Values.initContainers.gitSync.branch }}"        
         - name: "GIT_SYNC_DEPTH"
-          value: "1"            
+          value: "0"            
         - name: "GIT_SYNC_ONE_TIME"
           value: "true"          
         - name: "GIT_SYNC_SSH"
@@ -287,4 +287,4 @@ vpa:
 
 hparam:
   enabled: true
-minReplicas: 1
+minReplicas: 2
