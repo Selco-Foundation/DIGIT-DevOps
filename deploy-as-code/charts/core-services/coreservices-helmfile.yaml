@@ -71,9 +71,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-workflow-v2 # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-workflow-v2 # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
@@ -124,10 +124,10 @@ releases:
   - name: maharashtra # Replace with your desired namespace
     installed: true
     <<: *default
-
-  - name: workbench-ui # Replace with your desired namespace
-    installed: true
-    <<: *default
+#
+#  - name: workbench-ui # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
@@ -151,9 +151,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: boundary-service # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: boundary-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
@@ -162,23 +162,23 @@ releases:
 #  - name: facility-registry  # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+##
+#  - name: vendor-registry # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+#  - name: asset-registry # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
-  - name: vendor-registry # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: asset-registry # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: project # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: installation-qc # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: ingestion-service # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: project # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: installation-qc # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: ingestion-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
