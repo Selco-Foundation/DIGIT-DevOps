@@ -120,7 +120,6 @@ workbench-ui:
       
 egov-filestore:
   replicas: 2
-  heap: "-Xmx512m -Xms512m"
   volume: /opt/eGov/filestore
   is-bucket-fixed: "true"
   minio.url : "http://minio.backbone:9000/"
