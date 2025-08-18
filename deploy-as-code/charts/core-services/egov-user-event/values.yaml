@@ -30,7 +30,7 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx256m -Xms256m"
-memory_requests: 675Mi
+memory_limits: 675Mi
 java-args: ""
 
 # Additional Container Envs
