@@ -35,6 +35,7 @@ configmaps:
     name: egov-service-host
     namespace: core-dev
     data:
+      asset-registry: http://asset-registry.core-dev:8080/
       vendor-registry: http://vendor-registry.core-dev:8080/
       project: http://project.core-dev:8080/
       jaeger: http://jaeger-tracing-collector.backbone-dev:4318/
