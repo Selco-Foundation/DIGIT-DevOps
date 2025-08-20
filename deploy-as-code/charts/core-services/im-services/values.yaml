@@ -59,8 +59,6 @@ env: |
     value: "true"
   - name: SPRING_FLYWAY_ENABLED
     value: "true"
-  - name: FLYWAY_ENABLED
-    value: "true" 
   - name: SPRING_FLYWAY_TABLE
     value: im_service_schema
   - name: SERVER_CONTEXT_PATH
