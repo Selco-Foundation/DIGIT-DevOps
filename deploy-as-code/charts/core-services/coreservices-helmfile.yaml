@@ -96,45 +96,45 @@ releases:
 #    <<: *default
 
 
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: meghalaya # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: nagaland # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: gujarat # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: maharashtra # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: meghalaya # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: nagaland # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: assam # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: mizoram # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: manipur # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: sikkim # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: odisha # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: gujarat # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: maharashtra # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
@@ -166,17 +166,17 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: facility-registry  # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: facility-registry  # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+  - name: vendor-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
-#  - name: vendor-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: asset-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: asset-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: project # Replace with your desired namespace
 #    installed: true
@@ -186,6 +186,6 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: ingestion-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: ingestion-service # Replace with your desired namespace
+    installed: true
+    <<: *default
