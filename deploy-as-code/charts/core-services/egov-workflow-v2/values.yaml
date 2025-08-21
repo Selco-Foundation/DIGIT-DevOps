@@ -15,12 +15,12 @@ initContainers:
     enabled: true
     schemaTable: "egov_workflow_v2_schema"
     image:
-      repository: "egovio/egov-workflow-v2-db"
+      repository: "selcohub/egov-workflow-v2-db"
       tag: v2.9.2-4a60f20
 
 # Container Configs
 image:
-  repository: "egovio/egov-workflow-v2"
+  repository: "selcohub/egov-workflow-v2"
   tag: v2.9.2-4a60f20
 
 replicas: "1"
@@ -30,7 +30,7 @@ healthChecks:
   readinessProbePath: "/egov-workflow-v2/health"
 appType: "java-spring"
 tracing-enabled: true
-otel: "true"
+otel: "false"
 heap: "-Xmx64m -Xms64m"
 java-args: "-Dspring.profiles.active=monitoring"
 workflow-statelevel: "true"
@@ -38,6 +38,8 @@ memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
+  - name: EGOV_WF_FUZZYSEARCH_ISFUZZYENABLED
+    value: 'false'
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: egov-tl-services
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
