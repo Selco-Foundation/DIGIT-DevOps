@@ -34,8 +34,9 @@ healthChecks:
   readinessProbePath: "/im-services/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx512m -Xms512m"
+heap: "-Xmx2900m -Xms2900m"
 memory_limits: 3960Mi
+memory_requests: "2Gi"
 
 lifecycle:
   postStart:
