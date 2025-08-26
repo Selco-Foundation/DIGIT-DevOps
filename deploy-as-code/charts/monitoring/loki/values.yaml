@@ -4,8 +4,6 @@ global:
         name: loki-aws
   extraArgs:
     - "-config.expand-env=true"
-  podAnnotations:
-    bucketSecretVersion: "0"
 
 
 # extraArgs:
