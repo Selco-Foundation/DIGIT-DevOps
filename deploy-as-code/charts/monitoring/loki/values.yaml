@@ -42,9 +42,9 @@ loki:
       # AWS region where the S3 bucket is located
       region: ap-south-1
       # AWS secret access key
-      secretAccessKey: ${SECRETACCESSKEY}
+      secretAccessKey: ${secretaccesskey}
       # AWS access key ID
-      accessKeyId: ${ACCESSKEY}
+      accessKeyId: ${accesskey}
       # Forces the path style for S3 (true/false)
       s3ForcePathStyle: false
       # Allows insecure (HTTP) connections (true/false)
