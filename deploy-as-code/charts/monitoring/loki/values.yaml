@@ -37,7 +37,7 @@ loki:
     type: s3
     bucketNames:
       chunks: 'loki-uat-selco'
-#      ruler: <Your AWS bucket for ruler, for example, `aws-loki-dev-ruler`>
+      ruler: 'loki-uat-selco'
 #      admin: <Your AWS bucket for admin, for example, `aws-loki-dev-admin`>
     s3:
       # AWS endpoint URL
