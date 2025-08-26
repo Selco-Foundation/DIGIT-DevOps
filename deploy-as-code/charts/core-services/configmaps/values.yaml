@@ -123,3 +123,6 @@ secrets:
   pgadmin:
     name: pgadmin
     namespace: backbone-dev
+  loki-aws:
+    name: loki-aws
+    namespace: monitoring
