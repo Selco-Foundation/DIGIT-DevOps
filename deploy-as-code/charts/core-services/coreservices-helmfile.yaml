@@ -79,9 +79,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: configmaps # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: configmaps # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 
 #  - name: digit-ui # Replace with your desired namespace
