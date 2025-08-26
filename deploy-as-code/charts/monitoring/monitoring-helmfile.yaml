@@ -73,8 +73,3 @@ releases:
     version: 6.24.1
     values:
       - ./loki/values.yaml
-    set:
-      - name: AWS_ACCESS_KEY_ID
-        value: {{ .Values.secrets.loki_aws.accesskey }}
-      - name: AWS_SECRET_ACCESS_KEY
-        value: {{ .Values.secrets.loki_aws.secretaccesskey }}
