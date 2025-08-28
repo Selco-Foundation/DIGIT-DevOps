@@ -34,10 +34,6 @@ loki:
       endpoint: s3.ap-south-1.amazonaws.com
       # AWS region where the S3 bucket is located
       region: ap-south-1
-      # AWS secret access key
-      secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
-      # AWS access key ID
-      accessKeyId: ${AWS_ACCESS_KEY_ID}
       # Forces the path style for S3 (true/false)
       s3ForcePathStyle: false
       # Allows insecure (HTTP) connections (true/false)
@@ -53,9 +49,6 @@ deploymentMode: SingleBinary
 
 singleBinary:
   replicas: 2
-#  extraEnvFrom:
-#    - secretRef:
-#        name: loki-aws
   extraArgs:
     - -config.expand-env=true
   extraEnv:
