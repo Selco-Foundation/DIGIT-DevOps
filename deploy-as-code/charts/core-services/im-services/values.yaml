@@ -57,6 +57,12 @@ lifecycle:
 
 # Additional Container Envs
 env: |
+  - name: SPRING_FLYWAY_BASELINE_ON_MIGRATE
+    value: "true"
+  - name: SPRING_FLYWAY_ENABLED
+    value: "true"
+  - name: SPRING_FLYWAY_TABLE
+    value: im_service_schema
   - name: SERVER_CONTEXT_PATH
     value: /im-services
   - name: FFMPEG_CPULIMITPERCENTAGE
@@ -135,7 +141,7 @@ env: |
   - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
     value: org.springframework.kafka.support.serializer.JsonSerializer
   - name: JAVA_OPTS
-    value: -Xmx512m -Xms512m
+    value: {{ index .Values "heap" | quote }}
   - name: JAVA_ARGS
     value: -Dspring.profiles.active=monitoring
   - name: SERVER_PORT
@@ -149,4 +155,3 @@ env: |
       configMapKeyRef: 
         key: filestore-download-enpoint
         name: egov-config
-
