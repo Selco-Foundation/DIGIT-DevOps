@@ -1,4 +1,4 @@
-version: v2.0.5
+version: v2.0.6
 modules:
   - name: backbone-dev
     services:
@@ -30,7 +30,7 @@ modules:
       egov-workflow-v2: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       im-services-analytics: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
-      im-services: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      im-services: v2.0.6-ed299f4bbb75821a83fbc2bbef1997f16f600549
       digit-ui: v2.0.5-eba7f8f0364a533e911392ebcd469b79e8253ec3
       inbox: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       egov-mdms-service: v2.9.2-4a60f20
