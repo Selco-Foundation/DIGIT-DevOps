@@ -22,6 +22,12 @@ initContainers:
     image:
       repository: "selcohub/im-services-db"
       tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
+    env: |
+        - name: EGOV_WORKFLOW_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: egov-workflow-v2
+              name: egov-service-host
 
 # Container Configs
 image:
