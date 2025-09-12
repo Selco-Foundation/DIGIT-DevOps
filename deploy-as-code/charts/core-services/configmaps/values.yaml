@@ -15,7 +15,7 @@ configmaps:
       egov-state-level-tenant-id: pg
       es-host: "elasticsearch-data.backbone-dev"
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
-      flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
+      flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
       kafka-infra-brokers: kafka-v2-infra.kafka-cluster:9092
       logging-level-jdbc: "DEBUG"
