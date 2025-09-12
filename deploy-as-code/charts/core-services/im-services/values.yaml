@@ -81,6 +81,8 @@ lifecycle:
           mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
+  - name: SPRING_FLYWAY_ENABLED
+    value: "false"
   - name: SPRING_SERVLET_MULTIPART_ENABLED
     value: "true"
   - name: SPRING_SERVLET_MULTIPART_LOCATION
@@ -168,12 +170,3 @@ env: |
     value: "true"
   - name: TRACER_OPENTRACING_ENABLED
     value: "true"
-
-#- name: SPRING_FLYWAY_BASELINE_ON_MIGRATE
-#  value: "true"
-#- name: SPRING_FLYWAY_ENABLED
-#  value: "true"
-#- name: FLYWAY_ENABLED
-#  value: "true"
-#- name: SPRING_FLYWAY_TABLE
-#  value: im_service_schema
