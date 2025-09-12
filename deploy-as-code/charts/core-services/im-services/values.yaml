@@ -83,6 +83,8 @@ lifecycle:
 
 # Additional Container Envs
 env: |
+  - name: SPRING_FLYWAY_ENABLED
+    value: "false"
   - name: SERVER_CONTEXT_PATH
     value: /im-services
   - name: FFMPEG_CPULIMITPERCENTAGE
