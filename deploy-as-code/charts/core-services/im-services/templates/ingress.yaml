@@ -24,7 +24,7 @@ spec:
         paths:
           - backend:
               service:
-                name: im-services
+                name: gateway
                 port:
                   number: 8080
             path: /{{ .Values.ingress.context }}
