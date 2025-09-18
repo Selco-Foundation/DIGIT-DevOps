@@ -136,10 +136,18 @@ jobs:
           echo "installation_commit=$installation_commit" >> $GITHUB_ENV
           workbench_commit=$(git log -1 --pretty=format:%H -- frontend/micro-ui/web/workbench)
           echo "workbench_commit=$workbench_commit" >> $GITHUB_ENV
+          field_planner_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/field-planner)
+          echo "field_planner_commit=$field_planner_commit" >> $GITHUB_ENV
+          field_planner_activity_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/field-planner-activity)
+          echo "field_planner_activity_commit=$field_planner_activity_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set field-planner-activity.image.tag=develop-${{ env.field_planner_activity_commit }} \
+            --set field-planner-activity.initContainers.dbMigration.image.tag=develop-${{ env.field_planner_activity_commit }} \
+            --set field-planner.image.tag=develop-${{ env.field_planner_commit }} \
+            --set field-planner.initContainers.dbMigration.image.tag=develop-${{ env.field_planner_commit }} \
             --set workbench_commit.image.tag=develop-${{ env.workbench_commit }} \
             --set installation-qc.image.tag=develop-${{ env.installation_commit }} \
             --set egov-workflow-v2.image.tag=develop-${{ env.workflow_commit }} \
