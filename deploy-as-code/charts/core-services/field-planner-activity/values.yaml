@@ -27,8 +27,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/field-planner-activity/health"
-  readinessProbePath: "/field-planner-activity/health"
+  livenessProbePath: "/activity/health"
+  readinessProbePath: "/activity/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx256m -Xms256m"
