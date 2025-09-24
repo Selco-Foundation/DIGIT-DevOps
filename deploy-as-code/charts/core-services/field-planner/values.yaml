@@ -37,6 +37,8 @@ memory_requests: 512Mi
 
 # Additional Container Envs
 env: |
+  - name: SERVER_PORT
+    value: "8080"
   - name: SPRING_REDIS_HOST
     value: redis.backbone-dev
   - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
