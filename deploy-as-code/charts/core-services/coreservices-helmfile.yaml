@@ -197,3 +197,7 @@ releases:
   - name: field-planner-activity
     installed: true
     <<: *default
+
+  - name: pdf-service
+    installed: true
+    <<: *default
