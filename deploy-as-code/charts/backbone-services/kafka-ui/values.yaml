@@ -10,9 +10,9 @@ ingress:
   context: "kafka-ui"
   waf:
     enabled: false
-  annotations:
-    nginx.ingress.kubernetes.io/auth-signin:  https://$host/oauth2/start?rd=$escaped_request_uri
-    nginx.ingress.kubernetes.io/auth-url:     https://$host/oauth2/auth
+#  annotations:
+#    nginx.ingress.kubernetes.io/auth-signin:  https://$host/oauth2/start?rd=$escaped_request_uri
+#    nginx.ingress.kubernetes.io/auth-url:     https://$host/oauth2/auth
     kubernetes.io/ingress.class:              nginx
 
 livenessProbe:
@@ -160,7 +160,7 @@ resources:
     cpu: 200m
     memory: 512Mi
   requests:
-    cpu: 200m
+    cpu: 50m
     memory: 256Mi
 
 autoscaling:
