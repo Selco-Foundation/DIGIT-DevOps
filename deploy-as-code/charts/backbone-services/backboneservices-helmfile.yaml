@@ -8,10 +8,9 @@ templates:
   default: &default
     namespace: backbone-dev
     missingFileHandler: Warn
-    values:
-      - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 values:
+  - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
   - ../environments/{{ requiredEnv "HELMFILE_ENV" }}-secrets.yaml
 
 releases:
@@ -153,6 +152,7 @@ releases:
   version: 0.7.6
   <<: *default
   values:
+    - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
     - ./kafka-ui/values.yaml
 #    - ingress:
 #        host: "{{ .Values.global.domain }}"
