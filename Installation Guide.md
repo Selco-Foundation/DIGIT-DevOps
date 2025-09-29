@@ -34,10 +34,20 @@ This guide provides step-by-step instructions to deploy an AWS EKS cluster using
 ## Cost Estimation
 Approximate monthly costs for the default configuration:
 - EKS Control Plane: ~$73
-- EC2 Instances (3x r5a.xlarge): ~$60
-- EBS Storage: ~$10
+- EC2 Instances (3x r5a.xlarge): ~$438 ($0.201/hour × 24h × 30 days × 3 instances)
+- EBS Storage (GP3): ~$10.48
+    - 2GB volumes × 3 = 6GB × $0.08/GB/month = $0.48
+    - 25GB volumes × 3 = 75GB × $0.08/GB/month = $6.00
+    - 10GB volumes × 5 = 50GB × $0.08/GB/month = $4.00
+    - **Total EBS**: 131GB × $0.08 = $10.48/month
+- NAT Gateway: ~$45 ($0.045/hour + $0.045/GB processed)
+- Classic Load Balancer: ~$18 ($0.025/hour)
+- Elastic IP: ~$3.65 (if not attached to running instance)
 - Data Transfer: Variable
-- **Total**: ~$143/month (excluding data transfer)
+- **Total**: ~$588/month (excluding data transfer)
+
+**Note**: Costs may vary based on actual usage, region, and data transfer. Consider using Spot instances or Reserved instances for cost optimization.
+
 
 ## Installation Steps
 
