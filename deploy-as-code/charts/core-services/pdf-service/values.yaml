@@ -42,7 +42,7 @@ env: |
         name: egov-service-host
         key: egov-filestore
   - name: EGOV_LOCALISATION_SEARCH
-    value: /localization/messages/v1/_search
+    value: localization/messages/v2/_search
   - name: KAFKA_BROKER_HOST
     valueFrom:
       configMapKeyRef:
