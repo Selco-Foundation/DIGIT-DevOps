@@ -11,6 +11,7 @@ ingress:
 
 initContainers:
   gitSync:
+    enabled: true
     repo: "git@github.com:Selco-Foundation/configs.git"
     branch: "main"
 
