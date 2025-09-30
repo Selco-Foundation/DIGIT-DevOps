@@ -190,13 +190,13 @@ releases:
     installed: true
     <<: *default
 
-  - name: field-planner
-    installed: true
-    <<: *default
+#  - name: field-planner
+#    installed: true
+#    <<: *default
 
-  - name: field-planner-activity
-    installed: true
-    <<: *default
+#  - name: field-planner-activity
+#    installed: true
+#    <<: *default
 
   - name: pdf-service
     installed: true
