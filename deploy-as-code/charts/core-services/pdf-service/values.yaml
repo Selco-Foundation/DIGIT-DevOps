@@ -9,6 +9,11 @@ ingress:
   zuul: true
   context: "pdf-service"
 
+initContainers:
+  gitSync:
+    repo: "git@github.com:Selco-Foundation/configs.git"
+    branch: "main"
+
 # Container Configs
 image:
   repository: "egovio/pdf-service"
@@ -18,6 +23,8 @@ healthChecks:
   enabled: true
   livenessProbePath: "/pdf-service/health"
   readinessProbePath: "/pdf-service/health"
+data-config-urls: "file:///work-dir/configs/pdf-service/data-config/bom.json"
+format-config-urls: "file:///work-dir/configs/pdf-service/format-config/bom.json"
 
 # Additional Container Envs
 env: |
@@ -64,3 +71,7 @@ env: |
     value: "pg"
   - name: STATE_LEVEL_TENANT_ID
     value: "pg"
+  - name: DATA_CONFIG_URLS
+    value: {{ index .Values "data-config-urls" | quote }}
+  - name: FORMAT_CONFIG_URLS
+    value: {{ index .Values "format-config-urls" | quote }}
