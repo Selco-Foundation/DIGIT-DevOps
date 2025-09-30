@@ -21,7 +21,7 @@ image:
   tag: pdf-2.9-lts-a17e8ebea8-48
 replicas: "1"
 healthChecks:
-  enabled: true
+  enabled: false
   livenessProbePath: "/pdf-service/health"
   readinessProbePath: "/pdf-service/health"
 data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom.json"
