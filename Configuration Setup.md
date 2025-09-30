@@ -108,12 +108,12 @@ After deployment completion:
 
 1. Check pods are running:
 ```bash
-kubectl get pods -n egov
+kubectl get pods -n <namespace>
 ```
 
 2. Check services:
 ```bash
-kubectl get svc -n egov
+kubectl get svc -n <namespace>
 ```
 
 3. Test application access:
@@ -130,14 +130,14 @@ First, retrieve the load balancer endpoint created by your ingress controller:
 
 ```bash
 # Get the ingress controller service
-kubectl get svc -n ingress-nginx
+kubectl get svc -n <namespace>
 
 # Get the load balancer hostname/IP
-kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+kubectl get svc ingress-nginx-controller -n <namespace> -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
 #### Create CNAME Record
-Create a CNAME record in your DNS server to map your domain to the load balancer endpoint:
+Create a CNAME record in your DNS server(godaddy etc) to map your domain to the load balancer endpoint:
 
 **DNS Configuration Example:**
 ```
@@ -160,32 +160,24 @@ TTL: 300
 #### Check cert-manager pods
 ```bash
 # Verify cert-manager is running
-kubectl get pods -n cert-manager
+kubectl get pods -n <namespace>
 
 # Check cert-manager logs
-kubectl logs -n cert-manager deployment/cert-manager
+kubectl logs -n <namespace> deployment/cert-manager
 ```
 
 #### Verify SSL Certificate Creation
 ```bash
 # Check if certificates are created
-kubectl get certificates -n egov
+kubectl get certificates -n <namespace>
 
 # Check certificate details
-kubectl describe certificate <certificate-name> -n egov
+kubectl describe certificate <certificate-name> -n <namespace>
 
 # Check certificate status
-kubectl get certificaterequests -n egov
+kubectl get certificaterequests -n <namespace>
 ```
 
-#### Test SSL Certificate
-```bash
-# Test SSL connection
-openssl s_client -connect dev-your-domain.com:443 -servername dev-your-domain.com
-
-# Or use curl to verify SSL
-curl -I https://dev-your-domain.com/user/health
-```
 
 ### 5.3 Application Access Verification
 Once DNS and SSL are configured, verify application access:
