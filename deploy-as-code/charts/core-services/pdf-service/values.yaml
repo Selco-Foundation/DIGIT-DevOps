@@ -1,13 +1,13 @@
 # Common Labels
 labels:
-  app: "pdf"
+  app: "pdf-service"
   group: "rainmaker"
 
 # Ingress Configs
 ingress:
   enabled: true
   zuul: true
-  context: "pdf"
+  context: "pdf-service"
 
 initContainers:
   gitSync:
@@ -22,10 +22,10 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/pdf/health"
-  readinessProbePath: "/pdf/health"
-data-config-urls: "file:///work-dir/configs/pdf-service/data-config/bom.json"
-format-config-urls: "file:///work-dir/configs/pdf-service/format-config/bom.json"
+  livenessProbePath: "/pdf-service/health"
+  readinessProbePath: "/pdf-service/health"
+data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom.json"
+format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom.json"
 
 # Additional Container Envs
 env: |
