@@ -16,7 +16,7 @@ initContainers:
 ingress:
   enabled: true
   zuul: true
-  context: "vendor-registry"
+  context: "vendor"
 
 # Container Configs
 image:
