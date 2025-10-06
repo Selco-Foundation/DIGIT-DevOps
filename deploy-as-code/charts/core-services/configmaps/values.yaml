@@ -81,6 +81,7 @@ configmaps:
       vendor-registry: http://vendor-registry.core-dev:8080/
       project: http://project.core-dev:8080/
       field-plan: http://field-planner.core-dev:8080/
+      field-planner-activity: http://field-planner-activity.core-dev:8080/
 
 root-ingress:
   name: root-ingress
