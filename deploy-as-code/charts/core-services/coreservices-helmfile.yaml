@@ -24,9 +24,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-filestore # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-filestore # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
@@ -134,10 +134,10 @@ releases:
 #    <<: *default
 
 
-
-  - name: gateway # Replace with your desired namespace
-    installed: true
-    <<: *default
+#
+#  - name: gateway # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
   - name: im-services # Replace with your desired namespace
     installed: true
