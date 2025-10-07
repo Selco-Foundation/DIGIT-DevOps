@@ -79,4 +79,4 @@ env: |
         name: egov-config
         key: db-name
   - name: ENVIRONMENT
-    value: dev
+    value: uat

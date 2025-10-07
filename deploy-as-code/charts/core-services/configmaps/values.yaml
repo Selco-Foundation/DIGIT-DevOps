@@ -38,6 +38,8 @@ configmaps:
       asset-registry: http://asset-registry.core-dev:8080/
       vendor-registry: http://vendor-registry.core-dev:8080/
       project: http://project.core-dev:8080/
+      field-plan: http://field-planner.core-dev:8080/
+      field-planner-activity: http://field-planner-activity.core-dev:8080/
       jaeger: http://jaeger-tracing-collector.backbone-dev:4318/
       billing-service: http://billing-service.core-dev:8080/
       egov-url-shortening: http://eus:8080/
