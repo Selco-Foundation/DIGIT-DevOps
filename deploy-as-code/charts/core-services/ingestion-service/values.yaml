@@ -21,6 +21,11 @@ healthChecks:
 
 # Additional Container Envs
 env: |
+  - name: FIELDPLAN_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: field-plan
   - name: VENDOR_SERVICE_URL
     valueFrom:
       configMapKeyRef:
