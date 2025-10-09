@@ -15,11 +15,11 @@
 ## 1. Overview
 
 ### 1.1 Purpose
-This Operations Guide is designed for L3 engineers managing the Energy for Health (E4H) platform built on the DIGIT framework. It provides comprehensive guidance on monitoring, troubleshooting, escalation procedures, and operational best practices.
+This Operations Guide is designed for L1 engineers managing the Energy for Health (E4H) platform built on the DIGIT framework. It provides comprehensive guidance on monitoring, troubleshooting, escalation procedures, and operational best practices.
 
 ### 1.2 Target Audience
-- **Primary**: L3 Operations Engineers
-- **Secondary**: L2 Senior Engineers, L1 Technical Leads
+- **Primary**: L1 Operations Engineers
+- **Secondary**: L2 Senior Engineers, L3 Technical Leads
 
 ### 1.3 System Overview
 The E4H platform is deployed using Kubernetes on AWS infrastructure with the following key components:
@@ -31,9 +31,9 @@ The E4H platform is deployed using Kubernetes on AWS infrastructure with the fol
 - **Monitoring**: Grafana, Prometheus, Loki, Jaeger
 
 ### 1.4 Environments
-- **Development**: `e4h-dev.selcofoundation.org`
-- **UAT**: `selco-uat.yaml` configuration
-- **Production**: `selco-prod.yaml` configuration
+- **Development**: `https://e4h-dev.selcofoundation.org/`
+- **UAT**: `https://saura-emitra-uat.selcofoundation.org/` 
+- **Production**: `https://saura-emitra.selcofoundation.org/` configuration
 
 ---
 
@@ -43,7 +43,7 @@ The E4H platform is deployed using Kubernetes on AWS infrastructure with the fol
 
 #### 2.1.1 Frontend Services
 - **digit-ui**: Main user interface
-- **State-specific UIs**: Meghalaya, Nagaland, Assam, Manipur, Mizoram, Odisha
+- **State-specific UIs**: Meghalaya, Nagaland, Assam, Manipur, Mizoram, Odisha etc
 
 #### 2.1.2 Backend Services
 - **egov-user**: User management and authentication
@@ -72,7 +72,7 @@ Internet → Ingress-Nginx → DIGIT Services → PostgreSQL RDS
 
 ### 3.1 Severity Levels
 
-#### 3.1.1 Critical (P1) - Immediate Escalation to L1
+#### 3.1.1 Critical (P0) - Immediate Escalation to L3
 **Definition**: Complete service outage affecting all users
 **Examples**:
 - Platform completely inaccessible
@@ -81,34 +81,32 @@ Internet → Ingress-Nginx → DIGIT Services → PostgreSQL RDS
 - Data corruption incidents
 
 **Response Time**: Immediate (< 15 minutes)
-**Escalation Path**: L3 → L2 → L1 → Management
+**Escalation Path**: L1 → L2 → L3 → Management
 **Communication**: Phone call + Slack + Email
 
-#### 3.1.2 High (P2) - Escalate to L2 within 30 minutes
+#### 3.1.2 High (P1) - Escalate to L2 within 30 minutes
 **Definition**: Significant functionality impaired, affecting major user workflows
 **Examples**:
 - Single state UI completely down
 - Authentication service degraded
-- Payment processing failures
 - Performance degradation > 50%
 
 **Response Time**: < 30 minutes
-**Escalation Path**: L3 → L2 (L1 if no resolution in 2 hours)
+**Escalation Path**: L1 → L2 (L3 if no resolution in 2 hours)
 **Communication**: Slack + Email
 
-#### 3.1.3 Medium (P3) - L3 Ownership with L2 Consultation
+#### 3.1.3 Medium (P2) - L1 Ownership with L2 Consultation
 **Definition**: Partial functionality issues, workarounds available
 **Examples**:
 - Minor UI glitches
 - Non-critical service warnings
 - Performance degradation < 30%
-- Single module malfunction with alternatives
 
 **Response Time**: < 2 hours
-**Escalation Path**: L3 handles, consult L2 if needed
+**Escalation Path**: L1 handles, consult L3 if needed
 **Communication**: Slack + Ticket system
 
-#### 3.1.4 Low (P4) - L3 Ownership
+#### 3.1.4 Low (P3) - L1 Ownership
 **Definition**: Minor issues, enhancement requests
 **Examples**:
 - Cosmetic UI issues
@@ -116,13 +114,13 @@ Internet → Ingress-Nginx → DIGIT Services → PostgreSQL RDS
 - Non-urgent configuration changes
 
 **Response Time**: < 24 hours
-**Escalation Path**: L3 ownership
+**Escalation Path**: L1 ownership
 **Communication**: Ticket system
 
 ### 3.2 Escalation Contacts
 
 ```yaml
-L1_Contacts:
+L3_Contacts:
   - name: "Technical Lead"
     phone: "+91-XXXXXXXXXX"
     email: "lead@selcofoundation.org"
@@ -167,54 +165,101 @@ graph TD
 ### 4.1 Grafana - Visualization and Dashboards
 
 #### 4.1.1 Access
-- **URL**: `https://e4h-dev.selcofoundation.org/grafana`
-- **Authentication**: LDAP/OAuth integration
-- **Default Credentials**: Check secrets in vault
+- **URL**: `https://saura-emitra.selcofoundation.org/monitoring`
+- **Authentication**: Grafana native auth
+- **Default Credentials**: Check with admin
 
 #### 4.1.2 Key Dashboards
 
-**System Overview Dashboard**
-- Overall system health
-- Resource utilization (CPU, Memory, Disk)
-- Network metrics
-- Alert summary
+#### Resource Utilization (Nodes & Kubernetes Resources)
 
-**Application Dashboard** 
-- Service response times
-- Error rates by service
-- Request volume
-- Database connection pools
+- **Node-level:**
+    - CPU, Memory, and Disk usage per node
+    - Node health and availability
+- **Pod-level:**
+    - CPU and Memory utilization per pod
+    - Resource throttling or OOMKill events
+- **Deployment/Namespace-level:**
+    - Aggregated resource consumption by namespace or deployment
+    - Identify top resource consumers
+- **Trends:**
+    - Historical usage patterns
+    - Peak utilization insights
 
-**Infrastructure Dashboard**
-- Kubernetes cluster metrics
-- Node health
-- Pod status
-- Storage utilization
+---
 
-**Business Metrics Dashboard**
-- User registration trends
-- State-wise usage patterns
-- Feature adoption metrics
-- Performance benchmarks
+####  Network Metrics
+
+- Ingress and Egress traffic volume
+- Network latency and response time
+- Packet drops, retransmissions, and error rates
+
+---
+
+####  Persistent Volume Information
+
+- Persistent Volumes (PV) and Persistent Volume Claims (PVC) status
+- Storage capacity, usage, and remaining space
+
+---
+
 
 #### 4.1.3 Alert Configuration
 ```yaml
 Alert_Rules:
-  - name: "High Error Rate"
-    condition: "error_rate > 5%"
+  - name: "Minimum Number of Replicas Breached"
+    condition: "replica_count > minimum_threshold"
     duration: "5m"
     severity: "warning"
-    
-  - name: "Service Down"
-    condition: "up == 0"
-    duration: "1m"  
+    summary: "Number of replicas for HorizontalPodAutoscaler has crossed the minimum threshold of 2 replicas."
+
+  - name: "Out of Memory"
+    condition: "container_memory_usage > limit"
+    duration: "5m"
     severity: "critical"
-    
-  - name: "High Memory Usage"
-    condition: "memory_usage > 80%"
-    duration: "10m"
+    summary: "Container faced Out of Memory issue causing disruption. Review memory allocation and fix."
+
+  - name: "Readiness Check Failed"
+    condition: "kube_pod_container_status_ready == 0"
+    duration: "5m"
+    severity: "critical"
+    summary: "Container readiness check failed. Pod not ready to serve traffic."
+
+  - name: "CronJob Execution Status"
+    condition: "cronjob execution failed"
+    duration: "5m"
     severity: "warning"
-```
+    summary: "CronJob execution failed."
+
+  - name: "Storage Status in PVC"
+    condition: "pvc_usage_percent > 75%"
+    duration: "5m"
+    severity: "warning"
+    summary: "PVC storage is almost 75% full. Take action to prevent data loss."
+
+  - name: "Node Memory Availability"
+    condition: "node_memory_available_percent < 20%"
+    duration: "5m"
+    severity: "critical"
+    summary: "Node memory availability dropped below 20%. Enable or increase resources."
+
+  - name: "Pod CrashLoopBackOff"
+    condition: "container_restarts > 3 within 5m"
+    duration: "5m"
+    severity: "critical"
+    summary: "Pod restarted more than 3 times in 5 minutes. Debug and resolve the issue."
+
+  - name: "Resource Deployment Pending"
+    condition: "pod_status_pending_duration > 5m"
+    duration: "5m"
+    severity: "warning"
+    summary: "Pod stuck in Pending state. Check scheduling constraints or resource availability."
+
+  - name: "Node CPU Availability"
+    condition: "node_cpu_available_percent < 25%"
+    duration: "5m"
+    severity: "critical"
+    summary: "CPU availability on one of the nodes fell below 25%. Take corrective action."
 
 ### 4.2 Prometheus - Metrics Collection
 
