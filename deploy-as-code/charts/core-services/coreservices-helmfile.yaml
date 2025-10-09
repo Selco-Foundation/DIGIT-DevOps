@@ -79,9 +79,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: configmaps # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: configmaps # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #
 #  - name: digit-ui # Replace with your desired namespace
@@ -163,9 +163,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: vendor-registry # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: vendor-registry # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: asset-registry # Replace with your desired namespace
 #    installed: true
@@ -175,18 +175,22 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: installation-qc # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: installation-qc # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: ingestion-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: field-planner
+#    installed: true
+#    <<: *default
+#
+#  - name: field-planner-activity
+#    installed: true
+#    <<: *default
 
-  - name: ingestion-service # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: field-planner
-    installed: true
-    <<: *default
-
-  - name: field-planner-activity
+  - name: pdf-service
     installed: true
     <<: *default
