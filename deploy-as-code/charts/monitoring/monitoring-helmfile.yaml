@@ -15,14 +15,6 @@ values:
 
 releases:
 
-#- name: loki-stack
-#  installed: true
-#  namespace: {{ .Values.namespace | default "default-namespace" }}
-#  chart: grafana/loki-stack
-#  version: 2.10.1
-#  values:
-#  - ./values/loki-stack.yaml
-#
 #- name: kube-prometheus-stack
 #  installed: true
 #  namespace: {{ .Values.namespace | default "default-namespace" }}
@@ -59,10 +51,17 @@ releases:
 #    - name: ingress.tls[0].hosts[0]
 #      value: {{ .Values.global.domain | quote }}
 
-- name: promtail
-  installed: true
-  namespace: monitoring
-  chart: ./promtail
-  version: 3.5.1
-  values:
-    - ./promtail/values.yaml
+#- name: promtail
+#  installed: true
+#  namespace: monitoring
+#  chart: ./promtail
+#  version: 3.5.1
+#  values:
+#    - ./promtail/values.yaml
+
+  - name: loki
+    namespace: monitoring
+    chart: grafana/loki
+    version: 6.24.1
+    values:
+      - ./loki/values.yaml
