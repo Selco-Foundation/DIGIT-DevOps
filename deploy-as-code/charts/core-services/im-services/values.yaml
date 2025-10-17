@@ -50,6 +50,11 @@ initContainers:
             configMapKeyRef:
               key: flyway-locations
               name: egov-config
+        - name: EGOV_MDMS_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: egov-mdms-service
+              name: egov-service-host
 
 # Container Configs
 image:
