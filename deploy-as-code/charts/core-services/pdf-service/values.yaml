@@ -24,8 +24,8 @@ healthChecks:
   enabled: false
   livenessProbePath: "/pdf-service/health"
   readinessProbePath: "/pdf-service/health"
-data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom.json"
-format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom.json"
+data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json"
+format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json"
 
 # Additional Container Envs
 env: |
@@ -37,10 +37,7 @@ env: |
         name: egov-service-host
         key: egov-localization
   - name: EGOV_FILESTORE_SERVICE_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-service-host
-        key: egov-filestore
+    value: http://egov-filestore.core-dev:8080
   - name: EGOV_LOCALISATION_SEARCH
     value: localization/messages/v2/_search
   - name: KAFKA_BROKER_HOST
