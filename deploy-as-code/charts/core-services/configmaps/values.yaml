@@ -89,39 +89,39 @@ root-ingress:
   serviceName: digit-ui
   servicePort: 80
 secrets:
-#  db:
-#    name: db
-#    namespace: core-dev
-#  git-sync:
-#    name: git-creds
-#    namespace: core-dev
-#  egov-filestore:
-#    name: egov-filestore
-#    namespace: core-dev
-#  egov-location:
-#    name: egov-location
-#    namespace: core-dev
-#  egov-enc-service:
-#    name: egov-enc-service
-#    namespace: core-dev
-#  egov-notification-sms:
-#    name: egov-notification-sms
-#    namespace: core-dev
-#  egov-notification-mail:
-#    name: egov-notification-mail
-#    namespace: core-dev
-#  oauth2-proxy:
-#    name: oauth2-proxy
-#    namespace: core-dev
-#  elasticsearch:
-#    name: elasticsearch-credentials
-#    namespace: core-dev
-#  egov-pg-service:
-#    name: egov-pg-service
-#    namespace: core-dev
-#  pgadmin:
-#    name: pgadmin
-#    namespace: backbone-dev
+  db:
+    name: db
+    namespace: core-dev
+  git-sync:
+    name: git-creds
+    namespace: core-dev
+  egov-filestore:
+    name: egov-filestore
+    namespace: core-dev
+  egov-location:
+    name: egov-location
+    namespace: core-dev
+  egov-enc-service:
+    name: egov-enc-service
+    namespace: core-dev
+  egov-notification-sms:
+    name: egov-notification-sms
+    namespace: core-dev
+  egov-notification-mail:
+    name: egov-notification-mail
+    namespace: core-dev
+  oauth2-proxy:
+    name: oauth2-proxy
+    namespace: core-dev
+  elasticsearch:
+    name: elasticsearch-credentials
+    namespace: core-dev
+  egov-pg-service:
+    name: egov-pg-service
+    namespace: core-dev
+  pgadmin:
+    name: pgadmin
+    namespace: backbone-dev
   loki-aws:
     name: loki-aws
     namespace: monitoring
