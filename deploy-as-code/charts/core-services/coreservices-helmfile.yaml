@@ -79,51 +79,51 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: configmaps # Replace with your desired namespace
+  - name: configmaps # Replace with your desired namespace
+    installed: true
+    <<: *default
+
+#
+#  - name: digit-ui # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 #
 #
-  - name: digit-ui # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-
-  - name: meghalaya # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: nagaland # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: assam # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: mizoram # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: manipur # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: sikkim # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: odisha # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: gujarat # Replace with your desired namespace
-    installed: true
-    <<: *default
-
-  - name: maharashtra # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: meghalaya # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: nagaland # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: assam # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: mizoram # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: manipur # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: sikkim # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: odisha # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: gujarat # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: maharashtra # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: workbench-ui # Replace with your desired namespace
 #    installed: true

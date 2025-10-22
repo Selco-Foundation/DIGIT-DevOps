@@ -51,13 +51,13 @@ releases:
 #    - name: ingress.tls[0].hosts[0]
 #      value: {{ .Values.global.domain | quote }}
 
-#- name: promtail
-#  installed: true
-#  namespace: monitoring
-#  chart: ./promtail
-#  version: 3.5.1
-#  values:
-#    - ./promtail/values.yaml
+  - name: promtail
+    installed: true
+    namespace: monitoring
+    chart: ./promtail
+    version: 3.5.1
+    values:
+      - ./promtail/values.yaml
 
   - name: loki
     namespace: monitoring
