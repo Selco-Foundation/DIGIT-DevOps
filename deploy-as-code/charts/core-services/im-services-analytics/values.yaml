@@ -89,10 +89,10 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-filestore
+  - name: SAURA_EMITRA_BASE_URL
+    value: https://saura-emitra-uat.selcofoundation.org
   - name: EGOV_FILESTORE_BASEURL
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: egov-services-fqdn-name
+    value: https://saura-emitra-uat.selcofoundation.org
   - name: KIBANA_DASHBOARD_URL
     value: https://saura-emitra-uat.selcofoundation.org/kibana
+
