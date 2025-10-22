@@ -49,9 +49,9 @@ releases:
 #    <<: *default
 
 
-  - name: egov-indexer # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-indexer # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
