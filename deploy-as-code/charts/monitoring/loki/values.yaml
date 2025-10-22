@@ -91,7 +91,7 @@ singleBinary:
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
         secretKeyRef:
-          name: loki-aws-prod
+          name: loki-aws
           key: AWS_SECRET_ACCESS_KEY
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
