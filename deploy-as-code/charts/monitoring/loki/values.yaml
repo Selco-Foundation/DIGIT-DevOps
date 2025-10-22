@@ -23,14 +23,12 @@ loki:
     retention_period: 720h # 30 days (1 month) retention
     retention_stream_delete_delay: 0h
     retention_delete_worker_count: 150
-  compactor_config:
+  compactor:
     working_directory: /var/loki/compactor
-    shared_store: s3
     compaction_interval: 10m
     retention_enabled: true
     retention_delete_delay: 2h
     delete_request_cancel_period: 24h
-    max_compaction_parallelism: 1
   auth_enabled: false
 
   storage:
@@ -90,7 +88,7 @@ singleBinary:
   replicas: 2
   extraArgs:
     - -config.expand-env=true
-    - -target=all,compactor
+    - -target=all
   extraEnv:
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
