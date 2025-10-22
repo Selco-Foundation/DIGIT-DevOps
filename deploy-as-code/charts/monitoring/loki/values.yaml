@@ -24,12 +24,11 @@ loki:
     retention_stream_delete_delay: 0h
     retention_delete_worker_count: 150
   compactor_config:
-    working_directory: /tmp/loki/boltdb-shipper-compactor
+    working_directory: /var/loki/compactor
     shared_store: s3
     compaction_interval: 10m
     retention_enabled: true
     retention_delete_delay: 2h
-    retention_delete_worker_count: 150
     delete_request_cancel_period: 24h
     max_compaction_parallelism: 1
   auth_enabled: false
@@ -91,6 +90,7 @@ singleBinary:
   replicas: 2
   extraArgs:
     - -config.expand-env=true
+    - -target=all,compactor
   extraEnv:
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
