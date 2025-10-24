@@ -57,9 +57,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-notification-mail # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-notification-mail # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: egov-user # Replace with your desired namespace
 #    installed: true
@@ -83,9 +83,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: configmaps # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: configmaps # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
   - name: digit-ui # Replace with your desired namespace
     installed: true
@@ -146,9 +146,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: im-services-analytics # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: im-services-analytics # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
