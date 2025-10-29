@@ -79,5 +79,10 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: facility-service
+  - name: EGOV_FIELDPLAN_ACTIVITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: field-planner-activity
   
 
