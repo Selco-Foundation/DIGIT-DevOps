@@ -29,6 +29,11 @@ minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: EGOV_WORKFLOW_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-workflow-v2
+        name: egov-service-host
   - name: EGOV_INFRA_INDEXER_HOST
     valueFrom:
       configMapKeyRef:
@@ -74,3 +79,20 @@ env: |
     value: /egov-mdms-service/v1/_search
   - name: EGOV_INDEXER_ES_HOST_NAME
     value: https://elasticsearch-data.backbone-dev
+  - name: EGOV_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-user
+  - name: EGOV_FILESTORE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-filestore
+  - name: SAURA_EMITRA_BASE_URL
+    value: https://saura-emitra.selcofoundation.org
+  - name: EGOV_FILESTORE_BASEURL
+    value: https://saura-emitra.selcofoundation.org
+  - name: KIBANA_DASHBOARD_URL
+    value: https://saura-emitra.selcofoundation.org/kibana
+

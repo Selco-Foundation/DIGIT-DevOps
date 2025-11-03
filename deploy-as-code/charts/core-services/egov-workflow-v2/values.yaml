@@ -38,6 +38,8 @@ memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
+  - name: EGOV_WF_FUZZYSEARCH_ISFUZZYENABLED
+    value: 'false'
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: egov-tl-services
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
