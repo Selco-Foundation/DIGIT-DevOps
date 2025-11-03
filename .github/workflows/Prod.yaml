@@ -136,7 +136,7 @@ jobs:
            --set egov-localization.initContainers.dbMigration.image.tag=${{ env.egov-localization }} \
            --set egov-location.image.tag=${{ env.egov-location }} \
            --set egov-location.initContainers.dbMigration.image.tag=${{ env.egov-location }} \
-           --set egov-notification-mail.image.tag=${{ env.egov-notification-mail }}
+           --set egov-notification-mail.image.tag=${{ env.egov-notification-mail }} \
            --set egov-notification-sms.image.tag=${{ env.egov-notification-sms }} \
            --set egov-otp.image.tag=${{ env.egov-otp }} \
            --set egov-otp.initContainers.dbMigration.image.tag=${{ env.egov-otp }} \
