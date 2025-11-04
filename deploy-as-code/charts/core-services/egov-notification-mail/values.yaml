@@ -14,8 +14,9 @@ replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
 #username: "egov-testing@egovernments.org"
-heap: "-Xmx192m -Xms192m"
-memory_requests: 512Mi
+heap: "-Xmx360m -Xms360m"
+memory_requests: "512Mi"
+memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
