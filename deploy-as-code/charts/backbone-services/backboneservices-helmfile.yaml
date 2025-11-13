@@ -50,38 +50,38 @@ releases:
 #  values:
 #    - ./redis/values.yaml
 #
-#- name: elasticsearch
-#  chart: ./elasticsearch
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch/values.yaml
-#    - secret:
-#        password: {{ .Values.secrets.elasticsearch.password }}
+- name: elasticsearch
+  chart: ./elasticsearch
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch/values.yaml
+    - secret:
+        password: {{ .Values.secrets.elasticsearch.password }}
 
-#- name: elasticsearch-data
-#  chart: ./elasticsearch-data
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch-data/values.yaml
+- name: elasticsearch-data
+  chart: ./elasticsearch-data
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch-data/values.yaml
 
-#- name: kibana
-#  chart: ./kibana
-#  version: 8.11.3
-#  force: true
-#  <<: *default
-#  values:
-#    - ./kibana/values.yaml
-#    - ingress:
-#        hosts:
-#          - host: {{ .Values.global.domain }}
-#            paths:
-#              - path: /kibana
-#        tls:
-#          - secretName: {{ .Values.global.domain }}-tls-certs
-#            hosts:
-#              - {{ .Values.global.domain }}
+- name: kibana
+  chart: ./kibana
+  version: 8.11.3
+  force: true
+  <<: *default
+  values:
+    - ./kibana/values.yaml
+    - ingress:
+        hosts:
+          - host: {{ .Values.global.domain }}
+            paths:
+              - path: /kibana
+        tls:
+          - secretName: {{ .Values.global.domain }}-tls-certs
+            hosts:
+              - {{ .Values.global.domain }}
 
 
 
@@ -146,14 +146,14 @@ releases:
 #            hosts:
 #              - {{ .Values.global.domain }}
 
-- name: kafka-ui
-  installed: true
-  chart: ./kafka-ui
-  version: 0.7.6
-  <<: *default
-  values:
-    - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
-    - ./kafka-ui/values.yaml
+#- name: kafka-ui
+#  installed: true
+#  chart: ./kafka-ui
+#  version: 0.7.6
+#  <<: *default
+#  values:
+#    - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
+#    - ./kafka-ui/values.yaml
 #    - ingress:
 #        host: "{{ .Values.global.domain }}"
 #        tls:
