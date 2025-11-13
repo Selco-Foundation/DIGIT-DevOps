@@ -146,9 +146,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: im-services # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: im-services # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
@@ -166,9 +166,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: facility-registry  # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: facility-registry  # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
