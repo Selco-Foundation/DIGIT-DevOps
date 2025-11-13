@@ -158,17 +158,17 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: boundary-service # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: boundary-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 #
-#  - name: facility-registry  # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: facility-registry  # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
