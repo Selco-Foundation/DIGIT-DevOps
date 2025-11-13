@@ -85,16 +85,16 @@ releases:
 
 
 
-#- name: kafka-kraft
-#  installed: true
-#  chart: ./kafka-kraft
-#  version: 26.2.0
-#  <<: *default
-#  values:
-#    - ./kafka-kraft/values.yaml
-#  set:
-#    - name: kraft.clusterId
-#      value: {{ .Values.secrets.kafka.clusterID }}
+- name: kafka-kraft
+  installed: true
+  chart: ./kafka-kraft
+  version: 26.2.0
+  <<: *default
+  values:
+    - ./kafka-kraft/values.yaml
+  set:
+    - name: kraft.clusterId
+      value: {{ .Values.secrets.kafka.clusterID }}
 
 #- name: ingress-nginx
 #  installed: true
