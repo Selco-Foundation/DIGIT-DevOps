@@ -23,6 +23,36 @@ initContainers:
       repository: "selcohub/im-services-db"
       tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
     env: |
+        - name: EGOV_BOUNDARY_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: egov-service-host
+              key: boundary-service
+        - name: EGOV_FACILITY_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: egov-service-host
+              key: facility-service
+        - name: EGOV_HRMS_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: egov-hrms
+              name: egov-service-host
+        - name: EGOV_ES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: egov-config
+              key: es-indexer-host
+        - name: EGOV_ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-credentials
+              key: password
+        - name: EGOV_ES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-credentials
+              key: username
         - name: EGOV_WORKFLOW_HOST
           valueFrom:
             configMapKeyRef:
