@@ -76,12 +76,14 @@ jobs:
         with:
           version: 'latest' # Specify the version of Helm
 
+      - name: Install helm plugins
+        run: |
+          helm plugin install https://github.com/databus23/helm-diff --verify=false
+
       - name: Install Helmfile
         uses: helmfile/helmfile-action@v1.9.0
         with:
           helmfile-version: 'v0.150.0'
-          helm-plugins: >
-            https://github.com/databus23/helm-diff
 
       - name: Commit Id for Latest Deployment
         run: |
