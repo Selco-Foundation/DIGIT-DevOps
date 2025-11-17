@@ -73,21 +73,27 @@ jobs:
 
 
       - name: Set up Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v3
         with:
-          version: 'latest' # Specify the version of Helm
+          version: 'v3.9.0' # Specify the version of Helm
+
+      - name: Install helm plugins
+        run: |
+          helm plugin install https://github.com/databus23/helm-diff --version v3.9.11
+          helm plugin list
 
       - name: Install Helmfile
-        uses: helmfile/helmfile-action@v1.9.0
-        with:
-          helmfile-version: 'v0.150.0'
-          helm-plugins: >
-            https://github.com/databus23/helm-diff
+        run: |
+          wget https://github.com/helmfile/helmfile/releases/download/v0.150.0/helmfile_0.150.0_linux_amd64.tar.gz
+          tar -xzf helmfile_0.150.0_linux_amd64.tar.gz
+          sudo mv helmfile /usr/local/bin/helmfile
+          sudo chmod +x /usr/local/bin/helmfile
+          helmfile --version
 
       - name: Parse YAML and export as environment variables
         id: set-env
         run: |
-          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.1.0.yaml) 
+          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.1.1.yaml) 
           
           # Iterate over each service and export as environment variables
           echo "$services" | while IFS=":" read -r key value; do
