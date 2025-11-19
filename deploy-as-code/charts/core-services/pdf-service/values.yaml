@@ -24,8 +24,8 @@ healthChecks:
   enabled: false
   livenessProbePath: "/pdf-service/health"
   readinessProbePath: "/pdf-service/health"
-data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json"
-format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json"
+data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/data-config/amc-report.json"
+format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/format-config/amc-report.json"
 
 # Additional Container Envs
 env: |
