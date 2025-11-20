@@ -23,6 +23,11 @@ initContainers:
       repository: "selcohub/im-services-db"
       tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
     env: |
+        - name: EGOV_LOCALIZATION_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: egov-localization
+              name: egov-service-host
         - name: EGOV_BOUNDARY_HOST
           valueFrom:
             configMapKeyRef:
