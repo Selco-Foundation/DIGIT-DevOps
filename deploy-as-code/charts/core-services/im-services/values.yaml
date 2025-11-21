@@ -23,6 +23,11 @@ initContainers:
       repository: "selcohub/im-services-db"
       tag: "develop-61a468f4efec1a34aa45976ce546b33f209b21ff"
     env: |
+        - name: EGOV_USER_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: egov-service-host
+              key: egov-user
         - name: EGOV_LOCALIZATION_HOST
           valueFrom:
             configMapKeyRef:
@@ -121,6 +126,11 @@ lifecycle:
           mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
   - name: SPRING_FLYWAY_ENABLED
     value: "false"
   - name: SPRING_SERVLET_MULTIPART_ENABLED
