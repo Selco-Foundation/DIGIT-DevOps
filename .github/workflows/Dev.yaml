@@ -146,10 +146,14 @@ jobs:
           echo "field_planner_commit=$field_planner_commit" >> $GITHUB_ENV
           field_planner_activity_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/field-planner-activity)
           echo "field_planner_activity_commit=$field_planner_activity_commit" >> $GITHUB_ENV
+          amc_service_commit=$(git log -1 --pretty=format:%H -- backend/e4h-services/amc-scheduler-service)
+          echo "amc_service_commit=$amc_service_commit" >> $GITHUB_ENV
 
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+            --set amc-service.image.tag=develop-${{ env.amc_service_commit }} \
+            --set amc-service.initContainers.dbMigration.image.tag=develop-${{ env.amc_service_commit }} \
             --set field-planner-activity.image.tag=develop-${{ env.field_planner_activity_commit }} \
             --set field-planner-activity.initContainers.dbMigration.image.tag=develop-${{ env.field_planner_activity_commit }} \
             --set field-planner.image.tag=develop-${{ env.field_planner_commit }} \
