@@ -126,6 +126,11 @@ lifecycle:
           mv ffmpeg ffprobe /usr/local/bin/
 # Additional Container Envs
 env: |
+  - name: EGOV_FACILITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: facility-service
   - name: EGOV_BOUNDARY_HOST
     valueFrom:
       configMapKeyRef:
