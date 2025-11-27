@@ -22,6 +22,8 @@ releases:
 #
 #  - name: egov-enc-service # Replace with your desired namespace
 #    installed: true
+#    needs:
+#    - egov-mdms-service
 #    <<: *default
 
 #  - name: egov-filestore # Replace with your desired namespace
@@ -47,6 +49,8 @@ releases:
 #  - name: egov-hrms # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+#    needs:
+#    - egov-user
 
 
 #  - name: egov-indexer # Replace with your desired namespace
@@ -158,9 +162,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: facility-registry  # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: facility-service  # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
@@ -191,6 +195,10 @@ releases:
 #    <<: *default
 
 #  - name: pdf-service
+#    installed: true
+#    <<: *default
+
+#  - name: amc-service
 #    installed: true
 #    <<: *default
 
