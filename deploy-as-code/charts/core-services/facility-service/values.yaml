@@ -1,6 +1,6 @@
 # Common Labels
 labels:
-  app: "facility-registry"
+  app: "facility-service"
   group: "core"
 
 # Init Containers Configs
@@ -16,7 +16,7 @@ initContainers:
 ingress:
   enabled: true
   zuul: true
-  context: "facility-registry"
+  context: "facility-service"
 
 # Container Configs
 image:
@@ -84,10 +84,10 @@ env: |
         name: egov-service-host
         key: boundary-service
   - name: OTEL_SERVICE_NAME
-    value: facility-registry
+    value: facility-service
   - name: OTEL_EXPORTER_ENDPOINT 
     value: "http://jaeger-tracing-collector.backbone-dev:4318" 
   - name: OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS
-    value: "/facility-registry/health,/facility-registry/prometheus"
+    value: "/facility-service/health,/facility-service/prometheus"
 
 
