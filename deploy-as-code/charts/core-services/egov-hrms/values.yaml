@@ -38,6 +38,11 @@ memory_limits: "768Mi"
 env: |
   - name: EGOV_SERVICES_DATA_SYNC_EMPLOYEE_REQUIRED 
     value:  "false"
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
   - name: EGOV_MDMS_HOST
     valueFrom:
       configMapKeyRef:
