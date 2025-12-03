@@ -172,8 +172,8 @@ jobs:
             --set digit-ui.image.tag=staging-${{ env.digit_ui_commit }} \
             --set boundary-service.image.tag=staging-${{ env.boundary_service_commit }} \
             --set boundary-service.initContainers.dbMigration.image.tag=staging-${{ env.boundary_service_commit }} \
-            --set facility-registry.image.tag=staging-${{ env.facility_registry_commit }} \
-            --set facility-registry.initContainers.dbMigration.image.tag=staging-${{ env.facility_registry_commit }} \
+            --set facility-service.image.tag=staging-${{ env.facility_registry_commit }} \
+            --set facility-service.initContainers.dbMigration.image.tag=staging-${{ env.facility_registry_commit }} \
             --set vendor-registry.image.tag=staging-${{ env.vendor_registry_commit }} \
             --set vendor-registry.initContainers.dbMigration.image.tag=staging-${{ env.vendor_registry_commit }} \
             --set processor-services.image.tag=staging-${{ env.processor_services_commit }} \
