@@ -46,9 +46,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-hrms # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-hrms # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 
 #  - name: egov-indexer # Replace with your desired namespace
@@ -152,9 +152,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: boundary-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: boundary-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
