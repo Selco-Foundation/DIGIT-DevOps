@@ -151,10 +151,10 @@ jobs:
            --set egov-user.initContainers.dbMigration.image.tag=${{ env.egov-user }} \
            --set egov-mdms-service.image.tag=${{ env.egov-mdms-service }} \
            --set egov-mdms-service.initContainers.dbMigration.image.tag=${{ env.egov-mdms-service }} \
-           --set facility-service.image.tag=staging-${{ env.facility-service }} \
-           --set facility-service.initContainers.dbMigration.image.tag=staging-${{ env.facility-service }} \
-           --set boundary-service.image.tag=staging-${{ env.boundary-service }} \
-           --set boundary-service.initContainers.dbMigration.image.tag=staging-${{ env.boundary-service }} \
+           --set facility-service.image.tag=${{ env.facility-service }} \
+           --set facility-service.initContainers.dbMigration.image.tag=${{ env.facility-service }} \
+           --set boundary-service.image.tag=${{ env.boundary-service }} \
+           --set boundary-service.initContainers.dbMigration.image.tag=${{ env.boundary-service }} \
            --set egov-idgen.image.tag=${{ env.egov-idgen }} \
         working-directory: deploy-as-code
         env:
