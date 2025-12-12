@@ -27,7 +27,7 @@ modules:
       mizoram: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
       manipur: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
       nagaland: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
-      egov-hrms: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
+      egov-hrms: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       egov-filestore: v2.0.3-7de51e1b5d83b29754c5e30d33c931d5cc9159aa
       egov-workflow-v2: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       im-services-analytics: v2.1.1-558252281bb08e9abf59fc0b369cbc6d2d85957d
