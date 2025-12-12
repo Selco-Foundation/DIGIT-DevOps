@@ -30,7 +30,7 @@ modules:
       egov-hrms: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       egov-filestore: v2.0.3-7de51e1b5d83b29754c5e30d33c931d5cc9159aa
       egov-workflow-v2: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
-      im-services-analytics: v2.1.1-558252281bb08e9abf59fc0b369cbc6d2d85957d
+      im-services-analytics: 2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
       im-services: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
       digit-ui: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
