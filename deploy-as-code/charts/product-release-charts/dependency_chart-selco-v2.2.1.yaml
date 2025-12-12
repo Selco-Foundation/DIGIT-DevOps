@@ -32,8 +32,8 @@ modules:
       egov-workflow-v2: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       im-services-analytics: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
-      im-services: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
-      digit-ui: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
+      im-services: v2.2.2-afde096335e0e67daf5ff1805323cae6450a6cf4
+      digit-ui: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       inbox: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
