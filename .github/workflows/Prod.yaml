@@ -93,7 +93,7 @@ jobs:
       - name: Parse YAML and export as environment variables
         id: set-env
         run: |
-          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.1.1.yaml) 
+          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.2.1.yaml) 
           
           # Iterate over each service and export as environment variables
           echo "$services" | while IFS=":" read -r key value; do
@@ -151,6 +151,10 @@ jobs:
            --set egov-user.initContainers.dbMigration.image.tag=${{ env.egov-user }} \
            --set egov-mdms-service.image.tag=${{ env.egov-mdms-service }} \
            --set egov-mdms-service.initContainers.dbMigration.image.tag=${{ env.egov-mdms-service }} \
+           --set facility-service.image.tag=staging-${{ env.facility-service }} \
+           --set facility-service.initContainers.dbMigration.image.tag=staging-${{ env.facility-service }} \
+           --set boundary-service.image.tag=staging-${{ env.boundary-service }} \
+           --set boundary-service.initContainers.dbMigration.image.tag=staging-${{ env.boundary-service }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-prod"

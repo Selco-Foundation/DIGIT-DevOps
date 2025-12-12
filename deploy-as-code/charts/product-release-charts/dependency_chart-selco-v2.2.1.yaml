@@ -16,6 +16,8 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
+      boundary-service:
+      facility-service:
       maharashtra: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
       meghalaya: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
       gujarat: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
