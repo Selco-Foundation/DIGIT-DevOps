@@ -1,4 +1,4 @@
-version: v2.0.0
+version: v2.0.1
 modules:
   - name: backbone-dev
     services:
@@ -16,6 +16,7 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
+      maharashtra: v2.0.1-bfd00187d071de79eb81a5cbaf3ed1eaec412355
       meghalaya: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       gujarat: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
       assam: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6

@@ -90,9 +90,9 @@ env: |
         name: egov-service-host
         key: egov-filestore
   - name: SAURA_EMITRA_BASE_URL
-    value: https://saura-emitra-uat.selcofoundation.org
+    value: https://saura-emitra.selcofoundation.org
   - name: EGOV_FILESTORE_BASEURL
-    value: https://saura-emitra-uat.selcofoundation.org
+    value: https://saura-emitra.selcofoundation.org
   - name: KIBANA_DASHBOARD_URL
-    value: https://saura-emitra-uat.selcofoundation.org/kibana
+    value: https://saura-emitra.selcofoundation.org/kibana
 

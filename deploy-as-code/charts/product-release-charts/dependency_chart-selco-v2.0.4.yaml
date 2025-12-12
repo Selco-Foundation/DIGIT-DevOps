@@ -1,4 +1,4 @@
-version: v2.0.0
+version: v2.0.4
 modules:
   - name: backbone-dev
     services:
@@ -16,22 +16,23 @@ modules:
     dependencies:
       - "backbone-dev"
     services:
-      meghalaya: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      gujarat: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      assam: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      odisha: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      sikkim: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      mizoram: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      manipur: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      nagaland: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      maharashtra: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      meghalaya: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      gujarat: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      assam: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      odisha: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      sikkim: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      mizoram: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      manipur: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      nagaland: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       egov-hrms: v1.1.0-9bf0724d03e063f48e1a71e402f272d725dc1107
-      egov-filestore: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      egov-workflow-v2: main-d708b15d05f38e54fa99a1b2d4d13e5975b030b3
-      im-services-analytics: main-03d911f07dd3aaf4babdafb6a797c4114e750acf
+      egov-filestore: v2.0.3-7de51e1b5d83b29754c5e30d33c931d5cc9159aa
+      egov-workflow-v2: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      im-services-analytics: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
-      im-services: main-c23cad57007fa72e87d00bb3725cd6bb0fa5fa9b
-      digit-ui: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
-      inbox: v2.0.0-fcf3181eac17bf5a3cded283bd9af57c31cf42a6
+      im-services: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      digit-ui: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
+      inbox: v2.0.4-ee355ae51eaadd22f1a30a759492ab80dd7ac95a
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
       audit-service: v2.9.2-4a60f20

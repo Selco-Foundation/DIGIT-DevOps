@@ -73,21 +73,27 @@ jobs:
 
 
       - name: Set up Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v3
         with:
-          version: 'latest' # Specify the version of Helm
+          version: 'v3.9.0' # Specify the version of Helm
+
+      - name: Install helm plugins
+        run: |
+          helm plugin install https://github.com/databus23/helm-diff --version v3.9.11
+          helm plugin list
 
       - name: Install Helmfile
-        uses: helmfile/helmfile-action@v1.9.0
-        with:
-          helmfile-version: 'v0.150.0'
-          helm-plugins: >
-            https://github.com/databus23/helm-diff
+        run: |
+          wget https://github.com/helmfile/helmfile/releases/download/v0.150.0/helmfile_0.150.0_linux_amd64.tar.gz
+          tar -xzf helmfile_0.150.0_linux_amd64.tar.gz
+          sudo mv helmfile /usr/local/bin/helmfile
+          sudo chmod +x /usr/local/bin/helmfile
+          helmfile --version
 
       - name: Parse YAML and export as environment variables
         id: set-env
         run: |
-          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.0.0.yaml) 
+          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.1.1.yaml) 
           
           # Iterate over each service and export as environment variables
           echo "$services" | while IFS=":" read -r key value; do
@@ -102,8 +108,15 @@ jobs:
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
-           --set nagaland.image.tag=${{ env.nagaland }} \
+           --set maharashtra.image.tag=${{ env.maharashtra }} \
+           --set meghalaya.image.tag=${{ env.meghalaya }} \
+           --set gujarat.image.tag=${{ env.gujarat }} \
+           --set assam.image.tag=${{ env.assam }} \
+           --set odisha.image.tag=${{ env.odisha }} \
+           --set sikkim.image.tag=${{ env.sikkim }} \
            --set mizoram.image.tag=${{ env.mizoram }} \
+           --set manipur.image.tag=${{ env.manipur }} \
+           --set nagaland.image.tag=${{ env.nagaland }} \
            --set egov-hrms.image.tag=${{ env.egov-hrms }} \
            --set egov-hrms.initContainers.dbMigration.image.tag=${{ env.egov-hrms }} \
            --set egov-filestore.image.tag=${{ env.egov-filestore }} \
@@ -112,8 +125,32 @@ jobs:
            --set egov-workflow-v2.initContainers.dbMigration.image.tag=${{ env.egov-workflow-v2 }} \
            --set im-services.image.tag=${{ env.im-services }} \
            --set im-services.initContainers.dbMigration.image.tag=${{ env.im-services }} \
+           --set im-services-analytics.image.tag=${{ env.im-services-analytics }} \
+           --set processor-services.image.tag=${{ env.processor-services }} \
            --set digit-ui.image.tag=${{ env.digit-ui }} \
            --set inbox.image.tag=${{ env.inbox }} \
+           --set gateway.image.tag=${{ env.gateway }} \
+           --set user-otp.image.tag=${{ env.user-otp }} \
+           --set audit-service.image.tag=${{ env.audit-service }} \
+           --set audit-service.initContainers.dbMigration.image.tag=${{ env.audit-service }} \
+           --set egov-accesscontrol.image.tag=${{ env.egov-accesscontrol }} \
+           --set egov-enc-service.image.tag=${{ env.egov-enc-service }} \
+           --set egov-enc-service.initContainers.dbMigration.image.tag=${{ env.egov-enc-service }} \
+           --set egov-indexer.image.tag=${{ env.egov-indexer }} \
+           --set egov-indexer.initContainers.dbMigration.image.tag=${{ env.egov-indexer }} \
+           --set egov-localization.image.tag=${{ env.egov-localization }} \
+           --set egov-localization.initContainers.dbMigration.image.tag=${{ env.egov-localization }} \
+           --set egov-location.image.tag=${{ env.egov-location }} \
+           --set egov-location.initContainers.dbMigration.image.tag=${{ env.egov-location }} \
+           --set egov-notification-mail.image.tag=${{ env.egov-notification-mail }} \
+           --set egov-notification-sms.image.tag=${{ env.egov-notification-sms }} \
+           --set egov-otp.image.tag=${{ env.egov-otp }} \
+           --set egov-otp.initContainers.dbMigration.image.tag=${{ env.egov-otp }} \
+           --set egov-persister.image.tag=${{ env.egov-persister }} \
+           --set egov-user.image.tag=${{ env.egov-user }} \
+           --set egov-user.initContainers.dbMigration.image.tag=${{ env.egov-user }} \
+           --set egov-mdms-service.image.tag=${{ env.egov-mdms-service }} \
+           --set egov-mdms-service.initContainers.dbMigration.image.tag=${{ env.egov-mdms-service }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-prod"

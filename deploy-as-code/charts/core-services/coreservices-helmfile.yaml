@@ -22,8 +22,6 @@ releases:
 #
 #  - name: egov-enc-service # Replace with your desired namespace
 #    installed: true
-#    needs:
-#    - egov-mdms-service
 #    <<: *default
 
 #  - name: egov-filestore # Replace with your desired namespace
@@ -88,11 +86,11 @@ releases:
 #  - name: configmaps # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
-#
-  - name: digit-ui # Replace with your desired namespace
-    installed: true
-    <<: *default
+
+
+#  - name: digit-ui # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: meghalaya # Replace with your desired namespace
 #    installed: true
@@ -129,13 +127,17 @@ releases:
 #  - name: maharashtra # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+#
+#  - name: workbench-ui # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: mdms-v2 # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
 
-
+#
 #  - name: gateway # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -143,12 +145,44 @@ releases:
 #  - name: im-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
+
+  - name: im-services-analytics # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
-#  - name: im-services-analytics # Replace with your desired namespace
+#  - name: inbox # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
-#  - name: inbox # Replace with your desired namespace
+#  - name: boundary-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: processor-services # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: facility-registry  # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+##
+#  - name: vendor-registry # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+
+#  - name: asset-registry # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: project # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: installation-qc # Replace with your desired namespace
+#    installed: true
+#    <<: *default
+#
+#  - name: ingestion-service # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
