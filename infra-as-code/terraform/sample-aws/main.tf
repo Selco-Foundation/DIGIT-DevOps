@@ -67,7 +67,7 @@ module "eks" {
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
       override_instance_types       = "${var.override_instance_types}"
-      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=normal"
+      kubelet_extra_args            = "--max-pods=110"
       asg_max_size                  = "${var.max_number_of_worker_nodes}"
       asg_desired_capacity          = "${var.number_of_worker_nodes}"
       asg_min_size                  = "${var.min_number_of_worker_nodes}"

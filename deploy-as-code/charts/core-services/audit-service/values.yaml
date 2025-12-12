@@ -15,8 +15,8 @@ initContainers:
     enabled: true
     schemaTable: "audit_service_schema"
     image:
-      repository: "audit-service-db"
-      tag: core-2.9-lts-mvn-check-c33cfe45ab-9
+      repository: "egovio/audit-service-db"
+      tag: v2.9.2-4a60f20
 
   gitSync:
     enabled: true
@@ -25,9 +25,10 @@ initContainers:
 
 # Container Configs
 image:
-  repository: "audit-service"
-  tag: core-2.9-lts-mvn-check-c33cfe45ab-9
+  repository: "egovio/audit-service"
+  tag: v2.9.2-4a60f20
 replicas: "1"
+otel: "true"
 healthChecks:
   enabled: true
   livenessProbePath: "/audit-service/health"
@@ -37,6 +38,7 @@ tracing-enabled: true
 heap: "-Xmx64m -Xms64m"
 java-args: "-Dspring.profiles.active=monitoring"
 persist-yml-path: ""
+memory_limits: "768Mi"
 # Additional Container Envs
 env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID

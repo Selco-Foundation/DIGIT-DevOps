@@ -14,8 +14,8 @@ initContainers: {}
 
 # Container Configs
 image:
-  repository: "egov-accesscontrol"
-  tag: core-2.9-lts-mvn-check-34362a8b87-9
+  repository: "egovio/egov-accesscontrol"
+  tag: v2.9.2-4a60f20
 replicas: "1"
 healthChecks:
   enabled: true
@@ -24,7 +24,9 @@ healthChecks:
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
+otel: "true"
 java-args: ""
+memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |

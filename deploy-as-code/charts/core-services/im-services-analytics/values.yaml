@@ -13,7 +13,7 @@ ingress:
 
 # Container Configs
 image:
-  repository: "egovio/im-services-analytics"
+  repository: "selcohub/im-services-analytics"
   tag: "im-services-analytics-27624fe645-11"
 replicas: "1"
 healthChecks:
@@ -22,11 +22,18 @@ healthChecks:
   readinessProbePath: "/im-services-analytics/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx256m -Xms256m"
-memory_limits: 512Mi
+heap: "-Xmx1560m -Xms1560m"
+memory_limits: "2560Mi"
+memory_requests: "2Gi"
+minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: EGOV_WORKFLOW_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-workflow-v2
+        name: egov-service-host
   - name: EGOV_INFRA_INDEXER_HOST
     valueFrom:
       configMapKeyRef:
@@ -63,3 +70,29 @@ env: |
     value: "save-hrms-employee"
   - name: EGOV_UPDATE_INDEX_PATH
     value: "phc-master-list/_update/"
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-mdms-service
+  - name: EGOV_MDMS_SEARCH_ENDPOINT
+    value: /egov-mdms-service/v1/_search
+  - name: EGOV_INDEXER_ES_HOST_NAME
+    value: https://elasticsearch-data.backbone-dev
+  - name: EGOV_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-user
+  - name: EGOV_FILESTORE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-filestore
+  - name: SAURA_EMITRA_BASE_URL
+    value: https://saura-emitra.selcofoundation.org
+  - name: EGOV_FILESTORE_BASEURL
+    value: https://saura-emitra.selcofoundation.org
+  - name: KIBANA_DASHBOARD_URL
+    value: https://saura-emitra.selcofoundation.org/kibana
+

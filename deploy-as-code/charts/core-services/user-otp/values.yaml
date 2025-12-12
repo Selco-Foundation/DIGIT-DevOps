@@ -14,8 +14,8 @@ initContainers: {}
 
 # Container Configs
 image:
-  repository: "user-otp"
-  tag: core-2.9-lts-mvn-check-15fe7099b6-7
+  repository: "egovio/user-otp"
+  tag: v2.9.2-4a60f20
 healthChecks:
   enabled: true
   livenessProbePath: "/user-otp/health"
@@ -23,8 +23,10 @@ healthChecks:
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
+otel: "true"
 heap: "-Xmx192m -Xms192m"
 java-args: ""
+memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
