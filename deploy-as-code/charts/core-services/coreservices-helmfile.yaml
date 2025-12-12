@@ -28,9 +28,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-idgen # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-idgen # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: egov-localization # Replace with your desired namespace
 #    installed: true
@@ -145,10 +145,10 @@ releases:
 #  - name: im-services # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
-  - name: im-services-analytics # Replace with your desired namespace
-    installed: true
-    <<: *default
+#
+#  - name: im-services-analytics # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: inbox # Replace with your desired namespace
 #    installed: true

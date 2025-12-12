@@ -41,7 +41,7 @@ modules:
       audit-service: v2.9.2-4a60f20
       egov-accesscontrol: v2.9.2-4a60f20
       egov-enc-service: v2.9.2-4a60f20
-      egov-idgen: main-03072024-1
+      egov-idgen: v2.2.1-9dd1451c12150aca6d1bcf06565c2d6a7bb32a04
       egov-indexer: v2.9.2-4a60f20
       egov-localization: v2.9.2-4a60f20
       egov-location: v2.9.2-4a60f20

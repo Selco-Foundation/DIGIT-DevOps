@@ -155,6 +155,7 @@ jobs:
            --set facility-service.initContainers.dbMigration.image.tag=staging-${{ env.facility-service }} \
            --set boundary-service.image.tag=staging-${{ env.boundary-service }} \
            --set boundary-service.initContainers.dbMigration.image.tag=staging-${{ env.boundary-service }} \
+           --set egov-idgen.image.tag=${{ env.egov-idgen }} \
         working-directory: deploy-as-code
         env:
           HELMFILE_ENV: "selco-prod"
