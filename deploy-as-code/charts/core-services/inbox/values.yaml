@@ -32,6 +32,11 @@ minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: boundary-service
+        name: egov-service-host
   - name: EGOV_SERVICES_ESINDEXER_HOST_SEARCH
     value: /_search
   - name: WORKFLOW_HOST

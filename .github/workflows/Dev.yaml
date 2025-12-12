@@ -133,8 +133,8 @@ jobs:
             --set digit-ui.image.tag=develop-${{ env.digit_ui_commit }} \
             --set boundary-service.image.tag=develop-${{ env.boundary_service_commit }} \
             --set boundary-service.initContainers.dbMigration.image.tag=develop-${{ env.boundary_service_commit }} \
-            --set facility-registry.image.tag=develop-${{ env.facility_registry_commit }} \
-            --set facility-registry.initContainers.dbMigration.image.tag=develop-${{ env.facility_registry_commit }} \
+            --set facility-service.image.tag=develop-${{ env.facility_registry_commit }} \
+            --set facility-service.initContainers.dbMigration.image.tag=develop-${{ env.facility_registry_commit }} \
             --set vendor-registry.image.tag=develop-${{ env.vendor_registry_commit }} \
             --set vendor-registry.initContainers.dbMigration.image.tag=develop-${{ env.vendor_registry_commit }} \
             --set processor-services.image.tag=develop-${{ env.processor_services_commit }} \

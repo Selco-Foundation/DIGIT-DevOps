@@ -23,38 +23,78 @@ initContainers:
       repository: "selcohub/im-services-db"
       tag: "main-87dbaeea5af057c243a85e625dc8f5ee3f434681"
     env: |
-        - name: EGOV_MDMS_HOST
-          valueFrom:
-            configMapKeyRef:
-              key: egov-mdms-service
-              name: egov-service-host
-        - name: EGOV_WORKFLOW_HOST
-          valueFrom:
-            configMapKeyRef:
-              key: egov-workflow-v2
-              name: egov-service-host
-        - name: DB_URL
-          valueFrom:
-            configMapKeyRef:
-              key: db-url
-              name: egov-config
-        - name: SCHEMA_TABLE
-          value: im_service_schema
-        - name: FLYWAY_USER
-          valueFrom:
-            secretKeyRef:
-              key: flyway-username
-              name: db
-        - name: FLYWAY_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: flyway-password
-              name: db
-        - name: FLYWAY_LOCATIONS
-          valueFrom:
-            configMapKeyRef:
-              key: flyway-locations
-              name: egov-config
+      - name: EGOV_USER_HOST
+        valueFrom:
+          configMapKeyRef:
+            name: egov-service-host
+            key: egov-user
+      - name: EGOV_LOCALIZATION_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: egov-localization
+            name: egov-service-host
+      - name: EGOV_BOUNDARY_HOST
+        valueFrom:
+          configMapKeyRef:
+            name: egov-service-host
+            key: boundary-service
+      - name: EGOV_FACILITY_HOST
+        valueFrom:
+          configMapKeyRef:
+            name: egov-service-host
+            key: facility-service
+      - name: EGOV_HRMS_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: egov-hrms
+            name: egov-service-host
+      - name: EGOV_ES_HOST
+        valueFrom:
+          configMapKeyRef:
+            name: egov-config
+            key: es-indexer-host
+      - name: EGOV_ES_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: elasticsearch-credentials
+            key: password
+      - name: EGOV_ES_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: elasticsearch-credentials
+            key: username
+      - name: EGOV_WORKFLOW_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: egov-workflow-v2
+            name: egov-service-host
+      - name: DB_URL
+        valueFrom:
+          configMapKeyRef:
+            key: db-url
+            name: egov-config
+      - name: SCHEMA_TABLE
+        value: im_service_schema
+      - name: FLYWAY_USER
+        valueFrom:
+          secretKeyRef:
+            key: flyway-username
+            name: db
+      - name: FLYWAY_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: flyway-password
+            name: db
+      - name: FLYWAY_LOCATIONS
+        valueFrom:
+          configMapKeyRef:
+            key: flyway-locations
+            name: egov-config
+      - name: EGOV_MDMS_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: egov-mdms-service
+            name: egov-service-host
 
 # Container Configs
 image:
@@ -90,6 +130,16 @@ lifecycle:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_FACILITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: facility-service
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
   - name: SPRING_FLYWAY_ENABLED
     value: "false"
   - name: SERVER_CONTEXT_PATH
