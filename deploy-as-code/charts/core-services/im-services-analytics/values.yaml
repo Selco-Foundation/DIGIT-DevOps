@@ -29,6 +29,8 @@ minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: EGOV_HRMS_HOST
+    value: http://egov-hrms.core-dev:8080
   - name: EGOV_WORKFLOW_HOST
     valueFrom:
       configMapKeyRef:
