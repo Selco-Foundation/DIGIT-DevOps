@@ -40,6 +40,11 @@ env: |
     value: http://egov-filestore.core-dev:8080
   - name: EGOV_LOCALISATION_SEARCH
     value: localization/messages/v2/_search
+  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
+    valueFrom:
+      configMapKeyRef:
+        key: kafka-brokers
+        name: egov-config
   - name: KAFKA_BROKER_HOST
     valueFrom:
       configMapKeyRef:
