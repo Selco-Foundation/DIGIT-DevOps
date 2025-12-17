@@ -17,6 +17,13 @@ metadata:
 {{- if .Values.ingress.waf.enabled }}      
 {{- toYaml .Values.ingress.waf.annotations | nindent 4 }} 
 {{- end  }}
+{{- if .Values.ingress.redirect }}
+{{- if .Values.ingress.redirect.enabled }}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/{{ .Values.ingress.context }}(.*)$ /{{ .Values.ingress.redirect.target }}$1 permanent;
+{{- end }}
+{{- end }}
 {{- if .Values.ingress.additionalAnnotations }}                                   
   {{- tpl  .Values.ingress.additionalAnnotations . | nindent 4 }}
 {{- end }} 
@@ -39,7 +46,12 @@ spec:
             name: gateway
             port:
               number: 8080
-{{ else }}
+{{- else if and .Values.ingress.redirect .Values.ingress.redirect.enabled }}
+          service:
+            name: {{ .Values.ingress.redirect.serviceName | default .Values.ingress.redirect.target }}
+            port:
+              number: {{ .Values.ingress.redirect.servicePort | default 80 }}
+{{- else }}
           service:
             name: {{ .Values.ingress.serviceName | default (include "common.name" .) }}
             port:
