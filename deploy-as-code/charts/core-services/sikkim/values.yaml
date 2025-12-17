@@ -7,6 +7,12 @@ labels:
 ingress:
   enabled: true
   context: "sikkim"
+  # Redirect /sikkim/* to /digit-ui/* with all query params preserved
+  redirect:
+    enabled: true
+    target: "digit-ui"
+    serviceName: "digit-ui"
+    servicePort: 80
 
 # Init Containers Configs
 initContainers: {}
