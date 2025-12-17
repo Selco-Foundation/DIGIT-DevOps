@@ -46,11 +46,18 @@ spec:
             name: gateway
             port:
               number: 8080
-{{- else if and .Values.ingress.redirect .Values.ingress.redirect.enabled }}
+{{- else if .Values.ingress.redirect }}
+{{- if .Values.ingress.redirect.enabled }}
           service:
             name: {{ .Values.ingress.redirect.serviceName | default .Values.ingress.redirect.target }}
             port:
               number: {{ .Values.ingress.redirect.servicePort | default 80 }}
+{{- else }}
+          service:
+            name: {{ .Values.ingress.serviceName | default (include "common.name" .) }}
+            port:
+              number: {{ .Values.ingress.servicePort | default .Values.httpPort }}
+{{- end }}
 {{- else }}
           service:
             name: {{ .Values.ingress.serviceName | default (include "common.name" .) }}
