@@ -14,6 +14,20 @@ initContainers:
     enabled: true
     repo: "git@github.com:Selco-Foundation/configs.git"
     branch: "main"
+  wait-for-kafka:
+    image:
+      repository: busybox
+      tag: latest
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for Kafka to be ready..."
+        until nc -z kafka-kraft.backbone-dev.svc.cluster.local 9092; do
+          echo "Kafka is not available yet..."
+          sleep 5
+        done
+        echo "Kafka is up!"
 
 # Container Configs
 image:
@@ -40,11 +54,6 @@ env: |
     value: http://egov-filestore.core-dev:8080
   - name: EGOV_LOCALISATION_SEARCH
     value: localization/messages/v2/_search
-  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
-    valueFrom:
-      configMapKeyRef:
-        key: kafka-brokers
-        name: egov-config
   - name: KAFKA_BROKER_HOST
     valueFrom:
       configMapKeyRef:
