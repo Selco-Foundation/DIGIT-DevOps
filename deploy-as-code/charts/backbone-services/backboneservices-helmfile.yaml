@@ -50,21 +50,21 @@ releases:
 #  values:
 #    - ./redis/values.yaml
 #
-#- name: elasticsearch
-#  chart: ./elasticsearch
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch/values.yaml
-#    - secret:
-#        password: {{ .Values.secrets.elasticsearch.password }}
+- name: elasticsearch
+  chart: ./elasticsearch
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch/values.yaml
+    - secret:
+        password: {{ .Values.secrets.elasticsearch.password }}
 
-#- name: elasticsearch-data
-#  chart: ./elasticsearch-data
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch-data/values.yaml
+- name: elasticsearch-data
+  chart: ./elasticsearch-data
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch-data/values.yaml
 
 #- name: kibana
 #  chart: ./kibana
@@ -113,20 +113,20 @@ releases:
 #  values:
 #    - ./playground/values.yaml
 
-- name: jupyterhub
-  installed: true
-  chart: ./jupyterhub
-  version: 4.0.0
-  <<: *default
-  values:
-    - ./jupyterhub/values.yaml
-    - ingress:
-        hosts:
-          - {{ .Values.global.domain }}
-        tls:
-          - secretName: {{ .Values.global.domain }}-tls-certs
-            hosts:
-              - "{{ .Values.global.domain }}"
+#- name: jupyterhub
+#  installed: true
+#  chart: ./jupyterhub
+#  version: 4.0.0
+#  <<: *default
+#  values:
+#    - ./jupyterhub/values.yaml
+#    - ingress:
+#        hosts:
+#          - {{ .Values.global.domain }}
+#        tls:
+#          - secretName: {{ .Values.global.domain }}-tls-certs
+#            hosts:
+#              - "{{ .Values.global.domain }}"
 
 #- name: pgadmin4
 #  installed: true

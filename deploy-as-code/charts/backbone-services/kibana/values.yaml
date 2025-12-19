@@ -12,6 +12,9 @@ replicas: 1
 extraEnvs:
   - name: "NODE_OPTIONS"
     value: "--max-old-space-size=1800"
+  - name: SERVER_MAXPAYLOAD
+    value: "52428800"
+
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
@@ -151,6 +154,7 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-process-multipart-body: "false"
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
   hosts:
     - host: demo.digit.org
       paths:
