@@ -79,13 +79,13 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx448m -Xms448m"
+esJavaOpts: "-Xmx712m -Xms712m"
 
 resources:
   requests:
     memory: "896Mi"
   limits:
-    memory: "896Mi"  
+    memory: "1500Mi"
 
 initResources: {}
   # limits:
