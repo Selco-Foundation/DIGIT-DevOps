@@ -128,6 +128,13 @@ lifecycle:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_RMS_HOST
+    valueFrom:
+     configMapKeyRef:
+        key: rms-service
+        name: egov-service-host
+  - name: EGOV_RMS_TICKET_STATUS_UPDATE_PATH
+    value: /rms-service/v1/ticket/status/update
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:

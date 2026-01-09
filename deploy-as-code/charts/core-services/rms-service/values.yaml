@@ -59,5 +59,10 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: facility-service
+  - name: RMS_API_ACCESS_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: rms-api-token
+        key: token
 
 
