@@ -44,9 +44,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-hrms # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-hrms # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 
 #  - name: egov-indexer # Replace with your desired namespace
@@ -142,9 +142,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: im-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: im-services # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
