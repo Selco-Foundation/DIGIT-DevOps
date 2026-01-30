@@ -84,6 +84,7 @@ configmaps:
       boundary-service: http://boundary-service.core-dev:8080/
       facility-service: http://facility-service.core-dev:8080/
       rms-service: http://rms-service.core-dev:8080/
+      amc-service: http://amc-service.core-dev:8080
 
 root-ingress:
   name: root-ingress
