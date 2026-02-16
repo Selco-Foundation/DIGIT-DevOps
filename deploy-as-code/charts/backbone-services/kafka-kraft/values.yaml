@@ -567,8 +567,10 @@ controller:
   ## @param controller.resources.requests The requested resources for the container
   ##
   resources:
-    limits: {}
-    requests: {}
+    limits:
+      memory: 2Gi
+    requests:
+      memory: 1512Mi
   ## Kafka pods' Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param controller.podSecurityContext.enabled Enable security context for the pods
@@ -895,7 +897,7 @@ broker:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 10
+    initialDelaySeconds: 60
     timeoutSeconds: 5
     failureThreshold: 3
     periodSeconds: 10
@@ -909,7 +911,7 @@ broker:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 5
+    initialDelaySeconds: 30
     failureThreshold: 6
     timeoutSeconds: 5
     periodSeconds: 10
