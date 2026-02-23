@@ -122,6 +122,9 @@ secrets:
   egov-pg-service:
     name: egov-pg-service
     namespace: core-dev
+  rms-api-token:
+    name: rms-api-token
+    namespace: core-dev
   pgadmin:
     name: pgadmin
     namespace: backbone-dev
