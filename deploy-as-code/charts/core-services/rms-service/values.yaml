@@ -11,6 +11,29 @@ initContainers:
     image:
       repository: "selcohub/rms-service-db"
       tag: RMS_Integration-ce893dce1f5805597058bbbd1590c2aad2346f74
+    env: |
+      - name: DB_URL
+        valueFrom:
+          configMapKeyRef:
+            key: db-url
+            name: egov-config
+      - name: SCHEMA_TABLE
+        value: rms_service_schema
+      - name: FLYWAY_USER
+        valueFrom:
+          secretKeyRef:
+            key: flyway-username
+            name: db
+      - name: FLYWAY_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: flyway-password
+            name: db
+      - name: FLYWAY_LOCATIONS
+        valueFrom:
+          configMapKeyRef:
+            key: flyway-locations
+            name: egov-config
 
 # Ingress Configs
 ingress:
