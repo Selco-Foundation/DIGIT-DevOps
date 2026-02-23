@@ -93,7 +93,7 @@ jobs:
       - name: Parse YAML and export as environment variables
         id: set-env
         run: |
-          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v2.2.8.yaml) 
+          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v3.0.0.yaml) 
           
           # Iterate over each service and export as environment variables
           echo "$services" | while IFS=":" read -r key value; do
@@ -108,6 +108,8 @@ jobs:
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+           --set rms-service.image.tag=${{ env.rms-service }} \
+           --set rms-service.initContainers.dbMigration.image.tag=${{ env.rms-service }} \
            --set maharashtra.image.tag=${{ env.maharashtra }} \
            --set meghalaya.image.tag=${{ env.meghalaya }} \
            --set gujarat.image.tag=${{ env.gujarat }} \
