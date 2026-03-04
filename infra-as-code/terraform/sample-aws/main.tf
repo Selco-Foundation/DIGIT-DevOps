@@ -50,13 +50,18 @@ provider "kubernetes" {
 }
 
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  version         = "17.24.0"
-  cluster_name    = "${var.cluster_name}"
-  vpc_id          = "${module.network.vpc_id}"
-  cluster_version = "${var.kubernetes_version}"
-  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
-  kubeconfig_name = "${var.kubeconfig_name}"
+  source                 = "terraform-aws-modules/eks/aws"
+  version                = "17.24.0"
+  cluster_name           = "${var.cluster_name}"
+  vpc_id                 = "${module.network.vpc_id}"
+  cluster_version        = "${var.kubernetes_version}"
+  subnets                = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  kubeconfig_name        = "${var.kubeconfig_name}"
+  worker_ami_name_filter = "amazon-eks-node-al2023-x86_64-nvidia-1.33-*"
+  
+  workers_group_defaults = {
+    ami_id = "${var.ami_id}"
+  }
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
