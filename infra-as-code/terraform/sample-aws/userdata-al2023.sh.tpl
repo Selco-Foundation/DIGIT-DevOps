@@ -19,7 +19,7 @@ spec:
     # new-selco-dev: 172.20.0.0/16
     # new-selco-uat: <get from cluster>
     # new-selco-prod: <get from cluster>
-    cidr: 172.20.0.0/16
+    cidr: 10.100.0.0/16
   kubelet:
     config:
       maxPods: 110
