@@ -230,6 +230,6 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: rms-service
-    installed: true
-    <<: *default
+#  - name: rms-service
+#    installed: true
+#    <<: *default
