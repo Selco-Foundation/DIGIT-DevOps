@@ -130,6 +130,11 @@ lifecycle:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_FACILITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: facility-service
+        name: egov-service-host
   - name: EGOV_RMS_HOST
     valueFrom:
      configMapKeyRef:
