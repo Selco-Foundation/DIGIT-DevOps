@@ -37,11 +37,16 @@ memory_requests: 512Mi
 
 # Additional Container Envs
 env: |
-        - name: EGOV_VENDOR_USER_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: egov-service-host
-              key: vendor-registry
+  - name: EGOV_AMC_SCHEDULER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: amc-service
+  - name: EGOV_VENDOR_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: vendor-registry
   - name: EGOV_PDF_HOST
     valueFrom:
       configMapKeyRef:

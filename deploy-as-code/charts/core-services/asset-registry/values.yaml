@@ -39,6 +39,11 @@ env: |
     value: "8080"
   - name: SERVER_CONTEXTPATH
     value: /asset-registry
+  - name: EGOV_ACTIVITY_FACILITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: field-planner-activity
   - name: OTEL_EXPORTER_OTLP_ENDPOINT
     valueFrom:
       configMapKeyRef:
@@ -79,10 +84,5 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: facility-service
-  - name: EGOV_FIELDPLAN_ACTIVITY_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-service-host
-        key: field-planner-activity
   
 

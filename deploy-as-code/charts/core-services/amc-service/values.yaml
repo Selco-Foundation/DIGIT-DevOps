@@ -38,6 +38,8 @@ persistence:
 env: |
   - name: SERVER_PORT
     value: "8080"
+  - name: EGOV_OTP_BYPASS_VALIDATION
+    value: "true"
   - name: SERVER_SERVLET_CONTEXT_PATH
     value: /asset-amc
   - name: JAVA_OPTS
@@ -64,6 +66,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: project
+  - name: EGOV_VENDOR_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: vendor-registry
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:
@@ -77,9 +84,9 @@ env: |
   - name: EGOV_BOUNDARY_HOST
     valueFrom:
       configMapKeyRef:
-        name: egov-service-host
         key: boundary-service
-  - name: WORKFLOW_HOST
+        name: egov-service-host
+  - name: EGOV_WORKFLOW_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
