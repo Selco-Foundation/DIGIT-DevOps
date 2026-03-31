@@ -19,7 +19,7 @@ modules:
       amc-service: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       asset-registry: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       field-planner-activity: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
-      field-planner: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
+      field-planner: v3.3.9-2eae964f8fa251e7adba756c2b6eb1f34ea47851
       ingestion-service: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       project: v3.3.8-308f30a6efd2edb3d4fdefd5128ad46e18a1571c
       vendor-registry: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
