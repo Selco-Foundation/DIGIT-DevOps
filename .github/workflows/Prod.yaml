@@ -93,7 +93,7 @@ jobs:
       - name: Parse YAML and export as environment variables
         id: set-env
         run: |
-          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v3.2.7.yaml) 
+          services=$(yq e '.modules[] | select(.name == "core-dev") | .services' deploy-as-code/charts/product-release-charts/dependency_chart-selco-v3.3.7.yaml) 
           
           # Iterate over each service and export as environment variables
           echo "$services" | while IFS=":" read -r key value; do
@@ -108,6 +108,22 @@ jobs:
       - name: digit deployment
         run: |
           helmfile -f digit-helmfile.yaml apply --include-needs=true\
+           --set workbench-ui.image.tag=${{ env.workbench-ui }} \
+           --set pdf-service.image.tag=${{ env.pdf-service }} \
+           --set installation-qc.image.tag=${{ env.installation-qc }} \
+           --set vendor-registry.image.tag=${{ env.vendor-registry }} \
+           --set vendor-registry.initContainers.dbMigration.image.tag=${{ env.vendor-registry }} \
+           --set project.image.tag=${{ env.project }} \
+           --set project.initContainers.dbMigration.image.tag=${{ env.project }} \
+           --set ingestion-service.image.tag=${{ env.ingestion-service }} \
+           --set field-planner.image.tag=${{ env.field-planner }} \
+           --set field-planner.initContainers.dbMigration.image.tag=${{ env.field-planner }} \
+           --set field-planner-activity.image.tag=${{ env.field-planner-activity }} \
+           --set field-planner-activity.initContainers.dbMigration.image.tag=${{ env.field-planner-activity }} \
+           --set asset-registry.image.tag=${{ env.asset-registry }} \
+           --set asset-registry.initContainers.dbMigration.image.tag=${{ env.asset-registry }} \
+           --set amc-service.image.tag=${{ env.amc-service }} \
+           --set amc-service.initContainers.dbMigration.image.tag=${{ env.amc-service }} \
            --set rms-service.image.tag=${{ env.rms-service }} \
            --set rms-service.initContainers.dbMigration.image.tag=${{ env.rms-service }} \
            --set maharashtra.image.tag=${{ env.maharashtra }} \
