@@ -21,11 +21,26 @@ healthChecks:
 
 # Additional Container Envs
 env: |
+  - name: LOCALIZATION_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        key: egov-localization
+        name: egov-service-host
   - name: FIELDPLAN_SERVICE_URL
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: field-plan
+  - name: FIELDPLAN_ACTIVITY_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: field-planner-activity
+  - name: AMC_SCHEDULER_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: amc-service
   - name: VENDOR_SERVICE_URL
     valueFrom:
       configMapKeyRef:

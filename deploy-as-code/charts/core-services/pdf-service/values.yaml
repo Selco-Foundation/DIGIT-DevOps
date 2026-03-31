@@ -14,6 +14,20 @@ initContainers:
     enabled: true
     repo: "git@github.com:Selco-Foundation/configs.git"
     branch: "main"
+  wait-for-kafka:
+    image:
+      repository: busybox
+      tag: latest
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for Kafka to be ready..."
+        until nc -z kafka-kraft.backbone-dev.svc.cluster.local 9092; do
+          echo "Kafka is not available yet..."
+          sleep 5
+        done
+        echo "Kafka is up!"
 
 # Container Configs
 image:
@@ -24,8 +38,8 @@ healthChecks:
   enabled: false
   livenessProbePath: "/pdf-service/health"
   readinessProbePath: "/pdf-service/health"
-data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json"
-format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json"
+data-config-urls: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/data-config/amc-report.json"
+format-config-urls: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/format-config/amc-report.json"
 
 # Additional Container Envs
 env: |
@@ -40,6 +54,15 @@ env: |
     value: http://egov-filestore.core-dev:8080
   - name: EGOV_LOCALISATION_SEARCH
     value: localization/messages/v2/_search
+  - name: KAFKA_CREATE_JOB_TOPIC
+    value: PDF_GEN_CREATE
+  - name: KAFKA_RECEIVE_CREATE_JOB_TOPIC
+    value: PDF_GEN_RECEIVE
+  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
+    valueFrom:
+      configMapKeyRef:
+        key: kafka-brokers
+        name: egov-config
   - name: KAFKA_BROKER_HOST
     valueFrom:
       configMapKeyRef:
