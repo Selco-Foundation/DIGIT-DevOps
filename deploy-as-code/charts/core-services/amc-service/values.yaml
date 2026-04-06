@@ -39,7 +39,7 @@ env: |
   - name: SERVER_PORT
     value: "8080"
   - name: EGOV_OTP_BYPASS_VALIDATION
-    value: "true"
+    value: "false"
   - name: SERVER_SERVLET_CONTEXT_PATH
     value: /asset-amc
   - name: JAVA_OPTS
