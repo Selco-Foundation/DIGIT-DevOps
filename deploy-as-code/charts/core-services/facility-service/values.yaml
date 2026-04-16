@@ -38,6 +38,18 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_INDEXER_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: elasticsearch-credentials
+  - name: EGOV_INDEXER_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: elasticsearch-credentials
+  - name: EGOV_INDEXER_ES_HOST_NAME
+    value: https://elasticsearch-data.backbone-dev
   - name: EGOV_ENC_HOST
     valueFrom:
       configMapKeyRef:
