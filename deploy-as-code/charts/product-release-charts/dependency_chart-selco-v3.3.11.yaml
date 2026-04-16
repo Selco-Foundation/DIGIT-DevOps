@@ -23,7 +23,7 @@ modules:
       ingestion-service: v3.3.11-85216fdf595ef4188ff1c9165c77e59bf25d2880
       project: v3.3.11-85216fdf595ef4188ff1c9165c77e59bf25d2880
       vendor-registry: v3.3.11-85216fdf595ef4188ff1c9165c77e59bf25d2880
-      installation-qc: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
+      installation-qc: v3.3.11-85216fdf595ef4188ff1c9165c77e59bf25d2880
       pdf-service: pdf-2.9-lts-a17e8ebea8-48
       workbench-ui: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       rms-service: v3.3.11-85216fdf595ef4188ff1c9165c77e59bf25d2880
