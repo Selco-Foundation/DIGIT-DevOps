@@ -37,6 +37,21 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_INDEXER_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-credentials
+        key: password
+  - name: EGOV_INDEXER_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-credentials
+        key: username
+  - name: EGOV_INDEXER_ES_HOST_NAME
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: es-indexer-host
   - name: EGOV_ENC_HOST
     valueFrom:
       configMapKeyRef:
