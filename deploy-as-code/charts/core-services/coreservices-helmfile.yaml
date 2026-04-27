@@ -178,9 +178,9 @@ releases:
     installed: true
     <<: *default
 
-#  - name: ingestion-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: ingestion-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: boundary-service # Replace with your desired namespace
 #    installed: true
@@ -226,9 +226,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: amc-service
-#    installed: true
-#    <<: *default
+  - name: amc-service
+    installed: true
+    <<: *default
 #
 #  - name: rms-service
 #    installed: true
