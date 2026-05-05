@@ -60,6 +60,11 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: egov-mdms-service
+        name: egov-service-host
   - name: SERVER_PORT
     value: "8080"
   - name: SERVER_SERVLET_CONTEXT_PATH
