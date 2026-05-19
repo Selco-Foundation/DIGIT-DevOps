@@ -88,9 +88,9 @@ releases:
 #    <<: *default
 
 
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: meghalaya # Replace with your desired namespace
 #    installed: true
@@ -174,13 +174,13 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: installation-qc # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: installation-qc # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
-#  - name: ingestion-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: ingestion-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: boundary-service # Replace with your desired namespace
 #    installed: true
