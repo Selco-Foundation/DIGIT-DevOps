@@ -190,17 +190,17 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: facility-service  # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: facility-service  # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 #
-#  - name: asset-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: asset-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: project # Replace with your desired namespace
 #    installed: true
