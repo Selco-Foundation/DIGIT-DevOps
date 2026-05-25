@@ -42,3 +42,5 @@ env: |
     value: "false"  
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"    
+  - name: EGOV_OTP_LENGTH
+    value: "4"
