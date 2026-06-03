@@ -37,6 +37,11 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_VENDOR_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: vendor-registry
   - name: EGOV_IM_SERVICES_HOST
     valueFrom:
       configMapKeyRef:
