@@ -44,9 +44,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-hrms # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-hrms # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 
 #  - name: egov-indexer # Replace with your desired namespace
@@ -146,9 +146,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: im-services-analytics # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: im-services-analytics # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
@@ -162,9 +162,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: vendor-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: vendor-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: asset-registry # Replace with your desired namespace
 #    installed: true
@@ -174,17 +174,14 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: installation-qc # Replace with your desired namespace
-    installed: true
-    <<: *default
 #
   - name: ingestion-service # Replace with your desired namespace
     installed: true
     <<: *default
 #
-  - name: boundary-service # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: boundary-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: processor-services # Replace with your desired namespace
 #    installed: true
@@ -202,13 +199,13 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: project # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: project # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: installation-qc # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: installation-qc # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: ingestion-service # Replace with your desired namespace
 #    installed: true
@@ -226,10 +223,10 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: amc-service
-#    installed: true
-#    <<: *default
-#
-#  - name: rms-service
-#    installed: true
-#    <<: *default
+  - name: amc-service
+    installed: true
+    <<: *default
+
+  - name: rms-service
+    installed: true
+    <<: *default
