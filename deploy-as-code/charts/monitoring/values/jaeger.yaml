@@ -746,7 +746,7 @@ esIndexCleaner:
     # requests:
     #   cpu: 256m
   #   memory: 128Mi
-  numberOfDays: 2
+  numberOfDays: 1
   serviceAccount:
     create: true
     annotations: {}
