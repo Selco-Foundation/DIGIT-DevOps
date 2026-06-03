@@ -29,8 +29,31 @@ minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
+  - name: EGOV_RMS_HOST
+    valueFrom:
+     configMapKeyRef:
+        key: rms-service
+        name: egov-service-host
+  - name: EGOV_FACILITY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: facility-service
+  - name: EGOV_PROJECT_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: project
   - name: EGOV_HRMS_HOST
-    value: http://egov-hrms.core-dev:8080
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-hrms
   - name: EGOV_WORKFLOW_HOST
     valueFrom:
       configMapKeyRef:
