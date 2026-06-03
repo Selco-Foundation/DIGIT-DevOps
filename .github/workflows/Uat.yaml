@@ -42,20 +42,6 @@ jobs:
           aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ vars.CLUSTER_NAME_UAT }}
           cat ~/.kube/config > kubeconfig
 
-      - name: Creating namespace
-        run: kubectl create namespace egov
-        continue-on-error: true
-
-      - name: Install kubectl in runner
-        uses: azure/setup-kubectl@v4
-        with:
-          version: 'latest' # default is latest stable
-        id: install
-
-      - name: Verfiy kubectl get nodes
-        run: |
-          kubectl get nodes
-
       - name: Install sops
         run: |
           sudo apt update
