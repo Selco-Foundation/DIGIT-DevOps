@@ -720,7 +720,7 @@ spark:
   # ttlSecondsAfterFinished: 120
 
 esIndexCleaner:
-  enabled: false
+  enabled: true
   securityContext:
     runAsUser: 1000
   podSecurityContext:
@@ -734,7 +734,7 @@ esIndexCleaner:
     []
     # - name: ROLLOVER
   #   value: 'true'
-  schedule: "55 23 * * *"
+  schedule: "55 10 * * *"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
   concurrencyPolicy: Forbid
@@ -746,7 +746,7 @@ esIndexCleaner:
     # requests:
     #   cpu: 256m
   #   memory: 128Mi
-  numberOfDays: 7
+  numberOfDays: 2
   serviceAccount:
     create: true
     annotations: {}
