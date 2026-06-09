@@ -75,9 +75,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-workflow-v2 # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: egov-workflow-v2 # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
@@ -187,13 +187,13 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: facility-service  # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: facility-service  # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: vendor-registry # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: vendor-registry # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: asset-registry # Replace with your desired namespace
 #    installed: true
@@ -223,9 +223,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: amc-service
-#    installed: true
-#    <<: *default
+  - name: amc-service
+    installed: true
+    <<: *default
 #
 #  - name: rms-service
 #    installed: true
