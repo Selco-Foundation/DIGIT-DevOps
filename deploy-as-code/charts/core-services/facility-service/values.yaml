@@ -38,6 +38,8 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE
+    value: "6"
   - name: EGOV_VENDOR_HOST
     valueFrom:
       configMapKeyRef:
