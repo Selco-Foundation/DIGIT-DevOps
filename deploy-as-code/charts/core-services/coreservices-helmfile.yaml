@@ -199,21 +199,21 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: installation-qc # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-  - name: ingestion-service # Replace with your desired namespace
+  - name: installation-qc # Replace with your desired namespace
     installed: true
     <<: *default
+#
+#  - name: ingestion-service # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: field-planner
 #    installed: true
 #    <<: *default
 #
-#  - name: field-planner-activity
-#    installed: true
-#    <<: *default
+  - name: field-planner-activity
+    installed: true
+    <<: *default
 #
 #  - name: pdf-service
 #    installed: true
