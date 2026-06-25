@@ -41,8 +41,6 @@ persistence:
 env: |
   - name: SPRING_CODEC_MAX_IN_MEMORY_SIZE
     value: 5MB
-  - name: SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE
-    value: "6"
   - name: EGOV_VENDOR_HOST
     valueFrom:
       configMapKeyRef:
