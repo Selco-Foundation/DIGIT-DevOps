@@ -26,7 +26,7 @@ modules:
       installation-qc: v3.8.30-0efeee2bc0c39657154f9e77deec3e0c26158fa3
       pdf-service: pdf-2.9-lts-a17e8ebea8-48
       workbench-ui: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
-      rms-service: v3.8.30-0efeee2bc0c39657154f9e77deec3e0c26158fa3
+      rms-service: v3.8.31-b909a1034b985a1bb9f8be94f7ed00ec7a8a0c60
       boundary-service: v3.5.24-52511d8d8a66451b28a2f082a5d8ce7fc24830bd
       facility-service: v3.8.30-0efeee2bc0c39657154f9e77deec3e0c26158fa3
       maharashtra: v2.1.0-c0f56d4c169b43a17d2285403d41b3fb10c6dde7
