@@ -88,45 +88,11 @@ releases:
 #    <<: *default
 
 
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: digit-ui # Replace with your desired namespace
+    installed: true
+    <<: *default
 
-#  - name: meghalaya # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: nagaland # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: assam # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: mizoram # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: manipur # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: sikkim # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: odisha # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: gujarat # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
-#  - name: maharashtra # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+
 #
 #  - name: workbench-ui # Replace with your desired namespace
 #    installed: true
@@ -146,9 +112,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: im-services-analytics # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: im-services-analytics # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
@@ -211,9 +177,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: field-planner-activity
-    installed: true
-    <<: *default
+#  - name: field-planner-activity
+#    installed: true
+#    <<: *default
 #
 #  - name: pdf-service
 #    installed: true
@@ -223,6 +189,6 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: rms-service
-#    installed: true
-#    <<: *default
+  - name: rms-service
+    installed: true
+    <<: *default
