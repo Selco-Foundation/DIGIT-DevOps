@@ -21,6 +21,11 @@ healthChecks:
 
 # Additional Container Envs
 env: |
+  - name: FILESTORE_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-filestore
   - name: LOCALIZATION_SERVICE_URL
     valueFrom:
       configMapKeyRef:
