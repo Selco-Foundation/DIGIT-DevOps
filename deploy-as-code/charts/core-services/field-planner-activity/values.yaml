@@ -37,6 +37,11 @@ memory_requests: 512Mi
 
 # Additional Container Envs
 env: |
+  - name: EGOV_INGESTION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: ingestion-service
   - name: EGOV_PDF_HOST
     valueFrom:
       configMapKeyRef:
