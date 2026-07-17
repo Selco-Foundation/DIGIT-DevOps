@@ -23,6 +23,16 @@ initContainers:
       repository: "selcohub/im-services-db"
       tag: "main-87dbaeea5af057c243a85e625dc8f5ee3f434681"
     env: |
+      - name: EGOV_PROJECT_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: project
+            name: egov-service-host
+      - name: EGOV_VENDOR_HOST
+        valueFrom:
+          configMapKeyRef:
+            key: vendor-registry
+            name: egov-service-host
       - name: EGOV_USER_HOST
         valueFrom:
           configMapKeyRef:
@@ -95,12 +105,19 @@ initContainers:
           configMapKeyRef:
             key: egov-mdms-service
             name: egov-service-host
+    extraVolumeMounts:
+      - mountPath: /flyway/logs/
+        name: workdir
+
+extraVolumes: |
+  - emptyDir: {}
+    name: workdir
 
 # Container Configs
 image:
   repository: "selcohub/im-services"
   tag: "main-87dbaeea5af057c243a85e625dc8f5ee3f434681"
-replicas: "1"
+replicas: "5"
 healthChecks:
   enabled: true
   livenessProbePath: "/im-services/health"
@@ -111,6 +128,17 @@ heap: "-Xmx2900m -Xms2900m"
 memory_requests: "2Gi"
 memory_limits: "4Gi"
 minReplicas: 2
+
+extraVolumeMounts: |
+  - mountPath: /flyway/logs/
+    name: workdir
+nodeSelector:
+  accelerator: none
+tolerations:
+  - effect: NoSchedule
+    key: cpu
+    operator: Equal
+    value: "true"
 
 lifecycle:
   postStart:
