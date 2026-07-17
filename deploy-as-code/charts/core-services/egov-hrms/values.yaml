@@ -36,6 +36,11 @@ memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
+  - name: EGOV_ENC_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-enc-service
   - name: EGOV_SERVICES_DATA_SYNC_EMPLOYEE_REQUIRED 
     value:  "false"
   - name: EGOV_BOUNDARY_HOST
