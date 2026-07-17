@@ -1,16 +1,57 @@
-# Infrastructure Setup (AWS)
+# DIGIT-DevOps – Installation Guide
 
-This document describes how to provision the AWS infrastructure for this project using the
-Terraform code in `terraform/sample-aws`. It only covers **infrastructure provisioning**
-(networking, EKS, RDS, S3, IAM). Application/service deployment onto the cluster is handled
-separately in `deploy-as-code` and is not covered here.
+This repository provisions and deploys the Selco E4H platform in two stages:
+
+1. **Infrastructure provisioning** (`infra-as-code/`) — Terraform code that creates the
+   AWS networking, EKS cluster, RDS database, and S3 buckets the platform runs on.
+2. **Application deployment** (`deploy-as-code/`) — Helm charts + Helmfile releases that
+   install the ingress controller, backbone services (Kafka, Postgres, cert-manager, ...)
+   and the DIGIT microservices (mdms, im-services etc) onto that cluster.
+
+Follow **Part 1** to stand up the cluster, then **Part 2** to deploy the application. If a
+cluster already exists, you can skip straight to Part 2.
+
+## Table of contents
+
+- [Third-party dependencies](#third-party-dependencies)
+- [Part 1 — Infrastructure provisioning (Terraform)](#part-1--infrastructure-provisioning-terraform)
+- [Part 2 — Application deployment (Helm/Helmfile)](#part-2--application-deployment-helmhelmfile)
+- [DNS and TLS after deployment](#dns-and-tls-after-deployment)
+
+---
+
+## Third-party dependencies
+
+The installation depends on several external services that this project does not control.
+If any of these are down, misconfigured, or unreachable, the corresponding step of the
+install **will fail**. Check these first when troubleshooting a failed run.
+
+| # | Dependency | Used for | Impact if unavailable |
+|---|---|---|---|
+| 1 | **GoDaddy / Cloudflare** (or your domain registrar/DNS provider) | Hosting the DNS zone for the platform domain; creating the CNAME record that points to the ingress load balancer | Domain won't resolve to the cluster; cert-manager's DNS/HTTP-01 challenge (for SSL) will fail |
+| 2 | **Docker Hub** | Pulling public base images used by Helm charts and CI build steps | Pod images fail to pull (`ImagePullBackOff`); Helmfile/Helm releases stay stuck in a pending state |
+| 3 | **GitHub Actions** | CI/CD pipelines that build and push images, and (in some workflows) run the Helmfile deploy itself | Automated builds/deploys don't run — manual `helm`/`helmfile` deploys are unaffected, so impact depends on which workflow is broken |
+| 4 | **[Nexus repository](https://nexus-repo.egovernments.org/nexus)** | Hosts build artifacts for the E4H **backend services** (JARs/Maven artifacts consumed during image builds) | Backend service image builds fail; deploying a **new** image tag is blocked (already-built images already pushed to a registry are unaffected) |
+| 5 | **AWS** | EKS, RDS, S3, IAM, VPC networking — the entire infra layer (Part 1), plus the container registry/storage the deployed services use at runtime | Terraform apply fails outright; if the cluster is already up, an AWS outage can still affect RDS/S3-backed services and any new provisioning |
+| 6 | **Image repositories for backbone & monitoring services** (e.g. `quay.io`, `ghcr.io`, `bitnami`, `grafana`, or your private registry — see each chart's `values.yaml` `image.repository`) | Pulling images for Kafka, Postgres, Elasticsearch, ingress-nginx, cert-manager, Loki, Promtail, etc. | Those backbone/monitoring pods fail to start, which in turn blocks any core service that depends on them (DB, Kafka, ingress) |
+
+Verify connectivity/credentials to all of the above **before** starting a fresh install, and
+re-check them first if a deploy that used to work suddenly fails.
+
+---
+
+## Part 1 — Infrastructure provisioning (Terraform)
+
+Provisions the AWS infrastructure using the Terraform code in `infra-as-code/terraform/sample-aws`:
+networking, EKS, RDS, and S3. **Application/service deployment is not covered here** — see
+[Part 2](#part-2--application-deployment-helmhelmfile).
 
 > The `terraform/` folder also contains other configs (`egov-cicd`, `quickstart-aws-ec2`,
 > `node-pool`, `sample-azure`, `sample-gke`, ...). These are generic/legacy templates from the
 > eGov DIGIT framework used by other projects/environments and are **not** used for this
 > project. Ignore them unless you know you need them.
 
-## What gets created
+### What gets created
 
 Running `terraform/sample-aws` provisions:
 
@@ -25,9 +66,9 @@ Running `terraform/sample-aws` provisions:
 - A Kubernetes secret (`egov-filestore`) in the cluster containing the filestore IAM
   credentials (only when `create_eks = true`)
 
-## Prerequisites
+### Prerequisites
 
-### Tools (install locally or on a build box)
+**Tools** (install locally or on a build box):
 
 - **Terraform** >= 1.5.7 (required by the upstream `terraform-aws-modules/eks/aws` module).
   Install from [releases.hashicorp.com](https://releases.hashicorp.com/terraform/) or via
@@ -39,7 +80,7 @@ Running `terraform/sample-aws` provisions:
 - **kubectl** — to verify/interact with the cluster after it's created.
 - **git**
 
-### AWS account / credentials
+**AWS account / credentials:**
 
 - An AWS account and a set of credentials (IAM user access keys, or an SSO/role profile)
   configured locally, e.g. via `aws configure` or `aws configure sso`, resolvable by the
@@ -47,7 +88,7 @@ Running `terraform/sample-aws` provisions:
 - The target region must have capacity/quota for: 1 VPC, 1 NAT Gateway + 1 Elastic IP, 1 EKS
   cluster, and enough EC2 instances of the chosen worker instance type.
 
-### IAM permissions needed
+**IAM permissions needed:**
 
 Provisioning creates VPC networking, IAM roles/users/policies (including an OIDC provider for
 IRSA), an EKS cluster and node group, RDS, and S3 — plus an S3 bucket and DynamoDB table for
@@ -65,10 +106,11 @@ policy instead, it must at minimum allow:
 - `dynamodb:*` (state lock table)
 - `sts:GetCallerIdentity`
 
-Whoever applies the Terraform also needs cluster access after creation — `enable_cluster_creator_admin_permissions = true`
-in `main.tf` grants the identity that created the cluster admin access to it automatically.
+Whoever applies the Terraform also needs cluster access after creation —
+`enable_cluster_creator_admin_permissions = true` in `main.tf` grants the identity that
+created the cluster admin access to it automatically.
 
-## 1. Set up the remote state backend (one-time, per environment)
+### 1. Set up the remote state backend (one-time, per environment)
 
 Terraform state is stored in S3 with DynamoDB locking. `terraform/sample-aws/remote-state`
 creates that bucket + lock table:
@@ -92,7 +134,7 @@ Do this once per environment (e.g. once for dev, once for prod) with a distinct 
 each time. Note the bucket name, key, region, and DynamoDB table name — you'll need them in
 the next step.
 
-## 2. Configure the environment (`sample-aws`)
+### 2. Configure the environment (`sample-aws`)
 
 ```bash
 cd infra-as-code/terraform/sample-aws
@@ -105,7 +147,7 @@ or create a new one (e.g. `tfvars/staging.tfvars`). Variables you need to review
 |---|---|
 | `aws_region` | AWS region for all resources |
 | `cluster_name` | Used to name/tag the EKS cluster, S3 buckets, IAM user/policy — must be unique per environment |
-| `vpc_cidr_block` | VPC CIDR (default `192.168.0.0/16`) |
+| `vpc_cidr_block` | VPC CIDR (default `192.168.0.0/16`) should be different for each environment |
 | `network_availability_zones` | AZs for VPC subnets, must match `aws_region`; use at least 2 for HA |
 | `availability_zones` | AZ(s) the EKS control plane / node group / RDS use, must match `aws_region` |
 | `kubernetes_version` | EKS version |
@@ -122,7 +164,7 @@ or create a new one (e.g. `tfvars/staging.tfvars`). Variables you need to review
 prompt for it interactively at `plan`/`apply` time (or pass `TF_VAR_db_password` as an
 environment variable in CI).
 
-## 3. Initialize and apply
+### 3. Initialize and apply
 
 Point Terraform at the state backend created in step 1. Either pass values inline:
 
@@ -147,7 +189,7 @@ terraform apply -var-file=tfvars/dev.tfvars
 
 This takes ~15-20 minutes (EKS cluster + node group creation is the slowest part).
 
-## 4. Verify
+### 4. Verify
 
 ```bash
 aws eks update-kubeconfig --name <cluster_name> --region <aws_region>
@@ -158,7 +200,7 @@ Terraform outputs (`outputs.tf`) also expose `vpc_id`, `private_subnets`, `publi
 `db_instance_endpoint`, `s3_assets_bucket`, and `s3_filestore_bucket` for use by the deployment
 step.
 
-## Tearing down
+### Tearing down
 
 ```bash
 terraform destroy -var-file=tfvars/<env>.tfvars
@@ -167,18 +209,15 @@ terraform destroy -var-file=tfvars/<env>.tfvars
 The remote-state S3 bucket has `prevent_destroy = true` and is managed separately (in
 `remote-state/`) — destroying `sample-aws` does not remove your state bucket/lock table.
 
+---
 
+## Part 2 — Application deployment (Helm/Helmfile)
 
-# DIGIT-DevOps – Application Deployment Guide
+Deploys the Selco E4H microservices — Helm charts, Helmfile releases, environment
+values/secrets — onto the Kubernetes cluster created in Part 1 (or any existing cluster with
+`kubectl` access, a reachable Postgres instance, and an ingress controller in place).
 
-This repo holds the **application layer** (Helm charts, Helmfile releases, environment
-values/secrets) used to deploy the DIGIT/Upyog microservices onto an existing
-Kubernetes cluster. Cluster/VPC/RDS provisioning lives under `infra-as-code/` and is
-**out of scope for this document** — this guide assumes a working Kubernetes cluster
-(with `kubectl` access), a reachable Postgres instance and an ingress controller are
-already in place.
-
-## 1. Repository layout (`deploy-as-code/`)
+### 1. Repository layout (`deploy-as-code/`)
 
 ```
 deploy-as-code/
@@ -186,7 +225,7 @@ deploy-as-code/
 ├── charts/
 │   ├── backbone-services/            # kafka, postgresql, redis, elasticsearch, ingress-nginx, cert-manager, minio, pgadmin ...
 │   │   └── backboneservices-helmfile.yaml
-│   ├── core-services/                 # all DIGIT/Upyog microservices (egov-user, egov-mdms-service, workflow, UI, state modules, ...)
+│   ├── core-services/                 # all DIGIT microservices (egov-user, egov-mdms-service, workflow, UI, state modules, ...)
 │   │   └── coreservices-helmfile.yaml
 │   ├── monitoring/                    # loki, promtail
 │   │   └── monitoring-helmfile.yaml
@@ -203,7 +242,7 @@ Each service under `core-services/` (and the other categories) is a standalone H
 chart with its own `Chart.yaml` and `values.yaml`. Helmfile is the orchestrator that
 applies a selected set of these charts against an environment's values/secrets files.
 
-## 2. Prerequisites
+### 2. Prerequisites
 
 Tools (install on your workstation or CI runner):
 
@@ -214,7 +253,7 @@ Tools (install on your workstation or CI runner):
 - `yq` — used to parse image tags out of the `product-release-charts` manifests
 - AWS CLI, if secrets are encrypted with AWS KMS (see `.sops.yaml`) and/or the cluster is EKS
 
-Cluster/environment prerequisites (assumed already provisioned by `infra-as-code`):
+Cluster/environment prerequisites (already provisioned if you completed Part 1):
 
 - A running Kubernetes cluster with `ingress-nginx` and `cert-manager` (or your own
   ingress/TLS solution) able to be installed/already installed
@@ -230,14 +269,16 @@ Cluster/environment prerequisites (assumed already provisioned by `infra-as-code
   own config repo)
 - KMS key (or GPG key) that matches the encryption rule in `charts/.sops.yaml`, and
   AWS credentials/OIDC role allowed to use it
+- Access to a domain name (registered with GoDaddy, Cloudflare, or similar) that you can
+  point at the cluster — see [DNS and TLS after deployment](#dns-and-tls-after-deployment)
 
-## 3. Configure the environment
+### 3. Configure the environment
 
 All environment-specific configuration lives in `deploy-as-code/charts/environments/`.
 For a new environment, copy an existing pair of files (e.g. `selco-uat.yaml` /
 `selco-uat-secrets.yaml`) and update:
 
-### `<env>.yaml` (non-secret values)
+**`<env>.yaml` (non-secret values):**
 - `global.domain` — public domain the environment will be served on
 - `root-ingress.cert-issuer` — cert-manager ClusterIssuer name
 - `configmaps.egov-config.data.*` — `db-host`, `db-name`, `db-url`, `db-otel-url`,
@@ -246,7 +287,7 @@ For a new environment, copy an existing pair of files (e.g. `selco-uat.yaml` /
 - Any per-service overrides (heap size, java-args, feature flags, `custom-js-injection`
   for UI charts, tenant-specific config)
 
-### `<env>-secrets.yaml` (secret values, sops-encrypted)
+**`<env>-secrets.yaml` (secret values, sops-encrypted):**
 - Database credentials (`db.username`, `db.password`, `db.flywayUsername`, `db.flywayPassword`)
 - `egov-filestore` access/secret keys (S3/MinIO)
 - `egov-enc-service` master password/salt/IV
@@ -265,7 +306,7 @@ sops --decrypt --kms <kms-key-arn> deploy-as-code/charts/environments/<env>-secr
 
 Never commit an unencrypted secrets file.
 
-## 4. Select which services to deploy
+### 4. Select which services to deploy
 
 Each helmfile (`coreservices-helmfile.yaml`, `backboneservices-helmfile.yaml`,
 `monitoring-helmfile.yaml`) declares one `releases` entry per chart, most of them
@@ -277,7 +318,7 @@ commented out. To deploy a service:
 3. Add `needs:` entries if the service depends on another release being installed
    first (e.g. `egov-user` needs `egov-enc-service`).
 
-## 5. Pin image versions
+### 5. Pin image versions
 
 `charts/product-release-charts/dependency_chart-<product>-v<version>.yaml` is a
 version manifest: for a given release it lists every service and the exact image tag
@@ -289,7 +330,7 @@ current list of `--set` flags — every service on the helmfile that has an entr
 version manifest needs its own `image.tag` (and, where applicable, `dbMigration`
 image tag) flag.
 
-## 6. Deploy
+### 6. Deploy
 
 ```bash
 cd deploy-as-code
@@ -307,17 +348,14 @@ helmfile -f digit-helmfile.yaml apply --include-needs=true \
 Afterwards, restore the encrypted version (`git checkout -- charts/environments/<env>-secrets.yaml`)
 so the plaintext copy never gets committed.
 
-## 7. Post-deploy
+### 7. Post-deploy verification
 
-- Fetch the ingress LoadBalancer hostname and point your DNS `domain` at it:
-  ```bash
-  kubectl get svc ingress-nginx-controller -n backbone-dev -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
-  ```
 - Verify pods are healthy: `kubectl get pods -n core-dev -n backbone-dev`
 - Hit each chart's health endpoint (defined per-chart under `healthChecks` in
-  `values.yaml`, e.g. `/user/health`) through the ingress domain.
+  `values.yaml`, e.g. `/user/health`) through the ingress domain, once DNS/TLS is set up
+  (see below).
 
-## 8. Onboarding a new microservice
+### 8. Onboarding a new microservice
 
 1. Scaffold a chart from `charts/common-chart-template/` under the right category
    (`core-services/`, `municipal-services/`, etc.).
@@ -332,3 +370,30 @@ so the plaintext copy never gets committed.
    overridden) so other services can discover it.
 5. Add its image tag to the next `product-release-charts` version manifest and to the
    `--set` flags in the relevant GitHub Actions workflow(s).
+
+---
+
+## DNS and TLS after deployment
+
+Once the `ingress-nginx` chart (part of `backbone-services`) is deployed, the cloud provider
+provisions a Load Balancer for it. The domain won't serve traffic until you complete these
+steps:
+
+1. **Get the load balancer hostname:**
+
+   ```bash
+   kubectl get svc ingress-nginx-controller -n backbone-dev -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+   ```
+
+2. **Map your domain to the load balancer.** In your DNS provider (GoDaddy, Cloudflare, etc.)
+   create a **CNAME record** for `global.domain` (as set in `charts/environments/<env>.yaml`)
+   pointing at the load balancer hostname from step 1. Propagation can take a few minutes to
+   a few hours depending on the provider and TTL.
+
+3. **SSL/TLS is handled automatically by cert-manager.** The `cert-manager` backbone chart
+   watches Ingress resources annotated with the `ClusterIssuer` configured in
+   `root-ingress.cert-issuer` (e.g. `letsencrypt-prod`), and requests/renews a certificate for
+   `global.domain` once the CNAME above resolves correctly — cert-manager needs the domain to
+   already point at the load balancer to complete the ACME challenge. No manual certificate
+   handling is required; if a certificate stays pending, check that the CNAME has propagated
+   and that `kubectl describe certificate -n <namespace>` doesn't show a challenge error.
