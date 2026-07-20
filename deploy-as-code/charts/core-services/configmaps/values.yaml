@@ -84,6 +84,7 @@ configmaps:
       field-plan: http://field-planner.core-dev:8080/
       field-planner-activity: http://field-planner-activity.core-dev:8080/
       amc-service: http://amc-service.core-dev:8080
+      translator-service: http://translator-service.core-dev:8080/
 
 root-ingress:
   name: root-ingress
@@ -129,3 +130,6 @@ secrets:
   grafana-smtp:
     name: grafana-smtp
     namespace: monitoring
+  translator-service:
+    name: translator-service
+    namespace: core-dev
