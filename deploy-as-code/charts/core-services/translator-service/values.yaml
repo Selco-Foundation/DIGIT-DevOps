@@ -15,10 +15,10 @@ ingress:
 # Container Configs
 image:
   repository: "selcohub/translator-service"
-  tag: develop-a926f200bb30a1173d90dbbca6f3af9e567892ff
+  tag: develop-54442a0b6a27d0661ffa8ae2ce70706c46446615
 replicas: "1"
 healthChecks:
-  enabled: false
+  enabled: true
   livenessProbePath: "/translator-service/health"
   readinessProbePath: "/translator-service/health"
 appType: "java-spring"
