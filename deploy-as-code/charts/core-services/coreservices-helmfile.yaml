@@ -94,7 +94,10 @@ releases:
 #  - name: configmaps # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-#
+
+#  - name: translator-service
+#    installed: true
+#    <<: *default
 
 #  - name: digit-ui # Replace with your desired namespace
 #    installed: true
@@ -166,9 +169,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: facility-service  # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: facility-service  # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
