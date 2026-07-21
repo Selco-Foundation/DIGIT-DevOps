@@ -19,8 +19,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/translator-service/health"
-  readinessProbePath: "/translator-service/health"
+  livenessProbePath: "/translator/health"
+  readinessProbePath: "/translator/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
