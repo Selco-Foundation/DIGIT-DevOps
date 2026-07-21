@@ -14,7 +14,7 @@ replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
 #username: "egov-testing@egovernments.org"
-heap: "-Xmx360m -Xms360m"
+heap: "-Xmx192m -Xms192m"
 memory_requests: "512Mi"
 memory_limits: "768Mi"
 
@@ -39,7 +39,7 @@ env: |
   - name: MAIL_PORT
     value: '465'
   - name: JAVA_OPTS
-    value: '-Xmx192m -Xms192m'
+    value: {{ .Values.heap | quote }}
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:

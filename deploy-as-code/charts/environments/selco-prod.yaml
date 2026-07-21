@@ -13,6 +13,7 @@ configmaps:
       es-indexer-host: "https://elasticsearch-data.backbone-dev:9200/"
       kafka-brokers: "kafka-kraft-controller-headless.backbone-dev:9092"
       egov-services-fqdn-name: https://saura-emitra.selcofoundation.org/
+      sms-enabled: "true"
 egov-user:
   otp-validation: "true"
   citizen-otp-enabled: "true"
@@ -126,7 +127,7 @@ egov-filestore:
   fixed-bucketname: selco-prod  ## Add filestore bucket name
 
 egov-enc-service:
-  heap: "-Xmx256m -Xms256m"
+  heap: "-Xmx512m -Xms512m"
 
 
 egov-idgen:
@@ -136,9 +137,10 @@ egov-idgen:
   autocreate-new-seq: "true"
 
 egov-localization:
-  heap: "-Xmx256m -Xms256m"
+  heap: "-Xmx512m -Xms512m"
 
-
+egov-notification-mail:
+  heap: "-Xmx360m -Xms360m"
 
 egov-notification-sms:
   sms-provider-url: "https://restapi.smscountry.com/v0.1/Accounts/A2mCONOT0pIjJ12fuKC8/SMSes/" ## Add sms provider url
