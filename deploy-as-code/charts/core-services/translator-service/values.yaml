@@ -10,12 +10,12 @@ labels:
 ingress:
   enabled: true
   zuul: true
-  context: "translator-service"
+  context: "translator"
 
 # Container Configs
 image:
   repository: "selcohub/translator-service"
-  tag: develop-54442a0b6a27d0661ffa8ae2ce70706c46446615
+  tag: develop-982680b9c22a824e29903a638774084085e43041
 replicas: "1"
 healthChecks:
   enabled: true
@@ -33,7 +33,7 @@ env: |
   - name: SERVER_PORT
     value: "8080"
   - name: SERVER_SERVLET_CONTEXT_PATH
-    value: /translator-service
+    value: /translator
   - name: JAVA_OPTS
     value: {{ index .Values "heap" | quote }}
   - name: GEMINI_API_KEY
