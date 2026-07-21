@@ -1,4 +1,4 @@
-name: translator-service
+name: translator
 namespace: core-dev
 
 # Common Labels
