@@ -3,7 +3,7 @@ namespace: core-dev
 
 # Common Labels
 labels:
-  app: "translator-service"
+  app: "translator"
   group: "core"
 
 # Ingress Configs
