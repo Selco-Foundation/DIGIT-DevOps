@@ -182,6 +182,7 @@ egov-indexer:
     gitSync:
       repo: "git@github.com:Selco-Foundation/configs"        ##### Change repo url with Your fork Repo url
       branch: "main"                                         ##### Change repo branch with Your fork Repo branch
+      rev: dcddeaee7700ad2587453b154175a4e8d578d02c
   egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
 
 egov-persister:
