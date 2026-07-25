@@ -43,7 +43,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         key: project
-      name: egov-service-host
+        name: egov-service-host
   - name: SPRING_CODEC_MAX_IN_MEMORY_SIZE
     value: 5MB
   - name: EGOV_VENDOR_HOST
