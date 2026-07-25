@@ -39,6 +39,11 @@ persistence:
 
 # Additional Container Envs
 env: |
+  - name: EGOV_PROJECT_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: project
+      name: egov-service-host
   - name: SPRING_CODEC_MAX_IN_MEMORY_SIZE
     value: 5MB
   - name: EGOV_VENDOR_HOST
