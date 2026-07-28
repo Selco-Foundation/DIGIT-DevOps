@@ -208,7 +208,7 @@ egov-indexer:
     gitSync:
       repo: "git@github.com:Selco-Foundation/configs"        ##### Change repo url with Your fork Repo url
       branch: "main"                                         ##### Change repo branch with Your fork Repo branch
-  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
+  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/scheduled-visit-indexer.yml,file:///work-dir/configs/egov-indexer/rms-services.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
 
 egov-persister:
   replicas: 1
@@ -223,7 +223,7 @@ egov-persister:
 
 audit-service:
   replicas: 1
-  persist-yml-path: "https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/attendance-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/muster-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/estimate-service.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/contract-service-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/bankaccounts-persister.yml,https://raw.githubusercontent.com/egovernments/configs/UNIFIED-DEV/works/egov-persister/expense-bill-payment-persister.yaml"
+  persist-yml-path: "https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/im-services-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/egov-workflow-v2-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/hrms-employee-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/boundary-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/asset-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/vendor-persister.yaml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/mdms-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/egov-user-event-persister.yml,https://raw.githubusercontent.com/Selco-Foundation/configs/main/egov-persister/privacy-audit.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:Selco-Foundation/configs"
