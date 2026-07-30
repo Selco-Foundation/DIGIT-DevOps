@@ -24,7 +24,7 @@ existingConfigMap: ""
 yamlApplicationConfig:
   kafka:
     clusters:
-      - name: new-selco-uat
+      - name: selco-cluster
         bootstrapServers: kafka-kraft.backbone-dev:9092
   spring:
     security:
