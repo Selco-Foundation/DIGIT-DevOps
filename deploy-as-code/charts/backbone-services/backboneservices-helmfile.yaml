@@ -97,6 +97,21 @@ releases:
     - name: kraft.clusterId
       value: {{ .Values.secrets.kafka.clusterID }}
 
+- name: kafka-ui
+  chart: ./kafka-ui
+  installed: true
+  version: 0.7.6
+  <<: *default
+  values:
+  - envs:
+      secret:
+        username: {{ .Values.secrets.kafka_ui.username }}
+        password: {{ .Values.secrets.kafka_ui.password }}
+    ingress:
+      host: {{ .Values.global.domain }}
+      tls:
+        secretName: {{ .Values.global.domain }}-tls-certs
+
 #- name: ingress-nginx
 #  installed: true
 #  chart: ./ingress-nginx
