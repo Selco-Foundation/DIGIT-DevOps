@@ -20,7 +20,6 @@ configmaps:
       sms-enabled: "true"
 
 egov-user:
-  replicas: 5
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
@@ -123,7 +122,6 @@ workbench-ui:
       ';"   
 
 egov-filestore:
-  replicas: 5
   volume: /opt/eGov/filestore
   is-bucket-fixed: "true"
   minio.url : "http://minio.backbone:9000/"
@@ -136,7 +134,6 @@ egov-filestore:
   fixed-bucketname: selco-prod  ## Add filestore bucket name
 
 egov-enc-service:
-  replicas: 5
   heap: "-Xmx512m -Xms512m"
 
 
@@ -200,6 +197,3 @@ audit-service:
     gitSync:
       repo: "git@github.com:Selco-Foundation/configs"
       branch: "main"
-
-im-services:
-  replicas: 5
