@@ -1,8 +1,6 @@
 global:
   domain: saura-emitra.selcofoundation.org
 
-replicas: 2
-
 root-ingress:
   cert-issuer: "letsencrypt-prod"
 
