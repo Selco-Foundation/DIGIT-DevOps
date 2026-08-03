@@ -112,9 +112,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: im-services-analytics # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: im-services-analytics # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
@@ -161,9 +161,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: project # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: project # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: installation-qc # Replace with your desired namespace
 #    installed: true
