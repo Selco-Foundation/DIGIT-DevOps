@@ -18,6 +18,13 @@ healthChecks:
   enabled: true
   livenessProbePath: "/ingestion-service/health"
   readinessProbePath: "/ingestion-service/health"
+resources: |
+  limits:
+    cpu: 950m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 512Mi
 
 # Additional Container Envs
 env: |

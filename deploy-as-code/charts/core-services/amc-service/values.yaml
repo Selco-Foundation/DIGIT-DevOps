@@ -40,12 +40,19 @@ env: |
     value: "8080"
   - name: EGOV_OTP_BYPASS_VALIDATION
     value: "true"
+  - name: NOTIFICATION_SMS_ENABLED
+    value: "false"
   - name: SERVER_SERVLET_CONTEXT_PATH
     value: /asset-amc
   - name: JAVA_OPTS
     value: {{ index .Values "heap" | quote }}
   - name: SPRING_REDIS_HOST
     value: redis.backbone-dev
+  - name: EGOV_ENC_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-enc-service
   - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
     valueFrom:
       configMapKeyRef:
@@ -71,6 +78,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: vendor-registry
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:

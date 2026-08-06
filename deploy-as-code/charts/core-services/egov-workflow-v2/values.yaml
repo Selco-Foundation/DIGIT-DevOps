@@ -38,33 +38,33 @@ memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
-        - name: EGOV_INFRA_INDEXER_HOST 
-          valueFrom:
-            configMapKeyRef:
-              key: es-indexer-host
-              name: egov-config
-        - name: EGOV_INDEXER_ES_HOST_NAME 
-          valueFrom:
-            configMapKeyRef:
-              name: egov-config
-              key: es-indexer-host
-        - name: EGOV_INDEXER_ES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: elasticsearch-credentials
-              key: password
-        - name: EGOV_INDEXER_ES_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: elasticsearch-credentials
-              key: username
-        - name: EGOV_IM_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: egov-service-host
-              key: im-services
-      - name: EGOV_WF_FUZZYSEARCH_ISFUZZYENABLED
-        value: "false"
+  - name: EGOV_INFRA_INDEXER_HOST 
+    valueFrom:
+      configMapKeyRef:
+        key: es-indexer-host
+        name: egov-config
+  - name: EGOV_INDEXER_ES_HOST_NAME 
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: es-indexer-host
+  - name: EGOV_INDEXER_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-credentials
+        key: password
+  - name: EGOV_INDEXER_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-credentials
+        key: username
+  - name: EGOV_IM_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: im-services
+  - name: EGOV_WF_FUZZYSEARCH_ISFUZZYENABLED
+    value: "false"
   - name: EGOV_WF_FUZZYSEARCH_ISFUZZYENABLED
     value: 'false'
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
