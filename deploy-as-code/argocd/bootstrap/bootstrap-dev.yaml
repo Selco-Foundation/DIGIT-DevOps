@@ -16,8 +16,8 @@ spec:
         - values-dev.yaml
 
   destination:
-    server: https://kubernetes.default.svc
-    namespace: core
+    server: https://AB343EA957DD5FCE7A2CA27E91114AC5.gr7.ap-south-1.eks.amazonaws.com
+    namespace: core-dev
 
   syncPolicy:
     automated:

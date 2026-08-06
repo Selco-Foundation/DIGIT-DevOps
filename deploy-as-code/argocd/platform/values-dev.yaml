@@ -2,7 +2,7 @@ name: digit-devops-dev
 namespace: argocd
 
 project:
-  description: Restrict ArgoCD access to core namespace
+  description: Restrict ArgoCD access to core-dev namespace
   sourceRepos:
     - https://github.com/Selco-Foundation/DIGIT-DevOps.git
   destination:
@@ -11,8 +11,8 @@ project:
     # remote spoke relative to that hub, register it first:
     #   argocd cluster add <dev-kubeconfig-context> --name digit-dev-cluster
     # Keep this in sync with whatever --name you actually register it as.
-    name: digit-dev-cluster
-    namespace: core
+    name: new-selco-dev
+    namespace: core-dev
   clusterResourceWhitelist: []
   namespaceResourceWhitelist:
     - group: "*"

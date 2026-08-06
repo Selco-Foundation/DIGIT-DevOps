@@ -59,7 +59,7 @@ repoServer:
     create: true
     name: argocd-repo-server
     annotations:
-      eks.amazonaws.com/role-arn: "arn:aws:iam::654654556600:role/ACCOUNT_ROLE_TODO"
+      eks.amazonaws.com/role-arn: "arn:aws:iam::654654556600:role/prod-eks-kms-access"
 
   volumes:
     - name: sops-helm-plugin-config

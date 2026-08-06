@@ -13,8 +13,6 @@ RUN apk add --no-cache bash ca-certificates curl git \
     && mv "/tmp/linux-${TARGETARCH}/helm" /usr/local/bin/helm \
     && rm -rf /tmp/helm.tar.gz "/tmp/linux-${TARGETARCH}" \
     && curl -fsSL "https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${TARGETARCH}" -o /usr/local/bin/sops \
-    && chmod +x /usr/local/bin/sops \
-    && addgroup -g 999 argocd \
-    && adduser -D -u 999 -G argocd argocd
+    && chmod +x /usr/local/bin/sops
 
 USER 999

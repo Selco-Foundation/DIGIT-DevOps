@@ -2,7 +2,7 @@ name: digit-devops-prod
 namespace: argocd
 
 project:
-  description: Restrict ArgoCD access to core namespace
+  description: Restrict ArgoCD access to core-dev namespace
   sourceRepos:
     - https://github.com/Selco-Foundation/DIGIT-DevOps.git
   destination:
@@ -10,7 +10,7 @@ project:
     # (matching Livelihood's hub pattern). If it runs elsewhere, swap this
     # for a `name:` referencing a registered remote cluster instead.
     server: https://kubernetes.default.svc
-    namespace: core
+    namespace: core-dev
   clusterResourceWhitelist: []
   namespaceResourceWhitelist:
     - group: "*"
