@@ -94,7 +94,8 @@ env: |
       configMapKeyRef: 
         name: egov-service-host
         key: asset-registry
-
+  - name: EGOV_OTP_BYPASS_VALIDATION
+    value: "true"
 
 
 
