@@ -9,6 +9,23 @@ initContainers:
     enabled: true
     repo: "git@github.com:egovernments/configs"
     branch: "UAT"
+    env: |
+        - name: "GIT_SYNC_REPO"
+          value: "{{ .Values.initContainers.gitSync.repo }}"
+        - name: "GIT_SYNC_BRANCH"
+          value: "{{ .Values.initContainers.gitSync.branch }}"    
+        {{- if .Values.initContainers.gitSync.rev }}
+        - name: GIT_SYNC_REV
+          value: {{ .Values.initContainers.gitSync.rev }}
+        {{- end }}    
+        - name: "GIT_SYNC_DEPTH"
+          value: {{ .Values.initContainers.gitSync.depth | default "1" | quote }}
+        - name: "GIT_SYNC_ONE_TIME"
+          value: "true"          
+        - name: "GIT_SYNC_SSH"
+          value: "true"      
+        - name: "GIT_SYNC_ROOT"
+          value: "/work-dir"
 
 # Container Configs
 image:
