@@ -37,9 +37,9 @@ jobs:
   update-tag:
     runs-on: ubuntu-latest
     env:
-      SERVICE_NAME: ${{ github.event.inputs.service_name || github.event.client_payload.service_name || "installation-qc" }}
-      SERVICE_TAG: ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag || "uat-jkchre43" }}
-      ENVIRONMENT: ${{ github.event.inputs.environment || github.event.client_payload.environment || "selco-dev" }}
+      SERVICE_NAME: ${{ github.event.inputs.service_name || github.event.client_payload.service_name || 'installation-qc' }}
+      SERVICE_TAG: ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag || 'uat-jkchre43' }}
+      ENVIRONMENT: ${{ github.event.inputs.environment || github.event.client_payload.environment || 'selco-dev' }}
 
     permissions:
       contents: write
