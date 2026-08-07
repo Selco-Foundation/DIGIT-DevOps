@@ -121,7 +121,6 @@ jobs:
         run: |
           CHART_PATH='./core-services/${{ env.SERVICE_NAME }}'
           kubectl auth can-i create deploy
-          helm list -n core-dev
 
           helm dependency build $CHART_PATH
           helm template $CHART_PATH \
