@@ -80,7 +80,10 @@ jobs:
       - name: View template
         working-directory: ./deploy-as-code/charts
         run: |
-          helm template ./core-services/${{ env.SERVICE_NAME }} \
+          CHART_PATH='./core-services/${{ env.SERVICE_NAME }}'
+
+          helm dependency build $CHART_PATH
+          helm template $CHART_PATH \
             -f ./environments/${{ env.ENVIRONMENT }}.yaml \
             -f ./environments/${{ env.ENVIRONMENT }}-tags.yaml \
             -f ./environments/${{ env.ENVIRONMENT }}-secrets.yaml
