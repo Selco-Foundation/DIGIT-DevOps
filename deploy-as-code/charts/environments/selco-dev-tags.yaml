@@ -1,0 +1,3 @@
+installation-qc:
+  image:
+    tag: feature-assessment-module-ui-70c69d5d9a44e78957bad427f51d96693c18ce9a
