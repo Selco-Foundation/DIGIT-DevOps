@@ -36,6 +36,7 @@ jobs:
       ENVIRONMENT: selco-dev
 
     permissions:
+      id-token: write
       contents: write
 
     steps:
