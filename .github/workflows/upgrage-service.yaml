@@ -113,7 +113,7 @@ jobs:
 
       - name: sops decryption
         working-directory: ./deploy-as-code/charts/environments
-        run: sops -d -i --kms ${{ secrets.PUBLIC_KMS_KEY_DEV }} ./${{ env.ENVIRONMENT }}-secrets.yaml
+        run: sops -d -i ./${{ env.ENVIRONMENT }}-secrets.yaml
 
       - name: View template
         working-directory: ./deploy-as-code/charts
