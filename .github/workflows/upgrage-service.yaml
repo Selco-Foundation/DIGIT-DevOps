@@ -98,18 +98,18 @@ jobs:
           role-to-assume: arn:aws:iam::654654556600:role/GitHubActionsRole
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region ${{ secrets.AWS_REGION }} \
+            --name ${{ vars.CLUSTER_NAME_DEV }}
+
       - name: Install sops
         run: |
           sudo apt update
           wget https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
           chmod +x sops-v3.7.1.linux
           sudo mv sops-v3.7.1.linux /usr/local/bin/sops
-
-      - name: Update kubeconfig
-        run: |
-          aws eks update-kubeconfig \
-            --region ${{ secrets.AWS_REGION }} \
-            --name ${{ vars.CLUSTER_NAME_DEV }}
 
       - name: sops decryption
         working-directory: ./deploy-as-code/charts/environments
@@ -119,6 +119,7 @@ jobs:
         working-directory: ./deploy-as-code/charts
         run: |
           CHART_PATH='./core-services/${{ env.SERVICE_NAME }}'
+          kubectl auth can-i create deploy
           helm list -n core-dev
 
           helm dependency build $CHART_PATH
