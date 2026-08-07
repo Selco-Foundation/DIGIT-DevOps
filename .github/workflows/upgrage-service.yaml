@@ -77,10 +77,58 @@ jobs:
             yq eval -i '.${{ env.SERVICE_NAME }}.initContainers.dbMigration.image.tag="${{ env.SERVICE_TAG }}"' "$IMAGE_TAGS_FILEPATH"
           fi
 
+      # - name: Commit and Push Changes
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      #     git add "./deploy-as-code/charts/environments/${{ env.ENVIRONMENT }}-tags.yaml"
+
+      #     # Check if tag is unchanged
+      #     if git diff-index --quiet HEAD; then
+      #       echo "No changes found. Tag might already be set to $SERVICE_TAG"
+      #       exit 0
+      #     fi
+
+      #     git commit -m "Update image tag for ${{ env.SERVICE_NAME }} to ${{ env.SERVICE_TAG }} in ${{ env.ENVIRONMENT }}"
+
+      #     git pull --rebase
+      #     git push
+
+
+        # Update in cluster
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install sops
+        run: |
+          sudo apt update
+          wget https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
+          chmod +x sops-v3.7.1.linux
+          sudo mv sops-v3.7.1.linux /usr/local/bin/sops
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region ${{ secrets.AWS_REGION }} \
+            --name ${{ vars.CLUSTER_NAME_DEV }}
+
+      - name: Verfiy kubectl get nodes
+        run: kubectl get nodes
+
+      - name: sops decryption
+        working-directory: ./deploy-as-code/charts/environments
+        run: sops -d -i --kms ${{ secrets.PUBLIC_KMS_KEY_DEV }} ./${{ env.ENVIRONMENT }}-secrets.yaml
+
       - name: View template
         working-directory: ./deploy-as-code/charts
         run: |
           CHART_PATH='./core-services/${{ env.SERVICE_NAME }}'
+          helm list -n core-dev
 
           helm dependency build $CHART_PATH
           helm template $CHART_PATH \
