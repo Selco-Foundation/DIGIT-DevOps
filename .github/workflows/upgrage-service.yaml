@@ -26,6 +26,11 @@ concurrency:
   group: gitops-image-updates
   cancel-in-progress: false
 
+permissions:
+  id-token: write
+  contents: write
+
+
 jobs:
   update-tag:
     runs-on: ubuntu-latest
@@ -34,10 +39,6 @@ jobs:
       SERVICE_NAME: ${{ github.event.inputs.service_name || github.event.client_payload.service_name || 'sikkim' }}
       SERVICE_TAG: ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag || 'uat-jkchre43' }}
       ENVIRONMENT: selco-dev
-
-    permissions:
-      id-token: write
-      contents: write
 
     steps:
       - name: Checkout Repository
