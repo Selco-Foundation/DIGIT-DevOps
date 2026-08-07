@@ -70,11 +70,11 @@ jobs:
             exit 1
           fi
 
-          yq eval -i '.${{ env.SERVICE_NAME }}.image.tag=\"${{ env.SERVICE_TAG }}\"' "$IMAGE_TAGS_FILEPATH"
+          yq eval -i '.${{ env.SERVICE_NAME }}.image.tag="${{ env.SERVICE_TAG }}"' "$IMAGE_TAGS_FILEPATH"
 
           # Update DB Migration image if present
           if [ "$(yq eval ".${{ env.SERVICE_NAME }}.initContainers.dbMigration" "$IMAGE_TAGS_FILEPATH")" != "null" ]; then
-            yq eval -i '.${{ env.SERVICE_NAME }}.initContainers.dbMigration.image.tag=\"${{ env.SERVICE_TAG }}\"' "$IMAGE_TAGS_FILEPATH"
+            yq eval -i '.${{ env.SERVICE_NAME }}.initContainers.dbMigration.image.tag="${{ env.SERVICE_TAG }}"' "$IMAGE_TAGS_FILEPATH"
           fi
 
       - name: View template
