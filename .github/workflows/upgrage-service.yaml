@@ -80,7 +80,7 @@ jobs:
       - name: View template
         working-directory: ./deploy-as-code/charts
         run: |
-          helm template ./core-services/${{ env.ENVIRONMENT }} \
+          helm template ./core-services/${{ env.SERVICE_NAME }} \
             -f ./environments/${{ env.ENVIRONMENT }}.yaml \
             -f ./environments/${{ env.ENVIRONMENT }}-tags.yaml \
             -f ./environments/${{ env.ENVIRONMENT }}-secrets.yaml
