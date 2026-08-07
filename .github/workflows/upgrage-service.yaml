@@ -111,9 +111,6 @@ jobs:
             --region ${{ secrets.AWS_REGION }} \
             --name ${{ vars.CLUSTER_NAME_DEV }}
 
-      - name: Verfiy kubectl get nodes
-        run: kubectl get nodes
-
       - name: sops decryption
         working-directory: ./deploy-as-code/charts/environments
         run: sops -d -i --kms ${{ secrets.PUBLIC_KMS_KEY_DEV }} ./${{ env.ENVIRONMENT }}-secrets.yaml
