@@ -10,7 +10,7 @@ on:
         options:
           - sikkim
       service_tag:
-        description: "New image tag (e.g. v2.3.7, dev-abcd123)"
+        description: "New image tag (e.g. v2.3.7, uat-abcd123)"
         required: true
         type: string
   repository_dispatch:
@@ -34,11 +34,11 @@ permissions:
 jobs:
   update-tag:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: uat
     env:
       SERVICE_NAME: ${{ github.event.inputs.service_name || github.event.client_payload.service_name || 'sikkim' }}
       SERVICE_TAG: ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag || 'uat-jkchre43' }}
-      ENVIRONMENT: selco-dev
+      ENVIRONMENT: selco-uat
 
     steps:
       - name: Checkout Repository
@@ -103,7 +103,7 @@ jobs:
         run: |
           aws eks update-kubeconfig \
             --region ${{ secrets.AWS_REGION }} \
-            --name ${{ vars.CLUSTER_NAME_DEV }}
+            --name ${{ vars.CLUSTER_NAME_UAT }}
 
       - name: Install sops
         run: |
