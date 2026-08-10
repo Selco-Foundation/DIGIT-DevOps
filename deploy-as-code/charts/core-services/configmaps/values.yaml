@@ -133,3 +133,6 @@ secrets:
   loki-aws:
     name: loki-aws
     namespace: monitoring
+  docker-secret:
+    name: docker-secret
+    namespace: core-dev
