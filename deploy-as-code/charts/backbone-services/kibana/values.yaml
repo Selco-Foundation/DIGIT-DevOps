@@ -155,6 +155,36 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      access_by_lua_block {
+        if ngx.var.uri == "/kibana/internal/security/login" and ngx.req.get_method() == "POST" then
+          ngx.req.read_body()
+          local cjson = require "cjson.safe"
+          local body = cjson.decode(ngx.req.get_body_data() or "")
+          if body and body.params and body.params.username then
+            ngx.ctx.kibana_login_username = body.params.username
+          end
+        end
+      }
+      body_filter_by_lua_block {
+        if ngx.ctx.kibana_login_username then
+          ngx.ctx.kibana_login_resp = (ngx.ctx.kibana_login_resp or "") .. (ngx.arg[1] or "")
+          if ngx.arg[2] and ngx.status == 200 then
+            local cjson = require "cjson.safe"
+            local resp = cjson.decode(ngx.ctx.kibana_login_resp) or {}
+            -- name/full_name presence here is unverified against live Kibana response; confirm in UAT and adjust the field lookup below
+            local event = cjson.encode({
+              event = "kibana_login",
+              username = ngx.ctx.kibana_login_username,
+              name = resp.full_name or resp.name,
+              status = ngx.status,
+              remote_addr = ngx.var.remote_addr,
+              time = ngx.time(),
+            })
+            ngx.log(ngx.NOTICE, "KIBANA_LOGIN_EVENT " .. event)
+          end
+        end
+      }
   hosts:
     - host: demo.digit.org
       paths:
