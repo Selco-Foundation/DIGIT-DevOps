@@ -13,13 +13,8 @@ on:
         description: "New image tag (e.g. v2.3.7, uat-abcd123)"
         required: true
         type: string
-  repository_dispatch:
-    types: [update-image-tag]
-  push:
-    branches:
-      - helm-upgrade-gha-poc
 
-run-name: Update ${{ github.event.inputs.service_name || github.event.client_payload.service_name }} to ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag }}
+run-name: Update ${{ github.event.inputs.service_name }} to ${{ github.event.inputs.service_tag }}
 
 # Allow only one job at a time to prevent race conditions.
 concurrency:
@@ -36,8 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: uat
     env:
-      SERVICE_NAME: ${{ github.event.inputs.service_name || github.event.client_payload.service_name || 'sikkim' }}
-      SERVICE_TAG: ${{ github.event.inputs.service_tag || github.event.client_payload.service_tag || 'uat-jkchre43' }}
+      SERVICE_NAME: ${{ github.event.inputs.service_name }}
+      SERVICE_TAG: ${{ github.event.inputs.service_tag }}
       ENVIRONMENT: selco-uat
 
     steps:
@@ -120,8 +115,6 @@ jobs:
         working-directory: ./deploy-as-code/charts
         run: |
           CHART_PATH='./core-services/${{ env.SERVICE_NAME }}'
-          kubectl auth can-i create deploy
-
           helm dependency build $CHART_PATH
           helm template $CHART_PATH \
             -f ./environments/${{ env.ENVIRONMENT }}.yaml \
