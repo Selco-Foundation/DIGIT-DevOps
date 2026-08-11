@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: user-analytics-report
+  namespace: core-dev
+spec:
+  schedule: "0 6 * * 1"
+  timeZone: Asia/Kolkata
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: user-analytics-report
+            image: selcohub/user-analytics-report:uat-2026-08-11
+          restartPolicy: OnFailure
