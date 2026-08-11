@@ -88,9 +88,9 @@ releases:
 #    <<: *default
 
 
-#  - name: digit-ui # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+#   - name: digit-ui # Replace with your desired namespace
+#     installed: true
+#     <<: *default
 
 
 #
@@ -112,9 +112,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: im-services-analytics # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: im-services-analytics # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
@@ -135,8 +135,8 @@ releases:
 #  - name: asset-registry # Replace with your desired namespace
 #    installed: true
 #    <<: *default
-
-
+#
+#
 #  - name: ingestion-service # Replace with your desired namespace
 #    installed: true
 #    <<: *default
@@ -149,9 +149,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: facility-service  # Replace with your desired namespace
-    installed: true
-    <<: *default
+#   - name: facility-service  # Replace with your desired namespace
+#     installed: true
+#     <<: *default
 #
 #  - name: vendor-registry # Replace with your desired namespace
 #    installed: true
@@ -173,10 +173,10 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: field-planner
-#    installed: true
-#    <<: *default
-#
+  - name: field-planner
+    installed: true
+    <<: *default
+
 #  - name: field-planner-activity
 #    installed: true
 #    <<: *default
@@ -185,10 +185,10 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: amc-service
+#   - name: amc-service
+#     installed: true
+#     <<: *default
+#
+#  - name: rms-service
 #    installed: true
 #    <<: *default
-#
-  - name: rms-service
-    installed: true
-    <<: *default
