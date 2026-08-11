@@ -26,8 +26,17 @@ healthChecks:
   readinessProbePath: "/processor-services/health"
 appType: "java-spring"
 tracing-enabled: true
-memory_limits: "2560Mi"
-memory_requests: "2Gi"
+memory_limits: "4Gi"
+memory_requests: "1540Mi"
+
+nodeSelector:
+  accelerator: none
+tolerations:
+  - effect: NoSchedule
+    key: cpu
+    operator: Equal
+    value: "true"
+
 lifecycle:
   postStart:
     exec:

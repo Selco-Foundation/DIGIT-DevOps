@@ -106,12 +106,13 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-otp
+  - name: EGOV_ENC_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-enc-service
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
-
-
-
-

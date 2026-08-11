@@ -161,16 +161,16 @@ spec:
       {{- if .Values.resources }}                                     
           resources:
             {{- tpl .Values.resources . | nindent 12 }}
-      {{- end }}            
+      {{- end }}
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
     {{- with .Values.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
     {{- end }}
     {{- with .Values.tolerations }}
       tolerations:
-{{ toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
     {{- end }}

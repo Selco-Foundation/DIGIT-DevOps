@@ -21,20 +21,32 @@ initContainers:
     enabled: true
     repo: "git@github.com:egovernments/configs"
     branch: "master"
-  wait-for-kafka:
-    image:
-      repository: busybox
-      tag: latest
-    command:
-      - /bin/sh
-      - -c
-      - |
-        echo "Waiting for Kafka to be ready..."
-        until nc -z kafka-kraft.backbone-dev.svc.cluster.local 9092; do
-          echo "Kafka is not available yet..."
-          sleep 5
-        done
-        echo "Kafka is up!"
+    env: |
+      - name: "GIT_SYNC_REPO"
+        value: "{{ .Values.initContainers.gitSync.repo }}"
+      - name: "GIT_SYNC_BRANCH"
+        value: "{{ .Values.initContainers.gitSync.branch }}"
+      {{- if .Values.initContainers.gitSync.rev }}
+      - name: "GIT_SYNC_REV"
+        value: "{{ .Values.initContainers.gitSync.rev }}"
+      {{- end }}
+      - name: "GIT_SYNC_DEPTH"
+        value: "0"            
+      - name: "GIT_SYNC_ONE_TIME"
+        value: "true"          
+      - name: "GIT_SYNC_SSH"
+        value: "true"      
+      - name: "GIT_SYNC_ROOT"
+        value: "/work-dir"
+  extraInitContainers: |
+    - name: wait-for-kafka
+      image: busybox:latest
+      command:
+        - /bin/sh
+        - -c
+        - "echo \"Waiting for Kafka to be ready...\"\nuntil nc -z kafka-kraft.backbone-dev.svc.cluster.local 9092; do\n  echo \"Kafka is not available yet...\"\n  sleep 5 \ndone\necho \"kafka is up!\" \n"
+      imagePullPolicy: Always
+
 # Container Configs
 image:
   repository: "egovio/egov-indexer"
