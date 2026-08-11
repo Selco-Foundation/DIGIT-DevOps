@@ -94,8 +94,14 @@ env: |
       configMapKeyRef: 
         name: egov-service-host
         key: asset-registry
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
   - name: EGOV_OTP_BYPASS_VALIDATION
     value: "true"
+
 
 
 
