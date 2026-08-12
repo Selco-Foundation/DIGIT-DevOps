@@ -155,30 +155,6 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      access_by_lua_block {
-        if ngx.var.uri == "/kibana/internal/security/login"
-           and ngx.req.get_method() == "POST" then
-  
-          ngx.req.read_body()
-  
-          local cjson = require "cjson.safe"
-          local body = cjson.decode(ngx.req.get_body_data() or "")
-  
-          if body and body.params and body.params.username then
-            local event = cjson.encode({
-              event = "kibana_login",
-              username = body.params.username,
-              remote_addr = ngx.var.remote_addr,
-              time = ngx.time()
-            })
-  
-            ngx.log(ngx.NOTICE, "KIBANA_LOGIN_EVENT " .. event)
-          end
-        end
-  
-        ngx.exit(ngx.DECLINED)
-      }
   hosts:
     - host: demo.digit.org
       paths:
