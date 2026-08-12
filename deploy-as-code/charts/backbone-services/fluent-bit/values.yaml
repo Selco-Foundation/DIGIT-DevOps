@@ -605,7 +605,7 @@ config:
     [PARSER]
         Name    kibana_login_event
         Format  regex
-        Regex   ^.*KIBANA_LOGIN_EVENT (?<payload>\{.*\}), client:.*$
+        Regex   ^.*KIBANA_LOGIN_EVENT (?<payload>\{[^{}]*\}).*$
 
     [PARSER]
         Name    kibana_login_json
