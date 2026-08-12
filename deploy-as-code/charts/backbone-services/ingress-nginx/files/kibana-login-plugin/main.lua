@@ -5,7 +5,7 @@ local _M = {}
 
 local LOGIN_URI = "/kibana/internal/security/login"
 
-function _M.access()
+function _M.rewrite()
     if ngx.var.uri ~= LOGIN_URI or ngx.req.get_method() ~= "POST" then
         return
     end
