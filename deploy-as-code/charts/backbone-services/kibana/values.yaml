@@ -156,7 +156,7 @@ ingress:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      access_by_lua_block {
+      rewrite_by_lua_block {
         if ngx.var.uri == "/kibana/internal/security/login" and ngx.req.get_method() == "POST" then
           ngx.req.read_body()
           local cjson = require "cjson.safe"
