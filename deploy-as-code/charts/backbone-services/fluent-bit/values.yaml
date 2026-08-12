@@ -85,7 +85,7 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/fluent-bit
+  repository: bitnamilegacy/fluent-bit
   tag: 4.0.8-debian-12-r0
   digest: ""
   ## Specify a imagePullPolicy
@@ -561,12 +561,12 @@ config:
     [FILTER]
         Name    grep
         Match   kibana_login
-        Regex   log KIBANA_LOGIN_EVENT
+        Regex   message KIBANA_LOGIN_EVENT
 
     [FILTER]
         Name          parser
         Match         kibana_login
-        Key_Name      log
+        Key_Name      message
         Parser        kibana_login_event
         Reserve_Data  Off
 
