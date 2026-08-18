@@ -46,7 +46,8 @@ controller:
     http: 80
     https: 443
   # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
-  config: {}
+  config:
+    plugins: "kibana_login"
   # -- Annotations to be added to the controller config configuration configmap.
   configAnnotations: {}
   # -- Will add custom headers before sending traffic to backends according to https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/custom-headers
@@ -87,7 +88,7 @@ controller:
   # their own *-snippet annotations, otherwise this is forbidden / dropped
   # when users add those annotations.
   # Global snippets in ConfigMap are still respected
-  allowSnippetAnnotations: false
+  allowSnippetAnnotations: true
   # -- Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
   # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
   # is merged
@@ -343,7 +344,7 @@ controller:
   # -- Annotations to be added to controller pods
   ##
   podAnnotations: {}
-  replicaCount: 1
+  replicaCount: 2
   # -- Minimum available pods set in PodDisruptionBudget.
   # Define either 'minAvailable' or 'maxUnavailable', never both.
   minAvailable: 1
@@ -635,14 +636,16 @@ controller:
   #      mountPath: /srv/var/lib/lemonldap-ng/portal/skins
 
   # -- Additional volumeMounts to the controller main container.
-  extraVolumeMounts: []
-  #  - name: copy-portal-skins
-  #   mountPath: /var/lib/lemonldap-ng/portal/skins
+  extraVolumeMounts:
+    - name: kibana-login-plugin
+      mountPath: /etc/nginx/lua/plugins/kibana_login
+      readOnly: true
 
   # -- Additional volumes to the controller pod.
-  extraVolumes: []
-  #  - name: copy-portal-skins
-  #    emptyDir: {}
+  extraVolumes:
+    - name: kibana-login-plugin
+      configMap:
+        name: ingress-nginx-kibana-login-plugin
 
   # -- Containers, which are run before the app containers are started.
   extraInitContainers: []
