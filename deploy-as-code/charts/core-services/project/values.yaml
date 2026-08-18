@@ -28,11 +28,13 @@ healthChecks:
   readinessProbePath: "/project/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx192m -Xms192m"
+heap: "-Xmx340m -Xms340m"
 memory_limits: "768Mi"
 
 # Additional Container Envs
 env: |
+  - name: JAVA_OPTS
+    value: {{ .Values.heap | quote }}
   - name: SERVER_PORT
     value: "8080"
   - name: SERVER_SERVLET_CONTEXT_PATH

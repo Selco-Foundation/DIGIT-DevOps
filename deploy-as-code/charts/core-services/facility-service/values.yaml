@@ -47,6 +47,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: im-services
+  - name: EGOV_PROJECT_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: project
   - name: EGOV_INDEXER_ES_PASSWORD
     valueFrom:
       secretKeyRef:
@@ -81,7 +86,7 @@ env: |
         name: egov-service-host
         key: egov-localization
   - name: EGOV_LOCALIZATION_SEARCH_ENDPOINT
-    value: /localization/messages/v1/_search
+    value: /_search
   - name: EGOV_IDGEN_HOST
     valueFrom:
       configMapKeyRef:

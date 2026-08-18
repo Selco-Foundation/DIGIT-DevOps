@@ -35,6 +35,8 @@ spec:
       labels:
       {{- include "common.labels" . | nindent 8 }}            
     spec:
+      imagePullSecrets:
+        - name: docker-secret
     {{- if .Values.initContainers.gitSync.enabled }}
       securityContext:
         fsGroup: 65533 # to make SSH key readable 
@@ -69,7 +71,7 @@ spec:
     {{- end }}     
       initContainers:
       {{- with .Values.initContainers.extraInitContainers }}
-        {{- tpl . $ | nindent 8 }}
+        {{- tpl . $ | nindent 6 }}
       {{- end }}
       {{- if .Values.initContainers.dbMigration.enabled }}
       {{ with .Values.initContainers.dbMigration}}
@@ -80,6 +82,10 @@ spec:
         {{- if .Values.initContainers.dbMigration.env }}               
         env: 
           {{- tpl  .Values.initContainers.dbMigration.env . | nindent 12 }}
+        {{- end }}
+        {{- if .Values.initContainers.dbMigration.volumeMounts }}               
+        volumeMounts: 
+          {{- tpl  .Values.initContainers.dbMigration.volumeMounts . | nindent 12 }}
         {{- end }}
       {{- end }}        
       {{- if .Values.initContainers.gitSync.enabled }}
