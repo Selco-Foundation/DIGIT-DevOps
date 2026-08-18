@@ -23,7 +23,7 @@ modules:
       ingestion-service: v3.14.39-57f21dab89d214be6110288ba765dfd5d36017ea
       project: v3.15.39-751350e850072634ceb2c049a06588de388891a4
       vendor-registry: v3.14.38-6411729330e1beb653f4e906fe8a25037bc77d1e
-      installation-qc: v3.14.39-57f21dab89d214be6110288ba765dfd5d36017ea
+      installation-qc: v3.14.40-6488d941d0a3d5dd9127bd4adb86791475ab010e
       pdf-service: pdf-2.9-lts-a17e8ebea8-48
       workbench-ui: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       rms-service: v3.13.35-bdd01fb0f99cc6e01d9c66afa7a57ddcded21f40
@@ -44,7 +44,7 @@ modules:
       im-services-analytics: v3.15.39-751350e850072634ceb2c049a06588de388891a4
       processor-services: main-3aa146620a09ad8ec6a4650de881b8d44bf23306
       im-services: v3.15.39-751350e850072634ceb2c049a06588de388891a4
-      digit-ui: v3.14.37-914b8c9038df74f28a0847d3002e9d59509bc6bf
+      digit-ui: v3.14.40-6488d941d0a3d5dd9127bd4adb86791475ab010e
       inbox: v3.3.7-73d0cc3be378c4495e6f7d7162b2c5d8c1951487
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
