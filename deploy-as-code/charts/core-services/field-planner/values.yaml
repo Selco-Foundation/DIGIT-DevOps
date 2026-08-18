@@ -41,6 +41,13 @@ env: |
     value: "8080"
   - name: SPRING_REDIS_HOST
     value: redis.backbone-dev
+  - name: JAVA_OPTS
+    value: {{ index .Values "heap" | quote }}
+  - name: EGOV_FILESTORE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-filestore
   - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
     valueFrom:
       configMapKeyRef:

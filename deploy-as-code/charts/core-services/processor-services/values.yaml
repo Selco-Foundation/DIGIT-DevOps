@@ -55,13 +55,13 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-filestore
-  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_HEARTBEATINTERVAL
+  - name: SPRING_KAFKA_CONSUMER_HEARTBEATINTERVAL
     value: "10000"
   - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAX_POLL_INTERVAL_MS
     value: "1800000"
   - name: SPRING_KAFKA_CONSUMER_PROPERTIES_SESSION_TIMEOUT_MS
     value: "90000"
-  - name: SPRING_KAFKA_CONSUMER_PROPERTIES_MAXPOLLRECORDS
+  - name: SPRING_KAFKA_CONSUMER_MAXPOLLRECORDS
     value: "1"
   - name: SPRING_KAFKA_CONSUMER_GROUPID
     value: egov-processor-services
