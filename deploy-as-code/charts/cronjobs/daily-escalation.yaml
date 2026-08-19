@@ -1,16 +1,18 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: user-analytics-report
+  name: daily-escalation
   namespace: core-dev
 spec:
-  schedule: "0 6 * * 1"
+  schedule: "0 18 * * 1-6"
   timeZone: Asia/Kolkata
+  successfulJobsHistoryLimit: 1
+  suspend: true
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: user-analytics-report
-            image: selcohub/user-analytics-report:uat-2026-08-18
+          - name: daily-escalation
+            image: selcohub/daily-escalation:latest-14112025
           restartPolicy: OnFailure

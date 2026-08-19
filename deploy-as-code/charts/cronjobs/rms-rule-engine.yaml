@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rms-rule-engine
+  namespace: core-dev
+spec:
+  schedule: "45 8 * * *"
+  timeZone: Asia/Kolkata
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 2
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rms-rule-engine
+            image: selcohub/rms-rule-engine:latest-11022026
+          restartPolicy: OnFailure
