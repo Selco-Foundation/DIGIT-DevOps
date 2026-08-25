@@ -175,8 +175,8 @@ egov-indexer:
     gitSync:
       repo: "git@github.com:Selco-Foundation/configs"        ##### Change repo url with Your fork Repo url
       branch: "main"                                         ##### Change repo branch with Your fork Repo branch
-      rev: ee2b671dcdb263b7d4335f691ef31fc4add89585
-  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/scheduled-visit-indexer.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
+      rev: e03662a30c40a255d8f202357d4a36113d4770eb
+  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/scheduled-visit-indexer.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml,file:///work-dir/configs/egov-indexer/user-analytics-report-indexer.yml"
 
 egov-persister:
   heap: "-Xmx512m -Xms512m"
