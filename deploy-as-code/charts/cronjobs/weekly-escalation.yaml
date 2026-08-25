@@ -1,0 +1,18 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: weekly-escalation
+  namespace: core-dev
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: selcohub/weekly-escalation:latest-14112025
+              name: weekly-escalation
+          restartPolicy: OnFailure
+  schedule: 0 9 * * 1
+  successfulJobsHistoryLimit: 1
+  timeZone: Asia/Kolkata
