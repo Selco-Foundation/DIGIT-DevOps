@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sla-compute-job
+  namespace: core-dev
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - args:
+                - in
+              image: selcohub/cronjob-sla:latest
+              imagePullPolicy: Always
+              name: sla-job
+          restartPolicy: OnFailure
+  schedule: 0 * * * *
+  successfulJobsHistoryLimit: 1

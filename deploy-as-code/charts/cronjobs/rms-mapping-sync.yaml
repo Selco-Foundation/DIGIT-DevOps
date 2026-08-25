@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rms-mapping-sync
+  namespace: core-dev
+spec:
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: selcohub/rms-mapping-sync:latest-14012026
+              name: rms-mapping-sync
+          restartPolicy: OnFailure
+  schedule: 0 2 * * 0
+  successfulJobsHistoryLimit: 2
+  timeZone: Asia/Kolkata

@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rms-mapping-validate
+  namespace: core-dev
+spec:
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: selcohub/rms-mapping-validate:latest-14012026
+              name: rms-mapping-validate
+          restartPolicy: OnFailure
+  schedule: 0 3 * * 0
+  successfulJobsHistoryLimit: 2
+  timeZone: Asia/Kolkata

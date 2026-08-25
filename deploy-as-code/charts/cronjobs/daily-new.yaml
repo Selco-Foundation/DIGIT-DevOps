@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-new
+  namespace: core-dev
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - args:
+                - in
+              image: selcohub/cronjob:latest-12122025
+              name: daily-new-job
+          restartPolicy: OnFailure
+  schedule: 0 0 * * *
+  successfulJobsHistoryLimit: 1
