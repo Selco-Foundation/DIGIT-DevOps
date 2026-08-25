@@ -1,16 +1,17 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: user-analytics-report
+  name: carbon-emission-calculate
   namespace: core-dev
 spec:
-  schedule: "0 6 * * 1"
+  schedule: "0 6 2 * *"
   timeZone: Asia/Kolkata
+  suspend: true
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: user-analytics-report
-            image: selcohub/user-analytics-report:uat-2026-08-18
+          - name: carbon-emission-calculate
+            image: selcohub/cronjob-carbon-emission-calculate:prod-2026-08-19
           restartPolicy: OnFailure

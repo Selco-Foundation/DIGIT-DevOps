@@ -1,16 +1,18 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: user-analytics-report
+  name: rms-mapping-validate
   namespace: core-dev
 spec:
-  schedule: "0 6 * * 1"
+  schedule: "0 15 * * 0"
   timeZone: Asia/Kolkata
+  successfulJobsHistoryLimit: 1
+  suspend: true
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: user-analytics-report
-            image: selcohub/user-analytics-report:uat-2026-08-18
+          - name: rms-mapping-validate
+            image: selcohub/rms-mapping-validate:latest-14012026
           restartPolicy: OnFailure

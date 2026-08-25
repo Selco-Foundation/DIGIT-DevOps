@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sla-compute-job
+  namespace: core-dev
+spec:
+  schedule: "0 * * * *"
+  timeZone: Asia/Kolkata
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sla-job
+            image: selcohub/cronjob-sla:latest
+            args:
+            - in
+          imagePullSecrets:
+          - name: docker-secret
+          restartPolicy: OnFailure
