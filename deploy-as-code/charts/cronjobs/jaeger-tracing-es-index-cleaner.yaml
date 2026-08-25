@@ -1,0 +1,67 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+    meta.helm.sh/release-name: jaeger-tracing
+    meta.helm.sh/release-namespace: backbone-dev
+  labels:
+    app.kubernetes.io/component: es-index-cleaner
+    app.kubernetes.io/instance: jaeger-tracing
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jaeger
+    app.kubernetes.io/version: 1.53.0
+    helm.sh/chart: jaeger-1.0.0
+  name: jaeger-tracing-es-index-cleaner
+  namespace: backbone-dev
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: es-index-cleaner
+            app.kubernetes.io/instance: jaeger-tracing
+            app.kubernetes.io/name: jaeger
+        spec:
+          containers:
+            - args:
+                - "1"
+                - https://elasticsearch-master:9200
+              env:
+                - name: ES_SERVER_URLS
+                  value: https://elasticsearch-master:9200
+                - name: ES_USERNAME
+                  value: elastic
+                - name: ES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: jaeger-tracing-elasticsearch
+                - name: ES_TLS_ENABLED
+                  value: "true"
+                - name: ES_TLS_CA
+                  value: /usr/share/elasticsearch/config/certs
+              image: jaegertracing/jaeger-es-index-cleaner:1.53.0
+              name: jaeger-tracing-es-index-cleaner
+              securityContext:
+                runAsUser: 1000
+              volumeMounts:
+                - mountPath: /usr/share/elasticsearch/config/certs
+                  name: elasticsearch-master-certs
+                  readOnly: true
+                  subPath: ca.crt
+          restartPolicy: OnFailure
+          securityContext:
+            runAsUser: 1000
+          serviceAccount: jaeger-tracing-es-index-cleaner
+          serviceAccountName: jaeger-tracing-es-index-cleaner
+          volumes:
+            - name: elasticsearch-master-certs
+              secret:
+                defaultMode: 420
+                secretName: elasticsearch-master-certs
+  schedule: 55 23 * * *
+  timeZone: Asia/Kolkata

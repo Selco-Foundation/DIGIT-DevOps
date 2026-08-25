@@ -1,0 +1,17 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: carbon-emission-calculate
+  namespace: core-dev
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: selcohub/cronjob-carbon-emission-calculate:prod-2026-08-19
+              name: carbon-emission-calculate
+          restartPolicy: OnFailure
+  schedule: 0 6 2 * *
+  timeZone: Asia/Kolkata
