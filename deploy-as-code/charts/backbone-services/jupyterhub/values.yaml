@@ -631,6 +631,9 @@ prePuller:
       create: true
       name:
       annotations: {}
+    serviceAccountImagePuller:
+      create: true
+      annotations: {}
   continuous:
     enabled: true
   pullProfileListImages: true
