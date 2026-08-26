@@ -35,8 +35,9 @@ hub:
   config:
     Authenticator:
       admin_users:
-        - Selco-Uat
+        - Selco-Prod
     NativeAuthenticator:
+      open_signup: true    # to enable/disable self-signup
       minimum_password_length: 8
       check_common_password: false
       allowed_failed_logins: 5
