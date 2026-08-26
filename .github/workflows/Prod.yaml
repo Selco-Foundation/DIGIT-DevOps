@@ -92,7 +92,7 @@ jobs:
 
       - name: digit deployment
         run: |
-          helmfile -f digit-helmfile.yaml apply --include-needs=true\
+          helmfile -f digit-helmfile.yaml apply --include-needs=true
           #  --set workbench-ui.image.tag=${{ env.workbench-ui }} \
           #  --set pdf-service.image.tag=${{ env.pdf-service }} \
           #  --set installation-qc.image.tag=${{ env.installation-qc }} \
