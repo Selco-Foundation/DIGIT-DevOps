@@ -68,8 +68,9 @@ serverBasePath: /kibana
 
 # Allows you to add any config files in /usr/share/kibana/config/
 # such as kibana.yml
-kibanaConfig: {}
-#   kibana.yml: |
+kibanaConfig:
+  kibana.yml: |
+    xpack.security.session.lifespan: "7d"
 #     key:
 #       nestedkey: value
 
