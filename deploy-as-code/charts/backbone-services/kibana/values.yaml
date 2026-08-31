@@ -70,7 +70,7 @@ serverBasePath: /kibana
 # such as kibana.yml
 kibanaConfig:
   kibana.yml: |
-    xpack.security.session.lifespan: "10m"
+    xpack.security.session.lifespan: "3d"
 #     key:
 #       nestedkey: value
 
