@@ -120,4 +120,3 @@ env: |
     value: https://saura-emitra-uat.selcofoundation.org
   - name: KIBANA_DASHBOARD_URL
     value: https://saura-emitra-uat.selcofoundation.org/kibana
-
