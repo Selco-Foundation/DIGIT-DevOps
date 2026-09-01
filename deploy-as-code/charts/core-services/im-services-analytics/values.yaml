@@ -120,4 +120,19 @@ env: |
     value: https://saura-emitra-uat.selcofoundation.org
   - name: KIBANA_DASHBOARD_URL
     value: https://saura-emitra-uat.selcofoundation.org/kibana
+  - name: EGOV_ES_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: es-indexer-host
+        name: egov-config
+  - name: EGOV_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: elasticsearch-credentials
+  - name: EGOV_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: elasticsearch-credentials
 

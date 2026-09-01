@@ -268,4 +268,19 @@ env: |
       configMapKeyRef: 
         key: filestore-download-enpoint
         name: egov-config
+  - name: EGOV_ES_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: es-indexer-host
+        name: egov-config
+  - name: EGOV_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: elasticsearch-credentials
+  - name: EGOV_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: elasticsearch-credentials
 
