@@ -104,9 +104,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: im-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: im-services # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #  - name: im-services-analytics # Replace with your desired namespace
 #    installed: true
@@ -166,14 +166,14 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: pdf-service
-    installed: true
-    <<: *default
+#  - name: pdf-service
+#    installed: true
+#    <<: *default
 #
 #  - name: amc-service
 #    installed: true
 #    <<: *default
 #
-#  - name: rms-service
-#    installed: true
-#    <<: *default
+  - name: rms-service
+    installed: true
+    <<: *default
