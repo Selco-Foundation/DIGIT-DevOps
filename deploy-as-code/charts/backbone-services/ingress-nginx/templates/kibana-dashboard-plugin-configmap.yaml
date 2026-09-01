@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "ingress-nginx.labels" . | nindent 4 }}
+    app.kubernetes.io/component: controller
+  name: {{ include "ingress-nginx.fullname" . }}-kibana-dashboard-plugin
+  namespace: {{ include "ingress-nginx.namespace" . }}
+data:
+  main.lua: |-
+{{ .Files.Get "files/kibana-dashboard-plugin/main.lua" | indent 4 }}
