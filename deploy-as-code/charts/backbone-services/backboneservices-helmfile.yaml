@@ -51,39 +51,38 @@ releases:
 #  values:
 #    - ./redis/values.yaml
 #
-#- name: elasticsearch
-#  chart: ./elasticsearch
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch/values.yaml
-#    - secret:
-#        password: {{ .Values.secrets.elasticsearch.password }}
-#
-#- name: elasticsearch-data
-#  chart: ./elasticsearch-data
-#  version: 8.11.3
-#  <<: *default
-#  values:
-#    - ./elasticsearch-data/values.yaml
-##
-#- name: kibana
-#  chart: ./kibana
-#  version: 8.11.3
-#  force: true
-#  <<: *default
-#  values:
-#    - ./kibana/values.yaml
-#    - ingress:
-#        hosts:
-#          - host: {{ .Values.global.domain }}
-#            paths:
-#              - path: /kibana
-#        tls:
-#          - secretName: {{ .Values.global.domain }}-tls-certs
-#            hosts:
-#              - {{ .Values.global.domain }}
+- name: elasticsearch
+  chart: ./elasticsearch
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch/values.yaml
+    - secret:
+        password: {{ .Values.secrets.elasticsearch.password }}
 
+- name: elasticsearch-data
+  chart: ./elasticsearch-data
+  version: 8.11.3
+  <<: *default
+  values:
+    - ./elasticsearch-data/values.yaml
+#
+- name: kibana
+  chart: ./kibana
+  version: 8.11.3
+  force: true
+  <<: *default
+  values:
+    - ./kibana/values.yaml
+    - ingress:
+        hosts:
+          - host: {{ .Values.global.domain }}
+            paths:
+              - path: /kibana
+        tls:
+          - secretName: {{ .Values.global.domain }}-tls-certs
+            hosts:
+              - {{ .Values.global.domain }}
 
 
 #- name: kafka-kraft
@@ -120,14 +119,14 @@ releases:
 #  values:
 #    - ./ingress-nginx/values.yaml
 #    - domain: {{ .Values.global.domain }}
-
-- name: fluent-bit
-  installed: true
-  chart: ./fluent-bit
-  version: 3.1.13
-  <<: *default
-  values:
-    - ./fluent-bit/values.yaml
+#
+#- name: fluent-bit
+#  installed: true
+#  chart: ./fluent-bit
+#  version: 3.1.13
+#  <<: *default
+#  values:
+#    - ./fluent-bit/values.yaml
 
 #- name: playground
 #  installed: true

@@ -47,7 +47,8 @@ controller:
     https: 443
   # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
   config:
-    plugins: "kibana_login"
+    plugins: "kibana_login,kibana_dashboard"
+    lua-shared-dicts: "kibana_dashboard_events: 1m"
   # -- Annotations to be added to the controller config configuration configmap.
   configAnnotations: {}
   # -- Will add custom headers before sending traffic to backends according to https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/custom-headers
@@ -640,12 +641,18 @@ controller:
     - name: kibana-login-plugin
       mountPath: /etc/nginx/lua/plugins/kibana_login
       readOnly: true
+    - name: kibana-dashboard-plugin
+      mountPath: /etc/nginx/lua/plugins/kibana_dashboard
+      readOnly: true
 
   # -- Additional volumes to the controller pod.
   extraVolumes:
     - name: kibana-login-plugin
       configMap:
         name: ingress-nginx-kibana-login-plugin
+    - name: kibana-dashboard-plugin
+      configMap:
+        name: ingress-nginx-kibana-dashboard-plugin
 
   # -- Containers, which are run before the app containers are started.
   extraInitContainers: []
