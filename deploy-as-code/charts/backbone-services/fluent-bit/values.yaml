@@ -545,6 +545,14 @@ config:
         Parser            cri
         Refresh_Interval  5
         Skip_Long_Lines   On
+
+    [INPUT]
+        Name              tail
+        Tag               kibana_dashboard
+        Path              /var/log/containers/*ingress-nginx-controller*.log
+        Parser            cri
+        Refresh_Interval  5
+        Skip_Long_Lines   On
   ## @param config.filters [string] Set of plugins that can be used to filter, modify, or enrich log data that is processed by Fluent Bit.
   ## https://docs.fluentbit.io/manual/pipeline/filters
   ## Example:
@@ -576,6 +584,25 @@ config:
         Key_Name      payload
         Parser        kibana_login_json
         Reserve_Data  Off
+
+    [FILTER]
+        Name    grep
+        Match   kibana_dashboard
+        Regex   message KIBANA_DASHBOARD_EVENT
+
+    [FILTER]
+        Name          parser
+        Match         kibana_dashboard
+        Key_Name      message
+        Parser        kibana_dashboard_event
+        Reserve_Data  Off
+
+    [FILTER]
+        Name          parser
+        Match         kibana_dashboard
+        Key_Name      payload
+        Parser        kibana_dashboard_json
+        Reserve_Data  Off
   ## @param config.outputs [string] Outputs to send the collected data to different destinations
   ## https://docs.fluentbit.io/manual/pipeline/outputs
   ##
@@ -587,6 +614,14 @@ config:
         Topics            kibana-login-events
         Format            json
         Message_Key_Field username
+
+    [OUTPUT]
+        Name              kafka
+        Match             kibana_dashboard
+        Brokers           kafka-kraft-controller-headless:9092
+        Topics            kibana-dashboard-events
+        Format            json
+        Message_Key_Field remote_addr
   ## @param config.upstream This configuration is deprecated, please use `extraFiles` instead.
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
   ##
@@ -609,6 +644,15 @@ config:
 
     [PARSER]
         Name    kibana_login_json
+        Format  json
+
+    [PARSER]
+        Name    kibana_dashboard_event
+        Format  regex
+        Regex   ^.*KIBANA_DASHBOARD_EVENT (?<payload>\{[^{}]*\}).*$
+
+    [PARSER]
+        Name    kibana_dashboard_json
         Format  json
   ## @param config.extraFiles Extra config files
   ## This allows adding more files with arbitary filenames to /fluent-bit/etc by providing key/value pairs.
