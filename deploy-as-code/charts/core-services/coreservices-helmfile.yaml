@@ -71,9 +71,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: egov-persister # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-persister # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-workflow-v2 # Replace with your desired namespace
 #    installed: true
@@ -166,9 +166,9 @@ releases:
     installed: true
     <<: *default
 #
-#  - name: pdf-service
-#    installed: true
-#    <<: *default
+  - name: pdf-service
+    installed: true
+    <<: *default
 #
   - name: amc-service
     installed: true
