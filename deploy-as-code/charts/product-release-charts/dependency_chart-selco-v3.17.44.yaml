@@ -18,7 +18,7 @@ modules:
     services:
       amc-service: v3.17.44-5c2b758f3267162ab81e047e9465a7d78283b990
       asset-registry: v3.14.39-57f21dab89d214be6110288ba765dfd5d36017ea
-      field-planner-activity:
+      field-planner-activity: v3.17.45-b87a2d5ae98ed07e30318938a7f93f57d3d01331
       field-planner: v3.17.44-5c2b758f3267162ab81e047e9465a7d78283b990
       ingestion-service: v3.17.44-5c2b758f3267162ab81e047e9465a7d78283b990
       project: v3.15.39-751350e850072634ceb2c049a06588de388891a4
