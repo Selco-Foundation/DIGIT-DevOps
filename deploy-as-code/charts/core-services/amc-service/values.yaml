@@ -121,3 +121,8 @@ env: |
       configMapKeyRef:
         key: field-plan
         name: egov-service-host
+  - name: EGOV_PDF_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: pdf-service
