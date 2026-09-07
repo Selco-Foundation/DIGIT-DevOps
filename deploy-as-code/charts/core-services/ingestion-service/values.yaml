@@ -100,3 +100,9 @@ env: |
         key: db-name
   - name: ENVIRONMENT
     value: uat
+  - name: FILESTORE_SERVICE_URL
+    valueFrom:
+      configMapKeyRef:
+        key: egov-filestore
+        name: egov-service-host
+ 
