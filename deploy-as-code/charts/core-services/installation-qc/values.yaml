@@ -6,7 +6,7 @@ labels:
 # Ingress Configs
 ingress:
   enabled: true
-  context: "installation-qc"
+  context: "e4hhub"
 
 # Init Containers Configs
 initContainers: {}
@@ -19,8 +19,8 @@ replicas: "1"
 httpPort: 80
 healthChecks:
   enabled: true
-  livenessProbePath: "/installation-qc/"
-  readinessProbePath: "/installation-qc/"
+  livenessProbePath: "/e4hhub/"
+  readinessProbePath: "/e4hhub/"
 
     
 extraVolumes: |
