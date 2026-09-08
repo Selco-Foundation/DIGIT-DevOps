@@ -11,6 +11,17 @@ initContainers:
     image:
       repository: "selcohub/amc-service-db"
       tag: develop-0214f52984b750fb97d7bc41728e0074e95414fc
+    volumeMounts: |
+      - mountPath: /flyway/logs/
+        name: workdir
+
+extraVolumes: |
+  - emptyDir: {}
+    name: workdir
+
+extraVolumeMounts: |
+  - mountPath: /flyway/logs/
+    name: workdir
 
 # Ingress Configs
 ingress:
