@@ -123,7 +123,8 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
-
-
-
-
+  - name: EGOV_FIELD_PLANNER_HOST
+    valueFrom:
+      configMapKeyRef:
+        key: field-plan
+        name: egov-service-host
