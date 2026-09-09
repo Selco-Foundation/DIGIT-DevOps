@@ -116,3 +116,5 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
+  - name: EGOV_INGESTION_HOST
+    value: http://ingestion-service.core-dev:8080/
