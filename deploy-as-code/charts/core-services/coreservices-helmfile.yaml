@@ -166,17 +166,17 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: field-planner-activity
-    installed: true
-    <<: *default
-#
-  - name: pdf-service
-    installed: true
-    <<: *default
-#
-#  - name: amc-service
+#  - name: field-planner-activity
 #    installed: true
 #    <<: *default
+#
+#  - name: pdf-service
+#    installed: true
+#    <<: *default
+#
+  - name: amc-service
+    installed: true
+    <<: *default
 #
 #  - name: rms-service
 #    installed: true
