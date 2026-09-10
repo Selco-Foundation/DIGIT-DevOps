@@ -1,0 +1,32 @@
+# Common Labels
+labels:
+  app: "sem-ui"
+  group: "web"
+
+# Ingress Configs
+ingress:
+  enabled: true
+  context: "selco-ui"
+
+# Init Containers Configs
+initContainers: {}
+
+# Container Configs
+image:
+  repository: "selcohub/sem-ui"
+replicas: "1"
+httpPort: 80
+healthChecks:
+  enabled: true
+  livenessProbePath: "/selco-ui/"
+  readinessProbePath: "/selco-ui/"
+
+extraVolumes: |
+  - name: js-injection
+    configMap:
+      name: sem-ui
+
+extraVolumeMounts: |
+  - mountPath: /etc/nginx/conf.d/sub_filter.conf
+    name: js-injection
+    subPath: sub_filter.conf
