@@ -119,8 +119,7 @@ services:
         condition: service_healthy
     environment:
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
-      ELASTICSEARCH_USERNAME: "elastic"
-      ELASTICSEARCH_PASSWORD: "${ES_PASSWORD}"
+      ELASTICSEARCH_SERVICEACCOUNTTOKEN: "${KIBANA_SERVICE_TOKEN}"
       SERVER_HOST: "0.0.0.0"
       SERVER_REWRITEBASEPATH: "true"
       SERVER_BASEPATH: "/kibana"

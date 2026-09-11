@@ -2588,7 +2588,7 @@ services:
           - elasticsearch-master
 
   kafka:
-    image: docker.io/selcohub/kafka:3.6.0-debian-11-r0
+    image: selcohub/kafka:3.6.0-debian-11-r0
     container_name: kafka
     restart: unless-stopped
     environment:
@@ -2644,7 +2644,7 @@ services:
       - selco-network
 
   kafka-ui:
-    image: docker.io/provectuslabs/kafka-ui:v0.7.2
+    image: provectuslabs/kafka-ui:v0.7.2
     container_name: kafka-ui
     restart: unless-stopped
     depends_on:
@@ -2673,8 +2673,7 @@ services:
         condition: service_healthy
     environment:
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
-      ELASTICSEARCH_USERNAME: "elastic"
-      ELASTICSEARCH_PASSWORD: "${ES_PASSWORD}"
+      ELASTICSEARCH_SERVICEACCOUNTTOKEN: "${KIBANA_SERVICE_TOKEN}"
       SERVER_HOST: "0.0.0.0"
       SERVER_REWRITEBASEPATH: "true"
       SERVER_BASEPATH: "/kibana"
@@ -2690,7 +2689,7 @@ services:
       - selco-network
 
   pgadmin4:
-    image: docker.io/dpage/pgadmin4:9.3
+    image: dpage/pgadmin4:9.3
     container_name: pgadmin4
     restart: unless-stopped
     environment:
@@ -2733,6 +2732,28 @@ services:
         limits:
           memory: 256M
           cpus: '0.2'
+    networks:
+      - selco-network
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/healthz | grep -q ok || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: '0.1'
     networks:
       - selco-network
 
