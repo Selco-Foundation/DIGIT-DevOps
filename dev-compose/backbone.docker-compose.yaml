@@ -189,7 +189,7 @@ services:
     volumes:
       - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - "18080:80"
+      - "80:80"
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost/healthz | grep -q ok || exit 1"]
       interval: 15s
