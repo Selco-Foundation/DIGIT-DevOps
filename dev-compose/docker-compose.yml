@@ -1,0 +1,2772 @@
+# Docker Compose rendition of the egovernments/SELCO `core-dev` + `backbone-dev`
+# Kubernetes namespaces (EKS cluster new-selco-dev), generated for local/dev-cost
+# testing. See README.md for scope, exclusions, and setup instructions.
+
+services:
+  # --- one-shot Flyway DB migration jobs (mirrors k8s initContainers) ---
+  amc-service-migrate:
+    image: selcohub/amc-service-db:amc_configuration_enhancement-0b640fba32d12f609780199e050d498c11e7d0d0
+    container_name: amc-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "amc_service_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  asset-registry-migrate:
+    image: selcohub/asset-registry-db:dummy-dev-73e2b31d23f9d99432bbbaf7a9881610cd94992b
+    container_name: asset-registry-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "asset_registry_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  audit-service-migrate:
+    image: egovio/audit-service-db:v2.9.2-4a60f20
+    container_name: audit-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "audit_service_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  boundary-service-migrate:
+    image: selcohub/egov-boundary-service-db:dummy-dev-fb6c952ea335e8ee2e700549199b742442c884b4
+    container_name: boundary-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "boundary_service_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-enc-service-migrate:
+    image: egovio/egov-enc-service-db:v2.9.2-4a60f20
+    container_name: egov-enc-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_enc_service_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-filestore-migrate:
+    image: selcohub/egov-filestore-db:develop-893a25af0f0ff7264f4d8dc1ce3ef8bce2d19a92
+    container_name: egov-filestore-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_filestore_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-hrms-migrate:
+    image: selcohub/hrms-db:template-generation-40dcf5a1aee4e89aaf9fbfa218ae5c29ab3cc152
+    container_name: egov-hrms-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_hrms_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-idgen-migrate:
+    image: egovio/egov-idgen-db:v2.9.2-4a60f20
+    container_name: egov-idgen-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_idgen_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-indexer-migrate:
+    image: egovio/egov-indexer-db:v2.9.2-4a60f20
+    container_name: egov-indexer-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_indexer_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-localization-migrate:
+    image: egovio/egov-localization-db:v2.9.2-4a60f20
+    container_name: egov-localization-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_localization_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-location-migrate:
+    image: egovio/egov-location-db:v2.9.2-4a60f20
+    container_name: egov-location-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_location_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-mdms-service-migrate:
+    image: egovio/mdms-v2-db:v2.9.2-4a60f20
+    container_name: egov-mdms-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "mdms_v2_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-otp-migrate:
+    image: egovio/egov-otp-db:v2.9.2-4a60f20
+    container_name: egov-otp-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_otp_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-user-migrate:
+    image: egovio/egov-user-db:core-2.9-lts-egov-user-deployement-c33cfe45ab-13
+    container_name: egov-user-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_user_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-user-event-migrate:
+    image: egovio/egov-user-event-db:core-2.9-lts-mvn-check-57ef3ac8dd-4
+    container_name: egov-user-event-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_user_event_schema_version"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  egov-workflow-v2-migrate:
+    image: selcohub/egov-workflow-v2-db:bu_pass_otp_validation_dev-a86ce488aed1031e96bdbe3001006f82c0271975
+    container_name: egov-workflow-v2-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "egov_workflow_v2_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  facility-service-migrate:
+    image: selcohub/facility-registry-db:sem-analytics-dev-da330756625bd1fadefd48205e2b4c66cda17fc9
+    container_name: facility-service-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "facility_registry_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  field-planner-migrate:
+    image: selcohub/field-planner-db:assessment-module-b4de4bba03c5fa1b99f427bac8b1b496090dee66
+    container_name: field-planner-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "field_planner_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  field-planner-activity-migrate:
+    image: selcohub/field-planner-activity-db:new_fieldplan_develop-ba4c66d7dae88d875912910e2755c382abd54e48
+    container_name: field-planner-activity-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "field_planner_activity_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  im-services-migrate:
+    image: selcohub/im-services-db:develop-b4e0c6669c41467566f587513beeea0f469342cd
+    container_name: im-services-migrate
+    restart: no
+    environment:
+      EGOV_PROJECT_HOST: "http://project:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      EGOV_ES_HOST: "http://elasticsearch:9200/"
+      EGOV_ES_PASSWORD: "${ES_PASSWORD}"
+      EGOV_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "im_service_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  project-migrate:
+    image: selcohub/project-db:develop-157d933082d3b2145085c08b2d0e4f77b2f50196
+    container_name: project-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "project_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  vendor-registry-migrate:
+    image: selcohub/vendor-registry-db:staging-d79734bb87fbb015cf4fd7e3f09d5c70ad6c615b
+    container_name: vendor-registry-migrate
+    restart: no
+    environment:
+      DB_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SCHEMA_TABLE: "vendor_registry_schema"
+      FLYWAY_USER: "${DB_USERNAME}"
+      FLYWAY_PASSWORD: "${DB_PASSWORD}"
+      FLYWAY_LOCATIONS: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa,classpath:/db/migration/main"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  # --- core-dev application services ---
+  amc-service:
+    image: selcohub/amc-service:amc_configuration_enhancement-0b640fba32d12f609780199e050d498c11e7d0d0
+    container_name: amc-service
+    restart: unless-stopped
+    depends_on:
+      amc-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      EGOV_OTP_BYPASS_VALIDATION: "true"
+      SERVER_PORT: "8080"
+      SERVER_SERVLET_CONTEXT_PATH: "/asset-amc"
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+      SPRING_REDIS_HOST: "redis"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      EGOV_OTP_HOST: "http://egov-otp:8080"
+      EGOV_PDF_HOST: "http://pdf-service:8080"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_PROJECT_HOST: "http://project:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_LOCATION_HOST: "http://egov-location:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      EGOV_ENC_HOST: "http://egov-enc-service:8080"
+      EGOV_VENDOR_HOST: "http://vendor-registry:8080"
+      EGOV_ASSET_HOST: "http://asset-registry:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "amc-service"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18000:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/asset-amc/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: '0.3'
+    networks:
+      - selco-network
+
+  asset-registry:
+    image: selcohub/asset-registry:dummy-dev-73e2b31d23f9d99432bbbaf7a9881610cd94992b
+    container_name: asset-registry
+    restart: unless-stopped
+    depends_on:
+      asset-registry-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      SERVER_CONTEXTPATH: "/asset-registry"
+      EGOV_ACTIVITY_FACILITY_HOST: "http://field-planner-activity:8080"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_FIELDPLAN_ACTIVITY_HOST: "http://field-planner-activity:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "asset-registry"
+    ports:
+      - "18001:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/asset-registry/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  audit-service:
+    image: egovio/audit-service:v2.9.2-4a60f20
+    container_name: audit-service
+    restart: unless-stopped
+    depends_on:
+      audit-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "audit-service"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      PROCESS_AUDIT_LOGS_KAFKA_TOPIC: "process-audit-records"
+      PERSIST_AUDIT_LOGS_KAFKA_TOPIC: "persist-audit-records"
+      JAVA_OPTS: "-Xmx64m -Xms64m"
+      SERVER_PORT: "8080"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      EGOV_ENC_SIGN_HOST: "http://egov-enc-service:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "audit-service"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18002:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/audit-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  boundary-service:
+    image: selcohub/egov-boundary-service:dummy-dev-fb6c952ea335e8ee2e700549199b742442c884b4
+    container_name: boundary-service
+    restart: unless-stopped
+    depends_on:
+      boundary-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      SERVER_SERVLET_CONTEXT_PATH: "/boundary-service"
+      SERVER_CONTEXT_PATH: "/boundary-service"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_LOCALIZATION_SEARCH_ENDPOINT: "/localization/messages/v1/_search"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "boundary-service"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18003:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/boundary-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  digit-ui:
+    image: selcohub/micro-ui:develop-a86082b5741861702f04314e5aa3abfc076a30bf
+    container_name: digit-ui
+    restart: unless-stopped
+    environment:
+      REACT_APP_PROXY_ASSETS: "https://e4h-dev.selcofoundation.org/"
+    volumes:
+      - ./configs/digit-ui/sub_filter.conf:/etc/nginx/conf.d/sub_filter.conf:ro
+    ports:
+      - "18004:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80/digit-ui/ >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.1'
+    networks:
+      - selco-network
+
+  egov-accesscontrol:
+    image: egovio/egov-accesscontrol:v2.9.2-4a60f20
+    container_name: egov-accesscontrol
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-accesscontrol"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18005:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/access/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-enc-service:
+    image: egovio/egov-enc-service:v2.9.2-4a60f20
+    container_name: egov-enc-service
+    restart: unless-stopped
+    depends_on:
+      egov-enc-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_STATE_LEVEL_TENANT_ID: "pg"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      SERVER_CONTEXT_PATH: "/egov-enc-service"
+      MASTER_PASSWORD_PROVIDER: "software"
+      MASTER_PASSWORD: "${ENC_MASTER_PASSWORD}"
+      MASTER_SALT: "${ENC_MASTER_SALT}"
+      MASTER_INITIALVECTOR: "${ENC_MASTER_INITIALVECTOR}"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-enc-service"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18006:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-enc-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-filestore:
+    image: selcohub/egov-filestore:develop-893a25af0f0ff7264f4d8dc1ce3ef8bce2d19a92
+    container_name: egov-filestore
+    restart: unless-stopped
+    depends_on:
+      egov-filestore-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      VIDEO_UPLOAD_RETRY: "2"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      FILE_STORAGE_MOUNT_PATH: "/filestore"
+      TEMP_FOLDER_PATH: "/tmp"
+      SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: "200MB"
+      SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: "1000MB"
+      ISNFSSTORAGEENABLED: "false"
+      ISS3ENABLED: "true"
+      AWS_KEY: "${FILESTORE_AWS_KEY}"
+      AWS_SECRETKEY: "${FILESTORE_AWS_SECRETKEY}"
+      IS_BUCKET_FIXED: "true"
+      FIXED_BUCKETNAME: "selco-dev"
+      JAVA_OPTS: "-Xmx1560m -Xms1560m"
+      ALLOWED_FORMATS_MAP: "{json:{'application/json','text/plain','application/geo+json'},jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf;format=ascii','image/vnd.dxf;format=binary','image/vnd.dxb'},csv:{'text/plain','text/csv','application/zip'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/zip'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'},mp4:{\"video/mp4\", \"video/quicktime\"},mp3:{\"audio/mpeg\"},avi:{\"video/x-msvideo\"},mov:{\"video/quicktime\"}, wmv:{\"video/x-ms-wmv\"},m3u8:{\"application/vnd.apple.mpegurl\",\"application/x-mpegURL\"},ts:{\"video/MP2T\",\"video/mp2t\", \"application/octet-stream\"}}"
+      PRESIGNED_URL_EXPIRY_TIME_IN_SECS: "3600"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-filestore"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18007:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/filestore/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '0.4'
+    networks:
+      - selco-network
+
+  egov-hrms:
+    image: selcohub/hrms:hrms-update-username-26345d8950005b1f79c43fc5b1969daf8d7796e9
+    container_name: egov-hrms
+    restart: unless-stopped
+    depends_on:
+      egov-hrms-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_SERVICES_DATA_SYNC_EMPLOYEE_REQUIRED: "false"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMS_SEARCH_ENDPOINT: "/egov-mdms-service/v1/_search"
+      EGOV_ENC_HOST: "http://egov-enc-service:8080/"
+      EGOV_MDMSLEGACY_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMSLEGACY_SEARCH_ENDPOINT: "egov-mdms-service/v1/_search"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      STATE_LEVEL_TENANT_ID: "pg"
+      EGOV_FILESTORE_URL_ENDPOINT: "/filestore/v1/files/url"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_LOCALIZATION_SEARCH_ENDPOINT: "/localization/messages/v1/_search"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_SERVICES_EGOV_IDGEN_CREATEPATH: "/egov-idgen/id/_generate"
+      EGOV_SERVICES_EGOV_IDGEN_EMP_CODE_NAME: "employee.code"
+      EGOV_SERVICES_EGOV_IDGEN_EMP_CODE_FORMAT: "EMP_[SEQ_EMPLOYEE_CODE]"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_OTP_HOST: "http://egov-otp:8080/"
+      EGOV_ENVIRONMENT_DOMAIN: "https://e4h-dev.selcofoundation.org/"
+      EGOV_USER_SEARCH_ENDPOINT: "/user/v1/_search"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318"
+      EGOV_USER_CREATE_ENDPOINT: "/user/users/_createnovalidate"
+      EGOV_USER_UPDATE_ENDPOINT: "/user/users/_updatenovalidate"
+      EGOV_HRMS_EMPLOYEE_APP_LINK: "https://egov-micro-dev.egovernments.org/employee/user/login"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "employee-group1"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      KAFKA_TOPICS_SAVE_SERVICE: "save-hrms-employee"
+      KAFKA_TOPICS_UPDATE_SERVICE: "update-hrms-employee"
+      KAFKA_TOPICS_NOTIFICATION_SMS: "egov.core.notification.sms"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      SERVER_PORT: "8080"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      JAEGER_SERVICE_NAME: "egov-hrms"
+      JAEGER_SAMPLER_TYPE: "remote"
+      JAEGER_AGENT_HOST: ""
+      JAEGER_AGENT_PORT: "6831"
+      JAEGER_SAMPLER_MANAGER_HOST_PORT: "$$(JAEGER_AGENT_HOST):5778"
+    ports:
+      - "18008:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-hrms/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-idgen:
+    image: selcohub/egov-idgen:develop-1f3542792d4fbdffa92b90c15d2930f97cd8af56
+    container_name: egov-idgen
+    restart: unless-stopped
+    depends_on:
+      egov-idgen-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      IDFORMAT_FROM_MDMS: "true"
+      AUTOCREATE_NEW_SEQ: "true"
+      MDMS_SERVICE_HOST: "http://egov-mdms-service:8080/"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+    ports:
+      - "18009:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-idgen/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-indexer:
+    image: egovio/egov-indexer:master-1e8d2bb
+    container_name: egov-indexer
+    restart: unless-stopped
+    depends_on:
+      egov-indexer-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      EGOV_SERVICES_INFRA_INDEXER_HOST: "http://egov-indexer:8080/"
+      EGOV_INFRA_INDEXER_HOST: "http://elasticsearch:9200/"
+      EGOV_INDEXER_YML_REPO_PATH: "file:///work-dir/configs/egov-indexer/user-analytics-report-indexer.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/user-analytics-report-indexer.yml"
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      EGOV_STATELEVEL_TENANTID: "pg"
+      EGOV_INDEXER_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_INDEXER_ES_PASSWORD: "${ES_PASSWORD}"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-indexer"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    volumes:
+      - ./configs/egov-indexer:/work-dir/configs/egov-indexer:ro
+      - ./configs/works/egov-indexer:/work-dir/configs/works/egov-indexer:ro
+    ports:
+      - "18010:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-indexer/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 640M
+          cpus: '0.4'
+    networks:
+      - selco-network
+
+  egov-localization:
+    image: egovio/egov-localization:v2.9.2-4a60f20
+    container_name: egov-localization
+    restart: unless-stopped
+    depends_on:
+      egov-localization-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      SPRING_REDIS_HOST: "redis"
+      SPRING_REDIS_PORT: "6379"
+      JAEGER_SAMPLER_PARAM: "1"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-localization"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18011:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/localization/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 448M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-location:
+    image: egovio/egov-location:v2.9.2-4a60f20
+    container_name: egov-location
+    restart: unless-stopped
+    depends_on:
+      egov-location-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-location-consumer-group"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SERVER_PORT: "8080"
+      EGOV_SERVICES_EGOV_MDMS_HOSTNAME: "http://egov-mdms-service:8080/"
+      EGOV_SERVICES_EGOV_MDMS_SEARCHPATH: "egov-mdms-service/v1/_search"
+      GMAPS_API_KEY: "${LOCATION_GMAPS_KEY}"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-location"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18012:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-location/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-mdms-service:
+    image: egovio/mdms-v2:v2.9.2-4a60f20
+    container_name: egov-mdms-service
+    restart: unless-stopped
+    depends_on:
+      egov-mdms-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_SERVLET_CONTEXT_PATH: "/egov-mdms-service"
+      SERVER_CONTEXT_PATH: "/egov-mdms-service"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-mdms-service-consumer-group"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      JAVA_ENABLE_DEBUG: "true"
+      EGOV_MDMS_SCHEMA_DEFINITION_SAVE_TOPIC: "save-mdms-schema-definition"
+      EGOV_MDMS_DATA_SAVE_TOPIC: "save-mdms-data"
+      MDMS_DEFAULT_OFFSET: "0"
+      MDMS_DEFAULT_LIMIT: "100"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-mdms-service"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18013:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-mdms-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+          cpus: '0.6'
+    networks:
+      - selco-network
+
+  egov-notification-mail:
+    image: egovio/egov-notification-mail:v2.9.2-4a60f20
+    container_name: egov-notification-mail
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_TOPICS_NOTIFICATION_MAIL_NAME: "egov.core.notification.email"
+      KAFKA_TOPICS_NOTIFICATION_MAIL_ID: "egov.core.notification.email"
+      KAFKA_TOPICS_NOTIFICATION_MAIL_GROUP: "egov.core.notification.email"
+      MAIL_SENDER_USERNAME: "${NOTIFICATION_MAIL_USERNAME}"
+      MAIL_SENDER_PASSWORD: "${NOTIFICATION_MAIL_PASSWORD}"
+      MAIL_PORT: "465"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EMAIL_SUBJECT: "Selco-Foundation E4H Notification"
+      EGOV_USER_STATE_TENANT_ID: "pg"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-notification-mail"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18014:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-notification-sms:
+    image: selcohub/egov-notification-sms:master-03072024-1
+    container_name: egov-notification-sms
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_TOPICS_NOTIFICATION_SMS_NAME: "egov.core.notification.sms"
+      KAFKA_TOPICS_NOTIFICATION_SMS_ID: "egov.core.notification.sms"
+      KAFKA_TOPICS_NOTIFICATION_SMS_GROUP: "egov.core.notification.sms"
+      SMS_CONFIG_MAP: "{'User':'$$username', 'passwd': '$$password', 'sid':'$$senderid', 'mobilenumber':'$$mobileno', 'message':'$$message', 'mtype':'N', 'DR':'N', 'smsservicetype':'singlemsg'}"
+      SMS_PROVIDER_URL: "sms provider url"
+      SMS_SENDER_USERNAME: "${NOTIFICATION_SMS_USERNAME}"
+      SMS_SENDER_PASSWORD: "${NOTIFICATION_SMS_PASSWORD}"
+      SMS_ENABLED: "true"
+      SMS_SENDER: "sms sender"
+      SMS_SENDER_REQUESTTYPE: "GET"
+      SMS_SENDER_REQ_PARAM_NAME: "sid"
+      SMS_SENDER_USERNAME_REQ_PARAM_NAME: "User"
+      SMS_SENDER_PASSWORD_REQ_PARAM_NAME: "passwd"
+      SMS_DESTINATION_MOBILE_REQ_PARAM_NAME: "mobilenumber"
+      SMS_TYPE_REQ_PARAM_NAME: "smsservicetype"
+      SMS_MESSAGE_REQ_PARAM_NAME: "message"
+      SMS_EXTRA_REQ_PARAMS: "mtype=N&DR=Y"
+      SMS_VERIFY_SSL: "false"
+      SMS_URL_DONT_ENCODE_URL: "true"
+      SMS_SPICEDIGITAL_PROVIDER_URL: "sms provider url"
+      SMS_SPICEDIGITAL_SENDER_USERNAME: "${NOTIFICATION_SMS_USERNAME}"
+      SMS_SPICEDIGITAL_SENDER_PASSWORD: "${NOTIFICATION_SMS_PASSWORD}"
+      LOGGING_LEVEL_org.egov.tracer.kafka: "DEBUG"
+      SMS_SPICEDIGITAL_SENDER: "sms sender"
+      SMS_GATEWAY_TO_USE: "sms provider name"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      SMS_PROVIDER_USERNAME: "${NOTIFICATION_SMS_USERNAME}"
+      SMS_PROVIDER_PASSWORD: "${NOTIFICATION_SMS_PASSWORD}"
+      SMS_PROVIDER_CLASS: "Console"
+      SMS_PROVIDER_REQUESTTYPE: "POST"
+      SMS_PROVIDER_CONTENTTYPE: "application/x-www-form-urlencoded"
+      SMS_VERIFY_RESPONSE: "true"
+      SMS_VERIFY_RESPONSECONTAINS: "SMS message(s) sent"
+      SMS_SUCCESS_CODES: "200,201,202"
+      SMS_ERROR_CODES: "401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-notification-sms"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18015:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-otp:
+    image: egovio/egov-otp:v2.9.2-4a60f20
+    container_name: egov-otp
+    restart: unless-stopped
+    depends_on:
+      egov-otp-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      EGOV_OTP_LENGTH: "4"
+      EGOV_OTP_TTL: "86400"
+      OTEL_SERVICE_NAME: "egov-otp"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18016:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/otp/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-persister:
+    image: egovio/egov-persister:v2.9.2-4a60f20
+    container_name: egov-persister
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      EGOV_PERSIST_YML_REPO_PATH: "file:///work-dir/configs/egov-persister/amc-persister.yml,file:///work-dir/configs/health/egov-persister/facility-persister.yml,file:///work-dir/configs/egov-persister/field-plan-persister.yml,file:///work-dir/configs/egov-persister/activity-persister.yml,file:///work-dir/configs/egov-persister/project-persister.yml,file:///work-dir/configs/egov-persister/egov-user-event-persister.yml,file:///work-dir/configs/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/configs/egov-persister/im-services-persister.yml,file:///work-dir/configs/egov-persister/hrms-employee-persister.yml,file:///work-dir/configs/egov-persister/mdms-persister.yml,file:///work-dir/configs/egov-persister/audit-service-persister.yml,file:///work-dir/configs/egov-persister/privacy-audit.yml,file:///work-dir/configs/egov-persister/boundary-persister.yml,file:///work-dir/configs/egov-persister/asset-persister.yml,file:///work-dir/configs/egov-persister/vendor-persister.yaml"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      SERVER_PORT: "8080"
+      JAEGER_SAMPLER_PARAM: "1"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-persister"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    volumes:
+      - ./configs/egov-persister:/work-dir/configs/egov-persister:ro
+      - ./configs/health/egov-persister:/work-dir/configs/health/egov-persister:ro
+    ports:
+      - "18017:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/common-persist/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 448M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-user:
+    image: egovio/egov-user:core-2.9-lts-egov-user-deployement-c33cfe45ab-13
+    container_name: egov-user
+    restart: unless-stopped
+    depends_on:
+      egov-user-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      SPRING_REDIS_HOST: "redis"
+      SPRING_REDIS_PORT: "6379"
+      EGOV_OTP_HOST: "http://egov-otp:8080/"
+      EGOV_USER_HOST: "http://localhost:8080"
+      EGOV_SERVICES_ACCESSCONTROL_HOST: "http://egov-accesscontrol:8080/"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_ENC_HOST: "http://egov-enc-service:8080/"
+      EGOV_STATE_LEVEL_TENANT_ID: "pg"
+      STATE_LEVEL_TENANT_ID: "pg"
+      DECRYPTION_ABAC_ENABLED: "true"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-user"
+      ACCOUNT_UNLOCK_COOL_DOWN_PERIOD_MINUTES: "30"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      OTP_VALIDATION_REGISTER_MANDATORY: "true"
+      CITIZEN_LOGIN_PASSWORD_OTP_ENABLED: "true"
+      EMPLOYEE_LOGIN_PASSWORD_OTP_ENABLED: "false"
+      ACCESS_TOKEN_VALIDITY_IN_MINUTES: "10080"
+      REFRESH_TOKEN_VALIDITY_IN_MINUTES: "20160"
+      DEFAULT_PASSWORD_EXPIRY_IN_DAYS: "90"
+      MOBILE_NUMBER_VALIDATION_WORKAROUND_ENABLED: "false"
+      ROLES_STATE_LEVEL_ENABLED: "true"
+      CITIZEN_REGISTRATION_WITHLOGIN_ENABLED: "true"
+      CITIZEN_LOGIN_PASSWORD_OTP_FIXED_VALUE: "123456"
+      CITIZEN_LOGIN_PASSWORD_OTP_FIXED_ENABLED: "true"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+    ports:
+      - "18018:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/user/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-user-event:
+    image: egovio/egov-user-event:core-2.9-lts-mvn-check-57ef3ac8dd-4
+    container_name: egov-user-event
+    restart: unless-stopped
+    depends_on:
+      egov-user-event-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMS_SEARCH_ENDPOINT: "/egov-mdms-service/v1/_search"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-user-events"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      KAFKA_TOPICS_PERSISTER_SAVE_EVENTS: "save-user-events"
+      KAFKA_TOPICS_PERSISTER_UPDATE_EVENTS: "update-user-events"
+      KAFKA_TOPICS_LLT_DETAILS: "user-events-llt"
+      KAFKA_TOPICS_SAVE_EVENTS: "persist-user-events-async"
+      KAFKA_TOPICS_UPDATE_EVENTS: "update-user-events-async"
+      MSEVA_NOTIF_SEARCH_OFFSET: "0"
+      MSEVA_NOTIF_SEARCH_LIMIT: "200"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      SERVER_PORT: "8080"
+      JAVA_ENABLE_DEBUG: "true"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      EGOV_LOCALISATION_HOST: "http://egov-localization:8080/"
+      EGOV_LOCALISATION_IS_STATELEVEL: "false"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-user-event"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18019:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-user-event/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  egov-workflow-v2:
+    image: selcohub/egov-workflow-v2:bu_pass_otp_validation_dev-a86ce488aed1031e96bdbe3001006f82c0271975
+    container_name: egov-workflow-v2
+    restart: unless-stopped
+    depends_on:
+      egov-workflow-v2-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      EGOV_INDEXER_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_INDEXER_ES_PASSWORD: "${ES_PASSWORD}"
+      EGOV_INDEXER_ES_HOST_NAME: "https://elasticsearch-data"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-tl-services"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      PERSISTER_SAVE_WF_TOPIC: "save-wf-transitions"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_STATELEVEL_TENANTID: "pg"
+      EGOV_MDMS_SEARCH_ENDPOINT: "/egov-mdms-service/v1/_search"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_USER_SEARCH_ENDPOINT: "/user/v1/_search"
+      JAVA_OPTS: "-Xmx64m -Xms64m"
+      SERVER_PORT: "8080"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      EGOV_WF_DEFAULT_LIMIT: "100"
+      EGOV_WF_STATELEVEL: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "egov-workflow-v2"
+      EGOV_IM_HOST: "http://im-services:8080"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18020:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/egov-workflow-v2/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 448M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  facility-service:
+    image: selcohub/facility-registry:sem-analytics-dev-da330756625bd1fadefd48205e2b4c66cda17fc9
+    container_name: facility-service
+    restart: unless-stopped
+    depends_on:
+      facility-service-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      EGOV_INDEXER_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_INDEXER_ES_PASSWORD: "${ES_PASSWORD}"
+      EGOV_INDEXER_ES_HOST_NAME: "https://elasticsearch-data"
+      EGOV_IM_SERVICES_HOST: "http://im-services:8080"
+      SERVER_PORT: "8080"
+      SERVER_SERVLET_CONTEXT_PATH: "/facility-service"
+      SERVER_CONTEXT_PATH: "/facility-service"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_LOCALIZATION_SEARCH_ENDPOINT: "/localization/messages/v1/_search"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMS_PORT: "8080"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      OTEL_SERVICE_NAME: "facility-service"
+      OTEL_EXPORTER_ENDPOINT: "http://jaeger-tracing-collector:4318"
+      OTEL INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS: "/facility-service/health,/facility-service/prometheus"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_ENABLED: "true"
+      EGOV_ENC_HOST: "http://egov-enc-service:8080"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      ONM-NON-READY_ALLOWED_ROLES: "PROJECT_MANAGER,INSTALLATION_REPORT_APPROVER_QC_TEAM,INSTALLATION_REPORT_PART_A_EDITOR,INSTALLATION_REPORT_PART_B_EDITOR,INSTALLATION_REPORT_PART_A_REVIEWER,FACILITY_ADMIN,SYSTEM"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18021:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/facility-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  field-planner:
+    image: selcohub/field-planner:new_fieldplan_develop-ba4c66d7dae88d875912910e2755c382abd54e48
+    container_name: field-planner
+    restart: unless-stopped
+    depends_on:
+      field-planner-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_FIELDPLAN_ACTIVITY_HOST: "http://field-planner-activity:8080/"
+      SERVER_PORT: "8080"
+      SPRING_REDIS_HOST: "redis"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_PROJECT_HOST: "http://project:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_LOCATION_HOST: "http://egov-location:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_ASSET_HOST: "http://asset-registry:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "field-planner"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18022:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/field-planner/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  field-planner-activity:
+    image: selcohub/field-planner-activity:new_fieldplan_develop-ba4c66d7dae88d875912910e2755c382abd54e48
+    container_name: field-planner-activity
+    restart: unless-stopped
+    depends_on:
+      field-planner-activity-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_INGESTION_HOST: "http://ingestion-service:8080/"
+      EGOV_AMC_SCHEDULER_HOST: "http://amc-service:8080"
+      EGOV_PDF_HOST: "http://pdf-service:8080/"
+      SERVER_PORT: "8080"
+      SPRING_REDIS_HOST: "redis"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_FIELDPLAN_HOST: "http://field-planner:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_LOCATION_HOST: "http://egov-location:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_ASSET_HOST: "http://asset-registry:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      EGOV_VENDOR_USER_HOST: "http://vendor-registry:8080"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "field-planner-activity"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18023:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/activity/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  gateway:
+    image: egovio/gateway:gateway-form-data-whilelisting-fix-71aff8f
+    container_name: gateway
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SPRING_CODEC_MAX_IN_MEMORY_SIZE: "12MB"
+      URL_LISTS: "/pt-services-v2/property/_create:http://rainmaker-custom-service:8000/customization/protected/punjab-pt/property/_create|/pt-services-v2/property/_update:http://rainmaker-custom-service:8000/customization/protected/punjab-pt/property/_update|/pt-calculator-v2/propertytax/_estimate:http://rainmaker-custom-service:8000/customization/protected/punjab-pt/pt-calculator-v2/_estimate"
+      CUSTOM_FILTER_PROPERTY: "false"
+      CUSTOM_FILTER_POSTHOOKS: "true"
+      CUSTOM_FILTER_PREHOOKS: "true"
+      GATEWAY_ROUTES_TL_CALCULATOR_URL: "http://tl-calculator:8080/"
+      SERVER_PORT: "8080"
+      JAVA_ENABLE_DEBUG: "false"
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-api-gateway"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      EGOV_CUSTOM_ASYNC_FILTER_TOPIC: "res-custom-filter"
+      EGOV_OPEN_ENDPOINTS_WHITELIST: "/field-planner/assessment/v1/plan/facility/_search,/im-services/user/login/_report,/facility-service/v2/facility/search,/ingestion-service/template/assessmentPlanFacilityExport,/field-planner/assessment/v1/plan/facility/_search,/user/oauth/token,/user-otp/v1/_send,/otp/v1/_validate,/user/citizen/_create,/localization/messages,/localization/messages/v1/_search,/user/password/nologin/_update,/pgr/servicedefinition/v1/_search,/pgr/servicecategories/v1/_search,/pgr/v1/otp/_send,/pgr-master/receivingmode/v1/_search,/tenant/v1/tenant/_search,/egov-location/boundarys,/egov-location/boundarys/boundariesByBndryTypeNameAndHierarchyTypeName,/pgr-master/service/v1/_search,/egov-location/boundarys/getLocationByLocationName,/pgr-master/OTPConfig/_search,/pgr-master/serviceGroup/v1/_search,/egov-location/boundarys/isshapefileexist,/pgr/services/v1/_search,/hr-masters/hrconfigurations/_search,/collection-services/receipts/_view,/pgr-master/service/v2/_search,/pgr-master/servicedefinition/v1/_search,/citizen-services,/citizen-services/v1/requests/receipt/_create,/citizen-services/v1/pgresponse,/citizen-services/v1/requests/anonymous/_search,/egov-mdms-service/v1/_search,/egov-mdms-service/v1/_get,/egov-mdms-service/v1/_reload,/egov-mdms-service/v1/_reloadobj,/egov-location/boundarys/getshapefile,/egov-indexer/index-operations/_index,/egov-indexer/index-operations/_reload,/egov-mdms-service-test/v1/_search,/egov-mdms-create/v1/_update,/egov-mdms-create/v1/_create,/egov-mdms-service-test/v1/_reload,/filestore/v1/files/url,/egov-url-shortening,/egov-url-shortening,/whatsapp-webhook/messages,/edcr/rest/dcr/downloadfile,/dashboard-ingest/ingest/upload,/egov-searcher/water-services/wateropensearch/_get,/egov-searcher/sewerage-services/sewerageopensearch/_get,/xstate-chatbot/status,/xstate-chatbot/reminder,/nlp-engine/fuzzy/city,/nlp-engine/fuzzy/locality,/pet-services/pet-registration/_search,/pet-services/pet-registration/_create,/pet-services/pet-registration/_update,/echallan-services/eChallan/v1/_search,/requester-services-dx/user/authorization/url/citizen,/requester-services-dx/user/token/citizen,/edcr/rest/dcr/anonymousScrutinize,/access/v1/actions/mdms/_get,/user/_search,/filestore/v1/files/id,/filestore/v1/files,/filestore/v1/files/tag,/im-services/v2/video/upload,/filestore/v1/files/get-hls,/activity/v1/activities/workflow/update,/activity/v1/activities/bulk/workflow/update,/asset-amc/v1/visit/workflow/_update,/asset-amc/v1/visit/_resend_otp,/ingestion-service/template/boundaryIngestionTemplate,/ingestion-service/ingest/boundaries,/vendor/organisation/v1/user/_delete,/field-planner/v1/field-plans/icc-report/_search,/field-planner/assessment/v1/plan/facility/decision/_bulk-update"
+      EGOV_MIXED_MODE_ENDPOINTS_WHITELIST: "/ingestion-service/template/assessmentPlanFacilityExport,/filestore/v1/files/id,/filestore/v1/files,/filestore/v1/files/tag,/user/_search,/access/v1/actions/mdms/_get,/tl-services/v1/_search,/tl-services/v1/BPAREG/_search,/tl-services/v1/BPAREG/_create,/tl-services/v1/BPAREG/_update,/tl-calculator/v1/BPAREG/_getbill,/bpa-services/bpa/appl/_search,/edcr/rest/dcr/scrutinize,/edcr/rest/dcr/scrutinydetails"
+      EVENTLOG_ENABLED: "false"
+      EVENTLOG_TOPIC: "springGateway-event-log"
+      EGOV_AUTHORIZE_ACCESS_CONTROL_HOST: "http://egov-accesscontrol:8080/"
+      EGOV_AUTH_SERVICE_HOST: "http://egov-user:8080/"
+      GATEWAY_HOST_CONNECT_TIMEOUT_MILLIS: "20000"
+      GATEWAY_HOST_SOCKET_TIMEOUT_MILLIS: "60000"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      STATE_LEVEL_TENANT_ID: "pg"
+      SPRING_DATA_REDIS_DEFAULT_REPLENISHRATE: "10"
+      SPRING_DATA_REDIS_DEFAULT_BURSTCAPACITY: "10"
+      SPRING_ROUTES_FILEPATH: "file:/etc/zuul/routes.properties"
+      SPRING_DATA_REDIS_HOST: "redis"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "350"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "1500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "gateway"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    volumes:
+      - ./configs/gateway/routes.properties:/etc/zuul/routes.properties:ro
+    ports:
+      - "18024:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 640M
+          cpus: '0.5'
+    networks:
+      - selco-network
+
+  im-services:
+    image: selcohub/im-services:develop-b4e0c6669c41467566f587513beeea0f469342cd
+    container_name: im-services
+    restart: unless-stopped
+    depends_on:
+      im-services-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+    environment:
+      EGOV_PROJECT_HOST: "http://project:8080"
+      SPRING_FLYWAY_BASELINE_ON_MIGRATE: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      SPRING_SERVLET_MULTIPART_ENABLED: "true"
+      SPRING_SERVLET_MULTIPART_LOCATION: "/opt/egov/input"
+      SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: "100MB"
+      SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: "500MB"
+      FFPROBE_PATH: "/usr/local/bin/ffprobe"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_LOCATION_HOST: "http://egov-location:8080/"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      EGOV_FILESTORE_UPLOAD_ENDPOINT: "/filestore/v1/files"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_URL_SHORTNER_HOST: "http://eus:8080/"
+      EGOV_URL_SHORTNER_ENDPOINT: "/egov-url-shortening/shortener"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_IDGEN_PATH: "egov-idgen/id/_generate"
+      WORKFLOW_CONTEXT_PATH: "egov-workflow-v2/egov-wf/businessservice/_search"
+      MSEVA_MOBILE_APP_DOWNLOAD_LINK: "https://bit.ly/4e8qGJ3"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "egov-im-services"
+      SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+      SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.springframework.kafka.support.serializer.JsonSerializer"
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_TABLE: "im_service_schema"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "im-services"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS: "/im-services/health, /im-services/prometheus"
+    ports:
+      - "18025:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/im-services/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '0.5'
+    networks:
+      - selco-network
+
+  im-services-analytics:
+    image: selcohub/im-services-analytics:develop-b4e0c6669c41467566f587513beeea0f469342cd
+    container_name: im-services-analytics
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      ES_PASSWORD: "${ES_PASSWORD}"
+      SAURA_EMITRA_BASE_URL: "https://e4h-dev.selcofoundation.org"
+      EGOV_FILESTORE_BASEURL: "https://e4h-dev.selcofoundation.org"
+      KIBANA_DASHBOARD_URL: "https://e4h-dev.selcofoundation.org/kibana/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_INFRA_INDEXER_HOST: "http://elasticsearch:9200/"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      EGOV_STATELEVEL_TENANTID: "pg"
+      EGOV_INDEXER_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_INDEXER_ES_PASSWORD: "${ES_PASSWORD}"
+      KAFKA_TOPICS_CONSUMER: "save-hrms-employee"
+      EGOV_UPDATE_INDEX_PATH: "phc-master-list-today/_update/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_MDMS_SEARCH_ENDPOINT: "/egov-mdms-service/v1/_search"
+      EGOV_INDEXER_ES_HOST_NAME: "https://elasticsearch-data"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "im-services-analytics"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18026:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/im-services-analytics/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  inbox:
+    image: selcohub/inbox:im_services_uninstallation-4a1a687f237e89f4337c6fc7d74bddbb8391088b
+    container_name: inbox
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      EGOV_SERVICES_ESINDEXER_HOST_SEARCH: "/_search"
+      WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_INTERNAL_MICROSERVICE_USER_UUID: "606192d1-4c90-42d9-878f-2294bc7ab9a9"
+      WORKFLOW_PROCESS_SEARCH_PATH: "egov-workflow-v2/egov-wf/process/_search"
+      WORKFLOW_BUSINESSSERVICE_SEARCH_PATH: "egov-workflow-v2/egov-wf/businessservice/_search"
+      WORKFLOW_PROCESS_COUNT_PATH: "egov-workflow-v2/egov-wf/process/_count"
+      WORKFLOW_PROCESS_STATUSCOUNT_PATH: "egov-workflow-v2/egov-wf/process/_statuscount"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      SERVICE_SEARCH_MAPPING: "{\"FSM\":{\"searchPath\":\"http://fsm.egov:8080/fsm/v1/_search\",\"dataRoot\":\"fsm\",\"applNosParam\":\"applicationNos\",\"businessIdProperty\":\"applicationNo\"},\"FSM_POST_PAY_SERVICE\":{\"searchPath\":\"http://fsm.egov:8080/fsm/v1/_search\",\"dataRoot\":\"fsm\",\"applNosParam\":\"applicationNos\",\"businessIdProperty\":\"applicationNo\",\"applsStatusParam\":\"applicationStatus\"},\"FSM_VEHICLE_TRIP\":{\"searchPath\":\"http://vehicle.egov:8080/vehicle/trip/v1/_search\",\"dataRoot\":\"vehicleTrip\",\"applNosParam\":\"applicationNos\",\"businessIdProperty\":\"applicationNo\"},\"PT.CREATE,PT.UPDATE,PT.MUTATION\":{\"searchPath\":\"http://property-services.egov:8080/property-services/property/_search\",\"dataRoot\":\"Properties\",\"applNosParam\":\"acknowldgementNumber\",\"businessIdProperty\":\"acknowldgementNumber\",\"applsStatusParam\":\"status\"},\"NewTL,DIRECTRENEWAL,EDITRENEWAL\":{\"searchPath\":\"http://tl-services.egov:8080/tl-services/v1/_search\",\"dataRoot\":\"Licenses\",\"applNosParam\":\"applicationNumber\",\"businessIdProperty\":\"applicationNumber\",\"applsStatusParam\":\"status\"},\"BPA_LOW,BPA,BPA_OC,BPA_HIGH\":{\"searchPath\":\"http://bpa-services.egov:8080/bpa-services/v1/bpa/_search\",\"dataRoot\":\"BPA\",\"applNosParam\":\"applicationNo\",\"businessIdProperty\":\"applicationNo\",\"applsStatusParam\":\"status\"},\"ARCHITECT,ENGINEER,STRUCTURALENGINEER,BUILDER,SUPERVISOR,TOWNPLANNER\":{\"searchPath\":\"http://tl-services.egov:8080/tl-services/v1/BPAREG/_search\",\"dataRoot\":\"Licenses\",\"applNosParam\":\"applicationNumber\",\"businessIdProperty\":\"applicationNumber\",\"applsStatusParam\":\"status\"},\"FIRE_NOC_SRV,FIRE_NOC_OFFLINE,AIRPORT_NOC_OFFLINE,AIRPORT_NOC_SRV\":{\"searchPath\":\"http://noc-services.egov:8080/noc-services/v1/noc/_search\",\"dataRoot\":\"Noc\",\"applNosParam\":\"applicationNo\",\"businessIdProperty\":\"applicationNo\",\"applsStatusParam\":\"status\"},\"NewWS1,ModifyWSConnection,DisconnectWSConnection\":{\"searchPath\":\"http://ws-services.egov:8080/ws-services/wc/_search\",\"dataRoot\":\"WaterConnection\",\"applNosParam\":\"applicationNumber\",\"businessIdProperty\":\"applicationNo\",\"applsStatusParam\":\"applicationStatus\"},\"NewSW1,ModifySWConnection,DisconnectSWConnection\":{\"searchPath\":\"http://sw-services.egov:8080/sw-services/swc/_search\",\"dataRoot\":\"SewerageConnections\",\"applNosParam\":\"applicationNumber\",\"businessIdProperty\":\"applicationNo\",\"applsStatusParam\":\"applicationStatus\"},\"WS.AMENDMENT,SW.AMENDMENT\":{\"searchPath\":\"http://billing-service.egov:8080/billing-service/amendment/_search\",\"dataRoot\":\"Amendments\",\"applNosParam\":\"consumerCode\",\"businessIdProperty\":\"amendmentId\",\"applsStatusParam\":\"status\"},\"ptr\":{\"searchPath\":\"http://pet-services.egov:8080/pet-services/pet-registration/_search\",\"dataRoot\":\"PetRegistrationApplications\",\"applNosParam\":\"applicationNumber\",\"businessIdProperty\":\"applicationNumber\",\"applsStatusParam\":\"status\"}}"
+      BS_BUSINESSCODE_SERVICE_SEARCH: "{\"WS\":{\"searchPath\":\"http://ws-services.egov:8080/ws-services/wc/_search\",\"dataRoot\":\"WaterConnection\",\"consumerCodeParam\":\"connectionNumber\"},\"SW\":{\"searchPath\":\"http://sw-services.egov:8080/sw-services/swc/_search\",\"dataRoot\":\"SewerageConnections\",\"consumerCodeParam\":\"connectionNumber\"}}"
+      EGOV_USER_SEARCH_PATH: "user/_search"
+      EGOV_SEARCHER_HOST: "http://egov-searcher:8080/"
+      EGOV_DASHBOARD_ANALYTICS_HOST: "http://dashboard-analytics:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      SERVICES_ESINDEXER_HOST: "http://elasticsearch:9200/"
+      EGOV_ES_PASSWORD: "${ES_PASSWORD}"
+      EGOV_ES_USERNAME: "${ES_USERNAME}"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      STATE_LEVEL_TENANT_ID: "pg"
+      EGOV_SEARCHER_PT_SEARCH_PATH: "egov-searcher/property-services/inboxpropertysearch/_get"
+      JAVA_OPTS: "-Xmx256m -Xms256m"
+      JAVA_ARGS: "-Dspring.profiles.active=monitoring"
+      SERVER_PORT: "8080"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      JAVA_ENABLE_DEBUG: "true"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+    ports:
+      - "18027:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/inbox/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  ingestion-service:
+    image: selcohub/ingestion-service:amc_configuration_enhancement-d9aeae2f190e0e0ed080020b08b0e22936d3e031
+    container_name: ingestion-service
+    restart: unless-stopped
+    environment:
+      FILESTORE_SERVICE_URL: "http://egov-filestore:8080/"
+      LOCALIZATION_SERVICE_URL: "http://egov-localization:8080/"
+      AMC_SCHEDULER_SERVICE_URL: "http://amc-service:8080"
+      FIELDPLAN_ACTIVITY_SERVICE_URL: "http://field-planner-activity:8080"
+      FIELDPLAN_SERVICE_URL: "http://field-planner:8080/"
+      VENDOR_SERVICE_URL: "http://vendor-registry:8080/"
+      BOUNDARY_SERVICE_URL: "http://boundary-service:8080/"
+      PROJECT_SERVICE_URL: "http://project:8080/"
+      MDMS_URL: "http://egov-mdms-service:8080/"
+      HRMS_SERVICE_URL: "http://egov-hrms:8080/"
+      FACILITY_SERVICE_URL: "http://facility-service:8080/"
+      IM_SERVICES_URL: "http://im-services:8080/"
+      TIME_OUT: "60"
+      DB_HOST: "${DB_HOST}"
+      DB_USER: "${DB_USERNAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      ENVIRONMENT: "dev"
+    ports:
+      - "18028:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/ingestion-service/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.3'
+    networks:
+      - selco-network
+
+  pdf-service:
+    image: egovio/pdf-service:pdf-2.9-lts-a17e8ebea8-48
+    container_name: pdf-service
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      EGOV_LOCALISATION_HOST: "http://egov-localization:8080/"
+      EGOV_FILESTORE_SERVICE_HOST: "http://egov-filestore:8080"
+      EGOV_LOCALISATION_SEARCH: "localization/messages/v2/_search"
+      KAFKA_CREATE_JOB_TOPIC: "PDF_GEN_CREATE"
+      KAFKA_RECEIVE_CREATE_JOB_TOPIC: "PDF_GEN_RECEIVE"
+      KAFKA_BROKER_HOST: "kafka:9092"
+      DB_HOST: "${DB_HOST}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USERNAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DEFAULT_LOCALISATION_TENANT: "pg"
+      STATE_LEVEL_TENANT_ID: "pg"
+      DATA_CONFIG_URLS: "file:///work-dir/configs.git/pdf-service/data-config/bom_ac_on_grid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_on_grid_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/data-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/data-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/data-config/amc-report.json"
+      FORMAT_CONFIG_URLS: "file:///work-dir/configs.git/pdf-service/format-config/bom_ac_on_grid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_on_grid_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_ac_off_three.json,file:///work-dir/configs.git/pdf-service/format-config/bom_dc_system.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_single.json,file:///work-dir/configs.git/pdf-service/format-config/bom_hybrid_three.json,file:///work-dir/configs.git/pdf-service/format-config/amc-report.json"
+    volumes:
+      - ./configs/pdf-service:/work-dir/configs.git/pdf-service:ro
+    ports:
+      - "18029:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.4'
+    networks:
+      - selco-network
+
+  processor-services:
+    image: selcohub/processor-services:develop-e08542f94b874efcc2ed2f4eee25a981a8414928
+    container_name: processor-services
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SERVER_PORT: "8080"
+      EGOV_FILESTORE_HOST: "http://egov-filestore:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "processor-services"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18030:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/processor-services/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '0.5'
+    networks:
+      - selco-network
+
+  project:
+    image: selcohub/project:develop-157d933082d3b2145085c08b2d0e4f77b2f50196
+    container_name: project
+    restart: unless-stopped
+    depends_on:
+      project-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      SERVER_SERVLET_CONTEXT_PATH: "/project"
+      SPRING_REDIS_HOST: "redis"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
+      EGOV_FACILITY_HOST: "http://facility-service:8080/"
+      EGOV_WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_ASSET_HOST: "http://asset-registry:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "project"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18031:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/project/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  translator:
+    image: selcohub/translator-service:develop-982680b9c22a824e29903a638774084085e43041
+    container_name: translator
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      SERVER_SERVLET_CONTEXT_PATH: "/translator"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      GEMINI_API_KEY: "${TRANSLATOR_GEMINI_API_KEY}"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "translator"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18032:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/translator/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  user-otp:
+    image: egovio/user-otp:v2.9.2-4a60f20
+    container_name: user-otp
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      OTP_HOST: "http://egov-otp:8080/otp"
+      SECURITY_BASIC_ENABLED: "false"
+      MANAGEMENT_SECURITY_ENABLED: "false"
+      USER_HOST: "http://egov-user:8080/"
+      EGOV_LOCALISATION_HOST: "http://egov-localization:8080/"
+      SMS_TOPIC: "egov.core.notification.sms"
+      JAVA_OPTS: "-Xmx192m -Xms192m"
+      TRACER_OPENTRACING_ENABLED: "true"
+      SPRING_DATASOURCE_URL: "jdbc:otel:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "user-otp"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18033:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/user-otp/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  vendor-registry:
+    image: selcohub/vendor-registry:develop-e8de6c63bf99cfc5418755bd18914bac11106b6a
+    container_name: vendor-registry
+    restart: unless-stopped
+    depends_on:
+      vendor-registry-migrate:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: "8080"
+      JAVA_OPTS: "-Xmx192m -Xms192m -Djava.net.preferIPv4Stack=true"
+      SPRING_REDIS_HOST: "redis"
+      SPRING_REDIS_PORT: "6379"
+      SERVER_SERVLET_CONTEXT_PATH: "/vendor"
+      SERVER_CONTEXT_PATH: "/vendor"
+      KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG: "kafka:9092"
+      EGOV_LOCALIZATION_HOST: "http://egov-localization:8080/"
+      EGOV_LOCALIZATION_CONTEXT_PATH: "/localization/messages/v1"
+      EGOV_MDMS_SEARCH_ENDPOINT: "/egov-mdms-service/v1/_search"
+      EGOV_LOCALIZATION_SEARCH_ENDPOINT: "/localization/messages/v1/_search"
+      EGOV_FIELDPLAN_ACTIVITY_HOST: "http://field-planner-activity:8080"
+      EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
+      EGOV_USER_HOST: "http://egov-user:8080/"
+      EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
+      EGOV_HRMS_HOST: "http://egov-hrms:8080/"
+      WORKFLOW_HOST: "http://egov-workflow-v2:8080/"
+      EGOV_LOCATION_HOST: "http://boundary-service:8080/"
+      EGOV_ENC_HOST: "http://egov-enc-service:8080/"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      FLYWAY_ENABLED: "false"
+      SPRING_FLYWAY_ENABLED: "false"
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/"
+      APP_TIMEZONE: "Asia/Kolkata"
+      FLYWAY_URL: "jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}"
+      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE: "1"
+      SERVER_TOMCAT_MAX_THREADS: "10"
+      SERVER_TOMCAT_MAX_CONNECTIONS: "500"
+      SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE: "2"
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "2"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SPRING_JPA_SHOW_SQL: "true"
+      STATE_LEVEL_TENANTID_LENGTH: "1"
+      IS_ENVIRONMENT_CENTRAL_INSTANCE: "false"
+      STATE_SCHEMA_INDEX_POSITION_TENANTID: "0"
+      KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
+      OTEL_SERVICE_NAME: "vendor-registry"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+    ports:
+      - "18034:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/vendor/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: '0.25'
+    networks:
+      - selco-network
+
+  # --- backbone-dev services (collapsed to single-node where clustered) ---
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      cluster.name: elasticsearch
+      network.host: "0.0.0.0"
+      ES_JAVA_OPTS: "-Xmx1g -Xms1g"
+      ELASTIC_PASSWORD: "${ES_PASSWORD}"
+      xpack.security.enabled: "true"
+      xpack.security.http.ssl.enabled: "false"
+      xpack.security.transport.ssl.enabled: "false"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    ports:
+      - "19200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf -u elastic:$$ELASTIC_PASSWORD http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+          cpus: '1.5'
+    networks:
+      selco-network:
+        aliases:
+          - elasticsearch-data
+          - elasticsearch-master
+
+  kafka:
+    image: docker.io/selcohub/kafka:3.6.0-debian-11-r0
+    container_name: kafka
+    restart: unless-stopped
+    environment:
+      KAFKA_CFG_NODE_ID: "0"
+      KAFKA_CFG_PROCESS_ROLES: "controller,broker"
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: "0@kafka:9093"
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_CFG_LISTENERS: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"
+      KAFKA_CFG_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+      KAFKA_KRAFT_CLUSTER_ID: "${KAFKA_KRAFT_CLUSTER_ID:-Mk3OEYBSD34fcwNTJENDM2Qk}"
+      KAFKA_HEAP_OPTS: "-Xmx768m -Xms768m"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    volumes:
+      - kafka_data:/bitnami/kafka
+    ports:
+      - "19092:9092"
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 45s
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '1'
+    networks:
+      selco-network:
+        aliases:
+          - kafka-kraft-controller
+          - kafka-kraft-controller-headless
+          - kafka-kraft
+
+  redis:
+    image: egovio/redis:7.2.4
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "16379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.3'
+    networks:
+      - selco-network
+
+  kafka-ui:
+    image: docker.io/provectuslabs/kafka-ui:v0.7.2
+    container_name: kafka-ui
+    restart: unless-stopped
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_CLUSTERS_0_NAME: "Kafka"
+      SERVER_SERVLET_CONTEXT_PATH: "/kafka-ui"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+    ports:
+      - "18300:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  kibana-kibana:
+    image: selcohub/kibana-plugin-poc:mark-16
+    container_name: kibana-kibana
+    restart: unless-stopped
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+      ELASTICSEARCH_USERNAME: "elastic"
+      ELASTICSEARCH_PASSWORD: "${ES_PASSWORD}"
+      SERVER_HOST: "0.0.0.0"
+      SERVER_REWRITEBASEPATH: "true"
+      SERVER_BASEPATH: "/kibana"
+      NODE_OPTIONS: "--max-old-space-size=1800"
+    ports:
+      - "15601:5601"
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: '0.5'
+    networks:
+      - selco-network
+
+  pgadmin4:
+    image: docker.io/dpage/pgadmin4:9.3
+    container_name: pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+      SCRIPT_NAME: "/pgadmin4"
+    ports:
+      - "15050:80"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  jaeger-tracing-collector:
+    image: jaegertracing/jaeger-collector:1.53.0
+    container_name: jaeger-tracing-collector
+    restart: unless-stopped
+    profiles: ["observability"]
+    environment:
+      ES_SERVER_URLS: "http://elasticsearch:9200"
+      ES_TLS_ENABLED: "false"
+      COLLECTOR_OTLP_ENABLED: "true"
+      SPAN_STORAGE_TYPE: "elasticsearch"
+      ES_USE_ROLLOVER: "true"
+      ES_ROLLOVER: "true"
+      ES_USERNAME: "elastic"
+      ES_PASSWORD: "${ES_PASSWORD}"
+    ports:
+      - "14268:14268"
+      - "4318:4318"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+  jaeger-tracing-query:
+    image: jaegertracing/jaeger-query:1.53.0
+    container_name: jaeger-tracing-query
+    restart: unless-stopped
+    profiles: ["observability"]
+    environment:
+      ES_SERVER_URLS: "http://elasticsearch:9200"
+      ES_TLS_ENABLED: "false"
+      SPAN_STORAGE_TYPE: "elasticsearch"
+      ES_USERNAME: "elastic"
+      ES_PASSWORD: "${ES_PASSWORD}"
+      QUERY_BASE_PATH: "/tracing"
+      JAEGER_AGENT_PORT: "6831"
+    ports:
+      - "16686:16686"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.2'
+    networks:
+      - selco-network
+
+networks:
+  selco-network:
+    driver: bridge
+
+volumes:
+  elasticsearch_data:
+  kafka_data:
+  pgadmin_data:

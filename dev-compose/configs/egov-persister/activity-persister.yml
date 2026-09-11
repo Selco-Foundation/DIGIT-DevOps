@@ -1,0 +1,530 @@
+serviceMaps:
+  serviceName: fieldPlan
+  mappings:
+    - version: 1.0
+      name: Activity
+      description: Persists Activity Assignment details in Activity Assignment table
+      fromTopic: save-activity-assignment-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: Activity
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO activity_assignments (id,tenant_id,field_plan_id,activity_id,start_date,end_date,poc_number,assigned_to,assigned_by,additional_details,role,status,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.ActivityAssignment.*
+          jsonMaps:
+            - jsonPath: $.ActivityAssignment.*.id
+
+            - jsonPath: $.ActivityAssignment.*.tenantId
+
+            - jsonPath: $.ActivityAssignment.*.fieldPlanId
+
+            - jsonPath: $.ActivityAssignment.*.activityId
+
+            - jsonPath: $.ActivityAssignment.*.startDate
+
+            - jsonPath: $.ActivityAssignment.*.endDate
+
+            - jsonPath: $.ActivityAssignment.*.pocNumber
+
+            - jsonPath: $.ActivityAssignment.*.assignedTo
+
+            - jsonPath: $.ActivityAssignment.*.assignedBy
+
+            - jsonPath: $.ActivityAssignment.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivityAssignment.*.role
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivityAssignment.*.status
+
+            - jsonPath: $.ActivityAssignment.*.auditDetails.createdTime
+
+            - jsonPath: $.ActivityAssignment.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Projects
+      description: Updates activity assignment table
+      fromTopic: update-activity-assignment
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: update activity_assignments SET tenant_id=?, field_plan_id=?, activity_id=?, assigned_to=?, assigned_by=?, status=?, created_time=?, last_modified_time=?, additional_details=?, start_date=?, end_date=?, role=?, emailsent=?, isdeleted=?, poc_number=? WHERE id=?;
+          basePath: $.ActivityAssignment.*
+          jsonMaps:
+            - jsonPath: $.ActivityAssignment.*.tenantId
+
+            - jsonPath: $.ActivityAssignment.*.fieldPlanId
+
+            - jsonPath: $.ActivityAssignment.*.activityId
+
+            - jsonPath: $.ActivityAssignment.*.assignedTo
+
+            - jsonPath: $.ActivityAssignment.*.assignedBy
+
+            - jsonPath: $.ActivityAssignment.*.status
+
+            - jsonPath: $.ActivityAssignment.*.auditDetails.createdTime
+
+            - jsonPath: $.ActivityAssignment.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.ActivityAssignment.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivityAssignment.*.startDate
+
+            - jsonPath: $.ActivityAssignment.*.endDate
+
+            - jsonPath: $.ActivityAssignment.*.role
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivityAssignment.*.isEmailSent
+
+            - jsonPath: $.ActivityAssignment.*.isDeleted
+
+            - jsonPath: $.ActivityAssignment.*.pocNumber
+
+            - jsonPath: $.ActivityAssignment.*.id
+
+    - version: 1.0
+      description: Deletes fieldplan activity
+      fromTopic: unassign-activity-assignment-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE activity_assignments SET last_modified_time=?, isDeleted=?, additional_details=? WHERE id=?;
+          basePath: $.ActivityAssignment.*
+          jsonMaps:
+            - jsonPath: $.ActivityAssignment.*.auditDetails.lastModifiedTime
+            - jsonPath: $.ActivityAssignment.*.isDeleted
+            - jsonPath: $.ActivityAssignment.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.*.id
+
+    - version: 1.0
+      name: Activity
+      description: Persists Activity Facility details in Activity Facility table
+      fromTopic: save-activity-facility-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: Activity
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO facility_activities (id,tenant_id,field_plan_id,activity_id,facility_id, status, conditions_met, assigned_user, scheduled_at, activated_at, completed_at, additional_details, created_time, last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (tenant_id, facility_id, activity_id, field_plan_id) DO UPDATE SET isdeleted = ?, last_modified_time = ?;
+          basePath: $.ActivitiesFacilities.*
+          jsonMaps:
+            - jsonPath: $.ActivitiesFacilities.*.id
+
+            - jsonPath: $.ActivitiesFacilities.*.tenantId
+
+            - jsonPath: $.ActivitiesFacilities.*.fieldPlanId
+
+            - jsonPath: $.ActivitiesFacilities.*.activityId
+
+            - jsonPath: $.ActivitiesFacilities.*.facilityId
+
+            - jsonPath: $.ActivitiesFacilities.*.status
+
+            - jsonPath: $.ActivitiesFacilities.*.conditionsMet
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivitiesFacilities.*.assignedUser
+
+            - jsonPath: $.ActivitiesFacilities.*.scheduledAt
+
+            - jsonPath: $.ActivitiesFacilities.*.activatedAt
+
+            - jsonPath: $.ActivitiesFacilities.*.completedAt
+
+            - jsonPath: $.ActivitiesFacilities.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivitiesFacilities.*.auditDetails.createdTime
+
+            - jsonPath: $.ActivitiesFacilities.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.ActivityAssignment.*.isDeleted
+
+            - jsonPath: $.ActivitiesFacilities.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Activity
+      description: Updates activity details in activity_facilities table
+      fromTopic: update-activity-facility
+      isTransaction: true
+      isAuditEnabled: true
+      module: ACTIVITY
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE facility_activities SET  assigned_user=?, scheduled_at=?, activated_at=?, completed_at=?, status = ?, conditions_met=?, additional_details = ?, last_modified_time = ? WHERE id = ?;
+          basePath: $.ActivitiesFacilities.*
+          jsonMaps:
+            - jsonPath: $.ActivitiesFacilities.*.assignedUser
+
+            - jsonPath: $.ActivitiesFacilities.*.scheduledAt
+
+            - jsonPath: $.ActivitiesFacilities.*.activatedAt
+
+            - jsonPath: $.ActivitiesFacilities.*.completedAt
+
+            - jsonPath: $.ActivitiesFacilities.*.status
+
+            - jsonPath: $.ActivitiesFacilities.*.conditionsMet
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivitiesFacilities.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivitiesFacilities.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.ActivitiesFacilities.*.id
+
+    - version: 1.0
+      name: Activity
+      description: Delete activity in activity_facilities table
+      fromTopic: delete-activity-facility
+      isTransaction: true
+      isAuditEnabled: true
+      module: ACTIVITY
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE facility_activities SET isdeleted = ?, additional_details = ?, last_modified_time = ? WHERE id = ?;
+          basePath: $.ActivitiesFacilities.*
+          jsonMaps:
+            - jsonPath: $.ActivitiesFacilities.*.isDeleted
+
+            - jsonPath: $.ActivitiesFacilities.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.ActivitiesFacilities.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.ActivitiesFacilities.*.id
+
+    - version: 1.0
+      description: Saves facility activity user
+      fromTopic: save-facility-user-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: ACTIVITY
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.clientReferenceId
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO activity_facility_users (id, tenantId, activityfacilityid, userid, additionalDetails, createdBy, lastModifiedBy, createdTime, lastModifiedTime, isDeleted) VALUES (?,?,?,?,?,?,?,?,?,?);
+          basePath: $.ActivityFacilityUsers.*
+          jsonMaps:
+            - jsonPath: $.ActivityFacilityUsers.*.id
+            - jsonPath: $.ActivityFacilityUsers.*.tenantId
+            - jsonPath: $.ActivityFacilityUsers.*.activityFacilityId
+            - jsonPath: $.ActivityFacilityUsers.*.userId
+            - jsonPath: $.ActivityFacilityUsers.*.additionalFields
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.createdBy
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.lastModifiedBy
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.createdTime
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.lastModifiedTime
+            - jsonPath: $.ActivityFacilityUsers.*.isDeleted
+
+    - version: 1.0
+      description: Update facility activity user
+      fromTopic: update-facility-user-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.clientReferenceId
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE activity_facility_users SET activityfacilityid=?, userid=?, additionalDetails=?, lastModifiedBy=?, lastModifiedTime=?, isDeleted=? WHERE id = ?
+          basePath: $.ActivityFacilityUsers.*
+          jsonMaps:
+            - jsonPath: $.ActivityFacilityUsers.*.activityFacilityId
+            - jsonPath: $.ActivityFacilityUsers.*.userId
+            - jsonPath: $.ActivityFacilityUsers.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.lastModifiedBy
+            - jsonPath: $.ActivityFacilityUsers.*.auditDetails.lastModifiedTime
+            - jsonPath: $.ActivityFacilityUsers.*.isDeleted
+            - jsonPath: $.ActivityFacilityUsers.*.id
+
+    - version: 1.0
+      description: Persists facility activity transactions
+      fromTopic: facility-transaction-create
+      isTransaction: true
+      module: PROJECT
+      objecIdJsonPath: $.transactions.*.transactionId
+      auditAttributeBasePath: $.transactions.*.auditDetails
+      queryMaps:
+        - query: >
+            INSERT INTO activity_facility_transaction (
+              id, activity_facility_id, process_instance_id,
+              created_by, last_modified_by, created_time, last_modified_time
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+          basePath: $.transactions.*
+          jsonMaps:
+            - jsonPath: $.transactions.*.transactionId
+            - jsonPath: $.transactions.*.activityFacilityId
+            - jsonPath: $.transactions.*.processInstanceId
+            - jsonPath: $.transactions.*.auditDetails.createdBy
+            - jsonPath: $.transactions.*.auditDetails.lastModifiedBy
+            - jsonPath: $.transactions.*.auditDetails.createdTime
+            - jsonPath: $.transactions.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      description: Persists facility activity comments
+      fromTopic: facility-comment-create
+      isTransaction: true
+      module: PROJECT
+      objecIdJsonPath: $.comments.*.commentId
+      auditAttributeBasePath: $.comments.*.auditDetails
+      queryMaps:
+        - query: >
+            INSERT INTO activity_facility_transaction_comment (
+              id, transaction_id, comment_message, asset_type,
+              created_by, last_modified_by, created_time, last_modified_time
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          basePath: $.comments.*
+          jsonMaps:
+            - jsonPath: $.comments.*.commentId
+            - jsonPath: $.comments.*.transactionId
+            - jsonPath: $.comments.*.commentMessage
+            - jsonPath: $.comments.*.assetType
+            - jsonPath: $.comments.*.auditDetails.createdBy
+            - jsonPath: $.comments.*.auditDetails.lastModifiedBy
+            - jsonPath: $.comments.*.auditDetails.createdTime
+            - jsonPath: $.comments.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Activity
+      description: Persists Bill Of Material details in bom table
+      fromTopic: save-bom-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: Activity
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO bom (id,tenant_id,facility_id,activity_facility_id,name,assign_user,data,is_active,additional_details,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.bom.*
+          jsonMaps:
+            - jsonPath: $.bom.*.id
+
+            - jsonPath: $.bom.*.tenantId
+
+            - jsonPath: $.bom.*.facilityId
+
+            - jsonPath: $.bom.*.activityFacilityId
+
+            - jsonPath: $.bom.*.name
+
+            - jsonPath: $.bom.*.assignUser
+
+            - jsonPath: $.bom.*.data
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.isActive
+
+            - jsonPath: $.bom.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.auditDetails.createdTime
+
+            - jsonPath: $.bom.*.auditDetails.lastModifiedTime
+
+        - query: INSERT INTO bom_document(id,bomid,documentType,filestoreId,documentUid,additionalDetails,status,createdBy,lastModifiedBy,createdTime,lastModifiedTime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.bom.*.documents.*
+          jsonMaps:
+            - jsonPath: $.bom.*.documents.*.id
+
+            - jsonPath: $.bom[*][?({id} in @.documents[*].id)].id
+
+            - jsonPath: $.bom.*.documents.*.documentType
+
+            - jsonPath: $.bom.*.documents.*.fileStoreId
+
+            - jsonPath: $.bom.*.documents.*.documentUid
+
+            - jsonPath: $.bom.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.documents.*.status
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.createdBy
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.createdTime
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Activity
+      description: Updates Bill Of Material details details in bom table
+      fromTopic: update-bom-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: ACTIVITY
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE bom SET  assign_user=?, name=?, data=?, is_active=?, additional_details = ?, last_modified_time = ? WHERE id = ?;
+          basePath: $.bom.*
+          jsonMaps:
+            - jsonPath: $.bom.*.assignUser
+
+            - jsonPath: $.bom.*.name
+
+            - jsonPath: $.bom.*.data
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.isActive
+
+            - jsonPath: $.bom.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.bom.*.id
+
+        - query: INSERT INTO bom_document(id,bomid,documentType,filestoreId,documentUid,additionalDetails,status,createdBy,lastModifiedBy,createdTime,lastModifiedTime) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET documentType=?, filestoreId=?, documentUid=?, additionalDetails=?, status=?, lastModifiedBy=?, lastModifiedTime=?;
+          basePath: $.bom.*.documents.*
+          jsonMaps:
+            - jsonPath: $.bom.*.documents.*.id
+
+            - jsonPath: $.bom[*][?({id} in @.documents[*].id)].id
+
+            - jsonPath: $.bom.*.documents.*.documentType
+
+            - jsonPath: $.bom.*.documents.*.fileStoreId
+
+            - jsonPath: $.bom.*.documents.*.documentUid
+
+            - jsonPath: $.bom.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.documents.*.status
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.createdBy
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.createdTime
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.bom.*.documents.*.documentType
+
+            - jsonPath: $.bom.*.documents.*.fileStoreId
+
+            - jsonPath: $.bom.*.documents.*.documentUid
+
+            - jsonPath: $.bom.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.bom.*.documents.*.status
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.bom.*.documents.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Activity
+      description: Persists Activity Assignment details in Activity Assignment table
+      fromTopic: save-activity-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: Activity
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO activities (id,tenant_id,name,code,default_conditions,required_roles,sequence_order,is_active,additional_details,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.Activities.*
+          jsonMaps:
+            - jsonPath: $.Activities.*.id
+
+            - jsonPath: $.Activities.*.tenantId
+
+            - jsonPath: $.Activities.*.name
+
+            - jsonPath: $.Activities.*.code
+
+            - jsonPath: $.Activities.*.defaultConditions
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.Activities.*.requiredRoles
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.Activities.*.sequenceOrder
+
+            - jsonPath: $.Activities.*.active
+
+            - jsonPath: $.Activities.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.Activities.*.auditDetails.createdTime
+
+            - jsonPath: $.Activities.*.auditDetails.lastModifiedTime

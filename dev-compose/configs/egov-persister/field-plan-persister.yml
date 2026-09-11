@@ -1,0 +1,268 @@
+serviceMaps:
+  serviceName: fieldPlan
+  mappings:
+    - version: 1.0
+      name: FieldPlan
+      description: Persists field plan details in field plan table
+      fromTopic: save-field-plan
+      isTransaction: true
+      isAuditEnabled: true
+      module: FieldPlan
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO field_plans (id,tenant_id,name,project_id,start_date,end_date,geography_scope,selected_activities,health_facility_number,status,additional_details,isDeleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.FieldPlans.*
+          jsonMaps:
+            - jsonPath: $.FieldPlans.*.id
+
+            - jsonPath: $.FieldPlans.*.tenantId
+
+            - jsonPath: $.FieldPlans.*.name
+
+            - jsonPath: $.FieldPlans.*.projectId
+
+            - jsonPath: $.FieldPlans.*.startDate
+
+            - jsonPath: $.FieldPlans.*.endDate
+
+            - jsonPath: $.FieldPlans.*.geographyDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.activities
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.healthFacilityNumber
+
+            - jsonPath: $.FieldPlans.*.status
+
+            - jsonPath: $.FieldPlans.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.isDeleted
+
+            - jsonPath: $.FieldPlans.*.auditDetails.createdBy
+
+            - jsonPath: $.FieldPlans.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.FieldPlans.*.auditDetails.createdTime
+
+            - jsonPath: $.FieldPlans.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      name: Projects
+      description: Updates field plan details in field_plan table
+      fromTopic: update-fieldplan
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE field_plans SET name = ?, project_id = ?, health_facility_number = ?, start_date = ?, end_date = ?, geography_scope = ?, selected_activities = ?, status = ?, additional_details = ?, isDeleted = ?, created_by = ?, last_modified_by = ?, last_modified_time = ? WHERE id = ?;
+          basePath: $.FieldPlans.*
+          jsonMaps:
+            - jsonPath: $.FieldPlans.*.name
+
+            - jsonPath: $.FieldPlans.*.projectId
+
+            - jsonPath: $.FieldPlans.*.healthFacilityNumber
+
+            - jsonPath: $.FieldPlans.*.startDate
+
+            - jsonPath: $.FieldPlans.*.endDate
+
+            - jsonPath: $.FieldPlans.*.geographyDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.activities
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.status
+
+            - jsonPath: $.FieldPlans.*.additionalDetails
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.FieldPlans.*.isDeleted
+
+            - jsonPath: $.FieldPlans.*.auditDetails.createdBy
+
+            - jsonPath: $.FieldPlans.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.FieldPlans.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.FieldPlans.*.id
+
+    - version: 1.0
+      description: Saves a field-Plan facility
+      fromTopic: save-fieldplan-facility-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO field_plan_facilities (id, tenantid, field_plan_id, facility_id, additional_details, last_modified_by, created_time, lastmodifiedtime, isdeleted) VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT (tenantid, field_plan_id, facility_id) DO UPDATE SET isdeleted = ?, last_modified_by = ?, lastmodifiedtime = ?
+          basePath: $.*
+          jsonMaps:
+            - jsonPath: $.*.id
+
+            - jsonPath: $.*.tenantId
+
+            - jsonPath: $.*.fieldPlanId
+
+            - jsonPath: $.*.facilityId
+
+            - jsonPath: $.*.additionalFields
+              type: JSON
+              dbType: JSONB
+
+            - jsonPath: $.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.*.auditDetails.createdTime
+
+            - jsonPath: $.*.auditDetails.lastModifiedTime
+
+            - jsonPath: $.*.isdeleted
+
+            - jsonPath: $.*.isdeleted
+
+            - jsonPath: $.*.auditDetails.lastModifiedBy
+
+            - jsonPath: $.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      description: Deletes FieldPlan Facility
+      fromTopic: delete-fieldplan-facility-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: FIELDPLAN
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE field_plan_facilities SET last_modified_by=?, lastmodifiedtime=?, isdeleted=?, additional_details=? WHERE id=?;
+          basePath: $.*
+          jsonMaps:
+            - jsonPath: $.*.auditDetails.lastModifiedBy
+            - jsonPath: $.*.auditDetails.lastModifiedTime
+            - jsonPath: $.*.isdeleted
+            - jsonPath: $.*.additionalFields
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.*.id
+
+    - version: 1.0
+      description: Updates editable fields (systemType, solarSolutionDesignType, totalSystemCapacity, customSolarSolutionDesignType, customTotalSystemCapacity) of an already-linked FieldPlan Facility
+      fromTopic: update-fieldplan-facility-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: FIELDPLAN
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.lastModifiedBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: UPDATE field_plan_facilities SET last_modified_by=?, lastmodifiedtime=?, additional_details=? WHERE id=?;
+          basePath: $.*
+          jsonMaps:
+            - jsonPath: $.*.auditDetails.lastModifiedBy
+            - jsonPath: $.*.auditDetails.lastModifiedTime
+            - jsonPath: $.*.additionalFields
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.*.id
+
+    - version: 1.0
+      description: Saves a icc template
+      fromTopic: save-icc-template
+      isTransaction: true
+      isAuditEnabled: true
+      module: PROJECT
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.[0].auditDetails.createdBy
+      transactionCodeJsonPath: $.id
+      auditAttributeBasePath: $.*
+      queryMaps:
+        - query: INSERT INTO public.icc_templates(id, system_type, total_system_capacity, filestoreid) VALUES(?, ?, ?, ?);
+          basePath: $.*
+          jsonMaps:
+            - jsonPath: $.*.id
+
+            - jsonPath: $.*.systemType
+
+            - jsonPath: $.*.totalSystemCapacity
+
+            - jsonPath: $.*.fileStoreId
+
+    - version: 1.0
+      description: Saves field plan templates
+      fromTopic: save-field-plan-template-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: FIELDPLANNER
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.FieldPlanTemplates.[0].auditDetails.createdBy
+      auditAttributeBasePath: $.FieldPlanTemplates.*
+      queryMaps:
+        - query: INSERT INTO field_plan_template (id, field_plan_id, system_type, total_capacity, template_data, tenant_id, file_store_id, created_by, last_modified_by, created_time, last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+          basePath: $.FieldPlanTemplates.*
+          jsonMaps:
+            - jsonPath: $.FieldPlanTemplates.*.id
+            - jsonPath: $.FieldPlanTemplates.*.fieldPlanId
+            - jsonPath: $.FieldPlanTemplates.*.systemType
+            - jsonPath: $.FieldPlanTemplates.*.totalCapacity
+            - jsonPath: $.FieldPlanTemplates.*.templateData
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.FieldPlanTemplates.*.tenantId
+            - jsonPath: $.FieldPlanTemplates.*.fileStoreId
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.createdBy
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.lastModifiedBy
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.createdTime
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.lastModifiedTime
+
+    - version: 1.0
+      description: Updates field plan templates
+      fromTopic: update-field-plan-template-topic
+      isTransaction: true
+      isAuditEnabled: true
+      module: FIELDPLANNER
+      objecIdJsonPath: $.id
+      tenantIdJsonPath: $.tenantId
+      userUuidJsonPath: $.FieldPlanTemplates.[0].auditDetails.lastModifiedBy
+      auditAttributeBasePath: $.FieldPlanTemplates.*
+      queryMaps:
+        - query: UPDATE field_plan_template SET field_plan_id=?, system_type=?, total_capacity=?, file_store_id=?, template_data=?, last_modified_by=?, last_modified_time=? WHERE id=?;
+          basePath: $.FieldPlanTemplates.*
+          jsonMaps:
+            - jsonPath: $.FieldPlanTemplates.*.fieldPlanId
+            - jsonPath: $.FieldPlanTemplates.*.systemType
+            - jsonPath: $.FieldPlanTemplates.*.totalCapacity
+            - jsonPath: $.FieldPlanTemplates.*.fileStoreId
+            - jsonPath: $.FieldPlanTemplates.*.templateData
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.lastModifiedBy
+            - jsonPath: $.FieldPlanTemplates.*.auditDetails.lastModifiedTime
+            - jsonPath: $.FieldPlanTemplates.*.id

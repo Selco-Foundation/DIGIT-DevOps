@@ -1,0 +1,145 @@
+ServiceMaps:
+  serviceName: Project Management - rainmaker
+  version: 1.0.0
+  mappings:
+    - topic: save-project-request-indexer
+      configKey: INDEX
+      indexes:
+        - name: project-services
+          type: general
+          id: $.id
+          isBulk: true
+          jsonPath: $.Projects.*
+          timeStampField: $.auditDetails.createdTime
+          fieldsToBeMasked: []
+          customJsonMapping:
+            indexMapping:
+              Data:
+                documents: {}
+                tenantId: ""
+                address: {}
+                auditDetails: {}
+                targets: {}
+            fieldMapping:
+              - inJsonPath: $.id
+                outJsonPath: $.Data.id
+              - inJsonPath: $.documents
+                outJsonPath: $.Data.documents
+              - inJsonPath: $.tenantId
+                outJsonPath: $.Data.tenantId
+              - inJsonPath: $.projectNumber
+                outJsonPath: $.Data.projectNumber
+              - inJsonPath: $.name
+                outJsonPath: $.Data.name
+              - inJsonPath: $.projectType
+                outJsonPath: $.Data.projectType
+              - inJsonPath: $.@timestamp
+                outJsonPath: $.Data.@timestamp
+              - inJsonPath: $.auditDetails
+                outJsonPath: $.Data.auditDetails
+              - inJsonPath: $.address
+                outJsonPath: $.Data.address
+              - inJsonPath: $.projectSubType
+                outJsonPath: $.Data.projectSubType
+              - inJsonPath: $.department
+                outJsonPath: $.Data.department
+              - inJsonPath: $.description
+                outJsonPath: $.Data.description
+              - inJsonPath: $.referenceID
+                outJsonPath: $.Data.referenceID
+              - inJsonPath: $.projectTypeId
+                outJsonPath: $.Data.projectTypeId
+              - inJsonPath: $.startDate
+                outJsonPath: $.Data.startDate
+              - inJsonPath: $.endDate
+                outJsonPath: $.Data.endDate
+              - inJsonPath: $.isTaskEnabled
+                outJsonPath: $.Data.isTaskEnabled
+              - inJsonPath: $.parent
+                outJsonPath: $.Data.parent
+              - inJsonPath: $.projectHierarchy
+                outJsonPath: $.Data.projectHierarchy
+              - inJsonPath: $.natureOfWork
+                outJsonPath: $.Data.natureOfWork
+              - inJsonPath: $.targets
+                outJsonPath: $.Data.targets
+              - inJsonPath: $.additionalDetails
+                outJsonPath: $.Data.additionalDetails
+              - inJsonPath: $.isDeleted
+                outJsonPath: $.Data.isDeleted
+              - inJsonPath: $.rowVersion
+                outJsonPath: $.Data.rowVersion
+
+    - topic: update-project-request-indexer
+      configKey: INDEX
+      indexes:
+        - name: project-services
+          type: general
+          id: $.id
+          isBulk: true
+          jsonPath: $.Projects.*
+          timeStampField: $.auditDetails.createdTime
+          fieldsToBeMasked: []
+          customJsonMapping:
+            indexMapping:
+              Data:
+                documents: {}
+                tenantId: ""
+                address: {}
+                auditDetails: {}
+                targets: {}
+            fieldMapping:
+              - inJsonPath: $.id
+                outJsonPath: $.Data.id
+              - inJsonPath: $.documents
+                outJsonPath: $.Data.documents
+              - inJsonPath: $.tenantId
+                outJsonPath: $.Data.tenantId
+              - inJsonPath: $.projectNumber
+                outJsonPath: $.Data.projectNumber
+              - inJsonPath: $.name
+                outJsonPath: $.Data.name
+              - inJsonPath: $.projectType
+                outJsonPath: $.Data.projectType
+              - inJsonPath: $.@timestamp
+                outJsonPath: $.Data.@timestamp
+              - inJsonPath: $.auditDetails
+                outJsonPath: $.Data.auditDetails
+              - inJsonPath: $.address
+                outJsonPath: $.Data.address
+              - inJsonPath: $.projectSubType
+                outJsonPath: $.Data.projectSubType
+              - inJsonPath: $.additionalDetails
+                outJsonPath: $.Data.additionalDetails
+              - inJsonPath: $.department
+                outJsonPath: $.Data.department
+              - inJsonPath: $.description
+                outJsonPath: $.Data.description
+              - inJsonPath: $.referenceID
+                outJsonPath: $.Data.referenceID
+              - inJsonPath: $.projectTypeId
+                outJsonPath: $.Data.projectTypeId
+              - inJsonPath: $.startDate
+                outJsonPath: $.Data.startDate
+              - inJsonPath: $.endDate
+                outJsonPath: $.Data.endDate
+              - inJsonPath: $.isTaskEnabled
+                outJsonPath: $.Data.isTaskEnabled
+              - inJsonPath: $.parent
+                outJsonPath: $.Data.parent
+              - inJsonPath: $.projectHierarchy
+                outJsonPath: $.Data.projectHierarchy
+              - inJsonPath: $.natureOfWork
+                outJsonPath: $.Data.natureOfWork
+              - inJsonPath: $.targets
+                outJsonPath: $.Data.targets
+              - inJsonPath: $.isDeleted
+                outJsonPath: $.Data.isDeleted
+              - inJsonPath: $.rowVersion
+                outJsonPath: $.Data.rowVersion
+              - inJsonPath: $.additionalDetails.facility
+                outJsonPath: $.Data.facility
+              - inJsonPath: $.additionalDetails.status
+                outJsonPath: $.Data.status
+              - inJsonPath: $.additionalDetails.assignedTo
+                outJsonPath: $.Data.assignedTo

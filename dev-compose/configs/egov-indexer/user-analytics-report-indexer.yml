@@ -1,0 +1,115 @@
+# Indexes the two feeds behind the weekly user-analytics report.
+#
+# 1. user-analytics-event -> user-analytics-report. Shared across modules; the first producer is
+#    im-services (SEM), which emits an event on every incident create/update (see
+#    SemAnalyticsService#publishEvent). Each Kafka message is a single flat UserAnalyticsEvent, so
+#    it is indexed as-is (id = event_id).
+# 2. save-kibana-dashboard-indexer -> kibana-dashboard-report. Kibana dashboard views, produced by
+#    im-services-analytics' KibanaDashboardEventListener.
+#
+# The two stay separate indexes on purpose: a dashboard-view record carries no username, so those
+# documents have no user to attribute and would dilute the active-user and event-type counts of
+# user-analytics-report.
+ServiceMaps:
+  serviceName: User Analytics Report Indexer
+  version: 1.0.0
+  mappings:
+    - topic: user-analytics-event
+      configKey: INDEX
+      indexes:
+        - name: user-analytics-report
+          type: general
+          id: $.event_id
+          jsonPath: $
+          timeStampField: $.event_time
+          fieldsToBeMasked:
+            [
+              "$.user.mobileNumber",
+              "$.user.emailId",
+            ]
+          customJsonMapping:
+            indexMapping:
+              {
+                "Data":
+                  {
+                    "event_id": "",
+                    "event_type": "",
+                    "event_time": "",
+                    "application": "",
+                    "user": {},
+                    "system_role": "",
+                    "primary_role": "",
+                    "user_category": "",
+                    "state": "",
+                    "module": "",
+                    "entity_id": "",
+                    "entity_type": "",
+                  },
+              }
+            fieldMapping:
+              - inJsonPath: $.event_id
+                outJsonPath: $.Data.event_id
+              - inJsonPath: $.event_type
+                outJsonPath: $.Data.event_type
+              - inJsonPath: $.event_time
+                outJsonPath: $.Data.event_time
+              - inJsonPath: $.application
+                outJsonPath: $.Data.application
+              - inJsonPath: $.user
+                outJsonPath: $.Data.user
+              - inJsonPath: $.system_role
+                outJsonPath: $.Data.system_role
+              - inJsonPath: $.primary_role
+                outJsonPath: $.Data.primary_role
+              - inJsonPath: $.user_category
+                outJsonPath: $.Data.user_category
+              - inJsonPath: $.state
+                outJsonPath: $.Data.state
+              - inJsonPath: $.module
+                outJsonPath: $.Data.module
+              - inJsonPath: $.entity_id
+                outJsonPath: $.Data.entity_id
+              - inJsonPath: $.entity_type
+                outJsonPath: $.Data.entity_type
+              - inJsonPath: $.@timestamp
+                outJsonPath: $.Data.@timestamp
+
+    # Kibana dashboard views. The sole producer is im-services-analytics'
+    # KibanaDashboardEventListener, which translates the raw kibana_dashboard_view records off the
+    # kibana-dashboard-events audit topic — adding a document id and an ISO-8601 event_time, and
+    # dropping every other Kibana event. Each message is a single flat KibanaDashboardEvent, so it is
+    # indexed as-is (id = event_id). The weekly report counts documents here for the reported week and
+    # shows the total on its Kibana Logins sheet.
+    - topic: save-kibana-dashboard-indexer
+      configKey: INDEX
+      indexes:
+        - name: kibana-dashboard-report
+          type: general
+          id: $.event_id
+          jsonPath: $
+          timeStampField: $.event_time
+          customJsonMapping:
+            indexMapping:
+              {
+                "Data":
+                  {
+                    "event_id": "",
+                    "event_type": "",
+                    "event_time": "",
+                    "application": "",
+                    "remote_addr": "",
+                  },
+              }
+            fieldMapping:
+              - inJsonPath: $.event_id
+                outJsonPath: $.Data.event_id
+              - inJsonPath: $.event_type
+                outJsonPath: $.Data.event_type
+              - inJsonPath: $.event_time
+                outJsonPath: $.Data.event_time
+              - inJsonPath: $.application
+                outJsonPath: $.Data.application
+              - inJsonPath: $.remote_addr
+                outJsonPath: $.Data.remote_addr
+              - inJsonPath: $.@timestamp
+                outJsonPath: $.Data.@timestamp

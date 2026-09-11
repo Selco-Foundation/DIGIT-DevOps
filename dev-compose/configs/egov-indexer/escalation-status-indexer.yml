@@ -1,0 +1,32 @@
+ServiceMaps:
+ serviceName: Escalation Status Indexer
+ version: 1.0.0
+ mappings:
+  - topic: escalation-notification-email-status
+    configKey: INDEX
+    indexes:
+      - name: escalation-email-status
+        type: general
+        id: $.id
+        jsonPath: $
+        timeStampField: $.escalationTime
+        fieldsToBeMasked: []
+        customJsonMapping:
+          indexMapping: {"Data":{"escalationStatus":{}}}
+          fieldMapping:
+            - inJsonPath: $.id
+              outJsonPath: $.Data.escalationStatus.id
+            - inJsonPath: $.escalationType
+              outJsonPath: $.Data.escalationStatus.escalationType
+            - inJsonPath: $.escalationId
+              outJsonPath: $.Data.escalationStatus.escalationId
+            - inJsonPath: $.tenantId
+              outJsonPath: $.Data.escalationStatus.tenantId
+            - inJsonPath: $.recipientRole
+              outJsonPath: $.Data.escalationStatus.recipientRole
+            - inJsonPath: $.escalationTime
+              outJsonPath: $.Data.escalationStatus.escalationTime
+            - inJsonPath: $.status
+              outJsonPath: $.Data.escalationStatus.status
+            - inJsonPath: $.message
+              outJsonPath: $.Data.escalationStatus.message

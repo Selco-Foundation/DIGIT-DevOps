@@ -1,0 +1,492 @@
+{
+  "key": "amc-report",
+  "config": {
+    "content": [
+      { "text": "SCHEDULED MAINTENANCE (AMC) REPORT", "style": "title" },
+
+      {
+        "table": {
+          "widths": ["50%", "50%"],
+          "body": [
+            [
+              { "text": "Name: {{health_facility_name}}" },
+              { "text": "Address: {{health_facility_address}}" }
+            ],
+            [
+              { "text": "Vendor Name: {{vendor_name}}" },
+              { "text": "NIN ID/HFR ID: {{nin_id}}" }
+            ],
+            [
+              { "text": "Health Facility Type: {{health_facility_type}}" },
+              { "text": "State: {{project_state}}" }
+            ],
+            [
+              { "text": "District: {{project_district}}" },
+              { "text": "Block: {{project_block}}" }
+            ],
+            [
+              { "text": "AMC Number:", "style": "label" },
+              { "text": "{{amc_number}}", "style": "value" }
+            ],
+            [
+              {
+                "text": "Actual Scheduled AMC Date: {{actual_scheduled_amc_date}}"
+              },
+              {
+                "text": "Actual AMC Submission Date: {{actual_submission_amc_date}}"
+              }
+            ],
+            [
+              { "text": "Service Person Name:", "style": "label" },
+              { "text": "{{servicePersonName}}", "style": "value" }
+            ],
+            [
+              { "text": "Service Person Contact no:", "style": "label" },
+              { "text": "{{servicePersonContact}}", "style": "value" }
+            ],
+            [
+              {
+                "text": "Health facility location captured:",
+                "style": "label"
+              },
+              { "text": "{{location_captured}}", "style": "value" }
+            ]
+          ]
+        },
+        "layout": ""
+      },
+
+      {
+        "text": "Checklist during scheduled service visit",
+        "style": "sectionHeader"
+      },
+
+      {
+        "table": {
+          "headerRows": 1,
+          "widths": [30, "*", 40],
+          "body": [
+            [
+              { "text": "Sl. No.", "style": "tableHeader" },
+              { "text": "Parameters", "style": "tableHeader" },
+              { "text": "Done", "style": "tableHeader" }
+            ],
+
+            [
+              { "text": "1", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "Solar Panels", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "", "fillColor": "#FCE9A8" }
+            ],
+
+            [
+              "A",
+              "All Panels Cleaned during AMC visit",
+              {
+                "svg": "{{#check_solar_panels_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_solar_panels_cleaned}}{{^check_solar_panels_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_solar_panels_cleaned}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "B",
+              "Mounting structure secured and all nuts and bolts were tightened",
+              {
+                "svg": "{{#check_mounting_structure}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_mounting_structure}}{{^check_mounting_structure}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_mounting_structure}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "C",
+              "Cables & Connections found secure and no wear and tear observed",
+              {
+                "svg": "{{#check_cables_panels}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_cables_panels}}{{^check_cables_panels}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_cables_panels}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              { "text": "2", "bold": true, "fillColor": "#FCE9A8" },
+              {
+                "text": "Inverter / Charge Controller",
+                "bold": true,
+                "fillColor": "#FCE9A8"
+              },
+              { "text": "", "fillColor": "#FCE9A8" }
+            ],
+
+            [
+              "A",
+              "Inverter or Charge Controller cleaned during visit",
+              {
+                "svg": "{{#check_inverter_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_inverter_cleaned}}{{^check_inverter_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_inverter_cleaned}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "B",
+              "Cables & Connections found secure and no wear and tear observed",
+              {
+                "svg": "{{#check_inverter_cables}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_inverter_cables}}{{^check_inverter_cables}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_inverter_cables}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              { "text": "3", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "Battery", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "", "fillColor": "#FCE9A8" }
+            ],
+
+            [
+              "A",
+              "Cables and Connections were checked at all battery terminals and found OK",
+              {
+                "svg": "{{#check_battery_connections}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_connections}}{{^check_battery_connections}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_connections}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "B",
+              "Applied petroleum jelly at all battery terminals",
+              {
+                "svg": "{{#check_battery_jelly}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_jelly}}{{^check_battery_jelly}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_jelly}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "C",
+              "Filled the distilled water till the required level (Non-Mandatory field)",
+              {
+                "svg": "{{#check_battery_water}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_water}}{{^check_battery_water}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_water}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "D",
+              "Battery Back-up found normal",
+              {
+                "svg": "{{#check_battery_backup}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_backup}}{{^check_battery_backup}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_backup}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "E",
+              "All battery cleaned and maintained during visit",
+              {
+                "svg": "{{#check_battery_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_cleaned}}{{^check_battery_cleaned}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_cleaned}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "F",
+              "No corrosion observed at the battery terminals",
+              {
+                "svg": "{{#check_battery_corrosion}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_battery_corrosion}}{{^check_battery_corrosion}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_battery_corrosion}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              { "text": "4", "bold": true, "fillColor": "#FCE9A8" },
+              {
+                "text": "Earthing and Surge Protection",
+                "bold": true,
+                "fillColor": "#FCE9A8"
+              },
+              { "text": "", "fillColor": "#FCE9A8" }
+            ],
+
+            [
+              "A",
+              "Earthing working properly",
+              {
+                "svg": "{{#check_earthing}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_earthing}}{{^check_earthing}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_earthing}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "B",
+              "Surge Protection working properly",
+              {
+                "svg": "{{#check_surge}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_surge}}{{^check_surge}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_surge}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "C",
+              "Earthing Pits are safe and surroundings are cleaned",
+              {
+                "svg": "{{#check_earthing_pits}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_earthing_pits}}{{^check_earthing_pits}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_earthing_pits}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "D",
+              "Cables & Connections found secure and no wear and tear observed",
+              {
+                "svg": "{{#check_earthing_cables}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_earthing_cables}}{{^check_earthing_cables}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_earthing_cables}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              { "text": "5", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "Others", "bold": true, "fillColor": "#FCE9A8" },
+              { "text": "", "fillColor": "#FCE9A8" }
+            ],
+
+            [
+              "A",
+              "Cables & Connections found secure and no wear and tear observed",
+              ""
+            ],
+
+            [
+              "A1",
+              "Lightning Arrestor",
+              {
+                "svg": "{{#check_lightning_arrestor}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_lightning_arrestor}}{{^check_lightning_arrestor}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_lightning_arrestor}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "A2",
+              "Grid Input Protection Box (GIPB)",
+              {
+                "svg": "{{#check_gipb}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_gipb}}{{^check_gipb}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_gipb}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "A3",
+              "Array Junction Box (AJB)",
+              {
+                "svg": "{{#check_ajb}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_ajb}}{{^check_ajb}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_ajb}}",
+                "width": 12,
+                "height": 12
+              }
+            ],
+
+            [
+              "A4",
+              "Changeover Switch",
+              {
+                "svg": "{{#check_changeover}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/check_changeover}}{{^check_changeover}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/check_changeover}}",
+                "width": 12,
+                "height": 12
+              }
+            ]
+          ]
+        },
+        "layout": ""
+      },
+
+      {
+        "text": "Performance and Preventive Maintenance",
+        "style": "sectionHeader"
+      },
+
+      {
+        "table": {
+          "widths": [30, "*", "*"],
+          "body": [
+            [
+              { "text": "1" },
+              { "text": "Battery Bank Voltage", "bold": true },
+              { "text": "{{battery_bank_voltage}}" }
+            ],
+
+            [
+              { "text": "2" },
+              {
+                "stack": [
+                  {
+                    "text": "Inverter or Charge Controller display",
+                    "bold": true
+                  },
+                  { "text": "(Reading after measurement)" }
+                ]
+              },
+              { "text": "{{inverter_reading}}" }
+            ],
+
+            [
+              { "text": "3" },
+              { "text": "Panel Voltage", "bold": true },
+              {
+                "stack": [
+                  { "text": "String-1: {{panel_string_1}}" },
+                  { "text": "String-2: {{panel_string_2}}" },
+                  { "text": "String-3: {{panel_string_3}}" },
+                  { "text": "String-4: {{panel_string_4}}" },
+                  { "text": "String-5: {{panel_string_5}}" }
+                ]
+              }
+            ]
+          ]
+        },
+        "layout": ""
+      },
+
+      { "text": "Faults & Corrective Actions", "style": "sectionHeader" },
+
+      {
+        "table": {
+          "widths": [30, "*", 120],
+          "body": [
+            [
+              "1",
+              "Any faults in the system observed during the visit?",
+              "{{faults_observed}}"
+            ],
+            [
+              "2",
+              "If yes, was an immediate fix implemented?",
+              "{{immediate_fix_done}}"
+            ],
+            ["3", "If yes, were any parts repaired?", "{{parts_repaired}}"],
+            [
+              "4",
+              "If yes, did you notify health staff or CRM to raise a ticket?",
+              "{{informed_CRM}}"
+            ]
+          ]
+        },
+        "layout": "",
+        "margin": [0, 6, 0, 6]
+      },
+
+      { "text": "", "style": "sectionHeader", "margin": [0, 6, 0, 4] },
+      {
+        "table": {
+          "widths": ["*", "*"],
+          "body": [
+            [
+              {
+                "text": "Service Person Remarks",
+                "style": "label",
+                "margin": [5, 3, 0, 3]
+              },
+              {
+                "text": "Health Staff Remarks",
+                "style": "label",
+                "margin": [5, 3, 0, 3]
+              }
+            ],
+            [
+              {
+                "text": "{{service_person_remarks}}",
+                "style": "value",
+                "margin": [5, 20, 0, 20]
+              },
+              {
+                "text": "{{health_staff_remarks}}",
+                "style": "value",
+                "margin": [5, 20, 0, 20]
+              }
+            ]
+          ]
+        },
+        "layout": ""
+      },
+
+      {
+        "text": "Images to be captured during the scheduled maintenance visit:",
+        "style": "sectionHeader"
+      },
+
+      {
+        "table": {
+          "headerRows": 1,
+          "widths": [20, "*", 60, 40],
+          "body": [
+            [
+              { "text": "No", "style": "tableHeader" },
+              { "text": "Image details", "style": "tableHeader" },
+              { "text": "Required no. of images", "style": "tableHeader" },
+              { "text": "Tick if taken", "style": "tableHeader" }
+            ],
+            [
+              "1",
+              "Please take a selfie in front of the name board of the health center",
+              "1",
+              {
+                "svg": "{{#img1_taken}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M2 8 L6 12 L12 2' stroke='#2e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>{{/img1_taken}}{{^img1_taken}}<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' width='12' height='12'><path d='M3 3 L11 11 M11 3 L3 11' stroke='#d32f2f' stroke-width='3' stroke-linecap='round'/></svg>{{/img1_taken}}",
+                "width": 12,
+                "height": 12
+              }
+            ]
+          ]
+        },
+        "layout": ""
+      },
+      {
+        "stack": [
+          {
+            "columns": [
+              {
+                "image": "{{INSTALLATION_IMAGE_1_1}}",
+                "width": 155,
+                "fit": [155, 180]
+              },
+              {
+                "image": "{{INSTALLATION_IMAGE_1_2}}",
+                "width": 155,
+                "fit": [155, 180]
+              },
+              {
+                "image": "{{INSTALLATION_IMAGE_1_3}}",
+                "width": 155,
+                "fit": [155, 180]
+              }
+            ],
+            "columnGap": 5
+          }
+        ],
+        "unbreakable": true
+      }
+    ],
+    "styles": {
+      "title": {
+        "fontSize": 16,
+        "bold": true,
+        "alignment": "center",
+        "margin": [0, 0, 0, 10]
+      },
+      "sectionHeader": { "fontSize": 12, "bold": true, "margin": [0, 8, 0, 4] },
+      "label": { "fontSize": 10, "bold": true },
+      "value": { "fontSize": 10 },
+      "tableHeader": { "fillColor": "#F2F2F2", "bold": true }
+    },
+    "defaultStyle": { "fontSize": 10 }
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "key": "amc-report",
+  "DataConfigs": {
+    "serviceName": "rainmaker-tl",
+    "version": "1.0.0",
+    "baseKeyPath": "$.amc",
+    "entityIdPath": "$.amc.report_id",
+    "isCommonTableBorderRequired": true,
+    "mappings": [
+      {
+        "topic": "amc-pdf-generation",
+        "staticConfigPath": "https://raw.githubusercontent.com/egovernments/egov-services/master/core/egov-pdf-service/config/sample-static-config.yml",
+        "mappings": [
+          {
+            "direct": [
+              { "variable": "amc_number", "value": { "path": "$.amc_number" } },
+              {
+                "variable": "location_captured",
+                "value": { "path": "$.location_captured" }
+              },
+              {
+                "variable": "actual_scheduled_amc_date",
+                "value": { "path": "$.actual_scheduled_amc_date" }
+              },
+              {
+                "variable": "actual_submission_amc_date",
+                "value": { "path": "$.actual_submission_amc_date" }
+              },
+              {
+                "variable": "health_facility_name",
+                "value": { "path": "$.health_facility_name" }
+              },
+              {
+                "variable": "health_facility_address",
+                "value": { "path": "$.health_facility_address" }
+              },
+              {
+                "variable": "health_facility_type",
+                "value": { "path": "$.health_facility_type" }
+              },
+              {
+                "variable": "vendor_name",
+                "value": { "path": "$.vendor_name" }
+              },
+              {
+                "variable": "project_number",
+                "value": { "path": "$.project_number" }
+              },
+              {
+                "variable": "project_date",
+                "value": { "path": "$.project_date" }
+              },
+              {
+                "variable": "project_state",
+                "value": { "path": "$.project_state" }
+              },
+              {
+                "variable": "project_block",
+                "value": { "path": "$.project_block" }
+              },
+              {
+                "variable": "project_district",
+                "value": { "path": "$.project_district" }
+              },
+              {
+                "variable": "nin_id",
+                "value": { "path": "$.nin_id" }
+              },
+              {
+                "variable": "po_wo_number",
+                "value": { "path": "$.po_wo_number" }
+              },
+
+              {
+                "variable": "servicePersonName",
+                "value": { "path": "$.service_person_name" }
+              },
+              {
+                "variable": "servicePersonContact",
+                "value": { "path": "$.service_person_contact" }
+              },
+
+              {
+                "variable": "check_solar_panels_cleaned",
+                "value": { "path": "$.check_solar_panels_cleaned" }
+              },
+
+              {
+                "variable": "check_mounting_structure",
+                "value": { "path": "$.check_mounting_structure" }
+              },
+              {
+                "variable": "check_cables_panels",
+                "value": { "path": "$.check_cables_panels" }
+              },
+
+              {
+                "variable": "check_inverter_cleaned",
+                "value": { "path": "$.check_inverter_cleaned" }
+              },
+              {
+                "variable": "check_inverter_cables",
+                "value": { "path": "$.check_inverter_cables" }
+              },
+
+              {
+                "variable": "check_battery_connections",
+                "value": { "path": "$.check_battery_connections" }
+              },
+              {
+                "variable": "check_battery_jelly",
+                "value": { "path": "$.check_battery_jelly" }
+              },
+              {
+                "variable": "check_battery_water",
+                "value": { "path": "$.check_battery_water" }
+              },
+              {
+                "variable": "check_battery_backup",
+                "value": { "path": "$.check_battery_backup" }
+              },
+              {
+                "variable": "check_battery_cleaned",
+                "value": { "path": "$.check_battery_cleaned" }
+              },
+              {
+                "variable": "check_battery_corrosion",
+                "value": { "path": "$.check_battery_corrosion" }
+              },
+
+              {
+                "variable": "check_earthing",
+                "value": { "path": "$.check_earthing" }
+              },
+              {
+                "variable": "check_surge",
+                "value": { "path": "$.check_surge" }
+              },
+              {
+                "variable": "check_earthing_pits",
+                "value": { "path": "$.check_earthing_pits" }
+              },
+              {
+                "variable": "check_earthing_cables",
+                "value": { "path": "$.check_earthing_cables" }
+              },
+
+              {
+                "variable": "check_lightning_arrestor",
+                "value": { "path": "$.check_lightning_arrestor" }
+              },
+              { "variable": "check_gipb", "value": { "path": "$.check_gipb" } },
+              { "variable": "check_ajb", "value": { "path": "$.check_ajb" } },
+              {
+                "variable": "check_changeover",
+                "value": { "path": "$.check_changeover" }
+              },
+
+              {
+                "variable": "check_solar_array",
+                "value": { "path": "$.check_solar_array" }
+              },
+              {
+                "variable": "check_general_condition",
+                "value": { "path": "$.check_general_condition" }
+              },
+
+              {
+                "variable": "battery_bank_voltage",
+                "value": { "path": "$.battery_bank_voltage" }
+              },
+              {
+                "variable": "inverter_reading",
+                "value": { "path": "$.inverter_reading" }
+              },
+
+              {
+                "variable": "panel_string_1",
+                "value": { "path": "$.panel_string_1" }
+              },
+              {
+                "variable": "panel_string_2",
+                "value": { "path": "$.panel_string_2" }
+              },
+              {
+                "variable": "panel_string_3",
+                "value": { "path": "$.panel_string_3" }
+              },
+              {
+                "variable": "panel_string_4",
+                "value": { "path": "$.panel_string_4" }
+              },
+              {
+                "variable": "panel_string_5",
+                "value": { "path": "$.panel_string_5" }
+              },
+
+              {
+                "variable": "faults_observed",
+                "value": { "path": "$.faults_observed" }
+              },
+              {
+                "variable": "immediate_fix_done",
+                "value": { "path": "$.immediate_fix_done" }
+              },
+              {
+                "variable": "parts_repaired",
+                "value": { "path": "$.parts_repaired" }
+              },
+              {
+                "variable": "informed_CRM",
+                "value": { "path": "$.informed_CRM" }
+              },
+
+              {
+                "variable": "service_person_remarks",
+                "value": { "path": "$.service_person_remarks" }
+              },
+              {
+                "variable": "health_staff_remarks",
+                "value": { "path": "$.health_staff_remarks" }
+              },
+
+              { "variable": "img1_taken", "value": { "path": "$.img1_taken" } },
+
+              {
+                "variable": "installation_image_1_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].documentName"
+                }
+              }
+            ],
+            "externalAPI": [
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              }
+            ],
+            "derived": [],
+            "qrcode": [
+              {
+                "variable": "amc_qr",
+                "text": "AMC-{{servicePersonContact}}",
+                "localisation": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

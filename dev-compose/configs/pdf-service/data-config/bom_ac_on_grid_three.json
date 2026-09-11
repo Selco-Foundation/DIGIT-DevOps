@@ -1,0 +1,3278 @@
+{
+  "key": "ac_on_grid_rms_three_phase",
+  "DataConfigs": {
+    "serviceName": "rainmaker-tl",
+    "version": "1.0.0",
+    "baseKeyPath": "$.bom",
+    "entityIdPath": "$.applicationNumber",
+    "isCommonTableBorderRequired": true,
+    "mappings": [
+      {
+        "topic": "bom-pdf-generation",
+        "staticConfigPath": "https://raw.githubusercontent.com/egovernments/egov-services/vishal-feature-filestore/core/egov-indexer/src/main/resources/rainmaker-pgr-indexer.yml",
+        "mappings": [
+          {
+            "direct": [
+              {
+                "variable": "health_facility_name",
+                "value": {
+                  "path": "$.health_facility_name"
+                }
+              },
+              {
+                "variable": "project_number",
+                "value": {
+                  "path": "$.project_number"
+                }
+              },
+              {
+                "variable": "health_facility_address",
+                "value": {
+                  "path": "$.health_facility_address"
+                }
+              },
+              {
+                "variable": "project_date",
+                "value": {
+                  "path": "$.project_date"
+                }
+              },
+              {
+                "variable": "vendor_name",
+                "value": {
+                  "path": "$.vendor_name"
+                }
+              },
+              {
+                "variable": "project_state",
+                "value": {
+                  "path": "$.project_state"
+                }
+              },
+              {
+                "variable": "po_wo_number",
+                "value": {
+                  "path": "$.po_wo_number"
+                }
+              },
+              {
+                "variable": "project_block",
+                "value": {
+                  "path": "$.project_block"
+                }
+              },
+              {
+                "variable": "solar_module_make",
+                "value": {
+                  "path": "$.solar_module_make"
+                }
+              },
+              {
+                "variable": "solar_module_capacity",
+                "value": {
+                  "path": "$.solar_module_capacity"
+                }
+              },
+              {
+                "variable": "solar_module_qty",
+                "value": {
+                  "path": "$.solar_module_qty"
+                }
+              },
+              {
+                "variable": "solar_battery_make",
+                "value": {
+                  "path": "$.solar_battery_make"
+                }
+              },
+              {
+                "variable": "solar_battery_capacity",
+                "value": {
+                  "path": "$.solar_battery_capacity"
+                }
+              },
+              {
+                "variable": "solar_battery_qty",
+                "value": {
+                  "path": "$.solar_battery_qty"
+                }
+              },
+              {
+                "variable": "mms_make",
+                "value": {
+                  "path": "$.mms_make"
+                }
+              },
+              {
+                "variable": "mms_capacity",
+                "value": {
+                  "path": "$.mms_capacity"
+                }
+              },
+              {
+                "variable": "mms_qty",
+                "value": {
+                  "path": "$.mms_qty"
+                }
+              },
+              {
+                "variable": "solar_on_grid_pcu_inverter_make",
+                "value": {
+                  "path": "$.solar_on_grid_pcu_inverter_make"
+                }
+              },
+              {
+                "variable": "solar_on_grid_pcu_inverter_capacity",
+                "value": {
+                  "path": "$.solar_on_grid_pcu_inverter_capacity"
+                }
+              },
+              {
+                "variable": "solar_on_grid_pcu_inverter_qty",
+                "value": {
+                  "path": "$.solar_on_grid_pcu_inverter_qty"
+                }
+              },
+              {
+                "variable": "module_ajb_pv1f_make",
+                "value": {
+                  "path": "$.module_ajb_pv1f_make"
+                }
+              },
+              {
+                "variable": "module_ajb_pv1f_capacity",
+                "value": {
+                  "path": "$.module_ajb_pv1f_capacity"
+                }
+              },
+              {
+                "variable": "module_ajb_pv1f_qty",
+                "value": {
+                  "path": "$.module_ajb_pv1f_qty"
+                }
+              },
+              {
+                "variable": "ajb_inverter_dc_make",
+                "value": {
+                  "path": "$.ajb_inverter_dc_make"
+                }
+              },
+              {
+                "variable": "ajb_inverter_dc_capacity",
+                "value": {
+                  "path": "$.ajb_inverter_dc_capacity"
+                }
+              },
+              {
+                "variable": "ajb_inverter_dc_qty",
+                "value": {
+                  "path": "$.ajb_inverter_dc_qty"
+                }
+              },
+              {
+                "variable": "pcu_inverter_acdb_copper_cable_1_make",
+                "value": {
+                  "path": "$.pcu_inverter_acdb_copper_cable_1_make"
+                }
+              },
+              {
+                "variable": "pcu_inverter_acdb_copper_cable_1_capacity",
+                "value": {
+                  "path": "$.pcu_inverter_acdb_copper_cable_1_capacity"
+                }
+              },
+              {
+                "variable": "pcu_inverter_acdb_copper_cable_1_qty",
+                "value": {
+                  "path": "$.pcu_inverter_acdb_copper_cable_1_qty"
+                }
+              },
+              {
+                "variable": "acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_make",
+                "value": {
+                  "path": "$.acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_make"
+                }
+              },
+              {
+                "variable": "acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_capacity",
+                "value": {
+                  "path": "$.acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_capacity"
+                }
+              },
+              {
+                "variable": "acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_qty",
+                "value": {
+                  "path": "$.acdb_solar_meter_lt_panel_net_meter_grid_copper_cable_2_qty"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_1_make",
+                "value": {
+                  "path": "$.dc_earthing_cable_1_make"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_1_capacity",
+                "value": {
+                  "path": "$.dc_earthing_cable_1_capacity"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_1_qty",
+                "value": {
+                  "path": "$.dc_earthing_cable_1_qty"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_2_make",
+                "value": {
+                  "path": "$.dc_earthing_cable_2_make"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_2_capacity",
+                "value": {
+                  "path": "$.dc_earthing_cable_2_capacity"
+                }
+              },
+              {
+                "variable": "dc_earthing_cable_2_qty",
+                "value": {
+                  "path": "$.dc_earthing_cable_2_qty"
+                }
+              },
+              {
+                "variable": "earthing_down_conductor_lightning_arrestor_make",
+                "value": {
+                  "path": "$.earthing_down_conductor_lightning_arrestor_make"
+                }
+              },
+              {
+                "variable": "earthing_down_conductor_lightning_arrestor_capacity",
+                "value": {
+                  "path": "$.earthing_down_conductor_lightning_arrestor_capacity"
+                }
+              },
+              {
+                "variable": "earthing_down_conductor_lightning_arrestor_qty",
+                "value": {
+                  "path": "$.earthing_down_conductor_lightning_arrestor_qty"
+                }
+              },
+              {
+                "variable": "earthing_kit_make",
+                "value": {
+                  "path": "$.earthing_kit_make"
+                }
+              },
+              {
+                "variable": "earthing_kit_capacity",
+                "value": {
+                  "path": "$.earthing_kit_capacity"
+                }
+              },
+              {
+                "variable": "earthing_kit_qty",
+                "value": {
+                  "path": "$.earthing_kit_qty"
+                }
+              },
+              {
+                "variable": "lightning_protection_make",
+                "value": {
+                  "path": "$.lightning_protection_make"
+                }
+              },
+              {
+                "variable": "lightning_protection_capacity",
+                "value": {
+                  "path": "$.lightning_protection_capacity"
+                }
+              },
+              {
+                "variable": "lightning_protection_qty",
+                "value": {
+                  "path": "$.lightning_protection_qty"
+                }
+              },
+              {
+                "variable": "acdb_relay_spd_mcb_solar_meter_make",
+                "value": {
+                  "path": "$.acdb_relay_spd_mcb_solar_meter_make"
+                }
+              },
+              {
+                "variable": "acdb_relay_spd_mcb_solar_meter_capacity",
+                "value": {
+                  "path": "$.acdb_relay_spd_mcb_solar_meter_capacity"
+                }
+              },
+              {
+                "variable": "acdb_relay_spd_mcb_solar_meter_qty",
+                "value": {
+                  "path": "$.acdb_relay_spd_mcb_solar_meter_qty"
+                }
+              },
+              {
+                "variable": "solar_array_junction_box_make",
+                "value": {
+                  "path": "$.solar_array_junction_box_make"
+                }
+              },
+              {
+                "variable": "solar_array_junction_box_capacity",
+                "value": {
+                  "path": "$.solar_array_junction_box_capacity"
+                }
+              },
+              {
+                "variable": "solar_array_junction_box_qty",
+                "value": {
+                  "path": "$.solar_array_junction_box_qty"
+                }
+              },
+              {
+                "variable": "lt_panel_net_meter_make",
+                "value": {
+                  "path": "$.lt_panel_net_meter_make"
+                }
+              },
+              {
+                "variable": "lt_panel_net_meter_capacity",
+                "value": {
+                  "path": "$.lt_panel_net_meter_capacity"
+                }
+              },
+              {
+                "variable": "lt_panel_net_meter_qty",
+                "value": {
+                  "path": "$.lt_panel_net_meter_qty"
+                }
+              },
+              {
+                "variable": "marking_ac_earthing_make",
+                "value": {
+                  "path": "$.marking_ac_earthing_make"
+                }
+              },
+              {
+                "variable": "marking_ac_earthing_capacity",
+                "value": {
+                  "path": "$.marking_ac_earthing_capacity"
+                }
+              },
+              {
+                "variable": "marking_ac_earthing_qty",
+                "value": {
+                  "path": "$.marking_ac_earthing_qty"
+                }
+              },
+              {
+                "variable": "marking_dc_earthing_make",
+                "value": {
+                  "path": "$.marking_dc_earthing_make"
+                }
+              },
+              {
+                "variable": "marking_dc_earthing_capacity",
+                "value": {
+                  "path": "$.marking_dc_earthing_capacity"
+                }
+              },
+              {
+                "variable": "marking_dc_earthing_qty",
+                "value": {
+                  "path": "$.marking_dc_earthing_qty"
+                }
+              },
+              {
+                "variable": "marking_lightning_arrester_make",
+                "value": {
+                  "path": "$.marking_lightning_arrester_make"
+                }
+              },
+              {
+                "variable": "marking_lightning_arrester_capacity",
+                "value": {
+                  "path": "$.marking_lightning_arrester_capacity"
+                }
+              },
+              {
+                "variable": "marking_lightning_arrester_qty",
+                "value": {
+                  "path": "$.marking_lightning_arrester_qty"
+                }
+              },
+              {
+                "variable": "sld_make",
+                "value": {
+                  "path": "$.sld_make"
+                }
+              },
+              {
+                "variable": "sld_capacity",
+                "value": {
+                  "path": "$.sld_capacity"
+                }
+              },
+              {
+                "variable": "sld_qty",
+                "value": {
+                  "path": "$.sld_qty"
+                }
+              },
+              {
+                "variable": "dos_donts_poster_make",
+                "value": {
+                  "path": "$.dos_donts_poster_make"
+                }
+              },
+              {
+                "variable": "dos_donts_poster_capacity",
+                "value": {
+                  "path": "$.dos_donts_poster_capacity"
+                }
+              },
+              {
+                "variable": "dos_donts_poster_qty",
+                "value": {
+                  "path": "$.dos_donts_poster_qty"
+                }
+              },
+              {
+                "variable": "signboard_danger_make",
+                "value": {
+                  "path": "$.signboard_danger_make"
+                }
+              },
+              {
+                "variable": "signboard_danger_capacity",
+                "value": {
+                  "path": "$.signboard_danger_capacity"
+                }
+              },
+              {
+                "variable": "signboard_danger_qty",
+                "value": {
+                  "path": "$.signboard_danger_qty"
+                }
+              },
+              {
+                "variable": "fire_extinguisher_make",
+                "value": {
+                  "path": "$.fire_extinguisher_make"
+                }
+              },
+              {
+                "variable": "fire_extinguisher_capacity",
+                "value": {
+                  "path": "$.fire_extinguisher_capacity"
+                }
+              },
+              {
+                "variable": "fire_extinguisher_qty",
+                "value": {
+                  "path": "$.fire_extinguisher_qty"
+                }
+              },
+              {
+                "variable": "isolator_mcbs_pvc_case_make",
+                "value": {
+                  "path": "$.isolator_mcbs_pvc_case_make"
+                }
+              },
+              {
+                "variable": "isolator_mcbs_pvc_case_capacity",
+                "value": {
+                  "path": "$.isolator_mcbs_pvc_case_capacity"
+                }
+              },
+              {
+                "variable": "isolator_mcbs_pvc_case_qty",
+                "value": {
+                  "path": "$.isolator_mcbs_pvc_case_qty"
+                }
+              },
+              {
+                "variable": "consumables_make",
+                "value": {
+                  "path": "$.consumables_make"
+                }
+              },
+              {
+                "variable": "consumables_capacity",
+                "value": {
+                  "path": "$.consumables_capacity"
+                }
+              },
+              {
+                "variable": "consumables_qty",
+                "value": {
+                  "path": "$.consumables_qty"
+                }
+              },
+              {
+                "variable": "ongrid_date_of_recording",
+                "value": {
+                  "path": "$.sfp_date"
+                }
+              },
+              {
+                "variable": "ongrid_time_of_recording",
+                "value": {
+                  "path": "$.sfp_time"
+                }
+              },
+              {
+                "variable": "ongrid_weather_condition",
+                "value": {
+                  "path": "$.sfp_weather"
+                }
+              },
+              {
+                "variable": "ongrid_array_size_kwp",
+                "value": {
+                  "path": "$.array_size_kwp"
+                }
+              },
+              {
+                "variable": "ongrid_array_no_modules",
+                "value": {
+                  "path": "$.array_no_modules"
+                }
+              },
+              {
+                "variable": "ongrid_array_no_strings",
+                "value": {
+                  "path": "$.array_no_strings"
+                }
+              },
+              {
+                "variable": "array_no_modules_per_string",
+                "value": {
+                  "path": "$.array_no_modules_per_string"
+                }
+              },
+              {
+                "variable": "ongrid_array_each_module_capacity_wp",
+                "value": {
+                  "path": "$.array_each_module_wp"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_string1_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_string_1"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_string2_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_string_2"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_string3_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_string_3"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_string4_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_string_4"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_string5_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_string_5"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_off_voc_array_mv",
+                "value": {
+                  "path": "$.ajb_off_voc_mv_anchor"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_string1_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_string_1"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_string1_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_string_1"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_string2_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_string_2"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_string2_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_string_2"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_string3_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_string_3"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_string3_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_string_3"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_string4_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_string_4"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_string4_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_string_4"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_string5_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_string_5"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_string5_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_string_5"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_vmp_array_mv",
+                "value": {
+                  "path": "$.ajb_on_vmp_mv_anchor"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_on_imp_array_mv",
+                "value": {
+                  "path": "$.ajb_on_imp_mv_anchor"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_string_1",
+                "value": {
+                  "path": "$.ajb_on_pmp_string_1"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_string_2",
+                "value": {
+                  "path": "$.ajb_on_pmp_string_2"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_string_3",
+                "value": {
+                  "path": "$.ajb_on_pmp_string_3"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_string_4",
+                "value": {
+                  "path": "$.ajb_on_pmp_string_4"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_string_5",
+                "value": {
+                  "path": "$.ajb_on_pmp_string_5"
+                }
+              },
+              {
+                "variable": "ajb_on_pmp_array",
+                "value": {
+                  "path": "$.ajb_on_pmp_array"
+                }
+              },
+              {
+                "variable": "ongrid_no_of_pcus_inverters",
+                "value": {
+                  "path": "$.pcu_inverter_count"
+                }
+              },
+              {
+                "variable": "ongrid_each_pcu_rating_kva",
+                "value": {
+                  "path": "$.pcu_inverter_rating_kva"
+                }
+              },
+              {
+                "variable": "ongrid_each_pcu_rating_phase",
+                "value": {
+                  "path": "$.pcu_inverter_rating_phase"
+                }
+              },
+              {
+                "variable": "ongrid_total_pcu_capacity_kva",
+                "value": {
+                  "path": "$.pcu_inverter_total_capacity_kva"
+                }
+              },
+              {
+                "variable": "ongrid_total_pcu_capacity_phase",
+                "value": {
+                  "path": "$.pcu_inverter_total_capacity_phase"
+                }
+              },
+              {
+                "variable": "ongrid_no_of_mppts",
+                "value": {
+                  "path": "$.pcu_inverter_mppt_count"
+                }
+              },
+              {
+                "variable": "ongrid_no_of_charge_controllers",
+                "value": {
+                  "path": "$.charge_controller_count"
+                }
+              },
+              {
+                "variable": "ongrid_charge_controller_ratings",
+                "value": {
+                  "path": "$.charge_controller_ratings"
+                }
+              },
+              {
+                "variable": "ph1_load_voltage_mv",
+                "value": {
+                  "path": "$.ph1_load_voltage_mv"
+                }
+              },
+              {
+                "variable": "ph1_load_voltage_uom",
+                "value": {
+                  "path": "$.ph1_load_voltage_uom"
+                }
+              },
+              {
+                "variable": "ph1_output_freq_mv",
+                "value": {
+                  "path": "$.ph1_output_freq_mv"
+                }
+              },
+              {
+                "variable": "ph1_output_freq_uom",
+                "value": {
+                  "path": "$.ph1_output_freq_uom"
+                }
+              },
+              {
+                "variable": "ph1_output_power_mv",
+                "value": {
+                  "path": "$.ph1_output_power_mv"
+                }
+              },
+              {
+                "variable": "ph1_output_power_uom",
+                "value": {
+                  "path": "$.ph1_output_power_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_mv",
+                "value": {
+                  "path": "$.ph3_rpn_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_uom",
+                "value": {
+                  "path": "$.ph3_rpn_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_freq_mv",
+                "value": {
+                  "path": "$.ph3_rpn_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_freq_uom",
+                "value": {
+                  "path": "$.ph3_rpn_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_current_mv",
+                "value": {
+                  "path": "$.ph3_rpn_current_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_phase_neutral_current_uom",
+                "value": {
+                  "path": "$.ph3_rpn_current_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_mv",
+                "value": {
+                  "path": "$.ph3_ypn_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_uom",
+                "value": {
+                  "path": "$.ph3_ypn_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_freq_mv",
+                "value": {
+                  "path": "$.ph3_ypn_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_freq_uom",
+                "value": {
+                  "path": "$.ph3_ypn_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_current_mv",
+                "value": {
+                  "path": "$.ph3_ypn_current_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_phase_neutral_current_uom",
+                "value": {
+                  "path": "$.ph3_ypn_current_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_mv",
+                "value": {
+                  "path": "$.ph3_bpn_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_uom",
+                "value": {
+                  "path": "$.ph3_bpn_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_freq_mv",
+                "value": {
+                  "path": "$.ph3_bpn_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_freq_uom",
+                "value": {
+                  "path": "$.ph3_bpn_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_current_mv",
+                "value": {
+                  "path": "$.ph3_bpn_current_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_b_phase_neutral_current_uom",
+                "value": {
+                  "path": "$.ph3_bpn_current_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_y_phase_voltage_mv",
+                "value": {
+                  "path": "$.ph3_r_y_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_y_phase_voltage_uom",
+                "value": {
+                  "path": "$.ph3_r_y_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_y_phase_freq_mv",
+                "value": {
+                  "path": "$.ph3_r_y_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_y_phase_freq_uom",
+                "value": {
+                  "path": "$.ph3_r_y_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_b_phase_voltage_mv",
+                "value": {
+                  "path": "$.ph3_r_b_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_b_phase_voltage_uom",
+                "value": {
+                  "path": "$.ph3_r_b_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_b_phase_freq_mv",
+                "value": {
+                  "path": "$.ph3_r_b_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_r_b_phase_freq_uom",
+                "value": {
+                  "path": "$.ph3_r_b_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_b_phase_voltage_mv",
+                "value": {
+                  "path": "$.ph3_y_b_voltage_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_b_phase_voltage_uom",
+                "value": {
+                  "path": "$.ph3_y_b_voltage_uom"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_b_phase_freq_mv",
+                "value": {
+                  "path": "$.ph3_y_b_freq_mv"
+                }
+              },
+              {
+                "variable": "ongrid_3ph_y_b_phase_freq_uom",
+                "value": {
+                  "path": "$.ph3_y_b_freq_uom"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_display_status",
+                "value": {
+                  "path": "$.pcu_display_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_display_parameters",
+                "value": {
+                  "path": "$.pcu_display_parameters"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string1_input_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string1_input_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string2_input_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string2_input_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string3_input_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string3_input_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string4_input_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string4_input_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string5_input_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string5_input_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string1_output_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string1_output_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string2_output_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string2_output_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string3_output_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string3_output_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string4_output_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string4_output_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_ajb_string5_output_lines_status",
+                "value": {
+                  "path": "$.ongrid_ajb_string5_output_lines_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_pv_input_line1_status",
+                "value": {
+                  "path": "$.ongrid_pcu_pv_input_line1_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_pv_input_line2_status",
+                "value": {
+                  "path": "$.ongrid_pcu_pv_input_line2_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_pv_input_line3_status",
+                "value": {
+                  "path": "$.ongrid_pcu_pv_input_line3_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_pv_input_line4_status",
+                "value": {
+                  "path": "$.ongrid_pcu_pv_input_line4_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_pv_input_line5_status",
+                "value": {
+                  "path": "$.ongrid_pcu_pv_input_line5_status"
+                }
+              },
+              {
+                "variable": "ongrid_pcu_output_rybn_status",
+                "value": {
+                  "path": "$.ongrid_pcu_output_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_acdb1_pcu_rybn_status",
+                "value": {
+                  "path": "$.ongrid_acdb1_pcu_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_acdb1_rybn_status",
+                "value": {
+                  "path": "$.ongrid_acdb1_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_solar_check_meter_acdb1_rybn_status",
+                "value": {
+                  "path": "$.ongrid_solar_check_meter_acdb1_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_solar_check_meter_rybn_status",
+                "value": {
+                  "path": "$.ongrid_solar_check_meter_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_solar_check_meter_rybn_status",
+                "value": {
+                  "path": "$.ongrid_lt_panel_solar_check_meter_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_bidirectional_meter_rybn_status",
+                "value": {
+                  "path": "$.ongrid_lt_panel_bidirectional_meter_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_bidirectional_meter_acdb2_rybn_status",
+                "value": {
+                  "path": "$.ongrid_bidirectional_meter_acdb2_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_bidirectional_meter_grid_rybn_status",
+                "value": {
+                  "path": "$.ongrid_bidirectional_meter_grid_rybn_status"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_1_pcu_mcb_on_voltage",
+                "value": {
+                  "path": "$.pv_line1_pcu_mcb_isolator_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_1_pcu_mcb_off_voltage",
+                "value": {
+                  "path": "$.pv_line1_pcu_mcb_isolator_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_2_pcu_mcb_on_voltage",
+                "value": {
+                  "path": "$.pv_line2_pcu_mcb_isolator_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_2_pcu_mcb_off_voltage",
+                "value": {
+                  "path": "$.pv_line2_pcu_mcb_isolator_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_3_pcu_mcb_on_voltage",
+                "value": {
+                  "path": "$.pv_line3_pcu_mcb_isolator_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_3_pcu_mcb_off_voltage",
+                "value": {
+                  "path": "$.pv_line3_pcu_mcb_isolator_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_4_pcu_mcb_on_voltage",
+                "value": {
+                  "path": "$.pv_line4_pcu_mcb_isolator_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_4_pcu_mcb_off_voltage",
+                "value": {
+                  "path": "$.pv_line4_pcu_mcb_isolator_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_5_pcu_mcb_on_voltage",
+                "value": {
+                  "path": "$.pv_line5_pcu_mcb_isolator_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_pv_line_5_pcu_mcb_off_voltage",
+                "value": {
+                  "path": "$.pv_line5_pcu_mcb_isolator_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_ry_on_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_ry_off_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_yb_on_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_yb_off_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_rb_on_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_contactor_rb_off_voltage",
+                "value": {
+                  "path": "$.acdb_contactor_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_ry_on_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_ry_off_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_yb_on_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_yb_off_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_rb_on_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_acdb_mcb_rb_off_voltage",
+                "value": {
+                  "path": "$.acdb_mcb_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_ry_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_ry_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_yb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_yb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_rb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_main_mcb_rb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_main_mcb_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_ry_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_ry_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_yb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_yb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_rb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_1_rb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb1_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_ry_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_ry_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_yb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_yb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_rb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_2_rb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb2_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_ry_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_ry_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_ry_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_ry_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_yb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_yb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_yb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_yb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_rb_on_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_rb_on_v"
+                }
+              },
+              {
+                "variable": "ongrid_lt_panel_phase_mcb_3_rb_off_voltage",
+                "value": {
+                  "path": "$.lt_panel_phase_mcb3_rb_off_v"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_dc_earthing_mv",
+                "value": {
+                  "path": "$.ept_dc_earthing_mv"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_dc_earthing_uom",
+                "value": {
+                  "path": "$.ept_dc_earthing_uom"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_ac_earthing_mv",
+                "value": {
+                  "path": "$.ept_ac_earthing_mv"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_ac_earthing_uom",
+                "value": {
+                  "path": "$.ept_ac_earthing_uom"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_lightning_arrester_1_mv",
+                "value": {
+                  "path": "$.ept_lightning_arrester1_mv"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_lightning_arrester_1_uom",
+                "value": {
+                  "path": "$.ept_lightning_arrester1_uom"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_lightning_arrester_2_mv",
+                "value": {
+                  "path": "$.ept_lightning_arrester2_mv"
+                }
+              },
+              {
+                "variable": "ongrid_earth_pit_lightning_arrester_2_uom",
+                "value": {
+                  "path": "$.ept_lightning_arrester2_uom"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_panel_panel_mv",
+                "value": {
+                  "path": "$.dc_panel_panel_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_panel_mms_mv",
+                "value": {
+                  "path": "$.dc_panel_mms_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_mms_ajb_mv",
+                "value": {
+                  "path": "$.dc_mms_ajb_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_ajb_busbar_mv",
+                "value": {
+                  "path": "$.dc_ajb_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_busbar_earth_pit_dc_mv",
+                "value": {
+                  "path": "$.dc_busbar_earth_pit_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_inverter_busbar_mv",
+                "value": {
+                  "path": "$.ac_inverter_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_acdb_busbar_mv",
+                "value": {
+                  "path": "$.ac_acdb_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_lt_panel_busbar_mv",
+                "value": {
+                  "path": "$.ac_ltpanel_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_loads_busbar_mv",
+                "value": {
+                  "path": "$.ac_loads_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_co_switch_busbar_mv",
+                "value": {
+                  "path": "$.ac_coswitch_busbar_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_busbar_earth_pit_ac_mv",
+                "value": {
+                  "path": "$.ac_busbar_earth_pit_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la1_aluminium_cable_mv",
+                "value": {
+                  "path": "$.la1_la_aluminium_cable_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la1_cable_gi_strip_mv",
+                "value": {
+                  "path": "$.la1_aluminium_gi_strip_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la1_gi_strip_earth_pit_mv",
+                "value": {
+                  "path": "$.la1_gi_strip_earth_pit_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la2_aluminium_cable_mv",
+                "value": {
+                  "path": "$.la2_la_aluminium_cable_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la2_cable_gi_strip_mv",
+                "value": {
+                  "path": "$.la2_aluminium_gi_strip_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la2_gi_strip_earth_pit_mv",
+                "value": {
+                  "path": "$.la2_gi_strip_earth_pit_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_ac_dc_earth_pit_interconnection_mv",
+                "value": {
+                  "path": "$.earthpit_ac_dc_interconnection_res"
+                }
+              },
+              {
+                "variable": "ongrid_continuity_la1_la2_earth_pit_interconnection_mv",
+                "value": {
+                  "path": "$.earthpit_la1_la2_interconnection_res"
+                }
+              },
+              {
+                "variable": "ongrid_operational_instructions_status",
+                "value": {
+                  "path": "$.orientation_operational_instructions_status"
+                }
+              },
+              {
+                "variable": "ongrid_operational_instructions_remarks",
+                "value": {
+                  "path": "$.orientation_operational_instructions_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_routine_maintenance_status",
+                "value": {
+                  "path": "$.orientation_routine_maintenance_status"
+                }
+              },
+              {
+                "variable": "ongrid_routine_maintenance_remarks",
+                "value": {
+                  "path": "$.orientation_routine_maintenance_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_stickers_pasted_status",
+                "value": {
+                  "path": "$.stickers_pasted_status"
+                }
+              },
+              {
+                "variable": "ongrid_stickers_pasted_remarks",
+                "value": {
+                  "path": "$.stickers_pasted_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_posters_pasted_status",
+                "value": {
+                  "path": "$.posters_pasted_status"
+                }
+              },
+              {
+                "variable": "ongrid_posters_pasted_remarks",
+                "value": {
+                  "path": "$.posters_pasted_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_solar_panel_status",
+                "value": {
+                  "path": "$.orientation_warranty_solar_panel_status"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_solar_panel_remarks",
+                "value": {
+                  "path": "$.orientation_warranty_solar_panel_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_pcu_inverter_ccu_status",
+                "value": {
+                  "path": "$.orientation_warranty_pcu_inverter_ccu_status"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_pcu_inverter_ccu_remarks",
+                "value": {
+                  "path": "$.orientation_warranty_pcu_inverter_ccu_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_bidirectional_meter_status",
+                "value": {
+                  "path": "$.orientation_warranty_bidirectional_meter_status"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_bidirectional_meter_remarks",
+                "value": {
+                  "path": "$.orientation_warranty_bidirectional_meter_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_solar_check_meter_status",
+                "value": {
+                  "path": "$.orientation_warranty_check_meter_status"
+                }
+              },
+              {
+                "variable": "ongrid_warranty_cards_solar_check_meter_remarks",
+                "value": {
+                  "path": "$.orientation_warranty_check_meter_remarks"
+                }
+              },
+              {
+                "variable": "ongrid_orientation_additional_remarks",
+                "value": {
+                  "path": "$.orientation_additional_remarks"
+                }
+              },
+              {
+                "variable": "panel_serial_rows",
+                "value": {
+                  "path": "$.panel_serial_number.*"
+                },
+                "type": "array",
+                "format": {
+                  "type": "string",
+                  "scema": [
+                    {
+                      "value": "srNo",
+                      "variable": "srNo"
+                    },
+                    {
+                      "value": "serialNumber",
+                      "variable": "serialNumber"
+                    }
+                  ]
+                }
+              },
+              {
+                "variable": "battery_serial_rows",
+                "value": {
+                  "path": "$.battery_serial_number.*"
+                },
+                "type": "array",
+                "format": {
+                  "type": "string",
+                  "scema": [
+                    {
+                      "value": "srNo",
+                      "variable": "srNo"
+                    },
+                    {
+                      "value": "serialNumber",
+                      "variable": "serialNumber"
+                    }
+                  ]
+                }
+              },
+              {
+                "variable": "inverter_serial_rows",
+                "value": {
+                  "path": "$.inverter_serial_number.*"
+                },
+                "type": "array",
+                "format": {
+                  "type": "string",
+                  "scema": [
+                    {
+                      "value": "srNo",
+                      "variable": "srNo"
+                    },
+                    {
+                      "value": "serialNumber",
+                      "variable": "serialNumber"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "direct": [
+              {
+                "variable": "installation_image_1_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_2_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_3_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_4_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_5_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_6_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_7_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_8_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_9_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_10_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_11_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_12_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_13_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_14_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_15_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_16_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_17_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].documentName"
+                }
+              }
+            ]
+          },
+          {
+            "externalAPI": [
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "direct": [
+              {
+                "variable": "installation_image_1_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_2_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_3_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_4_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_5_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_6_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_7_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_8_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_9_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_10_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_11_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_12_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_13_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_14_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_15_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_16_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].documentName"
+                }
+              },
+              {
+                "variable": "installation_image_17_title",
+                "value": {
+                  "path": "$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].documentName"
+                }
+              }
+            ]
+          },
+          {
+            "externalAPI": [
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-1')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_1_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-2')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_2_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-3')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_3_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-4')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_4_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-5')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_5_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-6')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_6_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-7')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_7_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-8')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_8_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-9')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_9_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-10')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_10_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-11')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_11_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-12')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_12_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-13')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_13_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-14')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_14_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-15')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_15_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-16')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_16_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[0]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_1",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[1]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_2",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              },
+              {
+                "path": "http://egov-filestore.core-dev:8080/filestore/v1/files/actualurl",
+                "queryParam": "tenantId=$.tenantId,fileStoreId=$.documents[?(@.documentType=='INSTALLATION_IMAGE-17')].fileStoreIds[2]",
+                "apiRequest": null,
+                "requesttype": "GET",
+                "responseMapping": [
+                  {
+                    "variable": "INSTALLATION_IMAGE_17_3",
+                    "value": "$.fileStoreIds[0].url",
+                    "type": "image"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
