@@ -208,3 +208,7 @@ releases:
 #  - name: amc-service
 #    installed: true
 #    <<: *default
+
+  - name: bulk-indexer
+    installed: true
+    <<: *default
