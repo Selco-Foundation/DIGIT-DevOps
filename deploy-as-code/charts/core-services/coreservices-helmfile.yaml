@@ -121,9 +121,9 @@ releases:
 #    <<: *default
 
 #
-#  - name: processor-services # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: processor-services # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #   - name: vendor-registry # Replace with your desired namespace
 #     installed: true
@@ -166,13 +166,13 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: field-planner-activity
-    installed: true
-    <<: *default
+#  - name: field-planner-activity
+#    installed: true
+#    <<: *default
 #
-  - name: pdf-service
-    installed: true
-    <<: *default
+#  - name: pdf-service
+#    installed: true
+#    <<: *default
 #
 #  - name: amc-service
 #    installed: true
