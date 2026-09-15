@@ -139,8 +139,7 @@ jobs:
 
       - name: digit deployment
         run: |
-          helmfile -f digit-helmfile.yaml delete 
-# --include-needs=true\
+          helmfile -f digit-helmfile.yaml apply --include-needs=true\
 #            --set amc-service.image.tag=staging-${{ env.amc_service_commit }} \
 #            --set amc-service.initContainers.dbMigration.image.tag=staging-${{ env.amc_service_commit }} \
 #            --set field-planner-activity.image.tag=staging-${{ env.field_planner_activity_commit }} \
