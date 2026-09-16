@@ -42,13 +42,22 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: egov-state-level-tenant-id
-  - name: EGOV_INDEXER_ES_USERNAME
+  - name: EGOV_BULKINDEXER_ES_HOST_NAME
+    value: https://elasticsearch-data.backbone-dev
+  - name: EGOV_BULKINDEXER_ES_PORT_NO
+    value: "9200"
+  - name: EGOV_BULKINDEXER_ES_USERNAME
     valueFrom:
       secretKeyRef:
         name: elasticsearch-credentials
         key: username
-  - name: EGOV_INDEXER_ES_PASSWORD
+  - name: EGOV_BULKINDEXER_ES_PASSWORD
     valueFrom:
       secretKeyRef:
         name: elasticsearch-credentials
         key: password
+  - name: KAFKA_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: kafka-brokers
