@@ -59,6 +59,9 @@ releases:
     - ./elasticsearch/values.yaml
     - secret:
         password: {{ .Values.secrets.elasticsearch.password }}
+      # core-dev needs the ca.crt to validate ES's https certificate (bulk-indexer's PKIX fix)
+      exportCertToNamespaces:
+      - core-dev
 
 - name: elasticsearch-data
   chart: ./elasticsearch-data

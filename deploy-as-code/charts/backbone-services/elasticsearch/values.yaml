@@ -58,6 +58,10 @@ extraEnvs:
 
 createCert: true
 
+# Additional namespaces to mirror the {{name}}-certs TLS secret into, so services running outside
+# .Values.namespace can mount ca.crt to trust ES's https certificate (e.g. bulk-indexer in core-dev).
+exportCertToNamespaces: []
+
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:
