@@ -74,7 +74,9 @@ releases:
   <<: *default
   values:
     - ./kibana/values.yaml
-    - ingress:
+    - image: "selcohub/kibana-plugin-poc"
+      imageTag: "staging-20260916"
+      ingress:
         hosts:
           - host: {{ .Values.global.domain }}
             paths:
