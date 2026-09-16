@@ -23,6 +23,22 @@ otel: "true"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
 
+# Elasticsearch serves https with a certificate issued by its own cluster CA, which the JVM
+# default trust store doesn't know. Mount that CA (same secret Kibana already trusts) and point
+# egov.bulkindexer.es.ca-certificate.path at it, or _bulk calls fail with PKIX path building failed.
+extraVolumes: |
+  - name: es-ca-cert
+    secret:
+      secretName: elasticsearch-master-certs
+      items:
+        - key: ca.crt
+          path: ca.crt
+
+extraVolumeMounts: |
+  - name: es-ca-cert
+    mountPath: "/etc/es-certs"
+    readOnly: true
+
 # Additional Container Envs
 env: |
   {{- if index .Values "global" "serializers-timezone-in-ist" }}
@@ -56,6 +72,8 @@ env: |
       secretKeyRef:
         name: elasticsearch-credentials
         key: password
+  - name: EGOV_BULKINDEXER_ES_CA_CERTIFICATE_PATH
+    value: "/etc/es-certs/ca.crt"
   - name: KAFKA_HOST
     valueFrom:
       configMapKeyRef:
