@@ -174,9 +174,9 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: amc-service
-#    installed: true
-#    <<: *default
+  - name: amc-service
+    installed: true
+    <<: *default
 #
 #  - name: rms-service
 #    installed: true
