@@ -58,6 +58,8 @@ extraEnvs:
 
 createCert: true
 
+exportCertToNamespaces: []
+
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:
