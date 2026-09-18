@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ticket-index-sync
+  namespace: core-dev
+spec:
+  schedule: "0 22 * * *"
+  timeZone: Asia/Kolkata
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ticket-index-sync-job
+            image: selcohub/cron-ticket-index-sync:staging-18-sep-2026-v2
+            env:
+              - name: ES_HOST
+                valueFrom:
+                  configMapKeyRef:
+                    name: egov-config
+                    key: es-indexer-host
+              - name: ES_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    key: username
+                    name: elasticsearch-credentials
+              - name: ES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: elasticsearch-credentials
+              - name: IM_SERVICES_HOST
+                valueFrom:
+                  configMapKeyRef:
+                    name: egov-service-host
+                    key: im-services
+              - name: IM_SERVICES_ENDPOINT
+                value: "im-services"
+          imagePullSecrets:
+          - name: docker-secret
+          restartPolicy: OnFailure
