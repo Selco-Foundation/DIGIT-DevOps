@@ -209,6 +209,11 @@ releases:
 #    installed: true
 #    <<: *default
 
+#  - name: sem-ui
+#    installed: true
+#    <<: *default
+
   - name: bulk-indexer
     installed: true
     <<: *default
+
