@@ -29,6 +29,10 @@ minReplicas: 2
 
 # Additional Container Envs
 env: |
+  - name: SELCO_LOGO_FILESTORE_ID
+    value: db1a63ba-3476-48a2-8379-c9de7a58ba23
+  - name: SAURA_LOGO_FILESTORE_ID
+    value: dce42e2f-5a57-4115-8c9e-fddc5bedfb17
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
