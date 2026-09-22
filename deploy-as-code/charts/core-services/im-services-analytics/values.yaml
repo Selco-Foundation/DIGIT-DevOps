@@ -38,6 +38,10 @@ tolerations:
 
 # Additional Container Envs
 env: |
+  - name: SELCO_LOGO_FILESTORE_ID
+    value: 16a0593a-6f99-48c3-81eb-78fe499fb8f7
+  - name: SAURA_LOGO_FILESTORE_ID
+    value: c8f9ddf3-37c0-466b-a0a0-93f860368e38
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
