@@ -112,18 +112,18 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: im-services-analytics # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: im-services-analytics # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
 #
-  - name: processor-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+#  - name: processor-services # Replace with your desired namespace
+#    installed: true
+#    <<: *default
 #
 #   - name: vendor-registry # Replace with your desired namespace
 #     installed: true
@@ -174,10 +174,14 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: amc-service
-    installed: true
-    <<: *default
+#  - name: amc-service
+#    installed: true
+#    <<: *default
 #
 #  - name: rms-service
 #    installed: true
 #    <<: *default
+
+  - name: bulk-indexer
+    installed: true
+    <<: *default
