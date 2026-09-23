@@ -210,7 +210,7 @@ egov-indexer:
       branch: "main"                                         ##### Change repo branch with Your fork Repo branch
       rev: e03662a30c40a255d8f202357d4a36113d4770eb
       depth: "0"
-  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/user-analytics-report-indexer.yml,file:///work-dir/configs/egov-indexer/scheduled-visit-indexer.yml,file:///work-dir/configs/egov-indexer/rms-services.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/privacy-audit.yaml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
+  egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/user-analytics-report-indexer.yml,file:///work-dir/configs/egov-indexer/scheduled-visit-indexer.yml,file:///work-dir/configs/egov-indexer/rms-services.yml,file:///work-dir/configs/egov-indexer/project-indexer.yml,file:///work-dir/configs/egov-indexer/im-services.yml,file:///work-dir/configs/egov-indexer/egov-url-shortening-indexer.yaml,file:///work-dir/configs/works/egov-indexer/individual-indexer.yml,file:///work-dir/configs/egov-indexer/escalation-status-indexer.yml"
 
 egov-persister:
   replicas: 1
