@@ -49,9 +49,9 @@ releases:
 #    <<: *default
 
 
-#  - name: egov-indexer # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-indexer # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-notification-sms # Replace with your desired namespace
 #    installed: true
@@ -75,9 +75,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-workflow-v2 # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-workflow-v2 # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: user-otp # Replace with your desired namespace
 #    installed: true
@@ -108,17 +108,17 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: im-services # Replace with your desired namespace
-#    installed: true
-#    <<: *default
-#
+  - name: im-services # Replace with your desired namespace
+    installed: true
+    <<: *default
+
   - name: im-services-analytics # Replace with your desired namespace
     installed: true
     <<: *default
 
-#  - name: inbox # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: inbox # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #
 #  - name: processor-services # Replace with your desired namespace
