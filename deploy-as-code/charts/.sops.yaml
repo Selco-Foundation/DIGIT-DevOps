@@ -4,11 +4,11 @@ creation_rules:
   # NOTE: previous regex "env\-secrets\.yaml$" never matched these files —
   # fixed to match the actual selco-{env}-secrets.yaml filenames. ARNs below
   # match what's already recorded in each file's own `sops.kms` metadata.
-  - path_regex: charts/environments/selco\-dev\-secrets\.yaml$
+  - path_regex: environments/selco-dev-secrets.yaml$
     kms: 'arn:aws:kms:ap-south-1:654654556600:key/mrk-a84007bbb45e422b8dfd5ce979e415ce'
 
-  - path_regex: charts/environments/selco\-uat\-secrets\.yaml$
+  - path_regex: environments/selco-uat-secrets.yaml$
     kms: 'arn:aws:kms:ap-south-1:654654556600:key/mrk-3410e25f34924b8fb9dd03ee75e3ea4b'
 
-  - path_regex: charts/environments/selco\-prod\-secrets\.yaml$
+  - path_regex: environments/selco-prod-secrets.yaml$
     kms: 'arn:aws:kms:ap-south-1:654654556600:key/mrk-6ad79e11546b4887989fead0e3b25ca3'
