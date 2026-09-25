@@ -62,6 +62,11 @@ createCert: true
 # .Values.namespace can mount ca.crt to trust ES's https certificate (e.g. bulk-indexer in core-dev).
 exportCertToNamespaces: []
 
+# Additional namespaces to mirror the elastic user's password into, as a fixed-name
+# "elasticsearch-credentials" secret (see secret-credentials-export.yaml) — the name core-services
+# already reference via secretKeyRef. Requires .Values.secret.enabled.
+exportCredentialsToNamespaces: []
+
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:

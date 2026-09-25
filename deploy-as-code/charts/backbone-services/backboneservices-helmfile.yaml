@@ -62,6 +62,8 @@ releases:
       # core-dev needs the ca.crt to validate ES's https certificate (bulk-indexer's PKIX fix)
       exportCertToNamespaces:
       - core-dev
+      exportCredentialsToNamespaces:
+      - core-dev
 
 - name: elasticsearch-data
   chart: ./elasticsearch-data
