@@ -465,6 +465,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "amc-service"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18000:8080"
     healthcheck:
@@ -495,6 +496,7 @@ services:
       SERVER_CONTEXTPATH: "/asset-registry"
       EGOV_ACTIVITY_FACILITY_HOST: "http://field-planner-activity:8080"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
       EGOV_IDGEN_HOST: "http://egov-idgen:8080/"
       EGOV_USER_HOST: "http://egov-user:8080/"
       EGOV_MDMS_HOST: "http://egov-mdms-service:8080/"
@@ -583,6 +585,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "audit-service"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18002:8080"
     healthcheck:
@@ -642,6 +645,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "boundary-service"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18003:8080"
     healthcheck:
@@ -718,6 +722,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-accesscontrol"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18005:8080"
     healthcheck:
@@ -778,6 +783,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-enc-service"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18006:8080"
     healthcheck:
@@ -843,6 +849,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-filestore"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18007:8080"
     healthcheck:
@@ -890,6 +897,7 @@ services:
       EGOV_ENVIRONMENT_DOMAIN: "https://e4h-dev.selcofoundation.org/"
       EGOV_USER_SEARCH_ENDPOINT: "/user/v1/_search"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
       EGOV_USER_CREATE_ENDPOINT: "/user/users/_createnovalidate"
       EGOV_USER_UPDATE_ENDPOINT: "/user/users/_updatenovalidate"
       EGOV_HRMS_EMPLOYEE_APP_LINK: "https://egov-micro-dev.egovernments.org/employee/user/login"
@@ -1044,6 +1052,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-indexer"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     volumes:
       - ./configs/egov-indexer:/work-dir/configs/egov-indexer:ro
       - ./configs/works/egov-indexer:/work-dir/configs/works/egov-indexer:ro
@@ -1102,6 +1111,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-localization"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18011:8080"
     healthcheck:
@@ -1161,6 +1171,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-location"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18012:8080"
     healthcheck:
@@ -1223,6 +1234,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-mdms-service"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18013:8080"
     healthcheck:
@@ -1281,6 +1293,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-notification-mail"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18014:8080"
     deploy:
@@ -1356,6 +1369,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-notification-sms"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18015:8080"
     deploy:
@@ -1404,6 +1418,7 @@ services:
       EGOV_OTP_TTL: "86400"
       OTEL_SERVICE_NAME: "egov-otp"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18016:8080"
     healthcheck:
@@ -1454,6 +1469,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-persister"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     volumes:
       - ./configs/egov-persister:/work-dir/configs/egov-persister:ro
       - ./configs/health/egov-persister:/work-dir/configs/health/egov-persister:ro
@@ -1604,6 +1620,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "egov-user-event"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18019:8080"
     healthcheck:
@@ -1674,6 +1691,7 @@ services:
       OTEL_SERVICE_NAME: "egov-workflow-v2"
       EGOV_IM_HOST: "http://im-services:8080"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18020:8080"
     healthcheck:
@@ -1745,6 +1763,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       ONM-NON-READY_ALLOWED_ROLES: "PROJECT_MANAGER,INSTALLATION_REPORT_APPROVER_QC_TEAM,INSTALLATION_REPORT_PART_A_EDITOR,INSTALLATION_REPORT_PART_B_EDITOR,INSTALLATION_REPORT_PART_A_REVIEWER,FACILITY_ADMIN,SYSTEM"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18021:8080"
     healthcheck:
@@ -1810,6 +1829,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "field-planner"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18022:8080"
     healthcheck:
@@ -1877,6 +1897,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "field-planner-activity"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18023:8080"
     healthcheck:
@@ -1954,6 +1975,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "gateway"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     volumes:
       - ./configs/gateway/routes.properties:/etc/zuul/routes.properties:ro
     ports:
@@ -2037,6 +2059,7 @@ services:
       EGOV_BOUNDARY_HOST: "http://boundary-service:8080/"
       EGOV_FACILITY_HOST: "http://facility-service:8080/"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
       OTEL_INSTRUMENTATION_HTTP_SERVER_IGNORE_URLS: "/im-services/health, /im-services/prometheus"
     ports:
       - "18025:8080"
@@ -2107,6 +2130,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "im-services-analytics"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18026:8080"
     healthcheck:
@@ -2301,6 +2325,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "processor-services"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18030:8080"
     healthcheck:
@@ -2363,6 +2388,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "project"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18031:8080"
     healthcheck:
@@ -2413,6 +2439,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "translator"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18032:8080"
     healthcheck:
@@ -2468,6 +2495,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "user-otp"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18033:8080"
     healthcheck:
@@ -2536,6 +2564,7 @@ services:
       KAFKA_TOPIC_AUDIT: "enc-user-audit-data"
       OTEL_SERVICE_NAME: "vendor-registry"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-tracing-collector:4318/"
+      OTEL_SDK_DISABLED: "${OTEL_SDK_DISABLED:-true}"
     ports:
       - "18034:8080"
     healthcheck:
@@ -2654,6 +2683,9 @@ services:
       KAFKA_CLUSTERS_0_NAME: "Kafka"
       SERVER_SERVLET_CONTEXT_PATH: "/kafka-ui"
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+      AUTH_TYPE: "LOGIN_FORM"
+      SPRING_SECURITY_USER_NAME: "${KAFKA_UI_USERNAME}"
+      SPRING_SECURITY_USER_PASSWORD: "${KAFKA_UI_PASSWORD}"
     ports:
       - "18300:8080"
     deploy:
