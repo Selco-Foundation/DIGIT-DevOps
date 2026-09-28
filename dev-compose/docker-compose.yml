@@ -23,7 +23,7 @@ services:
       - selco-network
 
   asset-registry-migrate:
-    image: selcohub/asset-registry-db:dummy-dev-73e2b31d23f9d99432bbbaf7a9881610cd94992b
+    image: selcohub/asset-registry-db:new_fieldplan_develop-cc45a12e26ea046d02ca69566ba35bdfba29dae9
     container_name: asset-registry-migrate
     restart: no
     environment:
@@ -329,7 +329,7 @@ services:
       - selco-network
 
   field-planner-activity-migrate:
-    image: selcohub/field-planner-activity-db:new_fieldplan_develop-ba4c66d7dae88d875912910e2755c382abd54e48
+    image: selcohub/field-planner-activity-db:new_fieldplan_develop-e7351f99662ada4cff1697390d6b2520fb6bd67b
     container_name: field-planner-activity-migrate
     restart: no
     environment:
@@ -482,7 +482,7 @@ services:
       - selco-network
 
   asset-registry:
-    image: selcohub/asset-registry:dummy-dev-73e2b31d23f9d99432bbbaf7a9881610cd94992b
+    image: selcohub/asset-registry:new_fieldplan_develop-cc45a12e26ea046d02ca69566ba35bdfba29dae9
     container_name: asset-registry
     restart: unless-stopped
     depends_on:
@@ -1827,7 +1827,7 @@ services:
       - selco-network
 
   field-planner-activity:
-    image: selcohub/field-planner-activity:new_fieldplan_develop-ba4c66d7dae88d875912910e2755c382abd54e48
+    image: selcohub/field-planner-activity:new_fieldplan_develop-e7351f99662ada4cff1697390d6b2520fb6bd67b
     container_name: field-planner-activity
     restart: unless-stopped
     depends_on:
@@ -2055,7 +2055,7 @@ services:
       - selco-network
 
   im-services-analytics:
-    image: selcohub/im-services-analytics:develop-b4e0c6669c41467566f587513beeea0f469342cd
+    image: selcohub/im-services-analytics:template-fixes-71568d8320622bab758ea36c93e35976272751b4
     container_name: im-services-analytics
     restart: unless-stopped
     depends_on:
