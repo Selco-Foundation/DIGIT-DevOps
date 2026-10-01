@@ -37,6 +37,8 @@ memory_requests: 512Mi
 
 # Additional Container Envs
 env: |
+  - name: EGOV_INGESTION_HOST
+    value: http://ingestion-service.core-dev:8080/
   - name: EGOV_AMC_SCHEDULER_HOST
     valueFrom:
       configMapKeyRef:
@@ -116,5 +118,3 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
-  - name: EGOV_INGESTION_HOST
-    value: http://ingestion-service.core-dev:8080/
