@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: e4h-dashboard-automation
+  namespace: core-dev
+spec:
+  schedule: "0 18 * * 1"          # weekly at 06:00PM
+  timeZone: "Asia/Kolkata"
+  startingDeadlineSeconds: 600
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 0             # Playwright already retries once (CI=true)
+      activeDeadlineSeconds: 1800 # kill runs that hang
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+          containers:
+            - name: e4h-dashboard-automation
+              image: selcohub/e4h-dashboard-automation-cron:uat-20261009v2
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: KIBANA_BASE_URL
+                  value: http://kibana-kibana.backbone-dev:5601/kibana
+                - name: KIBANA_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: username
+                      name: e4h-dashboard-automation
+                - name: KIBANA_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: e4h-dashboard-automation
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 512Mi
+                limits:
+                  cpu: 750m
+                  memory: 1Gi
+              volumeMounts:
+                - name: dshm
+                  mountPath: /dev/shm
+          volumes:
+            - name: dshm            # Chromium needs more than the default 64Mi /dev/shm
+              emptyDir:
+                medium: Memory
+                sizeLimit: 1Gi
