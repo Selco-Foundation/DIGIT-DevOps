@@ -19,6 +19,12 @@ healthChecks:
   livenessProbePath: "/ingestion-service/health"
   readinessProbePath: "/ingestion-service/health"
 
+resources: |
+  requests:
+    memory: "512Mi"
+  limits:
+    memory: "1Gi"
+
 # Additional Container Envs
 env: |
   - name: LOCALIZATION_SERVICE_URL
