@@ -19,6 +19,10 @@ healthChecks:
   livenessProbePath: "/ingestion-service/health"
   readinessProbePath: "/ingestion-service/health"
 
+heap: "-Xmx350m -Xms350m"
+memory_requests: "512Mi"
+memory_limits: "1Gi"
+
 # Additional Container Envs
 env: |
   - name: LOCALIZATION_SERVICE_URL
@@ -105,4 +109,6 @@ env: |
       configMapKeyRef:
         key: egov-filestore
         name: egov-service-host
+  - name: JAVA_OPTS
+    value: {{ index .Values "heap" | quote }}
  
