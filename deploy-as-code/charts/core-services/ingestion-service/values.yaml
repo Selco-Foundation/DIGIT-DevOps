@@ -19,7 +19,7 @@ healthChecks:
   livenessProbePath: "/ingestion-service/health"
   readinessProbePath: "/ingestion-service/health"
 
-heap: "-Xmx350m -Xms350m"
+heap: "-Xmx720m -Xms720m"
 memory_requests: "512Mi"
 memory_limits: "1Gi"
 
