@@ -132,13 +132,6 @@ minReplicas: 2
 extraVolumeMounts: |
   - mountPath: /flyway/logs/
     name: workdir
-nodeSelector:
-  accelerator: none
-tolerations:
-  - effect: NoSchedule
-    key: cpu
-    operator: Equal
-    value: "true"
 
 lifecycle:
   postStart:
