@@ -36,7 +36,7 @@ modules:
       im-services-analytics: v3.20.63-36b43f3dafbed86c56c51947f7e40b75617c7160
       processor-services: main-989d294d0111097082f14e4045f6ddcb97007235
       im-services: v3.20.56-3038b82bac2097aa3be1216a95ac9d98f9162d7c
-      digit-ui: v3.20.56-3038b82bac2097aa3be1216a95ac9d98f9162d7c
+      digit-ui: v3.20.64-cdce2bb077ce8f1b05a777293895c9f9546b6b6e
       inbox: v3.20.56-3038b82bac2097aa3be1216a95ac9d98f9162d7c
       egov-mdms-service: v2.9.2-4a60f20
       egov-notification-sms: master-03072024-1
