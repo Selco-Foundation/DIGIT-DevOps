@@ -24,9 +24,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: egov-filestore # Replace with your desired namespace
-    installed: true
-    <<: *default
+# - name: egov-filestore # Replace with your desired namespace
+#   installed: true
+#   <<: *default
 
 #  - name: egov-idgen # Replace with your desired namespace
 #    installed: true
@@ -87,9 +87,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: digit-ui # Replace with your desired namespace
-    installed: true
-    <<: *default
+# - name: digit-ui # Replace with your desired namespace
+#   installed: true
+#   <<: *default
 
 #
 #  - name: workbench-ui # Replace with your desired namespace
@@ -104,22 +104,22 @@ releases:
 #    installed: true
 #    <<: *default
 #
-  - name: im-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+# - name: im-services # Replace with your desired namespace
+#   installed: true
+#   <<: *default
 #
-  - name: im-services-analytics # Replace with your desired namespace
-    installed: true
-    <<: *default
+# - name: im-services-analytics # Replace with your desired namespace
+#   installed: true
+#   <<: *default
 
 #  - name: inbox # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 
 #
-  - name: processor-services # Replace with your desired namespace
-    installed: true
-    <<: *default
+# - name: processor-services # Replace with your desired namespace
+#   installed: true
+#   <<: *default
 #
 #   - name: vendor-registry # Replace with your desired namespace
 #     installed: true
@@ -174,9 +174,9 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: rms-service
-#    installed: true
-#    <<: *default
+- name: rms-service
+  installed: true
+  <<: *default
 
 #  - name: bulk-indexer
 #    installed: true
