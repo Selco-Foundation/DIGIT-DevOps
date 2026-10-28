@@ -10,7 +10,7 @@ spec:
       template:
         spec:
           containers:
-            - image: selcohub/amc-visit-scheduling:prod-08072026
+            - image: selcohub/amc-visit-scheduling:prod-20261028
               name: amc-visit-scheduling
           restartPolicy: OnFailure
   schedule: 15 11 * * *
