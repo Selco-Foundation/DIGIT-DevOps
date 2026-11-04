@@ -170,3 +170,16 @@ env: |
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
   {{- end }}
+  - name: JAEGER_SERVICE_NAME
+    value: egov-user
+  - name: JAEGER_SAMPLER_TYPE
+    value: remote
+  - name: JAEGER_AGENT_HOST
+    valueFrom:
+      fieldRef:
+        apiVersion: v1
+        fieldPath: status.hostIP
+  - name: JAEGER_AGENT_PORT
+    value: "6831"
+  - name: JAEGER_SAMPLER_MANAGER_HOST_PORT
+    value: $(JAEGER_AGENT_HOST):5778
