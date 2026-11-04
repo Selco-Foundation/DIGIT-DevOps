@@ -12,9 +12,9 @@ templates:
       - ../environments/{{ requiredEnv "HELMFILE_ENV" }}.yaml
 
 releases:
-#  - name: egov-accesscontrol # Replace with your desired namespace
-#    installed: true # Replace with the version of your chart, if needed
-#    <<: *default
+  - name: egov-accesscontrol # Replace with your desired namespace
+    installed: true # Replace with the version of your chart, if needed
+    <<: *default
 #
 #  - name: audit-service # Replace with your desired namespace
 #    installed: true # Replace with the version of your chart, if needed
@@ -61,19 +61,19 @@ releases:
 #    installed: true
 #    <<: *default
 
-#  - name: egov-user # Replace with your desired namespace
-#    installed: true
-#    needs:
-#    - egov-enc-service
-#    <<: *default
+  - name: egov-user # Replace with your desired namespace
+    installed: true
+    # needs:
+    # - egov-enc-service
+    <<: *default
 
 #  - name: egov-otp # Replace with your desired namespace
 #    installed: true
 #    <<: *default
 #
-#  - name: egov-persister # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: egov-persister # Replace with your desired namespace
+    installed: true
+    <<: *default
 
 #  - name: egov-workflow-v2 # Replace with your desired namespace
 #    installed: true
@@ -130,9 +130,9 @@ releases:
 #    <<: *default
 #
 #
-#  - name: ingestion-service # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: ingestion-service # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
 #  - name: boundary-service # Replace with your desired namespace
 #    installed: true
@@ -154,29 +154,29 @@ releases:
 #    installed: true
 #    <<: *default
 #
-#  - name: installation-qc # Replace with your desired namespace
-#    installed: true
-#    <<: *default
+  - name: installation-qc # Replace with your desired namespace
+    installed: true
+    <<: *default
 #
-#  - name: field-planner
-#    installed: true
-#    <<: *default
+  - name: field-planner
+    installed: true
+    <<: *default
 #
 #  - name: field-planner-activity
 #    installed: true
 #    <<: *default
 #
-#  - name: pdf-service
-#    installed: true
-#    <<: *default
+  - name: pdf-service
+    installed: true
+    <<: *default
 #
 #  - name: amc-service
 #    installed: true
 #    <<: *default
 
-- name: rms-service
-  installed: true
-  <<: *default
+# - name: rms-service
+#   installed: true
+#   <<: *default
 
 #  - name: bulk-indexer
 #    installed: true

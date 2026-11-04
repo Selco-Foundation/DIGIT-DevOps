@@ -14,7 +14,7 @@ initContainers: {}
 
 # Container Configs
 image:
-  repository: "egovio/egov-accesscontrol"
+  repository: "selcohub/egov-accesscontrol"
   tag: v2.9.2-4a60f20
 replicas: "1"
 healthChecks:
