@@ -213,7 +213,11 @@ releases:
 #    installed: true
 #    <<: *default
 
-  - name: bulk-indexer
-    installed: true
-    <<: *default
+# - name: bulk-indexer
+#   installed: true
+#   <<: *default
+
+- name: workbench-ui
+  installed: true
+  <<: *default
 
